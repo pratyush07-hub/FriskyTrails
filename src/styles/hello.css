@@ -1,0 +1,17 @@
+.swiper {
+    margin-top: 50px;
+  width: 100%;
+}
+
+.swiper-slide {
+  height: 400px;
+  width: 300px;
+}
+
+.swiper-slide img {
+  width: 100%;
+}
+
+.swiper-pagination-bullet{
+    background-color: rgb(255,99,33);
+}
