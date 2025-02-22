@@ -234,9 +234,16 @@ const End = () => {
               
             </div>
           </div>
-          <div className="h-[70vh] w-[26vw] bg-green-400">
+          <div className="h-[70vh] w-[26vw]">
             <h1 className="mt-25.5 ml-4 text-white text-3xl font-semibold">Instagram Post</h1>
-            <div></div>
+            <div className="mt-8 ml-2 grid grid-cols-3 w-[25vw] h-[30vh]">
+                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
+                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
+                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
+                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
+                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
+                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
+            </div>
           </div>
         </div>
       </div>

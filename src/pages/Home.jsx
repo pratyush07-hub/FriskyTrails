@@ -21,7 +21,7 @@ const Home = () => {
       <Cards />
       <Next />
       <Feedback />
-      <End />
+      {/* <End /> */}
     </>
   );
 };

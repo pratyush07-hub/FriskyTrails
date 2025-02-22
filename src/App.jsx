@@ -8,6 +8,8 @@ import ContactUs from './pages/ContactUs'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Header from './components/Header'
+import End from './sections/End'
+import Footer from './components/footer'
 
 
 const App = () => {
@@ -22,6 +24,8 @@ const App = () => {
         <Route path='/services' element={<Services />} />
         <Route path='/contact' element={<ContactUs />} />
       </Routes>
+      <End />
+      <Footer />
     </>
   )
 }
