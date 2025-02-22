@@ -1,6 +1,6 @@
 import React from 'react'
 
-const footer = () => {
+const Last = () => {
   return (
     <>
        <div className='h-[8vh] w-full bg-[rgb(10,3,34)]'>
@@ -10,4 +10,4 @@ const footer = () => {
   )
 }
 
-export default footer
+export default Last
