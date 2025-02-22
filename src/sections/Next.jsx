@@ -1,5 +1,5 @@
 import React from 'react';
-import '/src/styles/hello.css';
+import '/src/styles/Class.css';
 import {Swiper,SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -7,7 +7,19 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
 
+import Image1 from "/images/car.jpg";
+import Image2 from "/images/car.jpg";
+import Image3 from "/images/car.jpg";
+import Image4 from "/images/car.jpg";
+import Image5 from "/images/car.jpg";
+import Image6 from "/images/car.jpg";
+import Image7 from "/images/car.jpg";
+import Image8 from "/images/car.jpg";
+
+
 const Next = () => {
+  const data = [Image1,Image2,Image3,Image4,Image5,Image6,Image7,Image8]
+
   return (
     <>
       <div className='h-screen w-full'>
@@ -35,7 +47,7 @@ const Next = () => {
             >
                 {data.map((item,index) => (
                     <SwiperSlide key={index}>
-                        <img className='h-[400px]' src={item.image} alt={item.title} />
+                        <img className='h-[400px]' src={item} alt="" />
                     </SwiperSlide>
                 ))}
             </Swiper>
@@ -44,39 +56,5 @@ const Next = () => {
     </>
   )
 }
-const data = [
-    {
-      title: "Nepal",
-      image: "/images/secondpage.avif"
-    },
-    {
-      title: "USA",
-      image: "/images/car.jpg"
-    },
-    {
-      title: "Chile",
-      image: "https://upload.wikimedia.org/wikipedia/commons/9/93/Torres_del_Paine_Patagonia_Chile.jpg"
-    },
-    {
-      title: "Australia",
-      image: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Great_Barrier_Reef.jpg"
-    },
-    {
-      title: "Brazil",
-      image: "https://upload.wikimedia.org/wikipedia/commons/6/65/Amazon_Rainforest.jpg"
-    },
-    {
-      title: "Africa",
-      image: "https://upload.wikimedia.org/wikipedia/commons/4/49/Sahara_Desert_-_Algeria.jpg"
-    },
-    {
-      title: "Canada",
-      image: "https://upload.wikimedia.org/wikipedia/commons/3/32/Lake_Louise_Alberta_Canada.jpg"
-    },
-    {
-      title: "Chile",
-      image: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Torres_del_Paine_National_Park.jpg"
-    }
-  ];  
 
 export default Next

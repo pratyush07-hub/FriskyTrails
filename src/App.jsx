@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import Header from './components/Header'
 import End from './sections/End'
 import Last from './components/Last'
+import '/src/styles/Class.css';
 
 
 const App = () => {

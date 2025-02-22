@@ -8,6 +8,7 @@ import Landing from "../sections/Landing";
 import Next from "../sections/Next";
 import Feedback from "../sections/Feedback";
 import End from "../sections/End";
+import Choose from "../sections/Choose";
 
 const Home = () => {
 
@@ -17,6 +18,7 @@ const Home = () => {
       <About />
       <Scroll />
       <Categories />
+      <Choose />
       <Banner />
       <Cards />
       <Next />

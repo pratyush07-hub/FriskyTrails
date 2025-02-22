@@ -3,7 +3,7 @@ import React from "react";
 const End = () => {
   return (
     <>
-      <div className="h-[80vh] w-full mt-20 bg-[rgb(10,3,34)] flex justify-center items-center">
+      <div className="h-[78vh] w-full mt-20 bg-[rgb(10,3,34)] flex justify-center items-center">
         {/* Grid Container */}
         <div className="grid grid-cols-3 border-y-1 border-gray-500 place-items-center">
           {/* 3 Boxes to Fit the Grid */}

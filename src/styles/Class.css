@@ -13,5 +13,5 @@
 }
 
 .swiper-pagination-bullet{
-    background-color: rgb(255,99,33);
+    background-color: rgb(255,99,33) !important;
 }

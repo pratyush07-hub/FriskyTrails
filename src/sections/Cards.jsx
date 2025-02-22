@@ -42,7 +42,7 @@ const Cards = () => {
         `}
       </style>
 
-      <div className="trips h-screen w-full">
+      <div className="trips h-[90vh] w-full">
         <div className="ml-32 mr-32 flex justify-between">
           <h1 className="text-4xl font-bold">Upcoming Trips</h1>
           <button className="bg-[rgb(255,99,33)] mt-2 border-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 py-2">
@@ -54,7 +54,7 @@ const Cards = () => {
             <Slider {...settings}>
               {data.map((d, index) => (
                 <div key={index} className="">
-                  <div className="card h-[65vh] ml-5 rounded-xl bg-white shadow">
+                  <div className="card h-[60vh] ml-5 rounded-xl bg-white shadow-lg">
                     <img
                       className="h-[30vh] w-[25vw] rounded-xl  object-cover"
                       src={d.image}
@@ -64,7 +64,7 @@ const Cards = () => {
                       ⭐{d.rating} Overall Reviews
                     </h3>
                     <h1 className="mt-2 ml-4 mr-5 text-2xl h-[10vh]">{d.title}</h1>
-                    <div className="mt-18 ml-4 flex justify-between items-center">
+                    <div className="mt-10 ml-4 flex justify-between items-center">
                       <div>
                         <span className="text-[rgb(255,99,33)] font-semibold text-3xl">
                           {d.price}
