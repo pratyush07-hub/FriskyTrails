@@ -7,8 +7,9 @@ import Banner from "../sections/Banner";
 import Landing from "../sections/Landing";
 import Next from "../sections/Next";
 import Feedback from "../sections/Feedback";
-import End from "../sections/End";
 import Choose from "../sections/Choose";
+import Rewards from "../sections/Rewards";
+import Blogs from "../sections/Blogs";
 
 const Home = () => {
 
@@ -22,8 +23,9 @@ const Home = () => {
       <Banner />
       <Cards />
       <Next />
+      <Blogs />
+      <Rewards />
       <Feedback />
-      {/* <End /> */}
     </>
   );
 };

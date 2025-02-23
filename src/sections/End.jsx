@@ -3,9 +3,9 @@ import React from "react";
 const End = () => {
   return (
     <>
-      <div className="h-[78vh] w-full mt-20 bg-[rgb(10,3,34)] flex justify-center items-center">
+      <div className="h-[85vh] w-full bg-[rgb(10,3,34)] flex justify-center items-center">
         {/* Grid Container */}
-        <div className="grid grid-cols-3 border-y-1 border-gray-500 place-items-center">
+        <div className="grid grid-cols-3 border-y-1 mt-14 border-gray-500 place-items-center">
           {/* 3 Boxes to Fit the Grid */}
           <div className="h-[70vh] w-[26vw]">
             <div className="flex mr-40 mt-20 justify-center items-center">

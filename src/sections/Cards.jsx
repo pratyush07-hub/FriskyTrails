@@ -53,10 +53,10 @@ const Cards = () => {
           <div className="mt-20">
             <Slider {...settings}>
               {data.map((d, index) => (
-                <div key={index} className="">
-                  <div className="card h-[60vh] ml-5 rounded-xl bg-white shadow-lg">
+                <div key={index} className="overflow-hidden">
+                  <div className="card h-[60vh] ml-5 overflow-hidden rounded-xl bg-white shadow-lg">
                     <img
-                      className="h-[30vh] w-[25vw] rounded-xl  object-cover"
+                      className="h-[30vh] w-[25vw] rounded-xl transition-transform duration-300 hover:scale-105 object-cover"
                       src={d.image}
                       alt=""
                     />
