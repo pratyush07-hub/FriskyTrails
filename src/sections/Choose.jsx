@@ -3,7 +3,7 @@ import React from 'react'
 const Choose = () => {
   return (
     <>
-        <div className='h-[50vh] mt-30 w-full'>
+        <div className='h-[50vh] mt-20 w-full'>
             <h1 className='text-5xl font-bold text-center'>Why Choose Us</h1>
             <div className="flex justify-center mt-8 items-center gap-4 grid-cols-4 h-[40vh] w-full">
                 {data.map((data) => (

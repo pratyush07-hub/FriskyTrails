@@ -45,7 +45,7 @@ const Cards = () => {
       <div className="trips h-[90vh] w-full">
         <div className="ml-32 mr-32 flex justify-between">
           <h1 className="text-4xl font-bold">Upcoming Trips</h1>
-          <button className="bg-[rgb(255,99,33)] mt-2 border-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 py-2">
+          <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-2 border-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 py-2">
             Show All
           </button>
         </div>

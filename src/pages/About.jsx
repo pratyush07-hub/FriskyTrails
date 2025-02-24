@@ -30,7 +30,7 @@ const About = () => {
         </p>
       </div>
       <div className="flex justify-center gap-10">
-        <button className="bg-[rgb(255,99,33)] mt-8 border-1 flex gap-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-8 py-5">
+        <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-8 border-1 flex gap-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-8 py-5">
           Our Packages{" "}
           <img
             className="mt-0.5 invert"
@@ -90,6 +90,20 @@ const About = () => {
         </div>
       </div>
       <Choose />
+      <h1 className="text-4xl font-semibold mt-24 text-center">
+      Let’s Redefine Adventure, <span className="text-4xl text-amber-400 font-bold mt-24">TOGETHER!</span>
+      </h1>
+      <div className="w-[60vw] mx-auto flex justify-center">
+        <p className="text-center mt-8 text-xl text-gray-600">
+        FriskyTrails isn’t just a career opportunity—it’s a launchpad for bold ideas, passionate individuals, and limitless growth. We thrive in a fast-paced, dynamic culture where creativity meets adventure. If you’re ready to unlock your potential, make an impact, and embark on an exciting professional journey, this is your calling!
+        Click the button tailored just for you—whether you're drawn to marketing, sales, tech, or beyond. Your adventure with FriskyTrails starts now! 🚀
+        </p>
+      </div>
+      <div className="flex justify-center pb-10 gap-10">
+        <button className="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 mt-8 border-1 flex gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 py-3">
+          Join Our Team!
+        </button>
+      </div>
     </div>
   );
 };

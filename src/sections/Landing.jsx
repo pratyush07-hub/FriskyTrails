@@ -15,7 +15,7 @@ const Landing = () => {
                 FriskyTrails—taking you beyond the ordinary!
               </h4>
               <div className="buttons flex gap-4 mt-14">
-                <button className="bg-[rgb(255,99,33)] border-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-12 py-6">
+                <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-12 py-6">
                   Plan Now
                 </button>
                 <button className="bg-white border-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 hover:text-white px-8 py-5">
