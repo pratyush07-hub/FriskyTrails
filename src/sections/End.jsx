@@ -20,7 +20,7 @@ const End = () => {
               <h1 className="text-3xl font-bold text-white">FriskyTrails</h1>
             </div>
             <h3 className="text-gray-400 font-semibold w-[18vw] mt-8 ml-4">
-              7298 The Westheimer Road, Dubai United Arab Emirates
+            Uttarapan Market Complex, G15, Hill Cart Rd, opposite of Biswadeep Cinema Hall, Ward 1, Patiram Jote, Siliguri, West Bengal 734001
             </h3>
             <div className="email">
               <h3 className="text-gray-400 font-bold ml-4 mt-4">
