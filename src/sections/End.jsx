@@ -1,9 +1,11 @@
 import React from "react";
+import Smallbox from "./Smallbox";
+
 
 const End = () => {
   return (
     <>
-      <div className="h-[85vh] w-full bg-[rgb(10,3,34)] flex justify-center items-center">
+      <div className="h-[85vh] w-full bg-[rgb(8,5,18)] flex justify-center items-center">
         {/* Grid Container */}
         <div className="grid grid-cols-3 border-y-1 mt-14 border-gray-500 place-items-center">
           {/* 3 Boxes to Fit the Grid */}
@@ -111,7 +113,7 @@ const End = () => {
                       strokeLinejoin="round"
                       />
                   </svg>
-                  <h3 className="text-gray-400 font-semibold">Team Members</h3>
+                  <h3 className="text-gray-400 font-semibold">Adventures</h3>
                 </div>
                 <div className="flex mt-4 items-center">
                   <svg
@@ -129,7 +131,7 @@ const End = () => {
                       strokeLinejoin="round"
                       />
                   </svg>
-                  <h3 className="text-gray-400 font-semibold">Tour Plans</h3>
+                  <h3 className="text-gray-400 font-semibold">Services</h3>
                 </div>
                 <div className="flex mt-4 items-center">
                   <svg
@@ -147,7 +149,7 @@ const End = () => {
                       strokeLinejoin="round"
                       />
                   </svg>
-                  <h3 className="text-gray-400 font-semibold">Pricing Plan</h3>
+                  <h3 className="text-gray-400 font-semibold">Reviews</h3>
                 </div>
                       </div>
               </div>
@@ -191,24 +193,6 @@ const End = () => {
                       strokeLinejoin="round"
                       />
                   </svg>
-                  <h3 className="text-gray-400 font-semibold">Destnation</h3>
-                </div>
-                <div className="flex mt-4 items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    stroke="gray"
-                    >
-                    <path
-                      d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      />
-                  </svg>
                   <h3 className="text-gray-400 font-semibold">Blogs</h3>
                 </div>
                 <div className="flex mt-4 items-center">
@@ -227,7 +211,25 @@ const End = () => {
                       strokeLinejoin="round"
                       />
                   </svg>
-                  <h3 className="text-gray-400 font-semibold">FAQ Questions</h3>
+                  <h3 className="text-gray-400 font-semibold">Hiring</h3>
+                </div>
+                <div className="flex mt-4 items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    stroke="gray"
+                    >
+                    <path
+                      d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      />
+                  </svg>
+                  <h3 className="text-gray-400 font-semibold">Partner with Us</h3>
                 </div>
                       </div>
               </div>
@@ -235,14 +237,9 @@ const End = () => {
             </div>
           </div>
           <div className="h-[70vh] w-[26vw]">
-            <h1 className="mt-25.5 ml-4 text-white text-3xl font-semibold">Instagram Post</h1>
-            <div className="mt-8 ml-2 grid grid-cols-3 w-[25vw] h-[30vh]">
-                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
-                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
-                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
-                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
-                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
-                <div className="img h-[13vh] w-[7vw] rounded-lg bg-red-400"></div>
+            <h1 className="mt-25.5 ml-4 text-white text-3xl font-semibold">Travel Destinations</h1>
+            <div className="mt-8 ml-6 grid grid-cols-3 w-[19vw] h-[38vh]">
+                <Smallbox />
             </div>
           </div>
         </div>
