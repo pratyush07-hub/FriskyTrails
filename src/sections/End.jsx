@@ -1,11 +1,16 @@
 import React from "react";
 import Smallbox from "./Smallbox";
+import Facebook from '../assets/facebook.svg'
+import Linkedin from '../assets/linkedin.svg'
+import Twitter from '../assets/twitter.svg'
+import Instagram from '../assets/instagram.svg'
+
 
 
 const End = () => {
   return (
     <>
-      <div className="h-[85vh] w-full bg-[rgb(8,5,18)] flex justify-center items-center">
+      <div className="h-[85vh] w-full bg-[rgb(8,5,18)] relative flex justify-center items-center">
         {/* Grid Container */}
         <div className="grid grid-cols-3 border-y-1 mt-14 border-gray-500 place-items-center">
           {/* 3 Boxes to Fit the Grid */}
@@ -14,7 +19,7 @@ const End = () => {
               <div>
                 <img
                   className="h-20 w-20 bg-white rounded-full"
-                  src="logo.PNG"
+                  src="/logo.PNG"
                   alt=""
                 />
               </div>
@@ -38,7 +43,7 @@ const End = () => {
               <a href="https://www.facebook.com/friskytrails/" target="_blank">
                 <img
                   className="w-8 h-8 object-cover bg-white rounded-lg"
-                  src="./src/assets/facebook.svg"
+                  src={Facebook}
                   alt=""
                 />
               </a>
@@ -46,7 +51,7 @@ const End = () => {
               <a href="https://x.com/frisky_trails" target="_blank">
                 <img
                   className="w-8 h-8 object-cover bg-white rounded-lg"
-                  src="./src/assets/twitter.svg"
+                  src={Twitter}
                   alt=""
                 />
               </a>
@@ -57,7 +62,7 @@ const End = () => {
               >
                 <img
                   className="w-8 h-8 object-cover bg-white rounded-lg"
-                  src="./src/assets/linkedin.svg"
+                  src={Linkedin}
                   alt=""
                 />
               </a>
@@ -65,7 +70,7 @@ const End = () => {
               <a href="https://www.instagram.com/friskytrails/" target="_blank">
                 <img
                   className="w-8 h-8 object-cover bg-white rounded-lg"
-                  src="./src/assets/instagram.svg"
+                  src={Instagram}
                   alt=""
                 />
               </a>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../components/Modal";
+import Arrow from '../assets/arrow.svg'
 import Admodal from "../components/Admodal";
 
 const Navbar = () => {
@@ -37,8 +38,8 @@ const Navbar = () => {
             Services
             <img
               className="w-5 h-5 object-cover"
-              src="./src/assets/arrow.svg"
-              alt=""
+              src={Arrow}
+              alt="arrow"
             />
           </button>
           {showModal && <Modal onClose={() => setShowModal(false)} />} 
