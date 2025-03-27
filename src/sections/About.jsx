@@ -1,4 +1,12 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+
+import Trolly from '../assets/trolly.svg'
+import Mountain from '../assets/mountain.avif'
+import Compass from '../assets/compass.svg'
+import Tree from '../assets/tree.svg'
+import Map from '../assets/map.svg'
+import Cric from '../assets/cric.svg'
 
 const About = () => {
   return (
@@ -9,7 +17,7 @@ const About = () => {
             <div className="masker mt-30">
               <div className="flex flex-col gap-6">
                 <div className="box h-[14vh] w-[18vw] ml-28 flex items-center border-1 border-gray-200 rounded-lg gap-8 pl-10">
-                  <img src="./src/assets/trolly.svg" alt="" />
+                  <img src={Trolly} alt="trolly" />
                   <div>
                     <h1 className="text-2xl font-semibold">213+</h1>
                     <span className="text-gray-500">Tours Packages</span>
@@ -18,8 +26,8 @@ const About = () => {
                 <div className="box h-[14vh] w-[18vw] ml-28 flex items-center border-1 border-gray-200 rounded-lg gap-8 pl-10">
                   <img
                     className="h-14 w-14 object-cover"
-                    src="./src/assets/mountain.avif"
-                    alt=""
+                    src={Mountain}
+                    alt="mountain"
                   />
                   <div>
                     <h1 className="text-2xl font-semibold">89+</h1>
@@ -27,14 +35,14 @@ const About = () => {
                   </div>
                 </div>
                 <div className="box h-[14vh] w-[18vw] ml-28 flex items-center border-1 border-gray-200 rounded-lg gap-8 pl-10">
-                  <img src="./src/assets/compass.svg" alt="" />
+                  <img src={Compass} alt="compass" />
                   <div>
                     <h1 className="text-2xl font-semibold">400+</h1>
                     <span className="text-gray-500">Travel Guides</span>
                   </div>
                 </div>
                 <div className="box h-[14vh] w-[18vw] ml-28 flex items-center border-1 border-gray-200 rounded-lg gap-8 pl-10">
-                  <img src="./src/assets/tree.svg" alt="" />
+                  <img src={Tree} alt="tree" />
                   <div>
                     <h1 className="text-2xl font-semibold">200+</h1>
                     <span className="text-gray-500">Tour Destination</span>
@@ -58,7 +66,7 @@ const About = () => {
               </h1>
               <div className="flex gap-4">
                 <div className="box h-[14vh] w-[18vw] mt-8 flex items-center rounded-lg gap-8">
-                  <img src="./src/assets/map.svg" alt="" />
+                  <img src={Map} alt="map" />
                   <div className="">
                     <span className="text-xl">
                       No Booking Fee Best Price Guarantee
@@ -66,7 +74,7 @@ const About = () => {
                   </div>
                 </div>
                 <div className="box h-[14vh] w-[18vw] mt-8 flex items-center rounded-lg gap-8">
-                  <img src="./src/assets/cric.svg" alt="" />
+                  <img src={Cric} alt="cric" />
                   <div className="">
                     <span className="text-xl">24/7 Customer Support</span>
                   </div>
@@ -77,9 +85,11 @@ const About = () => {
                 seekers, offering thrilling experiences across India’s most
                 breathtaking destinations.
               </h4>
+              <Link to="/services/holidays">
               <button className="bg-white mt-8 border-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 hover:text-white px-8 py-5">
-                Get In Touch
+                Explore Now
               </button>
+              </Link>
             </div>
           </div>
         </div>

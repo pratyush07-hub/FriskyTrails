@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
-const Contactform = () => {
+const Popupform = ({ onClose }) => {
+  const modalRef = useRef();
+
+  const closeModal = (e) => {
+    if (modalRef.current === e.target) {
+      onClose();
+    }
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    date: "",
+    guest: "",
     mobile: "",
     message: "",
   });
@@ -18,14 +28,22 @@ const Contactform = () => {
     setFormData({
       name: "",
       email: "",
+      date: "",
+      guest: "",
       mobile: "",
       message: "",
     });
+    onClose();
   };
 
   return (
-    <div className="bg-white w-[90vw] h-[70vh] md:w-[36vw] m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
-        <form onSubmit={handleSubmit} className="flex flex-col w-[26vw] gap-6">
+    <div
+      ref={modalRef}
+      onClick={closeModal}
+      className="fixed inset-0 flex bg-opacity-30 backdrop-blur-sm justify-center items-center z-50"
+    >
+      <div className="bg-white w-[90vw] h-[70vh] md:w-[36vw] m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
+        <form onSubmit={handleSubmit} className="flex flex-col w-[26vw] gap-4">
           {/* Name */}
           <input
             type="text"
@@ -60,13 +78,33 @@ const Contactform = () => {
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
           />
 
+          {/* Date & Guests */}
+          <div className="flex gap-4">
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              placeholder="Travel Date"
+              onChange={handleChange}
+              className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+            />
+            <input
+              type="number"
+              name="guest"
+              placeholder="Traveller Count"
+              value={formData.guest}
+              onChange={handleChange}
+              className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+            />
+          </div>
+
           {/* Text Area */}
           <textarea
             name="message"
             placeholder="Write a Message"
             value={formData.message}
             onChange={handleChange}
-            className="w-full h-34 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 leading-relaxed text-lg resize-none"
+            className="w-full h-24 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 leading-relaxed text-lg resize-none"
           ></textarea>
 
           {/* Submit Button */}
@@ -78,7 +116,8 @@ const Contactform = () => {
           </button>
         </form>
       </div>
+    </div>
   );
 };
 
-export default Contactform;
+export default Popupform;

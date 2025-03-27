@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import IceImage from "/images/ice.jpg";
 import Box from "../sections/Box";
-import Des from "../components/Des";
+
 import Latestblog from "../sections/Latestblog";
 import Cards from "../sections/Cards";
 
 const Blog = () => {
-  const [showDes, setShowDes] = useState(false);
-  const toggleDes = () => setShowDes(!showDes);
+  
 
   return (
     <div className="w-full">
@@ -27,17 +26,12 @@ const Blog = () => {
             Searching for Travel Guides, Destinations, and Adventure for Joyful
             Journey Ahead?
           </p>
-            <button onClick={toggleDes} className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-8 text-white font-bold rounded-full px-6 py-2">
+            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-8 text-xl text-white font-bold rounded-lg px-6 py-2">
             <div className="flex gap-1">
-              Choose a Destination{" "}
-              <img
-                className="pt-0.5 invert"
-                src="./src/assets/arrow.svg"
-                alt=""
-              />
+              Dive into the Blog!
             </div>
           </button>
-          {showDes && <Des onClose={() => setShowDes(false)} />} 
+          
         </div>
       </div>
       <div className="trends">

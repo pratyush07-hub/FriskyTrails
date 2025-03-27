@@ -1,13 +1,14 @@
 import React from 'react'
+import Deal from '../assets/exc-deal.svg'
 
 const Choose = () => {
   return (
     <>
         <div className='h-[50vh] mt-20 w-full'>
             <h1 className='text-5xl font-bold text-center'>Why Choose Us</h1>
-            <div className="flex justify-center mt-8 items-center gap-4 grid-cols-4 h-[40vh] w-full">
+            <div className="flex justify-center mt-8 items-center gap-8 grid-cols-4 h-[40vh] w-full">
                 {data.map((data) => (
-                    <div className="h-[30vh] w-[18vw] rounded-lg bg-white border-1 border-[#FF6321] shadow-lg">
+                    <div className="h-[32vh] w-[18vw] rounded-lg bg-white border-1 border-[#FF6321] shadow-lg">
                         <img className='mt-8 ml-28' src={data.image} alt="" />
                         <h1 className='mt-6 text-xl font-semibold text-center'>{data.title}</h1>
                         <p className='text-gray-500 w-[15vw] ml-5 tracking-tighter mt-4 text-sm text-center'>{data.des}</p>
@@ -21,24 +22,24 @@ const Choose = () => {
 }
 const data = [
     {
-       title: "Easy Booking",
-       image: "./src/assets/exc-deal.svg",
-       des: "We offer easy and convenient flight bookings with attractive offers."
+       title: "24/7 Travel Support",
+       image: Deal,
+       des: "Our expert team is here round the clock to assist you with any travel queries. Just reach out, and we’ve got you covered."
     },
     {
-       title: "Lowest Price",
-       image: "./src/assets/exc-deal.svg",
-       des: "We ensure low rates on hotel reservation, holiday packages and on flight tickets."
+       title: "Easy Booking Process",
+       image: Deal,
+       des: "Booking adventure or tour is now easier than ever, with unbeatable offers to make your trip even better!"
     },
     {
-       title: "Exciting Deals",
-       image: "./src/assets/exc-deal.svg",
-       des: "Enjoy exciting deals on flights, hotels, buses, car rental and tour packages."
+       title: "Unbeatable Price",
+       image: Deal,
+       des: "Get the lowest rates on hotels, holiday packages, Adventures and flights, so you can travel without breaking the bank."
     },
     {
-       title: "24/7 Support",
-       image: "./src/assets/exc-deal.svg",
-       des: "Get assistance 24/7 on any kind of travel related query. We are happy to assist you."
+       title: "Unmissable Deals",
+       image: Deal,
+       des: "From flights and hotels to buses, car rentals, and tour packages – grab the best deals for your next adventure!"
     },
 ]
 

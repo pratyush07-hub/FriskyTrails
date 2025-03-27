@@ -29,12 +29,12 @@ const Form = () => {
 
   return (
     <div className="bg-white h-[28vh] w-[90vw] rounded-lg z-20 absolute bottom-40 left-1/2 transform -translate-x-1/2 shadow-lg">
-      <h2 className="text-2xl font-bold pt-4 text-center">
-        Enter Your Dream Destination
+      <h2 className="text-2xl text-orange-400 font-bold pt-4 pb-2 text-center">
+      Where’s Your Next Adventure?
       </h2>
       <form
         onSubmit={handleSubmit}
-        className="flex gap-12 m-auto justify-center w-[98%] px-4 border-gray-300 h-32 rounded-lg border-2 items-center"
+        className="flex gap-10 m-auto justify-center w-[98%] px-4 border-gray-300 h-32 rounded-lg border-2 items-center"
       >
         {/* From Location */}
         <div>

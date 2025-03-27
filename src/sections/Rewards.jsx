@@ -4,10 +4,10 @@ const Rewards = () => {
   return (
     <>
       <div className="h-[80vh] w-full">
-            <h1 className="text-center text-5xl font-bold">More to explore</h1>
+            <h1 className="text-center text-5xl font-bold">Discover More with FriskyTrails</h1>
         <div className="flex justify-center items-center mt-10 gap-10 grid-cols-4 w-full">
           {data.map((data) => (
-            <div className="h-[55vh] w-[25vw] flex justify-center hover:scale-105 transition-transform duration-300 rounded-lg bg-white shadow-lg">
+            <div className="h-[58vh] w-[25vw] flex justify-center hover:scale-105 transition-transform duration-300 rounded-lg bg-white shadow-lg">
               <div>
                 <img
                   className="h-[25vh] w-[20vw] object-fill"
@@ -17,7 +17,7 @@ const Rewards = () => {
                 <h1 className="mt-6 text-xl font-semibold text-center">
                   {data.title}
                 </h1>
-                <p className="w-[18vw] ml-4 tracking-tighter mt-2 text-center">
+                <p className="w-[20vw] ml-4 tracking-tighter mt-2 text-center">
                   {data.des}
                 </p>
                 <div className="flex justify-center"> 
@@ -35,21 +35,21 @@ const Rewards = () => {
 };
 const data = [
   {
-    title: "Check out the FriskyTrails blog",
+    title: "Find Your Perfect Gateway",
     image: "/images/veon.webp",
-    des: "Follw the team's musings on trends in travel, itinerary ideas and travel tips",
+    des: "Explore our handpicked travel packages and thrilling adventures tailored just for you. “Button - Plan Now",
     button: "Read Now",
   },
   {
-    title: "Save on fun with friskyTrails cash",
+    title: "Save More, Travel More",
     image: "/images/veon.webp",
-    des: "Find out how to save more when you book and leave a review",
+    des: "Earn rewards when you book and leave a review – because great trips deserve great perks! “Button - How FriskyTrails Cash Works",
     button: "How FriskyTrailsCash works",
   },
   {
-    title: "Share joy and get rewarded",
+    title: "Refer Joy & Earn",
     image: "/images/veon.webp",
-    des: "After your friend signs up and completes a booking, you'll get a ₹400 reward!",
+    des: 'Share the joy of travel! Invite a friend, and when they complete a booking, you get ₹300 as a thank-you. “Button - Invite Friends”',
     button: "Invite freinds",
   },
 ];

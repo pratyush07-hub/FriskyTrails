@@ -16,6 +16,7 @@ import Image5 from "/images/ice.jpg";
 import Image6 from "/images/ice.jpg";
 import Image7 from "/images/ice.jpg";
 import Image8 from "/images/ice.jpg";
+import Deals from "./Deals";
 
 const Ser = () => {
   const data = [Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8];
@@ -57,6 +58,7 @@ const Ser = () => {
           ))}
         </Swiper>
         <Form />
+        <Deals />
         <div className="min-h-[80vh] w-full flex items-center justify-center">
           <div
             className="w-[80vw] h-[45vh] rounded-3xl shadow-6xl"
@@ -80,16 +82,45 @@ const Ser = () => {
             </button>
           </div>
         </div>
-        <div className="w-[80vw] h-[70vh] m-auto">
-            <h1 className="font-bold text-4xl">Book Your Holiday With FriskyTrails</h1>
-            <p className="pt-4 pb-1">Book Your Holiday Packages With FriskyTrails and discover a world of meticulously curated, affordable itineraries designed to meet the unique needs and budgets of every traveller. Each getaway is crafted with precision, ensuring that every aspect of your journey is seamless and memorable. Whether you're seeking adventure, relaxation, or a blend of both, our packages promise an unforgettable getaway tailored just for you. Start planning your dream vacation today and experience the perfect escape with our exceptional itineraries.</p>
+        <div className="w-[80vw] h-screen m-auto">
+            <h1 className="font-bold text-4xl">Find Your Perfect “Holiday” Package</h1>
+            <p className="pt-4 pb-1">At FriskyTrails, we believe travel should be hassle-free, exciting, and tailored just for you. Whether you’re planning a family vacation, a romantic getaway, or a thrilling solo adventure, we have something for every kind of traveller.</p>
 
-            <h3 className="font-semibold pt-2">Enjoy Seamless Booking At Budget-Friendly Prices!</h3>
-            <p className="pt-3">Our platform's user-friendly interface simplifies the navigation of diverse trip packages, catering to various destinations, preferences, and budgets. With just a few clicks, travellers can book their ideal vacation. Whether you're dreaming of a beach escape or a mountain retreat, finding and booking your perfect getaway is straightforward and hassle-free with us, ensuring a smooth start to your travel adventure.
-            Unlock unbeatable savings on your next getaway with us, your ultimate travel companion! Discover a world of affordable packages customised to meet the diverse needs of every traveller. Embark on a mountain escape or a city adventure with our exclusive travel at competitive prices and leverage exclusive discounts, ensuring your travel is as economical as it is enjoyable. Don’t miss out on it, and book your next vacation with us to experience the perfect blend of luxury and value!</p>
+            <div className="flex">
+              <div className="w-[50%]">
+            <h3 className="font-semibold text-xl pt-2">✨ Adventure Escapes</h3>
+            <p className="pt-2">Craving an adrenaline rush? Try our adventure-packed getaways featuring: <br />
+ ✔ Paragliding in Bir Billing – Soar above the majestic valleys. <br />
+ ✔ Scuba Diving in Andaman – Explore the vibrant underwater world. <br />
+ ✔ Trekking to Kedarkantha – A winter wonderland awaits!</p>
 
-            <h3 className="font-semibold pt-3">Create Memories That Last A Lifetime!</h3>
-            <p className="pt-3">Book and explore your dream destinations with our exclusive itineraries. Each of our packages are carefully designed to ensure that every traveller enjoys a promising getaway. Whether you're a solo traveller, part of a group, or travelling with family, we have tailored itineraries to suit everyone. Choose from a variety of splendid tour packages and let us handle the details, guaranteeing a seamless and memorable experience. Start your adventure with FriskyTrails today and cherish every moment of your journey.</p>
+            <h3 className="font-semibold text-xl pt-3">🏝️ Beach & Island Retreats</h3>
+            <p className="pt-3">Nothing beats the sun, sand, and sea! Discover: <br />
+ ✔ Goa's Pristine Beaches – Beach parties, sunsets & water sports. <br />
+ ✔ Lakshadweep & Andaman – Crystal-clear waters & secluded escapes. <br />
+ ✔ Pondicherry’s French Vibes – A blend of culture & relaxation.</p>
+            <h3 className="font-semibold text-xl pt-3">🏞️ Hills & Nature Lovers’ Paradise</h3>
+            <p className="pt-3">Love the mountains? Indulge in: <br />
+ ✔ Manali & Shimla Road Trips – Drive through mesmerizing landscapes. <br /> 
+ ✔ Darjeeling & Sikkim – Tea gardens, monasteries & misty mornings. <br />
+ ✔ Munnar & Ooty – Breathe in the fresh mountain air.</p>
+              </div>
+            <div className="w-[50%] mt-14 bg-amber-500 rounded-2xl shadow-2xl"
+            style={{
+              backgroundImage: `url('/images/kerala.webp')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+            >
+              
+            </div>
+            </div>
+
+            <h3 className="font-semibold text-xl pt-3">Exclusive Offers & Rewards!</h3>
+            <p className="pt-3">💰 Save More with FriskyTrails Cash – Earn rewards every time you book & review your trip. <br />
+ 🎉 Refer & Earn – Share your joy, and get ₹400 when your friend completes a booking. <br />
+🚀 Start planning your dream vacation today with FriskyTrails – because every journey should be unforgettable!</p>
         </div>
       </div>
     </>

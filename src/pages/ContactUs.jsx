@@ -79,7 +79,7 @@ const ContactUs = () => {
                 </div>
               </div>
               <div className="flex pt-4 gap-4">
-                <div className="round flex items-center justify-center border-1 bg-gradient-to-r from-[rgb(248,159,124)] text-xl to-amber-300 border-orange-500 h-[40px] w-[40px] rounded-full">
+                <div className="round flex items-center justify-center bg-gradient-to-r from-[rgb(248,159,124)] text-xl to-amber-300 border-orange-500 h-[40px] w-[40px] rounded-full">
                   <img
                     className="h-[20px] w-[20px] object-contain"
                     src={Location}

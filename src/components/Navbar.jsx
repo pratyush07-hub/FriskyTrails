@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../components/Modal";
-import Arrow from '../assets/arrow.svg'
+import Arrow from '../assets/arrow.svg';
 import Admodal from "../components/Admodal";
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [showAdmodal, setShowAdmodal] = useState(false);
-    // Toggle function
-    const toggleAdmodal = () => setShowAdmodal(!showAdmodal);
-    const toggleModal = () => setShowModal(!showModal);
 
+  // Toggle function
+  const toggleAdmodal = () => setShowAdmodal(!showAdmodal);
+  const toggleModal = () => setShowModal(!showModal);
+
+  // Function to close modals on scroll
+  const handleScroll = () => {
+    setShowModal(false);
+    setShowAdmodal(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="flex justify-center">
@@ -28,22 +41,19 @@ const Navbar = () => {
             className="flex justify-center items-center cursor-pointer"
           >
             Adventures
+            <img className="w-5 h-5 object-cover" src={Arrow} alt="arrow" />
           </button>
-          {showAdmodal && <Admodal onClose={() => setShowAdmodal(false)} />} 
-          {/* jab showmodal true hoga tab hi Modal open hoga */}
+          {showAdmodal && <Admodal onClose={() => setShowAdmodal(false)} />}
+          
           <button
             onClick={toggleModal}
             className="flex justify-center items-center cursor-pointer"
           >
             Services
-            <img
-              className="w-5 h-5 object-cover"
-              src={Arrow}
-              alt="arrow"
-            />
+            <img className="w-5 h-5 object-cover" src={Arrow} alt="arrow" />
           </button>
-          {showModal && <Modal onClose={() => setShowModal(false)} />} 
-          {/* jab showmodal true hoga tab hi Modal open hoga */}
+          {showModal && <Modal onClose={() => setShowModal(false)} />}
+          
           <Link to="/blog">Blog</Link>
         </div>
         <div className="flex">
