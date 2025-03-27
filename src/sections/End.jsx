@@ -31,11 +31,11 @@ const End = () => {
             </h3>
             <div className="email">
               <h3 className="text-gray-400 font-bold ml-4 mt-4">
-                +91-75015 16714
+              <a href="tel:+917501516714">+91-75015 16714</a>
               </h3>
               <a href="https://www.facebook.com/friskytrails/" target="_blank">
                 <h3 className="text-gray-400 font-bold ml-4 mt-2">
-                  friskytrails@gmail.com
+                <a href="mailto:friskytrails@gmail.com">friskytrails@gmail.com</a>
                 </h3>
               </a>
             </div>
