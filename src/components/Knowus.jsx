@@ -6,12 +6,12 @@ const Knowus = () => {
   return (
     <>
       <div className="pl-20 w-[42vw]">
-        <h4 className="text-orange-600 text-xl font-semibold">
-          Get To Know Us
+        <h4 className="text-orange-600 text-2xl font-semibold">
+          Get In
         </h4>
         <h1 className="text-6xl pt-2 font-semibold tracking-tighter">
           {" "}
-          Contact Us, Start Your Adventure!
+          Touch & Start Your Adventure!
         </h1>
         <p className="pt-6">
         Our expert support team is always prepared to help you with any queries or concerns, providing quick and tailored solutions to suit your needs.

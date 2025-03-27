@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Box = () => {
   const data = [
@@ -37,12 +38,12 @@ const Box = () => {
             alt=""
           />
           <div className="pl-6 pt-4 text-2xl font-semibold tracking-tighter">
-            <h3>
-              {item.des}
-            </h3>
-            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border-1 active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white mt-8 text-lg font-semibold rounded-full px-6 py-2 cursor-pointer">
-              Read More
-            </button>
+            <h3>{item.des}</h3>
+            <Link to="/blog/newblog">
+              <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border-1 active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white mt-8 text-lg font-semibold rounded-full px-6 py-2 cursor-pointer">
+                Read More
+              </button>
+            </Link>
           </div>
         </div>
       ))}

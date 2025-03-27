@@ -24,7 +24,7 @@ const Contactform = () => {
   };
 
   return (
-    <div className="bg-white w-[90vw] h-[70vh] md:w-[36vw] m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
+    <div className="bg-white w-[90vw] h-[70vh] md:w-[36vw] mt-2 m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
         <form onSubmit={handleSubmit} className="flex flex-col w-[26vw] gap-6">
           {/* Name */}
           <input

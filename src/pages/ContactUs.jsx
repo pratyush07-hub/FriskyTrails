@@ -35,7 +35,7 @@ const ContactUs = () => {
             Our Location
           </h4>
           <h1 className="text-6xl font-bold text-center pt-2">
-            Office Across The India
+            Office In India
           </h1>
           <div className="flex">
             
