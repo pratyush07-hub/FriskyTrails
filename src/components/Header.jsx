@@ -11,11 +11,11 @@ const Header = () => {
     <div className='h-[6vh] w-full mt-4'>
         <div className='flex justify-between'>
             <div className="email flex justify-center items-center gap-4 ml-28">
-              <a href="https://www.facebook.com/friskytrails/" target="_blank"><div className='flex justify-center items-center'><img className="w-5 h-5 object-cover" src={Email} alt="" /><h3 className='text-gray-500'>friskytrails@gmail.com</h3></div></a>
+              <div className='flex justify-center items-center'><img className="w-5 h-5 object-cover" src={Email} alt="" /><h3 className='text-gray-500'><a href="mailto:contact@friskytrails.com">contact@friskytrails.com</a></h3></div>
               
               <div className="border-1 h-full border-gray-400"></div> {/* Vertical Line */}
               <div className="number flex justify-center items-center">
-                <img className="w-5 h-5 object-cover" src={Call} alt="" /><h3 className='text-gray-500'>+91-75015 16714</h3>
+                <img className="w-5 h-5 object-cover" src={Call} alt="" /><h3 className='text-gray-500'><a href="tel:+917501516714">+91-75015 16714</a></h3>
               </div>
             </div>
             <div className="images flex justify-center items-center gap-4 mr-28">

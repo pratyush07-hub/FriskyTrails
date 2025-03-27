@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Jointeam from "../components/Jointeam"
+import Form from "../components/Popupform"
+import Arrow from "../assets/rightarrow.svg"
 import Choose from "../sections/Choose";
 
 const About = () => {
+  const [showForm, setShowForm] = useState(false);
+  const [showJointeam, setShowJointeam] = useState(false);
+    // Toggle function
+    const toggleForm = () => setShowForm(!showForm);
+    const toggleJointeam = () => setShowJointeam(!showJointeam);
+    // Function to close modals on scroll
+      const handleScroll = () => {
+        setShowForm(false);
+        setShowJointeam(false);
+        
+      };
+    
+      useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+        };
+      }, []);
+
   return (
     <div className="min-h-screen w-full">
       <h1 className="font-bold text-8xl tracking-tight text-center mt-30">
@@ -30,14 +52,15 @@ const About = () => {
         </p>
       </div>
       <div className="flex justify-center gap-10">
-        <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-8 border-1 flex gap-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-8 py-5">
+        <button onClick={toggleForm} className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-8 border-1 flex gap-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-8 py-5">
           Our Packages{" "}
           <img
             className="mt-0.5 invert"
-            src="./src/assets/rightarrow.svg"
+            src={Arrow}
             alt=""
           />
         </button>
+        {showForm && <Form onClose={() => setShowForm(false)} />}
         <button className="bg-white mt-8 border-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 hover:text-white px-8 py-5">
           +91-75015 16714
         </button>
@@ -100,9 +123,10 @@ const About = () => {
         </p>
       </div>
       <div className="flex justify-center pb-10 gap-10">
-        <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-8 border-1 flex gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 py-3">
+        <button onClick={toggleJointeam} className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-8 border-1 flex gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 py-3">
           Join Our Team!
         </button>
+        {showJointeam && <Jointeam onClose={() => setShowJointeam(false)} />}
       </div>
     </div>
   );
