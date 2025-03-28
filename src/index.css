@@ -7,3 +7,20 @@ html,body{
   width: 100%;
   background: rgb(247, 241, 231);
 }
+/* Custom Thin Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Thin scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* No color */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c0c0c0; /* Light gray for visibility */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0; /* Slightly darker on hover */
+}

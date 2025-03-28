@@ -12,6 +12,7 @@ import "/src/styles/Class.css";
 import Holidays from "./ServicesPages/Holidays";
 import Newblog from "./Blogpages/Newblog";
 import Scrolltotop from "./components/Scrolltotop";
+import Productpage from "./Productpage/Productpage";
 
 const App = () => {
   return (
@@ -25,7 +26,8 @@ const App = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/services/holidays" element={<Holidays />} />
-        <Route path="/blog/newblog" element={<Newblog />} />
+        <Route path="/blog/newblog" element={<Newblog />} />  
+        <Route path="/tours" element={<Productpage />} />  
       </Routes>
       <End />
       <Last />

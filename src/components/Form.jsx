@@ -104,6 +104,7 @@ const Form = () => {
             type="date"
             name="date"
             value={formData.date}
+            min={new Date().toISOString().split("T")[0]}  // Blocks past dates
             onChange={handleChange}
             className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
             required

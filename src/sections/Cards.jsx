@@ -3,6 +3,7 @@ import React from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from 'react-router-dom';
 
 const Cards = () => {
     var settings = {
@@ -69,9 +70,11 @@ const Cards = () => {
                         </span>
                         <span className="text-gray-400">/person</span>
                       </div>
+                      <Link to="/tours">
                       <button className="bg-white mr-4 border-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-[rgb(255,99,33)] hover:text-white px-6 py-3">
                         Book Now
                       </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
