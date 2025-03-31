@@ -24,8 +24,8 @@ const Blogs = () => {
 
   return (
     <>
-      <div className="h-[80vh] w-full">
-        <div className="ml-32 mr-32 mt-6">
+      <div className="h-[80vh] w-[80vw] m-auto">
+        {/* <div className="w-[80vw] m-auto"> */}
           <h1 className="text-4xl text-center font-bold">
             Enjoy Fresh Travel Blogs
           </h1>
@@ -60,7 +60,7 @@ const Blogs = () => {
             </Link>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

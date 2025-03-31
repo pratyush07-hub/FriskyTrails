@@ -1,60 +1,53 @@
-import React from 'react';
-import '/src/styles/Class.css';
-import {Swiper,SwiperSlide} from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
-
-import Image1 from "/images/car.jpg";
-import Image2 from "/images/car.jpg";
-import Image3 from "/images/car.jpg";
-import Image4 from "/images/car.jpg";
-import Image5 from "/images/car.jpg";
-import Image6 from "/images/car.jpg";
-import Image7 from "/images/car.jpg";
-import Image8 from "/images/car.jpg";
-
+import React from 'react'
 
 const Next = () => {
-  const data = [Image1,Image2,Image3,Image4,Image5,Image6,Image7,Image8]
-
+  const data = [
+    {
+      image: "/images/car.jpg",
+      name: "Bali",
+    },
+    {
+      image: "/images/car.jpg",
+      name: "Goa",
+    },
+    {
+      image: "/images/car.jpg",
+      name: "Manali",
+    },
+    {
+      image: "/images/car.jpg",
+      name: "Kashmir",
+    },
+    {
+      image: "/images/car.jpg",
+      name: "Chennai",
+    },
+    {
+      image: "/images/car.jpg",
+      name: "Shilong",
+    },
+  ]
   return (
     <>
-      <div className='h-screen w-full'>
-        <div className='ml-32 mr-32 mt-6'>
-            <h1 className='text-4xl font-bold'>Where to next?</h1>
-            <Swiper
-                effect='coverflow'
-                grabCursor={true}
-                slidesPerView={'auto'}
-                centeredSlides={true}
-                coverflowEffect={{
-                    rotate:0,
-                    stretch:0,
-                    depth:120,
-                    modifier:2.5,
-                }}
-                pagination={{
-                    clickable:true,
-                }}
-                autoplay={{
-                    delay:2500,
-                    disableOnInteraction:false,
-                }}
-                modules={[EffectCoverflow,Pagination,Autoplay]}
-            >
-                {data.map((item,index) => (
-                    <SwiperSlide key={index}>
-                        <img className='h-[400px]' src={item} alt="" />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-        </div>
+      <div className='h-screen w-[80vw] m-auto'>
+        <h1 className='text-4xl font-bold text-center'>Where to Next?</h1>
+        <div className="grid grid-cols-3 gap-6 mt-10">
+            {data.map((item, index) => (
+              <div 
+                key={index}
+                className="h-[40vh] w-full bg-cover bg-center rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+                style={{ backgroundImage: `url(${item.image})` }}
+              >
+                <div className="h-full w-full bg-black/30 rounded-lg flex items-center justify-center">
+                  <h1 className='text-4xl font-semibold text-white'>{item.name}</h1>
+                </div>
+              </div>
+            ))}
+          </div>
       </div>
     </>
   )
 }
 
 export default Next
+

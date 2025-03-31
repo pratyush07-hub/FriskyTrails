@@ -4,6 +4,7 @@ import Facebook from "../assets/facebook.svg";
 import Linkedin from "../assets/linkedin.svg";
 import Twitter from "../assets/twitter.svg";
 import Instagram from "../assets/instagram.svg";
+import { Link } from "react-router-dom";
 
 const End = () => {
   return (
@@ -99,7 +100,7 @@ const End = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <h3 className="text-gray-400 font-semibold">About Us</h3>
+                    <Link to ="/about"><h3 className="text-gray-400 font-semibold">About Us</h3></Link>
                   </div>
                   <div className="flex mt-4 items-center">
                     <svg
@@ -135,7 +136,7 @@ const End = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <h3 className="text-gray-400 font-semibold">Services</h3>
+                    <Link to ="/services/holidays"><h3 className="text-gray-400 font-semibold">Services</h3></Link>
                   </div>
                   <div className="flex mt-4 items-center">
                     <svg
@@ -146,6 +147,7 @@ const End = () => {
                       fill="none"
                       stroke="gray"
                     >
+                    
                       <path
                         d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18"
                         strokeWidth="1.5"
@@ -178,7 +180,7 @@ const End = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <h3 className="text-gray-400 font-semibold">Contact Us</h3>
+                    <Link to ="/contact"><h3 className="text-gray-400 font-semibold">Contact Us</h3></Link>
                   </div>
                   <div className="flex mt-4 items-center">
                     <svg
@@ -196,7 +198,7 @@ const End = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <h3 className="text-gray-400 font-semibold">Blogs</h3>
+                    <Link to ="/blog"><h3 className="text-gray-400 font-semibold">Blogs</h3></Link>
                   </div>
                   <div className="flex mt-4 items-center">
                     <svg
@@ -214,7 +216,7 @@ const End = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <h3 className="text-gray-400 font-semibold">Hiring</h3>
+                    <Link to ="/hiring"><h3 className="text-gray-400 font-semibold">Hiring</h3></Link>
                   </div>
                   <div className="flex mt-4 items-center">
                     <svg

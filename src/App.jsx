@@ -13,6 +13,7 @@ import Holidays from "./ServicesPages/Holidays";
 import Newblog from "./Blogpages/Newblog";
 import Scrolltotop from "./components/Scrolltotop";
 import Productpage from "./Productpage/Productpage";
+import Hiring from "./pages/Hiring";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/services/holidays" element={<Holidays />} />
         <Route path="/blog/newblog" element={<Newblog />} />  
         <Route path="/tours" element={<Productpage />} />  
+        <Route path="/hiring" element={<Hiring />} />  
       </Routes>
       <End />
       <Last />
