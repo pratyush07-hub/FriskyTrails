@@ -21,7 +21,7 @@ const Landing = () => {
 
   return (
     <div>
-      <div className="main bg-[url('./images/frontimage.png')] bg-cover ">
+      <div className="main bg-[url('/images/frontimage.png')] bg-cover ">
         <div className="h-screen  w-full">
           <div className="masker flex">
             <div className="h-screen w-[50%] mt-34 px-26">
