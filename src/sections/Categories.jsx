@@ -4,19 +4,19 @@ import { useState } from "react";
 export default function HoverRevealButton() {
   const data = [
     {
-      image: "/images/card.webp",
+      image: "/images/1.png",
       name: "Japan",
     },
     {
-      image: "/images/card.webp",
+      image: "/images/4.png",
       name: "Dubai",
     },
     {
-      image: "/images/card.webp",
+      image: "/images/6.png",
       name: "Manali",
     },
     {
-      image: "/images/card.webp",
+      image: "/images/2.png",
       name: "Maldives",
     },
   ];
@@ -43,7 +43,7 @@ export default function HoverRevealButton() {
               animate={{ y: isHovered ? -30 : 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
               />
-            <h1 className="z-10 text-2xl text-white font-semibold">{item.name}</h1>
+            {/* <h1 className="z-10 text-2xl text-white font-semibold">{item.name}</h1> */}
             {/* Button (Revealed on hover) */}
             <motion.button
               className="absolute px-10 py-2 mt-70 bg-white hover:text-white font-semibold rounded-lg shadow-md hover:bg-amber-400 transition"
