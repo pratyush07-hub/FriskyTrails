@@ -51,9 +51,9 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="w-[32%] flex items-start">
+          <div className="w-[32%] pl-20 flex items-start">
             <div className="mt-40">
-              <img src="/images/secondpage.avif" alt="" />
+              <img className='w-[900px] object-cover h-[560px]' src="/images/Girl.webp" alt="" />
             </div>
           </div>
           <div className="w-[43%] flex items-start">

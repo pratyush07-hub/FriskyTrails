@@ -25,7 +25,8 @@ const About = () => {
 
   return (
     <div className="min-h-screen w-full">
-      <h1 className="font-bold text-8xl tracking-tight text-center mt-30">
+      <div className="bg-[url('/images/Indianflag.webp')] bg-cover z-0 bg-center">
+      <h1 className="font-bold text-8xl tracking-tight text-center pt-30">
         Explore India With Us
       </h1>
       <div className="w-[42vw] mx-auto flex justify-center">
@@ -50,7 +51,7 @@ const About = () => {
           breathtaking locations in India.
         </p>
       </div>
-      <div className="flex justify-center gap-10">
+      <div className="flex justify-center pb-10 gap-10">
         <button
           onClick={toggleForm}
           className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-8 border-1 flex gap-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-8 py-5"
@@ -62,7 +63,8 @@ const About = () => {
           <a href="tel:+917501516714">+91-75015 16714</a>
         </button>
       </div>
-      <div className="mt-20 w-full">
+          </div>
+      <div className="mt-10 w-full">
         <h1 className="text-4xl font-semibold mt-24 text-[rgb(255,99,33)] text-center">
           What we promise
         </h1>
