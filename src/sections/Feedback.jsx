@@ -4,7 +4,7 @@ const Feedback = () => {
   return (
     <>
       <div class="relative h-screen w-full flex flex-col items-center justify-center">
-        <h3 class="text-center text-[rgb(255,99,33)] font-semibold text-xl">
+        <h3 class="text-center text-[rgb(255,99,33)] pt-20 font-semibold text-xl">
           Customer's Feedback
         </h3>
         <h1 class="text-center font-bold text-5xl mt-2">

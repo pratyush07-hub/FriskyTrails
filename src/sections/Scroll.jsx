@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const Scroll = () => {
   return (
     <div>
-      <div className="animation h-[40vh] w-full">
+      <div className="animation h-[34vh] w-full">
         <div className="text flex whitespace-nowrap overflow-hidden">
           <motion.h1
             initial={{ x: 0 }}

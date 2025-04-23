@@ -30,7 +30,7 @@ const About = () => {
         Explore India With Us
       </h1>
       <div className="w-[42vw] mx-auto flex justify-center">
-        <p className="text-center mt-8 text-xl text-gray-600">
+        <p className="text-center mt-8 text-xl text-black">
           Our mission is to make travel effortless and adventures unforgettable
           for all adventure lovers and travel junkies across the nation.
         </p>

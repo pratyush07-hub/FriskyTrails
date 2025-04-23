@@ -26,7 +26,7 @@ const Blogs = () => {
     <>
       <div className="h-[80vh] w-[80vw] m-auto">
         {/* <div className="w-[80vw] m-auto"> */}
-          <h1 className="text-4xl text-center font-bold">
+          <h1 className="text-4xl pt-20 text-center font-bold">
             Enjoy Fresh Travel Blogs
           </h1>
           <div className="grid grid-cols-4 gap-6 mt-10">

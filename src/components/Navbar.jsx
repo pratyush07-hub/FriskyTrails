@@ -26,7 +26,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center relative z-10">
       <div className="h-[10vh] w-[90vw] bg-[rgb(255,255,255)] flex justify-around items-center rounded-full p-5">
         <div className="flex justify-center items-center">
           <img className="h-26 w-26" src="/logo.PNG" alt="" />

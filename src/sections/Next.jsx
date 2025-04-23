@@ -3,27 +3,27 @@ import React from 'react'
 const Next = () => {
   const data = [
     {
-      image: "/images/car.jpg",
+      image: "/nextimages/1.png",
       name: "Bali",
     },
     {
-      image: "/images/car.jpg",
+      image: "/nextimages/2.png",
       name: "Goa",
     },
     {
-      image: "/images/car.jpg",
+      image: "/nextimages/3.png",
       name: "Manali",
     },
     {
-      image: "/images/car.jpg",
+      image: "/nextimages/4.png",
       name: "Kashmir",
     },
     {
-      image: "/images/car.jpg",
+      image: "/nextimages/5.png",
       name: "Chennai",
     },
     {
-      image: "/images/car.jpg",
+      image: "/nextimages/6.png",
       name: "Shilong",
     },
   ]
@@ -38,8 +38,9 @@ const Next = () => {
                 className="h-[40vh] w-full bg-cover bg-center rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
                 style={{ backgroundImage: `url(${item.image})` }}
               >
-                <div className="h-full w-full bg-black/30 rounded-lg flex items-center justify-center">
-                  <h1 className='text-4xl font-semibold text-white'>{item.name}</h1>
+                <div className="h-full w-full rounded-lg flex items-center justify-center">  
+                  {/* bg-black/30 */}
+                  {/* <h1 className='text-4xl font-semibold text-white'>{item.name}</h1> */}
                 </div>
               </div>
             ))}

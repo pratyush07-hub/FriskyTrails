@@ -12,7 +12,7 @@ const About = () => {
   return (
     <>
       <div className="about">
-        <div className="h-screen w-full flex">
+        <div className="h-[90vh] relative mt-[80vh] z-10 w-full flex">
           <div className="w-[25%] flex items-start">
             <div className="masker mt-30">
               <div className="flex flex-col gap-6">
