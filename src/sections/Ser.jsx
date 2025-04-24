@@ -8,14 +8,14 @@ import "swiper/css/autoplay";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import Form from "../components/Form";
 
-import Image1 from "/images/ice.jpg";
-import Image2 from "/images/ice.jpg";
-import Image3 from "/images/ice.jpg";
-import Image4 from "/images/ice.jpg";
-import Image5 from "/images/ice.jpg";
-import Image6 from "/images/ice.jpg";
-import Image7 from "/images/ice.jpg";
-import Image8 from "/images/ice.jpg";
+import Image1 from "/holidaysimages/upper.png";
+import Image2 from "/holidaysimages/upper.png";
+import Image3 from "/holidaysimages/upper.png";
+import Image4 from "/holidaysimages/upper.png";
+import Image5 from "/holidaysimages/upper.png";
+import Image6 from "/holidaysimages/upper.png";
+import Image7 from "/holidaysimages/upper.png";
+import Image8 from "/holidaysimages/upper.png";
 import Deals from "./Deals";
 
 const Ser = () => {
@@ -63,7 +63,7 @@ const Ser = () => {
           <div
             className="w-[80vw] h-[45vh] rounded-3xl shadow-6xl"
             style={{
-              backgroundImage: `url('/images/testimonialsbanner.png')`,
+              backgroundImage: `url('/holidaysimages/testimonialsbanner.png')`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -107,7 +107,7 @@ const Ser = () => {
               </div>
             <div className="w-[50%] mt-14 bg-amber-500 rounded-2xl shadow-2xl"
             style={{
-              backgroundImage: `url('/images/kerala.webp')`,
+              backgroundImage: `url('/holidaysimages/holiday.png')`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",

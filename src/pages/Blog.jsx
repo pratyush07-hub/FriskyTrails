@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import IceImage from "/images/ice.jpg";
+import HillImage from "/images/hilly.png";
 import Box from "../sections/Box";
 
 import Latestblog from "../sections/Latestblog";
@@ -13,8 +13,9 @@ const Blog = () => {
       <div
         style={{
           height: "400px",
-          backgroundImage: `url(${IceImage})`,
-          backgroundSize: "contain",
+          backgroundImage: `url(${HillImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       >

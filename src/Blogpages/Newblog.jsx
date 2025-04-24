@@ -195,13 +195,15 @@ const Newblog = () => {
                 <img className="w-10 h-10 object-cover" src={Linkedin} alt="" />
               </a>
               <a href="https://www.instagram.com/friskytrails/" target="_blank">
-                <img className="w-10 h-10 object-cover" src={Instagram} alt="" />
+                <img
+                  className="w-10 h-10 object-cover"
+                  src={Instagram}
+                  alt=""
+                />
               </a>
             </div>
 
-            <div className="h-[78vh] w-[12vw] mt-4 ml-10 drop-shadow bg-green-400">
-
-            </div>
+            <div className="h-[78vh] w-[12vw] mt-4 ml-10 drop-shadow bg-[url('/blogimages/blogbanner.png')] bg-cover bg-center" />
           </div>
           <div className="w-[55%] pl-20 overflow-y-auto custom-scrollbar">
             <Blogleft />

@@ -40,7 +40,14 @@ const Hiring = () => {
   return (
     <>
       <div className="min-h-screen w-full">
-        <img className="w-full" src="/images/cta-banner.png" alt="" />
+      <div className="w-full h-100">
+  <img
+    src="/images/hiring.png"
+    alt="Hiring Banner"
+    className="w-full h-full object-fill object-center"
+  />
+</div>
+
         <h1 className="text-4xl font-semibold mt-12 text-center">
           Let’s Redefine Adventure,{" "}
           <span className="text-4xl text-[rgb(255,99,33)] font-bold">

@@ -69,12 +69,14 @@ const About = () => {
           What we promise
         </h1>
         <div className="flex justify-center mt-8 items-center gap-10 grid-cols-3 h-[40vh] w-full">
-          <div className="h-[40vh] w-[18vw] rounded-lg shadow-lg">
+          <div className="h-[40vh] w-[18vw] bg-white rounded-lg shadow-lg">
+          <div className="flex justify-center">
             <img
-              className="h-[14vh] w-[7vw] ml-20 mt-4"
-              src="/images/hot.png"
+              className="h-[14vh] w-[7vw] mt-4"
+              src="/promiseimages/1.png"
               alt=""
             />
+            </div>
             <h1 className="mt-6 text-xl font-semibold text-center">
               Unmatched Experience
             </h1>
@@ -83,12 +85,14 @@ const About = () => {
               unique adventures for every traveller.
             </p>
           </div>
-          <div className="h-[40vh] w-[18vw] rounded-lg shadow-lg">
+          <div className="h-[40vh] w-[18vw] bg-white rounded-lg shadow-lg">
+            <div className="flex justify-center">
             <img
-              className="h-[14vh] w-[7vw] ml-20 mt-4"
-              src="/images/hot.png"
+              className="h-[14vh] w-[7vw] mt-4"
+              src="/promiseimages/2.png"
               alt=""
             />
+            </div>
             <h1 className="mt-6 text-xl font-semibold text-center">
               Trusted Expertise
             </h1>
@@ -97,12 +101,14 @@ const About = () => {
               safety, quality, and unforgettable moments.
             </p>
           </div>
-          <div className="h-[40vh] w-[18vw] rounded-lg shadow-lg">
+          <div className="h-[40vh] w-[18vw] bg-white rounded-lg shadow-lg">
+          <div className="flex justify-center">
             <img
-              className="h-[14vh] w-[7vw] ml-20 mt-4"
-              src="/images/hot.png"
+              className="h-[14vh] w-[7vw] mt-4"
+              src="/promiseimages/3.png"
               alt=""
             />
+            </div>
             <h1 className="mt-6 text-xl font-semibold text-center">
               For Every Explorer
             </h1>

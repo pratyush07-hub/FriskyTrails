@@ -26,12 +26,12 @@ const Blogright = () => {
         style={{
           height: "200px",
           weight: "400px",
-          backgroundImage: "url('/images/cta-banner.png')",
+          backgroundImage: "url('/blogimages/trip.png')",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="bg-white h-[160px] w-[370px] flex flex-col justify-center gap-2 p-4 rounded-lg m-auto">
+        <div className="bg-white opacity-90 h-[160px] w-[370px] flex flex-col justify-center gap-2 p-4 rounded-lg m-auto">
           <h2 className="text-xl text-orange-500 font-bold tracking-tight">
             Looking for a perfect trip?
           </h2>
@@ -47,10 +47,7 @@ const Blogright = () => {
           {showForm && <Form onClose={() => setShowForm(false)} />}
         </div>
       </div>
-      <div className="w-[400px] h-[400px] mt-6 rounded-2xl drop-shadow-2xl bg-green-400 m-auto"
-      style={{
-        backgroundImage: "url('/images/')"
-      }}
+      <div className="w-[400px] h-[400px] mt-6 rounded-2xl mx-auto bg-[url('/blogimages/banner2.png')] bg-cover bg-center"
       >
 
       </div>
