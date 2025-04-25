@@ -1,62 +1,28 @@
 import React from "react";
 import "/src/styles/Class.css";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import Form from "../components/Form";
+import HillImage from "/images/hilly.png";
 
-import Image1 from "/holidaysimages/upper.png";
-import Image2 from "/holidaysimages/upper.png";
-import Image3 from "/holidaysimages/upper.png";
-import Image4 from "/holidaysimages/upper.png";
-import Image5 from "/holidaysimages/upper.png";
-import Image6 from "/holidaysimages/upper.png";
-import Image7 from "/holidaysimages/upper.png";
-import Image8 from "/holidaysimages/upper.png";
 import Deals from "./Deals";
 
 const Ser = () => {
-  const data = [Image1, Image2, Image3, Image4, Image5, Image6, Image7, Image8];
+  
   return (
     <>
       <div className="min-h-screen w-full">
-        <Swiper
-          effect="coverflow"
-          grabCursor={true}
-          slidesPerView={"auto"}
-          centeredSlides={true}
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 0,
-            depth: 120,
-            modifier: 2.5,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          autoplay={{
-            delay: 4500,
-            disableOnInteraction: false,
-          }}
-          modules={[EffectCoverflow, Pagination, Autoplay]}
-        >
-          {data.map((item, index) => (
-            <SwiperSlide key={index}>
-              <div
-                className="flex justify-center items-center relative"
+        <div
                 style={{
                   height: "400px",
-                  backgroundImage: `url(${item})`,
+                  backgroundImage: `url(${HillImage})`,
                   backgroundSize: "cover",
+                  backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                 }}
               ></div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
         <Form />
         <Deals />
         <div className="min-h-[80vh] w-full flex items-center justify-center">
