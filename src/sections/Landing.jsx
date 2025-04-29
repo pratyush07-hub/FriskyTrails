@@ -21,14 +21,14 @@ const Landing = () => {
 
   return (
     <div>
-      <div className="main bg-[url('/images/frontimage.png')] absolute inset-0 z-0 bg-cover ">
+      <div className="main bg-[url('/images/frontimage.jpg')] absolute inset-0 z-0 bg-cover ">
         <div className="min-h-screen  w-full">
           <div className="masker flex">
             <div className="h-screen w-[50%] pt-48 px-26">
               <h1 className="text-8xl text-white font-bold tracking-tighter w-[40vw]">
                 Turning Every Journey Into An Adventure
               </h1>
-              <h4 className="pt-6 text-xl text-black w-[26vw]">
+              <h4 className="pt-6 text-xl text-white w-[26vw]">
                 Expertly crafted adventures for unforgettable journeys.
                 FriskyTrails—taking you beyond the ordinary!
               </h4>
