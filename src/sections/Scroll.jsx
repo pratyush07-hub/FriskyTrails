@@ -1,10 +1,9 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 const Scroll = () => {
   return (
     <div>
-      <div className="animation h-[34vh] w-full">
+      <div className="animation mt-170 md:mt-132 xl:mt-0 h-[34vh] w-full">
         <div className="text flex whitespace-nowrap overflow-hidden">
           <motion.h1
             initial={{ x: 0 }}

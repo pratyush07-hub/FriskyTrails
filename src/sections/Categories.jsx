@@ -21,41 +21,42 @@ export default function HoverRevealButton() {
     },
   ];
 
-  return (
-    <div className="h-[60vh] w-full">
-      <h1 className="text-6xl text-center font-bold">Curated Categories</h1>
-      <div className="flex items-center justify-center gap-10 mt-10">
+  // Move hover state outside the map (for proper reactivity)
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
-      {data.map((item, index) => {
-        const [isHovered, setIsHovered] = useState(false);
-        return (
+  return (
+    <div className="min-h-[60vh] w-full px-4">
+      <h1 className="text-3xl md:text-5xl text-center font-bold">Curated Categories</h1>
+      
+      {/* Grid layout for responsiveness */}
+      <div className="grid w-[80vw] mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-10 gap-8 md:gap-16 place-items-center">
+        {data.map((item, index) => (
           <div
-          key={index}
-            className="relative w-64 h-74 flex items-center justify-center"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            >
+            key={index}
+            className="relative w-64 h-72 flex items-center justify-center"
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
             {/* Image (Moves up on hover) */}
             <motion.img
               src={item.image}
-              alt="Animated Image"
+              alt={item.name}
               className="absolute w-full h-full rounded-lg shadow-lg object-cover"
-              animate={{ y: isHovered ? -30 : 0 }}
+              animate={{ y: hoveredIndex === index ? -30 : 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              />
-            {/* <h1 className="z-10 text-2xl text-white font-semibold">{item.name}</h1> */}
+            />
+
             {/* Button (Revealed on hover) */}
             <motion.button
-              className="absolute px-10 py-2 mt-70 bg-white hover:text-white font-semibold rounded-lg shadow-md hover:bg-amber-400 transition"
+              className="absolute mt-80 px-8 py-2 bg-white font-semibold rounded-lg shadow-md hover:bg-amber-400 hover:text-white transition"
               initial={{ opacity: 0 }}
-              animate={{ opacity: isHovered ? 1 : 0 }}
+              animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
               transition={{ duration: 0.3 }}
-              >
+            >
               View All
             </motion.button>
           </div>
-        );
-      })}
+        ))}
       </div>
     </div>
   );

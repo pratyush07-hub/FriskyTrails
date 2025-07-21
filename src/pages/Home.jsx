@@ -1,8 +1,8 @@
 
 // import Cards from "../sections/Cards";
 import About from "../sections/About";
-// import Scroll from "../sections/Scroll";
-// import Categories from "../sections/Categories";
+import Scroll from "../sections/Scroll";
+import Categories from "../sections/Categories";
 // import Banner from "../sections/Banner";
 import Landing from "../sections/Landing";
 // import Next from "../sections/Next";
@@ -17,8 +17,8 @@ const Home = () => {
     <>
       <Landing />
       <About />
-      {/* <Scroll /> */}
-      {/* <Categories /> */}
+      <Scroll />
+      <Categories />
       {/* <Choose /> */}
       {/* <Banner /> */}
       {/* <Cards /> */}

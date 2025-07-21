@@ -113,7 +113,7 @@ const About = () => {
           <div className="h-auto w-full flex flex-col md:flex-row mt-10">
             <div className="w-full md:w-[50%] h-[62vh] flex">
               <img
-                className="w-auto mx-auto md:ml-20 object-cover h-[500px]"
+                className="w-auto mx-auto md:ml-20 md:mt-2 object-cover h-[500px] md:h-[640px]"
                 src="/images/Girlmobile.png"
                 alt=""
               />
