@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Form from "../components/Popupform";
 
 const Blogright = () => {
@@ -47,9 +47,7 @@ const Blogright = () => {
           {showForm && <Form onClose={() => setShowForm(false)} />}
         </div>
       </div>
-      <div className="w-[400px] h-[400px] mt-6 rounded-2xl mx-auto bg-[url('/blogimages/banner2.png')] bg-cover bg-center"
-      >
-
+      <div className="w-[400px] h-[400px] mt-6 rounded-2xl mx-auto bg-[url('/blogimages/banner2.png')] bg-cover bg-center">
       </div>
     </>
   );

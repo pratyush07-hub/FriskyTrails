@@ -1,5 +1,4 @@
 import { summary } from "framer-motion/client";
-import React from "react";
 
 const Blogleft = () => {
   const data = [

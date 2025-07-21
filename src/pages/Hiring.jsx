@@ -48,37 +48,37 @@ const Hiring = () => {
   />
 </div>
 
-        <h1 className="text-4xl font-semibold mt-12 text-center">
-          Let’s Redefine Adventure,{" "}
+        <h1 className="text-3xl md:text-4xl font-semibold mt-8 md:mt-12 text-center">
+          Let's Redefine Adventure,{" "}
           <span className="text-4xl text-[rgb(255,99,33)] font-bold">
             TOGETHER!
           </span>
         </h1>
-        <div className="w-[70vw] mx-auto flex justify-center">
-          <p className="text-center mt-8 text-xl text-gray-600">
-            FriskyTrails isn’t just a career opportunity—it’s a launchpad for
+        <div className="w-full md:w-[70vw] mx-auto flex justify-center">
+          <p className="text-center mt-4 md:mt-8 text-base md:text-xl text-gray-600">
+            FriskyTrails isn't just a career opportunity—it's a launchpad for
             bold ideas, passionate individuals, and limitless growth. We thrive
             in a fast-paced, dynamic culture where creativity meets adventure.
-            If you’re ready to unlock your potential, make an impact, and embark
+            If you're ready to unlock your potential, make an impact, and embark
             on an exciting professional journey, this is your calling! Click the
             button tailored just for you—whether you're drawn to marketing,
             sales, tech, or beyond. Your adventure with FriskyTrails starts now!
             🚀
           </p>
         </div>
-        <h1 className="text-4xl font-bold mt-12 mb-10 text-center">
+        <h1 className="text-3xl md:text-4xl font-bold mt-8 md:mt-12 mb-6 md:mb-10 text-center">
           Current openings
         </h1>
-        <div className="h-[80vh]">
+        <div className="h-auto md:h-[80vh]">
         {data.map((item,index) => (
-        <div key={index} className="flex border w-[70vw] m-auto border-gray-300 items-center justify-between">
-          <div className="text-3xl font-semibold px-10 py-6">
+        <div key={index} className="flex flex-col md:flex-row border w-full md:w-[70vw] m-auto border-gray-300 items-center justify-between">
+          <div className="text-2xl md:text-3xl font-semibold px-4 md:px-10 py-4 md:py-6">
             {item.Openings}
           </div>
           <div className="px-10 py-6">
             <button
               onClick={toggleJointeam}
-              className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border-1 flex gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 py-3"
+              className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border-1 flex gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-4 md:px-6 py-2 md:py-3"
             >
               Apply Now
             </button>

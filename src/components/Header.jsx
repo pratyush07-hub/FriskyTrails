@@ -1,4 +1,3 @@
-import React from "react";
 import Facebook from "../assets/facebook.svg";
 import Linkedin from "../assets/linkedin.svg";
 import Twitter from "../assets/twitter.svg";
@@ -8,51 +7,77 @@ import Call from "../assets/calling.svg";
 
 const Header = () => {
   return (
-    <div className="h-[6vh] relative z-10 w-full mt-4">
-      <div className="flex justify-between">
-        <div className="email flex justify-center items-center gap-4 ml-28">
-          <div className="flex justify-center items-center gap-1">
-            <img className="w-5 h-5 object-cover" src={Email} alt="" />
-            <h3 className="text-black">
-              <a href="mailto:friskytrails@gmail.com">friskytrails@gmail.com</a>
-            </h3>
+    <>
+      {/* Desktop / Tablet Header */}
+      <div className="hidden relative md:flex h-[6vh] z-20 w-full mt-4 justify-between items-center px-12">
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <img className="w-5 md:hidden lg:block h-5" src={Email} alt="email" />
+            <a href="mailto:friskytrails@gmail.com" className="text-black md:hidden lg:block">
+              friskytrails@gmail.com
+            </a>
           </div>
-          <div className="border-1 h-full border-black"></div>{" "}
-          {/* Vertical Line */}
-          <div className="number flex justify-center items-center">
-            <img className="w-5 h-5 object-cover" src={Call} alt="" />
-            <h3 className="text-black">
-              <a href="tel:+917501516714">+91-75015 16714</a>
-            </h3>
+          <div className="md:hidden lg:block h-5 border-l border-black" />
+          <div className="flex items-center gap-2">
+            <img className="w-5 h-5" src={Call} alt="call" />
+            <a href="tel:+917501516714" className="text-black">
+              +91-75015 16714
+            </a>
           </div>
         </div>
-        <div className="images flex justify-center items-center gap-4 mr-28">
-          <h3 className="text-black">Follow Us On:</h3>
-          <a href="https://www.facebook.com/friskytrails/" target="_blank">
-            <img className="w-5 h-5 object-cover" src={Facebook} alt="" />
+
+        <div className="flex items-center gap-4">
+          <span className="text-black">Follow Us On:</span>
+          <div className="flex items-center gap-3">
+            <a href="https://www.facebook.com/friskytrails/" target="_blank" rel="noopener noreferrer">
+              <img className="w-5 h-5" src={Facebook} alt="Facebook" />
+            </a>
+            <div className="h-5 border-l border-black" />
+            <a href="https://x.com/frisky_trails" target="_blank" rel="noopener noreferrer">
+              <img className="w-5 h-5" src={Twitter} alt="Twitter" />
+            </a>
+            <div className="h-5 border-l border-black" />
+            <a href="https://www.linkedin.com/company/friskytrails/" target="_blank" rel="noopener noreferrer">
+              <img className="w-5 h-5" src={Linkedin} alt="LinkedIn" />
+            </a>
+            <div className="h-5 border-l border-black" />
+            <a href="https://www.instagram.com/friskytrails/" target="_blank" rel="noopener noreferrer">
+              <img className="w-5 h-5" src={Instagram} alt="Instagram" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Header */}
+      <div className="md:hidden relative flex h-[6vh] z-20 w-full mt-4 justify-between items-center px-4">
+        <div className="flex items-center gap-2">
+          <img className="w-5 h-5" src={Call} alt="call" />
+          <a href="tel:+917501516714" className="text-black text-sm">
+            Call Us
           </a>
-          <div className="border-1 h-full border-black"></div>{" "}
-          {/* Vertical Line */}
-          <a href="https://x.com/frisky_trails" target="_blank">
-            <img className="w-5 h-5 object-cover" src={Twitter} alt="" />
+        </div>
+
+        <div className="flex items-center gap-3">
+          <a href="https://www.facebook.com/friskytrails/" target="_blank" rel="noopener noreferrer">
+            <img className="w-5 h-5" src={Facebook} alt="Facebook" />
           </a>
-          <div className="border-1 h-full border-black"></div>{" "}
-          {/* Vertical Line */}
-          <a
-            href="https://www.linkedin.com/company/friskytrails/"
-            target="_blank"
-          >
-            <img className="w-5 h-5 object-cover" src={Linkedin} alt="" />
+          <div className="h-5 border-l border-black" />
+          <a href="https://x.com/frisky_trails" target="_blank" rel="noopener noreferrer">
+            <img className="w-5 h-5" src={Twitter} alt="Twitter" />
           </a>
-          <div className="border-1 h-full border-black"></div>{" "}
-          {/* Vertical Line */}
-          <a href="https://www.instagram.com/friskytrails/" target="_blank">
-            <img className="w-5 h-5 object-cover" src={Instagram} alt="" />
+          <div className="h-5 border-l border-black" />
+          <a href="https://www.linkedin.com/company/friskytrails/" target="_blank" rel="noopener noreferrer">
+            <img className="w-5 h-5" src={Linkedin} alt="Linkedin" />
+          </a>
+          <div className="h-5 border-l border-black" />
+          <a href="https://www.instagram.com/friskytrails/" target="_blank" rel="noopener noreferrer">
+            <img className="w-5 h-5" src={Instagram} alt="Instagram" />
           </a>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default Header;
+

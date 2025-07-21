@@ -42,7 +42,7 @@ const Popupform = ({ onClose }) => {
       onClick={closeModal}
       className="fixed inset-0 flex bg-opacity-30 backdrop-blur-sm justify-center items-center z-70"
     >
-      <div className="bg-white w-[90vw] h-[70vh] md:w-[36vw] m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
+      <div className="bg-white w-[36vw] h-[70vh] m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
         <form onSubmit={handleSubmit} className="flex flex-col w-[26vw] gap-4">
           {/* Name */}
           <input
@@ -85,7 +85,7 @@ const Popupform = ({ onClose }) => {
               name="date"
               value={formData.date}
               placeholder="Travel Date"
-              min={new Date().toISOString().split("T")[0]} // Blocks past dates
+              min={new Date().toISOString().split("T")[0]}
               onChange={handleChange}
               className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
             />

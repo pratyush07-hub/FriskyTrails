@@ -1,13 +1,13 @@
-import React from "react";
-import { Route, Router, Routes } from "react-router-dom";
+// import React from "react";
+import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Blog from "./pages/Blog"; // Ensure Blog.js exists
 import ContactUs from "./pages/ContactUs";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
-import End from "./sections/End";
-import Last from "./components/Last";
+// import End from "./sections/End";
+// import Last from "./components/Last";
 import "/src/styles/Class.css";
 import Holidays from "./ServicesPages/Holidays";
 import Newblog from "./Blogpages/Newblog";
@@ -31,8 +31,8 @@ const App = () => {
         <Route path="/tours" element={<Productpage />} />  
         <Route path="/hiring" element={<Hiring />} />  
       </Routes>
-      <End />
-      <Last />
+      {/* <End /> */}
+      {/* <Last /> */}
     </>
   );
 };

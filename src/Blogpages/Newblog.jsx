@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Right from "../assets/right.svg";
 import Facebook from "../assets/facebook.svg";
 import Twitter from "../assets/twitter.svg";

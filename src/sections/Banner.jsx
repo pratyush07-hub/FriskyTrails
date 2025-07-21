@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image1 from "/bannerimages/1.png";
@@ -10,16 +10,24 @@ const Banner = () => {
   const data = [Image1, Image2, Image3];
   return (
     <div>
-      <div className="banner h-[80vh] w-[80vw] mx-auto flex justify-center items-center">
-      <Swiper
+      <div className="banner h-auto md:h-[80vh] w-full md:w-[90vw] lg:w-[80vw] mx-auto flex justify-center items-center px-4 md:px-0">
+        <Swiper
           effect="coverflow"
           grabCursor={true}
-          slidesPerView={"auto"}
+          slidesPerView={1}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: "auto",
+            },
+          }}
           centeredSlides={true}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
-            depth: 120,
+            depth: 100,
             modifier: 2.5,
           }}
           pagination={{
@@ -34,12 +42,9 @@ const Banner = () => {
           {data.map((item, index) => (
             <SwiperSlide key={index}>
               <div
-                className="flex justify-center items-center relative"
+                className="h-[150px] md:h-[200px] bg-contain bg-center bg-no-repeat"
                 style={{
-                  height: "300px",
                   backgroundImage: `url(${item})`,
-                  backgroundSize: "contain",
-                  backgroundRepeat: "no-repeat",
                 }}
               ></div>
             </SwiperSlide>

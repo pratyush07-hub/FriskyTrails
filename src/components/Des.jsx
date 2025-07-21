@@ -1,14 +1,13 @@
 import React, {useRef} from 'react'
 
-
 const Des = ({onClose}) => {
     const modalRef = useRef();
     
-        const closeDes = (e) => {
-            if(modalRef.current === e.target){
-                onClose();
-            }
+    const closeDes = (e) => {
+        if(modalRef.current === e.target){
+            onClose();
         }
+    }
 
   return (
     <div ref={modalRef} onClick={closeDes} className='fixed inset-0 flex justify-center pt-112 z-50'>

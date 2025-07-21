@@ -1,34 +1,49 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { Link } from "react-router-dom";
 
-
-const Modal = ({onClose}) => {
+const Modal = ({ onClose }) => {
     const modalRef = useRef();
 
     const closeModal = (e) => {
-        if(modalRef.current === e.target){
+        if (modalRef.current === e.target) {
             onClose();
         }
     }
 
-  return (
-    <div ref={modalRef} onClick={closeModal} className='fixed inset-0 flex pl-174 pt-32 z-50'>
-          <div className='h-[30vh] w-[18vw] rounded-lg drop-shadow-lg bg-[rgb(10,3,34)] flex'>
-                <div className='text-white pt-4 pl-10 cursor-pointer'>
-                    <Link to="/services/holidays"><h3 className='py-3'>Holidays</h3></Link>
-                    <Link to="/services/holidays"><h3 className='py-3'>Activities</h3></Link>
-                    <Link to="/services/holidays"><h3 className='py-3'>Hotels</h3></Link>
-                    <Link to="/services/holidays"><h3 className='py-3'>Transport</h3></Link>
+    return (
+        <div
+            ref={modalRef}
+            onClick={closeModal}
+            className='fixed inset-0 flex justify-center z-50 pt-32 px-4 sm:px-6 md:px-8'
+        >
+            <div className='relative h-[24vh] lg:h-[30vh] text-xl lg:text-base w-[50vw] sm:w-[50vw] lg:w-[25vw] xl:w-[20vw] rounded-lg drop-shadow-lg bg-[rgb(10,3,34)] flex'>
+
+                {/* Close Button */}
+                <button
+                    onClick={onClose}
+                    className='absolute top-1 right-4 text-white text-2xl font-bold hover:text-[rgb(255,99,33)] transition duration-200'
+                    aria-label="Close Modal"
+                >
+                    &times;
+                </button>
+
+                <div className='text-white pt-4 pl-6 sm:pl-10 md:pl-14 cursor-pointer'>
+                    <Link to="/services/holidays"><h3 className='py-3 hover:text-[rgb(255,99,33)]'>Holidays</h3></Link>
+                    <Link to="/services/holidays"><h3 className='py-3 hover:text-[rgb(255,99,33)]'>Activities</h3></Link>
+                    <Link to="/services/holidays"><h3 className='py-3 hover:text-[rgb(255,99,33)]'>Hotels</h3></Link>
+                    <Link to="/services/holidays"><h3 className='py-3 hover:text-[rgb(255,99,33)]'>Transport</h3></Link>
                 </div>
-                <div className='text-white pt-4 pl-12 cursor-pointer'>
-                    <h3 className='py-3'>Flights</h3>
-                    <h3 className='py-3'>Rail Tickets</h3>
-                    <h3 className='py-3'>Bus Tickets</h3>
-                    <h3 className='py-3'>Offers</h3>
+
+                <div className='text-white pt-4 pl-8 sm:pl-8 md:pl-12 cursor-pointer'>
+                    <h3 className='py-3 hover:text-[rgb(255,99,33)]'>Flights</h3>
+                    <h3 className='py-3 hover:text-[rgb(255,99,33)]'>Rail Tickets</h3>
+                    <h3 className='py-3 hover:text-[rgb(255,99,33)]'>Bus Tickets</h3>
+                    <h3 className='py-3 hover:text-[rgb(255,99,33)]'>Offers</h3>
                 </div>
-       </div>
-    </div>
-  )
+
+            </div>
+        </div>
+    )
 }
 
-export default Modal
+export default Modal;

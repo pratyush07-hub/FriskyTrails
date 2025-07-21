@@ -10,11 +10,10 @@ const Knowus = () => {
           Get In
         </h4>
         <h1 className="text-6xl pt-2 font-semibold tracking-tighter">
-          {" "}
           Touch & Start Your Adventure!
         </h1>
         <p className="pt-6">
-        Our expert support team is always prepared to help you with any queries or concerns, providing quick and tailored solutions to suit your needs.
+          Our expert support team is always prepared to help you with any queries or concerns, providing quick and tailored solutions to suit your needs.
         </p>
         <div className="border-amber-600 mt-8 border 1 rounded-3xl h-[40vh] w-[36vw]">
           <div className="flex gap-2 pl-10 pt-10 items-center">
@@ -35,14 +34,14 @@ const Knowus = () => {
           </div>
           <h1 className="text-3xl pl-10 pt-6 font-semibold tracking-tighter">20+ Expert Team member</h1>
           <div className="pl-10 pt-10 flex relative">
-            <div className=" absolute left-10 h-[60px] w-[60px] bg-amber-100 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className=" absolute left-20 h-[60px] w-[60px] bg-amber-200 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className=" absolute left-30 h-[60px] w-[60px] bg-amber-300 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className=" absolute left-40 h-[60px] w-[60px] bg-amber-400 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className=" absolute left-50 h-[60px] w-[60px] bg-amber-500 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className=" absolute left-60 h-[60px] w-[60px] bg-amber-600 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className=" absolute left-70 h-[60px] w-[60px] bg-amber-700 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className=" absolute left-80 h-[60px] w-[60px] bg-amber-800 hover:scale-110 hover:z-10 rounded-full"></div>
+            <div className="absolute left-10 h-[60px] w-[60px] bg-amber-100 hover:scale-110 hover:z-10 rounded-full"></div>
+            <div className="absolute left-20 h-[60px] w-[60px] bg-amber-200 hover:scale-110 hover:z-10 rounded-full"></div>
+            <div className="absolute left-30 h-[60px] w-[60px] bg-amber-300 hover:scale-110 hover:z-10 rounded-full"></div>
+            <div className="absolute left-40 h-[60px] w-[60px] bg-amber-400 hover:scale-110 hover:z-10 rounded-full"></div>
+            <div className="absolute left-50 h-[60px] w-[60px] bg-amber-500 hover:scale-110 hover:z-10 rounded-full"></div>
+            <div className="absolute left-60 h-[60px] w-[60px] bg-amber-600 hover:scale-110 hover:z-10 rounded-full"></div>
+            <div className="absolute left-70 h-[60px] w-[60px] bg-amber-700 hover:scale-110 hover:z-10 rounded-full"></div>
+            <div className="absolute left-80 h-[60px] w-[60px] bg-amber-800 hover:scale-110 hover:z-10 rounded-full"></div>
           </div>
         </div>
       </div>

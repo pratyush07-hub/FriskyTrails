@@ -41,8 +41,8 @@ const Deals = () => {
         <div
           key={index}
           className={`${
-            column !== "middle" ? "h-[33vh] my-3" : "h-[68vh]"
-          } w-[26vw] rounded-2xl shadow-2xl relative overflow-hidden`}
+            column !== "middle" ? "h-[25vh] md:h-[33vh] my-2 md:my-3" : "h-[50vh] md:h-[68vh]"
+          } w-full md:w-[26vw] rounded-2xl shadow-2xl relative overflow-hidden`}
         >
           <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out hover:scale-110"
@@ -61,14 +61,14 @@ const Deals = () => {
 
   return (
     <>
-      <div className="h-screen w-full pt-30">
-        <h1 className="pl-38 text-4xl font-bold tracking-tight">
+      <div className="min-h-screen w-full pt-10 md:pt-30">
+        <h1 className="px-4 md:px-38 text-2xl md:text-4xl font-bold tracking-tight">
           Deals You Can't Miss
         </h1>
-        <p className="pt-2 pb-6 pl-38">
+        <p className="pt-2 pb-4 md:pb-6 px-4 md:px-38">
           Travel beyond boundaries with incredible savings
         </p>
-        <div className="grid grid-cols-3 h-[70vh] w-[80vw] rounded-lg bg-white m-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 h-auto md:h-[70vh] w-full md:w-[90vw] lg:w-[80vw] rounded-lg bg-white m-auto p-4 md:p-0">
           <div className="mx-auto">{renderDealsByColumn("left")}</div>
           <div className="m-auto">{renderDealsByColumn("middle")}</div>
           <div className="mx-auto">{renderDealsByColumn("right")}</div>

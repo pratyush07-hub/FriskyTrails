@@ -30,7 +30,7 @@ const Form = () => {
   return (
     <div className="bg-white h-[28vh] w-[90vw] rounded-lg z-20 absolute bottom-40 left-1/2 transform -translate-x-1/2 shadow-lg">
       <h2 className="text-2xl text-orange-400 font-bold pt-4 pb-2 text-center">
-      Where’s Your Next Adventure?
+        Where's Your Next Adventure?
       </h2>
       <form
         onSubmit={handleSubmit}
@@ -66,9 +66,7 @@ const Form = () => {
 
         {/* Duration */}
         <div>
-          <label className="block font-semibold pl-1 mb-1">
-            Duration (in Days)
-          </label>
+          <label className="block font-semibold pl-1 mb-1">Duration (in Days)</label>
           <input
             type="number"
             name="duration"
@@ -95,21 +93,21 @@ const Form = () => {
             required
           />
         </div>
+
         {/* Date */}
         <div>
-          <label className="block font-semibold pl-1 mb-1">
-            Departure Date
-          </label>
+          <label className="block font-semibold pl-1 mb-1">Departure Date</label>
           <input
             type="date"
             name="date"
             value={formData.date}
-            min={new Date().toISOString().split("T")[0]}  // Blocks past dates
+            min={new Date().toISOString().split("T")[0]}
             onChange={handleChange}
             className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
             required
           />
         </div>
+
         {/* Guests */}
         <div>
           <label className="block font-semibold pl-1 mb-1">No. of Guests</label>
