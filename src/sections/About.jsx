@@ -11,7 +11,7 @@ const About = () => {
   return (
     <>
       <div className="hidden xl:block about">
-        <div className="h-[90vh] relative mt-[80vh] z-10 w-full flex">
+        <div className="h-[90vh] relative z-10 w-full flex">
           <div className="w-[25%] flex items-start">
             <div className="masker mt-30">
               <div className="flex flex-col gap-6">
@@ -99,7 +99,7 @@ const About = () => {
       </div>
       {/* mobile view */}
       <div className="xl:hidden about">
-        <div className="h-[80vh] relative mt-[80vh] z-10 w-full">
+        <div className="h-[80vh] relative z-10 w-full">
           <div className="w-full flex items-start">
             <div className="w-[80vw] mx-auto mt-8">
               <h3 className="text-[rgb(255,99,33)] font-bold text-2xl">

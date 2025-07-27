@@ -18,8 +18,8 @@ import Hiring from "./pages/Hiring";
 const App = () => {
   return (
     <>
-      <Header />
-      <Navbar />
+      {/* <Header /> */}
+      {/* <Navbar /> */}
       <Scrolltotop />
       <Routes>
         <Route path="/" element={<Home />} />
