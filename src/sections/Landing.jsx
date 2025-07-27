@@ -1,16 +1,28 @@
 const Landing = () => {
   return (
-    <div className="w-full h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden">
+      {/* Background Video */}
       <video
-        className="top-0 left-0 w-full h-full object-cover z-[-1]"
+        className="absolute top-0 left-0 w-full h-full object-cover"
         src="/images/Webvi.webm"
         autoPlay
         loop
         muted
         playsInline
       />
+
+      {/* Overlay (optional for text visibility) */}
+      <div className="absolute top-0 left-0 w-full h-full bg-black/40" />
+
+      {/* Centered Text */}
+      <div className="relative z-10 flex items-center justify-center h-full">
+        <h1 className="text-white text-4xl text-center font-bold">
+          Welcome to FriskyTrails
+        </h1>
+      </div>
     </div>
   );
 };
 
 export default Landing;
+
