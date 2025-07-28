@@ -36,7 +36,7 @@ export default function HoverRevealButton() {
         </h1>
 
         {/* Grid layout for responsiveness */}
-        <div className="grid w-[90vw] mx-auto grid-cols-1 md:grid-cols-3 xl:grid-cols-5 mt-10 gap-8 md:gap-16 place-items-center">
+        <div className="grid w-[90vw] mx-auto grid-cols-1 xl:grid-cols-5 gap-8 md:gap-16 place-items-center">
           {data.map((item, index) => (
             <div
               key={index}
