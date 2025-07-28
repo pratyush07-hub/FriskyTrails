@@ -27,7 +27,7 @@ const Landing = () => {
           playsInline
         />
         <video
-          className="absolute md:hidden top-0 w-full left-0 object-cover"
+          className="absolute md:hidden top-0 w-full h-[64vh] left-0 object-cover"
           ref={videoRef}
           src="/images/mobile.webm"
           autoPlay
