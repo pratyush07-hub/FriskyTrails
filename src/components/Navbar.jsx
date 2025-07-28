@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <div className="flex justify-center relative z-10 w-full">
-      <div className="h-auto lg:h-[10vh] w-full md:w-[90vw] bg-[rgb(255,255,255)] flex flex-col lg:flex-row justify-between items-center md:rounded-2xl lg:rounded-full md:p-2 lg:p-4 px-4">
+      <div className="h-auto lg:h-[10vh] w-full bg-[rgb(255,255,255)] flex flex-col lg:flex-row justify-between items-center md:p-2 lg:p-4 px-4">
         {/* Logo and Hamburger */}
         <div className="flex justify-between items-center w-full lg:w-auto">
           <div className="flex items-center gap-2">
@@ -37,7 +37,7 @@ const Navbar = () => {
               src="/logo.PNG"
               alt="FriskyTrails Logo"
             />
-            <h1 className="text-xl lg:text-4xl font-semibold whitespace-nowrap">
+            <h1 className="text-xl lg:text-3xl font-semibold whitespace-nowrap">
               FriskyTrails
             </h1>
           </div>
