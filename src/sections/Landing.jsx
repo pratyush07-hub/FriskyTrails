@@ -3,7 +3,7 @@ const Landing = () => {
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background Video */}
       <video
-        className="absolute top-0 left-0 w-full h-full object-cover"
+        className="absolute top-0 left-0 object-cover"
         src="/images/Webvi.webm"
         autoPlay
         loop
@@ -12,7 +12,7 @@ const Landing = () => {
       />
 
       {/* Overlay (optional for text visibility) */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black/40" />
+      <div className="absolute top-0 left-0 w-full h-full" />
 
       {/* Centered Text */}
       <div className="relative z-10 flex items-center justify-center h-full">
