@@ -25,7 +25,7 @@ export default function HoverRevealButton() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="min-h-[60vh] w-full px-4">
+    <div className="min-h-[60vh] w-full">
       <h1 className="text-3xl md:text-5xl text-center font-bold">Curated Categories</h1>
       
       {/* Grid layout for responsiveness */}
