@@ -53,7 +53,7 @@ const Landing = () => {
             md:transition={{ ease: "linear", repeat: Infinity, duration: 16 }}
             className="text-7xl font-bold"
           >
-            <span className="flex justify-center items-center ml-20 md:ml-40 text-white [text-shadow:_-1px_-1px_0_rgba(10,3,34,0.4),1px_1px_0_rgba(10,3,34,0.4),-1px_1px_0_rgba(10,3,34,0.4),1px_-1px_0_rgba(10,3,34,0.4)]">
+            <span className="flex justify-center items-center ml-20 md:ml-40 text-white md:[text-shadow:_-2px_-2px_0_#0a0322,2px_2px_0_#0a0322,-2px_2px_0_#0a0322,2px_-2px_0_#0a0322] [text-shadow:_-1px_-1px_0_rgba(10,3,34,0.4),1px_1px_0_rgba(10,3,34,0.4),-1px_1px_0_rgba(10,3,34,0.4),1px_-1px_0_rgba(10,3,34,0.4)]">
               <img
                 className="h-20 w-20 md:h-40 md:w-40"
                 src="/logo.PNG"
@@ -72,7 +72,7 @@ const Landing = () => {
             md:transition={{ ease: "linear", repeat: Infinity, duration: 16 }}
             className="text-7xl font-bold"
           >
-            <span className="flex justify-center items-center ml-20 md:ml-40 text-white [text-shadow:_-1px_-1px_0_rgba(10,3,34,0.4),1px_1px_0_rgba(10,3,34,0.4),-1px_1px_0_rgba(10,3,34,0.4),1px_-1px_0_rgba(10,3,34,0.4)]">
+            <span className="flex justify-center items-center ml-20 md:ml-40 text-white  md:[text-shadow:_-2px_-2px_0_#0a0322,2px_2px_0_#0a0322,-2px_2px_0_#0a0322,2px_-2px_0_#0a0322] [text-shadow:_-1px_-1px_0_rgba(10,3,34,0.4),1px_1px_0_rgba(10,3,34,0.4),-1px_1px_0_rgba(10,3,34,0.4),1px_-1px_0_rgba(10,3,34,0.4)]">
               <img
                 className="h-20 w-20 md:h-40 md:w-40"
                 src="/logo.PNG"
