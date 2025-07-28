@@ -16,7 +16,7 @@ const Landing = () => {
   return (
     <div className="relative w-full h-[84vh] bg-[rgb(247, 241, 231)] overflow-hidden">
       {/* Background Video */}
-      <div className="h-[62vh] w-full">
+      <div className="h-[72vh] md:h-[62vh] w-full">
         <video
           className="absolute md:block h-[62vh] top-0 w-full left-0 object-cover"
           ref={videoRef}
@@ -27,7 +27,7 @@ const Landing = () => {
           playsInline
         />
         <video
-          className="absolute md:hidden top-0 w-full h-[70vh] left-0 object-cover"
+          className="absolute md:hidden top-0 w-full h-[72vh] left-0 object-cover"
           ref={videoRef}
           src="/images/mobile.webm"
           autoPlay
@@ -44,7 +44,7 @@ const Landing = () => {
       </div>
 
       {/* <Scroll /> */}
-      <div className="animation mt-14 md:mt-0 w-full">
+      <div className="animation w-full">
         <div className="relative text flex whitespace-nowrap overflow-hidden">
           <motion.h1
             initial={{ x: 0 }}
