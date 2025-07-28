@@ -30,13 +30,13 @@ export default function HoverRevealButton() {
 
   return (
     <>
-      <div className="hidden md:block bg-green-400 min-h-[60vh] w-full">
+      <div className="hidden xl:block min-h-[60vh] w-full">
         <h1 className="text-3xl md:text-5xl text-center font-bold">
           Curated Categories
         </h1>
 
         {/* Grid layout for responsiveness */}
-        <div className="grid w-[90vw] mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mt-10 gap-8 md:gap-16 place-items-center">
+        <div className="grid w-[90vw] mx-auto grid-cols-1 md:grid-cols-3 xl:grid-cols-5 mt-10 gap-8 md:gap-16 place-items-center">
           {data.map((item, index) => (
             <div
               key={index}
@@ -67,17 +67,17 @@ export default function HoverRevealButton() {
         </div>
       </div>
       {/* mobile view */}
-      <div className="md:hidden min-h-[60vh] w-full">
+      <div className="xl:hidden min-h-[60vh] w-full">
         <h1 className="text-3xl md:text-5xl text-center font-bold">
           Curated Categories
         </h1>
 
         {/* Grid layout for responsiveness */}
-        <div className="grid mx-auto grid-cols-1 md:grid-cols-2 mt-4 place-items-center">
+        <div className="grid mx-auto grid-cols-1 md:grid-cols-3 mt-4 place-items-center">
           {data.map((item, index) => (
             <div
               key={index}
-              className="relative w-70 h-72 flex items-center mb-8 justify-center"
+              className="relative w-70 md:w-60 lg:w-70 h-72 flex items-center mb-8 justify-center"
             >
               {/* Image (Moves up on hover) */}
               <img
