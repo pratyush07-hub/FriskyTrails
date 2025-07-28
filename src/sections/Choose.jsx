@@ -9,7 +9,7 @@ const Choose = () => {
       <div className='w-full'>
         <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-center'>Why Choose Us</h1>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="mt-4 md:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-[90vw] mx-auto">
           {data.map((item, index) => (
             <div
               key={index}
