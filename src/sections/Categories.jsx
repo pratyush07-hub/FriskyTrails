@@ -77,7 +77,7 @@ export default function HoverRevealButton() {
           {data.map((item, index) => (
             <div
               key={index}
-              className="relative w-70 md:w-60 lg:w-70 h-72 flex items-center mb-8 justify-center"
+              className="relative w-80 md:w-60 lg:w-70 h-72 flex items-center mb-8 justify-center"
             >
               {/* Image (Moves up on hover) */}
               <img

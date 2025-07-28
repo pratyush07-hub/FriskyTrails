@@ -8,7 +8,7 @@ import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 // import Next from "../sections/Next";
 // import Feedback from "../sections/Feedback";
-// import Choose from "../sections/Choose";
+import Choose from "../sections/Choose";
 // import Rewards from "../sections/Rewards";
 // import Blogs from "../sections/Blogs";
 
@@ -24,7 +24,7 @@ const Home = () => {
         {/* <About /> */}
         {/* <Scroll /> */}
         <Categories />
-        {/* <Choose /> */}
+        <Choose />
         {/* <Banner /> */}
         {/* <Cards /> */}
         {/* <Next /> */}
