@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-
+import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
 const Landing = () => {
-
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
 
@@ -15,25 +14,33 @@ const Landing = () => {
   };
 
   return (
-    <div className="relative w-full h-[90vh] bg-[rgb(247, 241, 231)] overflow-hidden">
+    <div className="relative w-full h-[84vh] bg-[rgb(247, 241, 231)] overflow-hidden">
       {/* Background Video */}
-      <div className="h-[65vh] w-full">
-
-      <video
-        className="absolute top-0 w-full left-0 object-cover"
-        ref={videoRef}
-        src="/images/Webvi.webm"
-        autoPlay
-        loop
-        muted
-        playsInline
-      />
-      <button
-        onClick={toggleMute}
-        className="absolute z-20 top-4 left-4 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition"
-      >
-        {isMuted ? "🔇" : "🔊"}
-      </button>
+      <div className="h-[62vh] w-full">
+        <video
+          className="absolute md:block top-0 w-full left-0 object-cover"
+          ref={videoRef}
+          src="/images/Webvi.webm"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        <video
+          className="absolute md:hidden top-0 w-full left-0 object-cover"
+          ref={videoRef}
+          src="/images/mobile.webm"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        <button
+          onClick={toggleMute}
+          className="absolute z-20 top-4 right-4 bg-white/20 backdrop-blur-md text-white p-3 rounded-full hover:bg-white/30 transition shadow-md"
+        >
+          {isMuted ? <FaVolumeMute size={24} /> : <FaVolumeUp size={24} />}
+        </button>
       </div>
 
       {/* <Scroll /> */}
@@ -63,20 +70,30 @@ const Landing = () => {
           </motion.h1>
         </div>
       </div>
-
-      
     </div>
   );
 };
 
 export default Landing;
 
-{/* Overlay (optional for text visibility) */} 
-      {/* <div className="absolute top-0 left-0 w-full h-[65vh] bg-black/50" /> */}
+{
+  /* Overlay (optional for text visibility) */
+}
+{
+  /* <div className="absolute top-0 left-0 w-full h-[65vh] bg-black/50" /> */
+}
 
-      {/* Centered Text */}
-      {/* <div className="relative z-10 flex items-center justify-center h-full"> */}
-        {/* <h1 className="text-white text-4xl text-center font-bold">
+{
+  /* Centered Text */
+}
+{
+  /* <div className="relative z-10 flex items-center justify-center h-full"> */
+}
+{
+  /* <h1 className="text-white text-4xl text-center font-bold">
           Welcome to FriskyTrails
-        </h1> */}
-      {/* </div> */}
+        </h1> */
+}
+{
+  /* </div> */
+}

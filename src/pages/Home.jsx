@@ -21,7 +21,7 @@ const Home = () => {
           <Navbar />
         </div> */}
         <Landing />
-        {/* <About /> */}
+        <About />
         {/* <Scroll /> */}
         {/* <Categories /> */}
         {/* <Choose /> */}

@@ -13,7 +13,7 @@ const About = () => {
       <div className="hidden xl:block about">
         <div className="h-[90vh] relative z-10 w-full flex">
           <div className="w-[25%] flex items-start">
-            <div className="masker mt-30">
+            <div className="masker mt-10">
               <div className="flex flex-col gap-6">
                 <div className="box h-[14vh] w-[18vw] ml-28 flex items-center border-1 border-gray-200 rounded-lg gap-8 pl-10">
                   <img src={Trolly} alt="trolly" />
@@ -51,7 +51,7 @@ const About = () => {
             </div>
           </div>
           <div className="w-[32%] pl-20 flex items-start">
-            <div className="mt-40">
+            <div className="mt-20">
               <img
                 className="w-[900px] object-cover h-[560px]"
                 src="/images/Girl.webp"
@@ -60,7 +60,7 @@ const About = () => {
             </div>
           </div>
           <div className="w-[43%] flex items-start">
-            <div className="mt-36 ml-6">
+            <div className="mt-14 ml-6">
               <h3 className="text-[rgb(255,99,33)] font-semibold text-xl">
                 About Us
               </h3>
