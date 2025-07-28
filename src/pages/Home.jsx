@@ -15,11 +15,11 @@ import Navbar from "../components/Navbar";
 const Home = () => {
   return (
     <>
-      <div className="w-full overflow-x-hidden relative">
+      {/* <div className="w-full overflow-x-hidden relative">
         <div className="absolute top-0 left-0 w-full z-20">
           <Header />
           <Navbar />
-        </div>
+        </div> */}
         <Landing />
         {/* <About /> */}
         {/* <Scroll /> */}
@@ -31,7 +31,7 @@ const Home = () => {
         {/* <Blogs /> */}
         {/* <Rewards /> */}
         {/* <Feedback /> */}
-      </div>
+      {/* </div> */}
     </>
   );
 };

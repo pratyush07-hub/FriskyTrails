@@ -16,9 +16,9 @@ const Landing = () => {
 
       {/* Centered Text */}
       <div className="relative z-10 flex items-center justify-center h-full">
-        <h1 className="text-white text-4xl text-center font-bold">
+        {/* <h1 className="text-white text-4xl text-center font-bold">
           Welcome to FriskyTrails
-        </h1>
+        </h1> */}
       </div>
     </div>
   );
