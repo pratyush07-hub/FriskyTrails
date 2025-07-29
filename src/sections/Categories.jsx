@@ -67,29 +67,29 @@ export default function HoverRevealButton() {
         </div>
       </div>
       {/* mobile view */}
-      <div className="xl:hidden min-h-[60vh] w-full">
-        <h1 className="text-3xl md:text-5xl text-center font-bold">
-          Curated Categories
-        </h1>
+<div className="xl:hidden min-h-[60vh] w-full px-4">
+  <h1 className="text-3xl md:text-5xl text-center font-bold">
+    Curated Categories
+  </h1>
 
-        {/* Grid layout for responsiveness */}
-        <div className="grid mx-auto grid-cols-1 md:grid-cols-3 mt-4 place-items-center">
-          {data.map((item, index) => (
-            <div
-              key={index}
-              className="relative w-80 md:w-60 lg:w-70 h-72 flex items-center mb-8 justify-center"
-            >
-              {/* Image (Moves up on hover) */}
-              <img
-                src={item.image}
-                alt={item.name}
-                className="absolute w-full h-full rounded-lg shadow-lg object-cover"
-              />
-
-            </div>
-          ))}
-        </div>
+  {/* Horizontal Scroll Container */}
+  <div className="flex overflow-x-auto gap-4 mt-6 pb-4 scrollbar-hide">
+    {data.map((item, index) => (
+      <div
+        key={index}
+        className="min-w-[240px] max-w-[260px] h-72 flex-shrink-0 relative"
+      >
+        {/* Image */}
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-full h-full rounded-lg shadow-lg object-cover"
+        />
       </div>
+    ))}
+  </div>
+</div>
+
     </>
   );
 }
