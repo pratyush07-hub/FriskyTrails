@@ -29,7 +29,7 @@ const Next = () => {
   ]
   return (
     <>
-      <div className='h-screen w-[80vw] m-auto'>
+      <div className='h-screen w-[90vw] mx-auto'>
         <h1 className='text-4xl font-bold text-center'>Where to Next?</h1>
         <div className="grid grid-cols-3 gap-6 mt-10">
             {data.map((item, index) => (

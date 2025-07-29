@@ -19,10 +19,7 @@ export default function HoverRevealButton() {
       image: "/images/6.png",
       name: "Manali",
     },
-    {
-      image: "/images/2.png",
-      name: "Maldives",
-    },
+    
   ];
 
   // Move hover state outside the map (for proper reactivity)
@@ -36,11 +33,11 @@ export default function HoverRevealButton() {
         </h1>
 
         {/* Grid layout for responsiveness */}
-        <div className="grid w-[90vw] mx-auto grid-cols-1 xl:grid-cols-5 mt-10 gap-8 md:gap-16 place-items-center">
+        <div className="grid w-[90vw] mx-auto grid-cols-1 xl:grid-cols-4 mt-10 gap-8 md:gap-16 place-items-center">
           {data.map((item, index) => (
             <div
               key={index}
-              className="relative w-64 h-72 flex items-center justify-center"
+              className="relative w-74 h-72 flex items-center justify-center"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >

@@ -1,12 +1,12 @@
-// import Cards from "../sections/Cards";
+import Cards from "../sections/Cards";
 import About from "../sections/About";
 import Scroll from "../sections/Scroll";
 import Categories from "../sections/Categories";
-// import Banner from "../sections/Banner";
+import Banner from "../sections/Banner";
 import Landing from "../sections/Landing";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-// import Next from "../sections/Next";
+import Next from "../sections/Next";
 // import Feedback from "../sections/Feedback";
 import Choose from "../sections/Choose";
 // import Rewards from "../sections/Rewards";
@@ -24,10 +24,10 @@ const Home = () => {
         {/* <About /> */}
         {/* <Scroll /> */}
         <Categories />
+        <Banner />
+        <Cards />
+        <Next />
         <Choose />
-        {/* <Banner /> */}
-        {/* <Cards /> */}
-        {/* <Next /> */}
         {/* <Blogs /> */}
         {/* <Rewards /> */}
         {/* <Feedback /> */}

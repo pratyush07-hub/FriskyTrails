@@ -10,7 +10,7 @@ const Banner = () => {
   const data = [Image1, Image2, Image3];
   return (
     <div>
-      <div className="banner h-auto md:h-[80vh] w-full md:w-[90vw] lg:w-[80vw] mx-auto flex justify-center items-center px-4 md:px-0">
+      <div className="banner h-auto md:h-[60vh] w-full md:w-[90vw] lg:w-[80vw] mx-auto flex justify-center items-center px-4 md:px-0">
         <Swiper
           effect="coverflow"
           grabCursor={true}
@@ -42,7 +42,7 @@ const Banner = () => {
           {data.map((item, index) => (
             <SwiperSlide key={index}>
               <div
-                className="h-[150px] md:h-[200px] bg-contain bg-center bg-no-repeat"
+                className="h-[150px] md:h-[300px] bg-contain bg-center bg-no-repeat"
                 style={{
                   backgroundImage: `url(${item})`,
                 }}
