@@ -67,7 +67,7 @@ export default function HoverRevealButton() {
         </div>
       </div>
       {/* mobile view */}
-      <div className="xl:hidden h-auto w-full px-4">
+      <div className="xl:hidden h-auto mb-4 w-full px-4">
         <h1 className="text-3xl md:text-5xl text-center font-bold">
           Curated Categories
         </h1>

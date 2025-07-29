@@ -14,7 +14,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="relative w-full min-h-[84vh] bg-[rgb(247, 241, 231)] overflow-hidden">
+    <div className="relative w-full h-auto bg-[rgb(247, 241, 231)] overflow-hidden">
       {/* Background Video */}
       <div className="h-[72vh] md:h-[62vh] w-full">
         <video

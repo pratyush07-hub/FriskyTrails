@@ -9,11 +9,11 @@ const Choose = () => {
       <div className='w-full'>
         <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-center'>Why Choose Us</h1>
 
-        <div className="mt-4 md:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-[90vw] mx-auto">
+        <div className="mt-4 md:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-[80vw] mx-auto">
           {data.map((item, index) => (
             <div
               key={index}
-              className="rounded-lg bg-white border border-[#FF6321] shadow-lg px-2 py-2 md:px-6 md:py-8 text-center flex flex-col items-center"
+              className="rounded-lg bg-white border border-[#FF6321] shadow-lg px-2 py-4 md:px-6 md:py-8 text-center flex flex-col items-center"
             >
               <img className='h-16 w-16 mb-6' src={item.image} alt="img" />
               <h2 className='text-lg font-semibold mb-3'>{item.title}</h2>
