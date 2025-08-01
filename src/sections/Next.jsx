@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Next = () => {
   const data = [
@@ -27,26 +26,28 @@ const Next = () => {
       name: "Shilong",
     },
   ]
+
   return (
-    <>
-      <div className='h-screen w-[90vw] mx-auto'>
-        <h1 className='text-4xl font-bold text-center'>Where to Next?</h1>
-        <div className="grid grid-cols-3 gap-6 mt-10">
-            {data.map((item, index) => (
-              <div 
-                key={index}
-                className="h-[40vh] w-full bg-cover bg-center rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
-                style={{ backgroundImage: `url(${item.image})` }}
-              >
-                <div className="h-full w-full rounded-lg flex items-center justify-center">  
-                  {/* bg-black/30 */}
-                  {/* <h1 className='text-4xl font-semibold text-white'>{item.name}</h1> */}
-                </div>
+    <div className='h-auto w-[90vw] mx-auto'>
+      <h1 className='text-4xl font-bold text-center'>Where to Next?</h1>
+
+      {/* Mobile: horizontal scroll, Desktop: grid */}
+      <div className="mt-6 mb-4 md:mt-10 overflow-x-auto pb-4 md:overflow-visible">
+        <div className="flex md:grid md:grid-cols-3 gap-6 min-w-max md:min-w-0">
+          {data.map((item, index) => (
+            <div 
+              key={index}
+              className="min-w-[70vw] md:min-w-0 h-[40vh] bg-cover bg-center rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+              style={{ backgroundImage: `url(${item.image})` }}
+            >
+              <div className="h-full w-full rounded-lg flex items-center justify-center">  
+                {/* <h1 className='text-4xl font-semibold text-white'>{item.name}</h1> */}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

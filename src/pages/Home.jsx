@@ -10,7 +10,7 @@ import Next from "../sections/Next";
 // import Feedback from "../sections/Feedback";
 import Choose from "../sections/Choose";
 // import Rewards from "../sections/Rewards";
-// import Blogs from "../sections/Blogs";
+import Blogs from "../sections/Blogs";
 
 const Home = () => {
   return (
@@ -27,8 +27,8 @@ const Home = () => {
         <Banner />
         <Cards />
         <Next />
+        <Blogs />
         <Choose />
-        {/* <Blogs /> */}
         {/* <Rewards /> */}
         {/* <Feedback /> */}
       {/* </div> */}

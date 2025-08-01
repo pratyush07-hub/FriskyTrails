@@ -89,7 +89,7 @@ const Cards = () => {
 </style>
 
 
-      <div className="trips h-auto mt-8 mb-4 w-full">
+      <div className="trip h-auto mt-8 mb-4 w-full">
         <div className="mx-4 md:mx-32 flex justify-center text-center">
           <h1 className="text-3xl md:text-4xl font-bold">
             Upcoming Trips & Adventures
