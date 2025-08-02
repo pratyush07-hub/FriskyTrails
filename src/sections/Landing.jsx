@@ -20,7 +20,7 @@ const Landing = () => {
         <video
           className="absolute md:block h-[62vh] top-0 w-full left-0 object-cover"
           ref={videoRef}
-          src="/images/Webvi.webm"
+          src="/images/Webvi.mp4"
           autoPlay
           loop
           muted

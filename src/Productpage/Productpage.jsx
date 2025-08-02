@@ -1,4 +1,3 @@
-import React from "react";
 import Right from "../assets/right.svg";
 import Share from "../assets/share.svg";
 import Payment from "../assets/payment.svg";

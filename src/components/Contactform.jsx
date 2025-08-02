@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Contactform = () => {
   const [formData, setFormData] = useState({
@@ -24,8 +24,8 @@ const Contactform = () => {
   };
 
   return (
-    <div className="bg-white w-[36vw] h-[70vh] mt-2 m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
-      <form onSubmit={handleSubmit} className="flex flex-col w-[26vw] gap-6">
+    <div className="bg-white w-full max-w-[90vw] sm:max-w-[500px] md:max-w-[600px] lg:w-[36vw] h-auto mt-4 m-auto flex justify-center items-center rounded-lg shadow-lg px-4 sm:px-6 py-4 sm:py-6 md:px-6 md:py-8">
+      <form onSubmit={handleSubmit} className="flex flex-col w-full gap-5 sm:gap-6">
         {/* Name */}
         <input
           type="text"
@@ -33,7 +33,7 @@ const Contactform = () => {
           placeholder="Your Name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 text-base"
           required
         />
 
@@ -46,7 +46,7 @@ const Contactform = () => {
           maxLength="10"
           value={formData.mobile}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 text-base"
           required
         />
 
@@ -57,7 +57,7 @@ const Contactform = () => {
           placeholder="Email Address"
           value={formData.email}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 text-base"
         />
 
         {/* Text Area */}
@@ -66,13 +66,13 @@ const Contactform = () => {
           placeholder="Write a Message"
           value={formData.message}
           onChange={handleChange}
-          className="w-full h-34 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 leading-relaxed text-lg resize-none"
+          className="w-full h-32 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 leading-relaxed text-base resize-none"
         ></textarea>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-[rgb(255,99,33)] text-xl to-amber-400 hover:scale-95 active:scale-90 transition-transform duration-150 py-4 text-white rounded-full font-semibold"
+          className="w-full bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 active:scale-90 transition-transform duration-150 py-3 text-white rounded-full font-semibold text-lg"
         >
           Submit
         </button>

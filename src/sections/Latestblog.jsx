@@ -1,5 +1,3 @@
-import React from "react";
-
 const Latestblog = () => {
   const data = [
     {
@@ -31,18 +29,18 @@ const Latestblog = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row items-start md:items-center px-4 md:px-18 gap-2 md:gap-4">
+      <div className="flex flex-col md:flex-row items-start md:items-center md:px-18 gap-2 md:gap-4">
         <h1 className="text-lg md:text-2xl tracking-tighter font-semibold whitespace-nowrap">
           Best Places to Travel in India by Season
         </h1>
         <div className="h-[4px] w-full bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 rounded"></div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 h-auto md:h-[40vh] w-full md:w-[90vw] m-auto px-4 md:px-0 mt-4 md:mt-8">
+      <div className="grid grid-cols-2 md:mb-12 lg:mb-0 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 h-auto md:h-[40vh] w-full md:w-[90vw] m-auto mt-4 md:mt-8">
         {data.map((item, index) => (
           <div
             key={index}
-            className={`h-auto md:h-[26vh] w-full md:w-[15vw] m-auto flex justify-center items-center rounded-lg shadow-lg ${item.color}`}
+            className={`h-[20vh] md:h-[26vh] w-full md:w-[28vw] lg:w-[15vw] m-auto flex justify-center items-center rounded-lg shadow-lg ${item.color}`}
             style={{
               backgroundImage: `url(${item.image})`,
               backgroundSize: "cover",

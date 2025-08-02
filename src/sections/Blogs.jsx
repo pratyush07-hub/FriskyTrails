@@ -33,7 +33,7 @@ const Blogs = () => {
             {data.map((item, index) => (
               <div
                 key={index}
-                className="min-w-[80vw] md:min-w-[40vw] xl:min-w-0 h-[44vh] w-full bg-cover bg-center rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+                className="min-w-[71vw] md:min-w-[40vw] xl:min-w-0 h-[42vh] w-full bg-cover bg-center rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
                 style={{ backgroundImage: `url(${item.image})` }}
               >
                 <div className="h-full w-full bg-black/30 rounded-lg p-2">
@@ -41,7 +41,7 @@ const Blogs = () => {
                     Holiday Destinations
                   </button>
                   <div className="h-[4vh]">
-                    <h2 className="text-white mt-38 lg:mt-46 font-semibold">
+                    <h2 className="text-white mt-36 lg:mt-50 xl:mt-42 font-semibold">
                       {item.des}
                     </h2>
                   </div>

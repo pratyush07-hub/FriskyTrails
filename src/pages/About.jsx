@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Jointeam from "../components/Jointeam";
 import Form from "../components/Popupform";
 import Arrow from "../assets/rightarrow.svg";
 import Choose from "../sections/Choose";
+import Promise from "../sections/Promise";
 
 const About = () => {
   const [showForm, setShowForm] = useState(false);
@@ -25,102 +26,122 @@ const About = () => {
 
   return (
     <div className="min-h-screen w-full">
-      <div className="bg-[url('/images/Indianflag.webp')] bg-cover z-0 bg-center">
-      <h1 className="font-bold text-4xl md:text-8xl tracking-tight text-center pt-16 md:pt-30">
-        Explore India With Us
-      </h1>
-      <div className="w-full md:w-[42vw] mx-auto flex justify-center">
-        <p className="text-center mt-4 md:mt-8 text-base md:text-xl text-black">
-          Our mission is to make travel effortless and adventures unforgettable
-          for all adventure lovers and travel junkies across the nation.
-        </p>
+      <div className="bg-[url('/images/Indianflag.png')] bg-cover z-0 bg-center">
+        <div className="md:hidden w-[90vw] mx-auto">
+          <h1 className="font-bold text-4xl md:text-8xl tracking-tight text-center pt-6 md:pt-30">
+            Explore India With Us
+          </h1>
+          <div className="w-full md:w-[42vw] mx-auto flex justify-center">
+            <p className="text-center mt-2 md:mt-8 text-base md:text-xl text-black">
+              Our mission is to make travel effortless and adventures
+              unforgettable for all adventure lovers and travel junkies across
+              the nation.
+            </p>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-semibold mt-4 md:mt-24 text-[rgb(255,99,33)] text-center">
+            What is FriskyTrails?
+          </h1>
+          <div className="w-full md:w-[70vw] mx-auto flex justify-center">
+            <p className="text-center mt-2 md:mt-8 text-base md:text-xl text-gray-600">
+              <b>
+                At FriskyTrails, we believe that travel isn't just about
+                reaching a destination—
+              </b>
+              it's about the thrill of the journey, the experiences that shape
+              us, and the stories we create along the way. Whether you're an
+              adrenaline junkie, a nature lover, or someone looking to escape
+              the ordinary, we bring you 100+ adventure activities and 500+ tour
+              packages across 200+ breathtaking locations in India.
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-10 gap-4 md:gap-10">
+            <button
+              onClick={toggleForm}
+              className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 md:mt-8 border-1 flex justify-center md:justify-normal gap-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 md:px-8 py-3 md:py-5"
+            >
+              Our Packages <img className="mt-0.5 invert" src={Arrow} alt="" />
+            </button>
+            {showForm && <Form onClose={() => setShowForm(false)} />}
+            <button className="bg-white mt-4 md:mt-8 border-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 hover:text-white px-6 md:px-8 py-3 md:py-5">
+              <a href="tel:+917501516714">+91-75015 16714</a>
+            </button>
+          </div>
+        </div>
+        <div className="hidden md:block">
+          <h1 className="font-bold text-4xl md:text-8xl tracking-tight text-center pt-10 md:pt-30">
+            Explore India With Us
+          </h1>
+          <div className="w-full md:w-[80vw] xl:w-[42vw] mx-auto flex justify-center">
+            <p className="text-center mt-2 md:mt-8 text-base md:text-xl text-black">
+              Our mission is to make travel effortless and adventures
+              unforgettable for all adventure lovers and travel junkies across
+              the nation.
+            </p>
+          </div>
+          <h1 className="text-3xl md:text-4xl font-semibold mt-4 md:mt-24 text-[rgb(255,99,33)] text-center">
+            What is FriskyTrails?
+          </h1>
+          <div className="w-full md:w-[70vw] mx-auto flex justify-center">
+            <p className="text-center mt-2 md:mt-8 text-base md:text-xl text-gray-600">
+              <b>
+                At FriskyTrails, we believe that travel isn't just about
+                reaching a destination—
+              </b>
+              it's about the thrill of the journey, the experiences that shape
+              us, and the stories we create along the way. Whether you're an
+              adrenaline junkie, a nature lover, or someone looking to escape
+              the ordinary, we bring you 100+ adventure activities and 500+ tour
+              packages across 200+ breathtaking locations in India.
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-10 gap-4 md:gap-10">
+            <button
+              onClick={toggleForm}
+              className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 md:mt-8 border-1 flex justify-center md:justify-normal gap-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 md:px-8 py-3 md:py-5"
+            >
+              Our Packages <img className="mt-0.5 invert" src={Arrow} alt="" />
+            </button>
+            {showForm && <Form onClose={() => setShowForm(false)} />}
+            <button className="bg-white mt-4 md:mt-8 border-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 hover:text-white px-6 md:px-8 py-3 md:py-5">
+              <a href="tel:+917501516714">+91-75015 16714</a>
+            </button>
+          </div>
+        </div>
       </div>
-      <h1 className="text-3xl md:text-4xl font-semibold mt-12 md:mt-24 text-[rgb(255,99,33)] text-center">
-        What is FriskyTrails?
+      <Promise />
+      <Choose />
+      <div className="hidden md:block">
+
+            <h1 className="text-3xl md:text-4xl font-semibold mt-12 md:mt-24 text-center">
+        Let's Redefine Adventure,{" "}
+        <span className="text-3xl md:text-4xl text-[rgb(255,99,33)] font-bold mt-12 md:mt-24">
+          TOGETHER!
+        </span>
       </h1>
-      <div className="w-full md:w-[70vw] mx-auto flex justify-center">
+      <div className="w-full md:w-[80vw] xl:w-[60vw] mx-auto flex justify-center">
         <p className="text-center mt-4 md:mt-8 text-base md:text-xl text-gray-600">
-          <b>
-            At FriskyTrails, we believe that travel isn't just about reaching a
-            destination—
-          </b>
-          it's about the thrill of the journey, the experiences that shape us,
-          and the stories we create along the way. Whether you're an adrenaline
-          junkie, a nature lover, or someone looking to escape the ordinary, we
-          bring you 100+ adventure activities and 500+ tour packages across 200+
-          breathtaking locations in India.
+          FriskyTrails isn't just a career opportunity—it's a launchpad for bold
+          ideas, passionate individuals, and limitless growth. We thrive in a
+          fast-paced, dynamic culture where creativity meets adventure. If
+          you're ready to unlock your potential, make an impact, and embark on
+          an exciting professional journey, this is your calling! Click the
+          button tailored just for you—whether you're drawn to marketing, sales,
+          tech, or beyond. Your adventure with FriskyTrails starts now! 🚀
         </p>
       </div>
       <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-10 gap-4 md:gap-10">
         <button
-          onClick={toggleForm}
-          className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 md:mt-8 border-1 flex gap-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-6 md:px-8 py-3 md:py-5"
-        >
-          Our Packages <img className="mt-0.5 invert" src={Arrow} alt="" />
+          onClick={toggleJointeam}
+          className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 md:mt-8 border-1 flex gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-4 md:px-6 py-2 md:py-3"
+          >
+          Join Our Team!
         </button>
-        {showForm && <Form onClose={() => setShowForm(false)} />}
-        <button className="bg-white mt-4 md:mt-8 border-1 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-amber-400 hover:text-white px-6 md:px-8 py-3 md:py-5">
-          <a href="tel:+917501516714">+91-75015 16714</a>
-        </button>
+        {showJointeam && <Jointeam onClose={() => setShowJointeam(false)} />}
       </div>
           </div>
-      <div className="mt-6 md:mt-10 w-full">
-        <h1 className="text-3xl md:text-4xl font-semibold mt-12 md:mt-24 text-[rgb(255,99,33)] text-center">
-          What we promise
-        </h1>
-        <div className="flex flex-col md:flex-row justify-center mt-4 md:mt-8 items-center gap-4 md:gap-10 h-auto md:h-[40vh] w-full">
-          <div className="h-auto md:h-[40vh] w-full md:w-[18vw] bg-white rounded-lg shadow-lg">
-            <div className="flex justify-center">
-              <img
-                className="h-[14vh] w-[7vw] mt-4"
-                src="/promiseimages/1.png"
-                alt=""
-              />
-            </div>
-            <h1 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold text-center">
-              Unmatched Experience
-            </h1>
-            <p className="text-gray-500 w-full md:w-[15vw] ml-2 md:ml-5 tracking-tighter mt-2 md:mt-4 text-center">
-              From trekking in the Himalayas to Sky Diving in NCR, we curate
-              unique adventures for every traveller.
-            </p>
-          </div>
-          <div className="h-auto md:h-[40vh] w-full md:w-[18vw] bg-white rounded-lg shadow-lg">
-            <div className="flex justify-center">
-              <img
-                className="h-[14vh] w-[7vw] mt-4"
-                src="/promiseimages/2.png"
-                alt=""
-              />
-            </div>
-            <h1 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold text-center">
-              Trusted Expertise
-            </h1>
-            <p className="text-gray-500 w-full md:w-[15vw] ml-2 md:ml-5 tracking-tighter mt-2 md:mt-4 text-center">
-              With 4+ years of experience in the travel industry, we ensure
-              safety, quality, and unforgettable moments.
-            </p>
-          </div>
-          <div className="h-auto md:h-[40vh] w-full md:w-[18vw] bg-white rounded-lg shadow-lg">
-            <div className="flex justify-center">
-              <img
-                className="h-[14vh] w-[7vw] mt-4"
-                src="/promiseimages/3.png"
-                alt=""
-              />
-            </div>
-            <h1 className="mt-4 md:mt-6 text-lg md:text-xl font-semibold text-center">
-              For Every Explorer
-            </h1>
-            <p className="text-gray-500 w-full md:w-[15vw] ml-2 md:ml-5 tracking-tighter mt-2 md:mt-4 text-center">
-              Whether you're a solo traveler, a couple, or a group of friends,
-              we have something for everyone.
-            </p>
-          </div>
-        </div>
-      </div>
-      <Choose />
-      <h1 className="text-3xl md:text-4xl font-semibold mt-12 md:mt-24 text-center">
+      <div className="md:hidden w-[90vw] mx-auto">
+
+      <h1 className="text-2xl md:text-4xl font-semibold mt-12 md:mt-24 text-center">
         Let's Redefine Adventure,{" "}
         <span className="text-3xl md:text-4xl text-[rgb(255,99,33)] font-bold mt-12 md:mt-24">
           TOGETHER!
@@ -140,12 +161,13 @@ const About = () => {
       <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-10 gap-4 md:gap-10">
         <button
           onClick={toggleJointeam}
-          className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 md:mt-8 border-1 flex gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-4 md:px-6 py-2 md:py-3"
-        >
+          className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 md:mt-8 border-1 flex justify-center md:justify-normal gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-4 md:px-6 py-2 md:py-3"
+          >
           Join Our Team!
         </button>
         {showJointeam && <Jointeam onClose={() => setShowJointeam(false)} />}
       </div>
+          </div>
     </div>
   );
 };

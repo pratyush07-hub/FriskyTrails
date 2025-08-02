@@ -1,51 +1,62 @@
-import React from "react";
-import Call from '../assets/calling.svg'
-import Email from '../assets/email.svg'
+import Call from '../assets/calling.svg';
+import Email from '../assets/email.svg';
 
 const Knowus = () => {
   return (
-    <>
-      <div className="pl-20 w-[42vw]">
-        <h4 className="text-orange-600 text-2xl font-semibold">
-          Get In
-        </h4>
-        <h1 className="text-6xl pt-2 font-semibold tracking-tighter">
-          Touch & Start Your Adventure!
-        </h1>
-        <p className="pt-6">
-          Our expert support team is always prepared to help you with any queries or concerns, providing quick and tailored solutions to suit your needs.
-        </p>
-        <div className="border-amber-600 mt-8 border 1 rounded-3xl h-[40vh] w-[36vw]">
-          <div className="flex gap-2 pl-10 pt-10 items-center">
-            <div className="round flex items-center justify-center bg-gradient-to-r from-[rgb(255,99,33)] text-xl to-amber-400 h-[40px] w-[40px] rounded-full">
+    <div className="px-4 md:px-10 xl:pl-20 w-full lg:w-[90%] max-w-[1280px] mx-auto">
+      <h4 className="text-orange-600 text-xl md:text-2xl font-semibold">
+        Get In
+      </h4>
+      <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl pt-2 font-semibold tracking-tighter leading-tight">
+        Touch & Start Your Adventure!
+      </h1>
+      <p className="pt-4 lg:pt-2 xl:pt-2 sm:pt-6 text-sm sm:text-base">
+        Our expert support team is always prepared to help you with any queries or concerns,
+        providing quick and tailored solutions to suit your needs.
+      </p>
+
+      <div className="border-amber-600 mt-6 sm:mt-8 xl:mt-8 lg:mt-0 border rounded-3xl w-full lg:w-[40vw] xl:w-[36vw] h-auto sm:h-[40vh] p-6 sm:p-8">
+        {/* Contact info section */}
+        <div className="flex lg:flex-col xl:flex-row flex-wrap sm:flex-nowrap gap-4 sm:gap-6 items-start">
+          {/* Phone */}
+          <div className="flex items-center gap-3">
+            <div className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 h-[40px] w-[40px] rounded-full flex items-center justify-center">
               <img className="h-[20px] w-[20px] object-contain invert" src={Call} alt="" />
             </div>
             <div>
-              <h3 className="text-gray-600">Phone No:</h3>
-              <h2 className="text-lg font-semibold text-orange-500 cursor-pointer">+91-75015 16714</h2>
+              <h3 className="text-gray-600 text-sm sm:text-base">Phone No:</h3>
+              <h2 className="text-base sm:text-lg font-semibold text-orange-500 cursor-pointer">+91-75015 16714</h2>
             </div>
-            <div className="round ml-4 flex items-center justify-center bg-gradient-to-r from-[rgb(255,99,33)] text-xl to-amber-400 h-[40px] w-[40px] rounded-full">
+          </div>
+
+          {/* Email */}
+          <div className="flex items-center gap-3">
+            <div className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 h-[40px] w-[40px] rounded-full flex items-center justify-center">
               <img className="h-[20px] w-[20px] object-contain invert" src={Email} alt="" />
             </div>
             <div>
-              <h3 className="text-gray-600">Email Address:</h3>
-              <h2 className="text-lg font-semibold text-orange-500 cursor-pointer">friskytrails@gmail.com</h2>
+              <h3 className="text-gray-600 text-sm sm:text-base">Email Address:</h3>
+              <h2 className="text-base sm:text-lg font-semibold text-orange-500 cursor-pointer">friskytrails@gmail.com</h2>
             </div>
           </div>
-          <h1 className="text-3xl pl-10 pt-6 font-semibold tracking-tighter">20+ Expert Team member</h1>
-          <div className="pl-10 pt-10 flex relative">
-            <div className="absolute left-10 h-[60px] w-[60px] bg-amber-100 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className="absolute left-20 h-[60px] w-[60px] bg-amber-200 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className="absolute left-30 h-[60px] w-[60px] bg-amber-300 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className="absolute left-40 h-[60px] w-[60px] bg-amber-400 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className="absolute left-50 h-[60px] w-[60px] bg-amber-500 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className="absolute left-60 h-[60px] w-[60px] bg-amber-600 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className="absolute left-70 h-[60px] w-[60px] bg-amber-700 hover:scale-110 hover:z-10 rounded-full"></div>
-            <div className="absolute left-80 h-[60px] w-[60px] bg-amber-800 hover:scale-110 hover:z-10 rounded-full"></div>
-          </div>
+        </div>
+
+        {/* Team Text */}
+        <h1 className="text-xl sm:text-2xl xl:text-3xl pt-6 font-semibold tracking-tighter">
+          20+ Expert Team member
+        </h1>
+
+        {/* Overlapping Circles */}
+        <div className="pt-6 sm:pt-10 flex items-center space-x-[-20px] relative z-0">
+          {[100, 200, 300, 400, 500, 600, 700, 800].map((shade, index) => (
+            <div
+              key={index}
+              className={`h-[50px] sm:h-[60px] w-[50px] sm:w-[60px] rounded-full bg-amber-${shade} hover:scale-110 hover:z-10 transition-transform`}
+            />
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

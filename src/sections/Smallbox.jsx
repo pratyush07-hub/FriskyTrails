@@ -1,13 +1,8 @@
-import React from 'react'
-
-
-
-
 const Smallbox = () => {
     const data = [
         {
             name: "ASIA",
-            image: "/images/rock.jpg"
+            image: "/blogimages/trip.png"
         },
         {
             name: "ASIA",
@@ -46,7 +41,7 @@ const Smallbox = () => {
     <>
     {
         data.map((item, index) => (
-       <div key={index} className="img h-[12vh] w-[6vw]">
+       <div key={index} className="img h-[12vh] w-[27vw] md:w-[6vw] bg-green-600">
             <div className='flex justify-center items-center' style={{
                 height: "100%",
                 width: "100%",

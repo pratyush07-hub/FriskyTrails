@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import HillImage from "/images/hilly.png";
 import Box from "../sections/Box";
 
@@ -39,9 +38,9 @@ const Blog = () => {
         <h1 className="text-3xl md:text-4xl tracking-tighter pt-10 md:pt-20 font-semibold pl-4 md:pl-32">
           Trending Blogs
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2">
+
           <Box />
-        </div>
+
         <div className="LatestBlog p-4 md:p-10">
           <Latestblog />
         </div>
