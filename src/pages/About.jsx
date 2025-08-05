@@ -25,7 +25,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h- mt-23 md:mt-28 lg:mt-30 xl:mt-29 w-full">
       <div className="bg-[url('/images/Indianflag.png')] bg-cover z-0 bg-center">
         <div className="md:hidden w-[90vw] mx-auto">
           <h1 className="font-bold text-4xl md:text-8xl tracking-tight text-center pt-6 md:pt-30">

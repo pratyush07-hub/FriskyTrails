@@ -70,11 +70,11 @@ export default function HoverRevealButton() {
         </h1>
 
         {/* Horizontal Scroll Container */}
-        <div className="flex overflow-x-auto gap-6 mt-6 pb-4 scrollbar-hide">
+        <div className="flex overflow-x-auto h-auto gap-6 mt-6 pb-4 scrollbar-hide">
           {data.map((item, index) => (
             <div
               key={index}
-              className="min-w-[240px] max-w-[260px] h-72 flex-shrink-0 relative"
+              className="min-w-[70vw] md:min-w-[30vw] max-w-[260px] h-72 md:h-[40vh] xl:h-72 flex-shrink-0 relative"
             >
               {/* Image */}
               <img

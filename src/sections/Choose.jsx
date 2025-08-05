@@ -5,24 +5,39 @@ import Booking from '../assets/booking.png';
 
 const Choose = () => {
   return (
-    <>
-      <div className='w-full'>
-        <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-center'>Why Choose Us</h1>
+    <div className='w-full'>
+      <h1 className='text-3xl sm:text-4xl md:text-5xl font-bold text-center'>Why Choose Us</h1>
 
-        <div className="mt-4 md:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-[90vw] mx-auto">
+      {/* Mobile: Horizontal scroll | Tablet & above: Grid */}
+      <div className="mt-4 md:mt-10 max-w-[90vw] mx-auto">
+        <div className="flex sm:hidden gap-6 overflow-x-auto pb-4 w-full">
           {data.map((item, index) => (
             <div
               key={index}
-              className="rounded-lg bg-white border border-[#FF6321] shadow-lg px-2 pt-4 pb-4 md:px-6 md:pt-8 md:pb-6 lg:pb-0 xl:pb-6 text-center flex flex-col items-center"
+              className="min-w-[70vw] rounded-lg bg-white border border-[#FF6321] shadow-lg px-4 pt-6 pb-6 text-center flex flex-col items-center"
             >
               <img className='h-16 w-16 mb-6' src={item.image} alt="img" />
               <h2 className='text-lg font-semibold mb-3'>{item.title}</h2>
               <p className='text-sm text-gray-600 tracking-tight'>{item.des}</p>
-            </div> 
+            </div>
+          ))}
+        </div>
+
+        {/* Tablet and above: Grid layout */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {data.map((item, index) => (
+            <div
+              key={index}
+              className="rounded-lg bg-white border border-[#FF6321] shadow-lg px-4 pt-6 pb-6 text-center flex flex-col items-center"
+            >
+              <img className='h-16 w-16 mb-6' src={item.image} alt="img" />
+              <h2 className='text-lg font-semibold mb-3'>{item.title}</h2>
+              <p className='text-sm text-gray-600 tracking-tight'>{item.des}</p>
+            </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -50,4 +65,3 @@ const data = [
 ];
 
 export default Choose;
-

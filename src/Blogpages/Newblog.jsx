@@ -37,178 +37,190 @@ const Newblog = () => {
   return (
     <div className="min-h-screen w-full">
       <div
+        className="w-full min-h-[460px] bg-no-repeat bg-contain"
         style={{
-          maxWidth: "100vw",
           backgroundImage: "url('/images/bgbanner.svg')",
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-          width: "100%",
-          minHeight: "460px",
         }}
       >
-        <div className="flex items-center pl-50 pt-6">
+        <div className="flex items-center gap-2 px-4 xl:pl-20 pt-6 text-sm sm:text-base">
           <h3 className="font-semibold">Home</h3>
           <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
           <h3 className="font-semibold">Destination</h3>
           <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
           <h3 className="font-semibold text-gray-600">Chennai</h3>
         </div>
-        <h1 className="text-4xl font-semibold tracking-tighter pl-50 pt-4">
+
+        <h1 className="text-2xl sm:text-3xl xl:pl-20 md:text-4xl font-semibold tracking-tighter px-4 pt-8 md:pt-4">
           Places to see in Chennai
         </h1>
+
         <img
-          className="m-auto rounded-2xl mt-6"
+          className="mx-auto rounded-2xl mt-6 w-[90vw] max-w-5xl"
           src="/images/filters.webp"
           alt="image"
         />
 
-        <div className="bg-white h-[28vh] w-[90vw] rounded-lg mt-6 m-auto shadow-lg">
-          <div className="grid grid-cols-3 text-xl pt-4 font-semibold">
-            <h1 className="text-center border-1 py-4 border-gray-300">
+        {/* Form Section */}
+        <div className="bg-white w-[90vw] rounded-lg mt-6 mx-auto shadow-lg">
+          <div className="grid grid-cols-3 text-xs sm:text-base pt-4 font-semibold">
+            <h1 className="text-center border py-4 border-gray-300">
               Holidays
             </h1>
-            <h1 className="text-center border-1 py-4 border-gray-300">
+            <h1 className="text-center border py-4 border-gray-300">
               Adventures
             </h1>
-            <h1 className="text-center border-1 py-4 border-gray-300">
-              Hotels
-            </h1>
+            <h1 className="text-center border py-4 border-gray-300">Hotels</h1>
           </div>
-          {/* <div className="border-1 border-gray-300 mt-4"></div> */}
+
           <form
             onSubmit={handleSubmit}
-            className="flex gap-10 m-auto justify-center w-[98%] px-4 h-32 rounded-lg items-center"
+            className="flex flex-wrap gap-4 justify-center w-full px-4 py-2 md:py-6"
           >
-            {/* From Location */}
-            <div>
-              <label className="block font-semibold pl-1 mb-1">From City</label>
+            {/* From */}
+            <div className="w-full sm:w-[45%] lg:w-[15%]">
+              <label className="block font-semibold mb-1">From City</label>
               <input
                 type="text"
                 name="from"
-                placeholder="Enter location"
                 value={formData.from}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                placeholder="Enter location"
+                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
                 required
               />
             </div>
 
-            {/* To Location */}
-            <div>
-              <label className="block font-semibold pl-1 mb-1">To City</label>
+            {/* To */}
+            <div className="w-full sm:w-[45%] lg:w-[15%]">
+              <label className="block font-semibold mb-1">To City</label>
               <input
                 type="text"
                 name="to"
-                placeholder="Enter destination"
                 value={formData.to}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                placeholder="Enter destination"
+                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
                 required
               />
             </div>
 
             {/* Duration */}
-            <div>
-              <label className="block font-semibold pl-1 mb-1">
+            <div className="w-full sm:w-[45%] lg:w-[15%]">
+              <label className="block font-semibold mb-1">
                 Duration (in Days)
               </label>
               <input
                 type="number"
                 name="duration"
-                placeholder="Enter duration"
                 value={formData.duration}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                placeholder="Enter duration"
+                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
                 required
               />
             </div>
 
             {/* Budget */}
-            <div>
-              <label className="block font-semibold pl-1 mb-1">
-                Budget (in ₹)
-              </label>
+            <div className="w-full sm:w-[45%] lg:w-[15%]">
+              <label className="block font-semibold mb-1">Budget (in ₹)</label>
               <input
                 type="number"
                 name="budget"
-                placeholder="Enter amount"
                 value={formData.budget}
+                onChange={handleChange}
+                placeholder="Enter amount"
                 min="0"
                 step="1000"
-                onChange={handleChange}
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
                 required
               />
             </div>
+
             {/* Date */}
-            <div>
-              <label className="block font-semibold pl-1 mb-1">
-                Departure Date
-              </label>
+            <div className="w-full sm:w-[45%] lg:w-[15%]">
+              <label className="block font-semibold mb-1">Departure Date</label>
               <input
                 type="date"
                 name="date"
                 value={formData.date}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required
-              />
-            </div>
-            {/* Guests */}
-            <div>
-              <label className="block font-semibold pl-1 mb-1">
-                No. of Guests
-              </label>
-              <input
-                type="number"
-                name="guests"
-                placeholder="No. of persons"
-                value={formData.guests}
-                onChange={handleChange}
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
                 required
               />
             </div>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 mt-7 py-3 px-6 text-white rounded-xl font-semibold"
-            >
-              Submit
-            </button>
+            {/* Guests */}
+            <div className="w-full sm:w-[45%] lg:w-[15%]">
+              <label className="block font-semibold mb-1">No. of Guests</label>
+              <input
+                type="number"
+                name="guests"
+                value={formData.guests}
+                onChange={handleChange}
+                placeholder="No. of persons"
+                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                required
+              />
+            </div>
+
+            {/* Button */}
+            <div className="w-full sm:w-auto mt-2">
+              <button
+                type="submit"
+                className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6 text-white rounded-xl font-semibold w-full"
+              >
+                Submit
+              </button>
+            </div>
           </form>
         </div>
-        <div className="h-screen w-full pt-10 flex">
-          <div className="w-[15%] sticky top-0">
-            <div className="flex pl-10 pt-10 gap-4">
+
+        {/* Blog Section */}
+        <div className="w-full flex flex-col lg:flex-row pt-10 gap-6">
+          {/* Left sidebar */}
+          {/* <div className=""> */}
+
+          <div className="lg:w-[15%] hidden xl:flex flex-col pl-6 items-center sticky top-0">
+            <div className="flex gap-4 pt-6">
               <a href="https://www.facebook.com/friskytrails/" target="_blank">
-                <img className="w-10 h-10 object-cover" src={Facebook} alt="" />
+                <img
+                  className="w-8 h-8 sm:w-10 sm:h-10"
+                  src={Facebook}
+                  alt=""
+                  />
               </a>
               <a href="https://x.com/frisky_trails" target="_blank">
-                <img className="w-10 h-10 object-cover" src={Twitter} alt="" />
+                <img className="w-8 h-8 sm:w-10 sm:h-10" src={Twitter} alt="" />
               </a>
               <a
                 href="https://www.linkedin.com/company/friskytrails/"
                 target="_blank"
-              >
-                <img className="w-10 h-10 object-cover" src={Linkedin} alt="" />
+                >
+                <img
+                  className="w-8 h-8 sm:w-10 sm:h-10"
+                  src={Linkedin}
+                  alt=""
+                  />
               </a>
               <a href="https://www.instagram.com/friskytrails/" target="_blank">
                 <img
-                  className="w-10 h-10 object-cover"
+                  className="w-8 h-8 sm:w-10 sm:h-10"
                   src={Instagram}
                   alt=""
-                />
+                  />
               </a>
-            </div>
-
-            <div className="h-[78vh] w-[12vw] mt-4 ml-10 drop-shadow bg-[url('/blogimages/blogbanner.png')] bg-cover bg-center" />
+            {/* </div> */}
           </div>
-          <div className="w-[55%] pl-20 overflow-y-auto custom-scrollbar">
+            <div className="hidden xl:block w-[100%] h-[200px] sm:h-[300px] lg:h-[78vh] mt-4 bg-[url('/blogimages/blogbanner.png')] bg-cover bg-center rounded-lg shadow-lg" />
+                  </div>
+
+          {/* Middle content */}
+          <div className="lg:w-[55%] w-full px-0 lg:pl-10 overflow-y-visible lg:overflow-y-auto custom-scrollbar lg:max-h-[calc(100vh-100px)]">
             <Blogleft />
           </div>
-          <div className="w-[30%] sticky top-0">
+
+          {/* Right sidebar */}
+          <div className="hidden lg:block lg:w-[30%] w-full sticky top-0">
             <Blogright />
           </div>
         </div>

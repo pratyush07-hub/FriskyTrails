@@ -1,5 +1,3 @@
-import { summary } from "framer-motion/client";
-
 const Blogleft = () => {
   const data = [
     {
@@ -38,7 +36,8 @@ const Blogleft = () => {
   ];
   return (
     <>
-      <p className="w-[90%] pt-10">
+      <div className="flex justify-center items-center">
+      <p className="w-[90%] mx-auto pt-0 md:pt-10">
         What to do in Dubai for free? Confused, aren’t you in 2024? Dubai houses
         sky-touching scrapers and traditions wrapped in a blanket of deserts and
         exotic man-made islands. With a reputation for over-the-top luxury, the
@@ -48,20 +47,24 @@ const Blogleft = () => {
         think of! Dubai offers various spots, from museums to art galleries, for
         a no-money-spent experience. So, aren’t you excited? Well, read along!
       </p>
+      </div>
       {data.map((item, index) => (
-        <div key={index} className="pt-6">
+        <div key={index} className="pt-6 pb-2">
           <h1 className="text-2xl pl-2 pt-4 font-bold tracking-tighter">
             {index + 1}. {item.heading}
           </h1>
           <img className="pt-2" src={item.image} alt="" />
-          <p className="w-[90%] pt-4">{item.des}</p>
-          <h3 className="pt-4">
+      <div className="flex justify-center items-center">
+          <p className="w-[90%] mx-auto pt-4">{item.des}</p>
+</div>
+
+          <h3 className="pt-2 md:pt-4 text-center">
             <b>Location:</b> {item.location}
           </h3>
-          <h3 className="pt-4">
+          <h3 className="pt-2 md:pt-4 pl-4 md:pl-0">
             <b>Timings:</b> {item.timings}
           </h3>
-          <h3 className="pt-4">
+          <h3 className="pt-2 md:pt-4 text-center">
             <b>Highlights:</b> {item.highlights}
           </h3>
         </div>

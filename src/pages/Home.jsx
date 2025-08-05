@@ -7,7 +7,7 @@ import Landing from "../sections/Landing";
 // import Header from "../components/Header";
 // import Navbar from "../components/Navbar";
 import Next from "../sections/Next";
-// import Feedback from "../sections/Feedback";
+import Feedback from "../sections/Feedback";
 import Choose from "../sections/Choose";
 import Rewards from "../sections/Rewards";
 import Blogs from "../sections/Blogs";
@@ -27,10 +27,10 @@ const Home = () => {
         <Banner />
         <Cards />
         <Next />
-        <Blogs />
         <Choose />
+        <Blogs />
         <Rewards />
-        {/* <Feedback /> */}
+        <Feedback />
       {/* </div> */}
     </>
   );

@@ -1,18 +1,47 @@
+"use client";
+import { useEffect, useRef } from "react";
+
 const Rewards = () => {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile || !scrollRef.current) return;
+
+    const container = scrollRef.current;
+    const cards = container.querySelectorAll(".scroll-card");
+    let index = 0;
+
+    const scrollInterval = setInterval(() => {
+      if (index >= cards.length) index = 0;
+
+      const card = cards[index];
+      container.scrollTo({
+        left: card.offsetLeft,
+        behavior: "smooth",
+      });
+
+      index++;
+    }, 3000); // 3 seconds delay per card
+
+    return () => clearInterval(scrollInterval);
+  }, []);
+
   return (
-    <div className="h-auto w-full px-4 md:px-8 mb-8 lg:px-16">
-      <h1 className="text-center text-3xl md:text-5xl pt-10 md:pt-20 font-bold">
+    <div className="h-auto w-full md:px-8 mb-8 lg:px-16">
+      <h1 className="text-center text-3xl md:text-5xl pt-10 md:pt-2 font-bold">
         Discover More with FriskyTrails
       </h1>
 
-      {/* Container switches layout based on screen size */}
       <div className="mt-6 md:mt-10">
-        {/* Wrapper scrolls on mobile, grid on md+ */}
-        <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 overflow-x-auto md:overflow-visible no-scrollbar">
+        <div
+          ref={scrollRef}
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 overflow-hidden md:overflow-visible no-scrollbar scroll-smooth"
+        >
           {data.map((item, index) => (
             <div
               key={index}
-              className="w-[96%] md:min-w-0 flex-shrink-0 md:flex-shrink h-auto flex justify-center hover:scale-105 transition-transform duration-300 rounded-lg bg-white shadow-lg pb-8"
+              className="scroll-card w-[100%] flex-shrink-0 md:flex-shrink h-auto flex justify-center hover:scale-105 transition-transform duration-300 rounded-lg bg-white shadow-lg pb-2 md:pb-8"
             >
               <div className="w-full max-w-sm">
                 <div className="flex justify-center pt-8 md:pt-12">

@@ -22,18 +22,18 @@ const Blogs = () => {
 
   return (
     <>
-      <div className="h-auto mb-4 mt-4 w-[90vw] m-auto">
+      <div className="h-auto mb-4 mt-8 w-[90vw] m-auto">
         <h1 className="text-4xl text-center font-bold">
           Enjoy Fresh Travel Blogs
         </h1>
 
         {/* Horizontal scroll on mobile + tablet, grid on large screens only */}
-        <div className="mt-10 overflow-x-auto xl:overflow-visible">
+        <div className="mt-4 md:mt-10 overflow-x-auto xl:overflow-visible">
           <div className="flex xl:grid xl:grid-cols-4 gap-6 pb-4 min-w-[40vw] lg:min-w-0">
             {data.map((item, index) => (
               <div
                 key={index}
-                className="min-w-[71vw] md:min-w-[40vw] xl:min-w-0 h-[42vh] w-full bg-cover bg-center rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
+                className="min-w-[70vw] md:min-w-[40vw] xl:min-w-0 h-[42vh] w-full bg-cover bg-center rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
                 style={{ backgroundImage: `url(${item.image})` }}
               >
                 <div className="h-full w-full bg-black/30 rounded-lg p-2">

@@ -61,10 +61,10 @@ const Deals = () => {
 
   return (
     <div className="min-h-screen w-full md:pt-10 lg:pt-20">
-      <h1 className="px-4 md:px-20 lg:px-38 text-2xl md:text-4xl font-bold tracking-tight">
+      <h1 className="px-4 md:pt-20 lg:px-38 text-2xl md:text-4xl font-bold tracking-tight">
         Deals You Can't Miss
       </h1>
-      <p className="pt-2 pb-4 md:pb-6 px-4 md:px-20 lg:px-38">
+      <p className="pt-2 pb-4 md:pb-6 px-4 md:px-20 font-semibold text-xl lg:px-38">
         Travel beyond boundaries with incredible savings
       </p>
 

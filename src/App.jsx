@@ -1,7 +1,6 @@
-// import React from "react";
 import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
-import Blog from "./pages/Blog"; // Ensure Blog.js exists
+import Blog from "./pages/Blog";
 import ContactUs from "./pages/ContactUs";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
