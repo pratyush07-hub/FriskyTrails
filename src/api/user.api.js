@@ -1,8 +1,8 @@
 import axiosInstance from "../utils/axiosInstance";
 
-const registerUser = async ({ userName, email, password }) => {
+const registerUser = async ({ firstName, lastName, userName, email, password }) => {
   try {
-    const response = await axiosInstance.post("/api/v1/user/registerUser", { userName, email, password });
+    const response = await axiosInstance.post("/api/v1/user/registerUser", { firstName, lastName, userName, email, password });
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : error.message;
@@ -24,5 +24,13 @@ const logoutUser = async ( ) => {
     throw error.response ? error.response.data : error.message;
   }
 }  
+const getCurrentUser = async ( ) => {
+  try {
+    const response = await axiosInstance.post("/api/v1/user/get-user");
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+}  
 
-export { loginUser, registerUser , logoutUser };
+export { loginUser, registerUser , logoutUser , getCurrentUser };

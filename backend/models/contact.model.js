@@ -9,7 +9,6 @@ const contactSchema = new mongoose.Schema(
     mobile: {
       type: String,
     },
-
     email: {
       type: String,
       required: true,

@@ -1,10 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import { loginUser, registerUser } from "../api/user.api"; 
+import { loginUser, registerUser } from "../api/user.api";
 
-const AuthModal = ({ onClose }) => {
+const LoginModal = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,10 +22,11 @@ const AuthModal = ({ onClose }) => {
     try {
       const response = await loginUser({ email, password });
       if (response.success) {
-        console.log("Login successful", response);
+        // console.log("Login successful", response);
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("userName", response.data.user.userName);
-        console.log("User Name:", response.data.user.userName);
+        localStorage.setItem("firstName", response.data.user.firstName);
+        console.log("User Name:", response);
         onClose();
       }
     } catch (error) {
@@ -34,10 +37,16 @@ const AuthModal = ({ onClose }) => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await registerUser({ userName, email, password });
+      const response = await registerUser({
+        userName,
+        firstName,
+        lastName,
+        email,
+        password,
+      });
       if (response.success) {
         alert("Registration successful. Please login.");
-        setIsLogin(true); // switch to login form
+        setIsLogin(true); 
       }
     } catch (error) {
       alert(error.response?.data?.message || "Registration failed");
@@ -51,7 +60,6 @@ const AuthModal = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-[1000] bg-white lg:bg-neutral-50 flex items-center justify-center px-4">
       <div className="w-full max-w-sm bg-white border border-gray-300 rounded-xl shadow-lg p-6 relative">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-2 right-3 text-2xl font-bold text-gray-500 hover:text-black"
@@ -65,14 +73,32 @@ const AuthModal = ({ onClose }) => {
 
         <form onSubmit={isLogin ? handleLogin : handleRegister}>
           {!isLogin && (
-            <input
-              type="text"
-              placeholder="UserName"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              className="w-full mb-3 p-2 border rounded"
-              required
-            />
+            <>
+              <input
+                type="text"
+                placeholder="Username"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                className="w-full mb-3 p-2 border rounded"
+                required
+              />
+              <input
+                type="text"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full mb-3 p-2 border rounded"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full mb-3 p-2 border rounded"
+                required
+              />
+            </>
           )}
           <input
             type="email"
@@ -130,4 +156,4 @@ const AuthModal = ({ onClose }) => {
   );
 };
 
-export default AuthModal;
+export default LoginModal;

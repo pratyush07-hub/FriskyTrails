@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Modal from "../components/Modal";
 import Admodal from "../components/Admodal";
 import LoginModal from "./LoginModal";
-import { logoutUser } from "../api/user.api";
+import { logoutUser, getCurrentUser } from "../api/user.api"; // <-- Add this
 import Arrow from "../assets/arrow.svg";
 import { FaChevronDown } from "react-icons/fa";
 
@@ -13,7 +13,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [storedUserName, setStoredUserName] = useState("");
+  const [storedFirstName, setStoredFirstName] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleAdmodal = () => setShowAdmodal(!showAdmodal);
@@ -35,13 +35,8 @@ const Navbar = () => {
     document.addEventListener("click", handleClickOutside);
     window.addEventListener("scroll", handleScroll);
 
-    const token = localStorage.getItem("accessToken");
-    const storedName = localStorage.getItem("userName");
-
-    if (token) {
-      setIsLoggedIn(true);
-      setStoredUserName(storedName || "");
-    }
+    // Verify user from backend
+    checkAuthStatus();
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
@@ -49,24 +44,34 @@ const Navbar = () => {
     };
   }, []);
 
+  const checkAuthStatus = async () => {
+    try {
+      const response = await getCurrentUser();
+      if (response.success) {
+        console.log("User is logged in:", response.data.user);
+        setIsLoggedIn(true);
+        setStoredFirstName(response.data.user.firstName || "");
+      } else {
+        setIsLoggedIn(false);
+        setStoredFirstName("");
+      }
+    } catch (error) {
+      setIsLoggedIn(false);
+      setStoredFirstName("");
+      console.log("User not logged in or token invalid." + error.message);
+    }
+  };
+
   const handleLoginClose = () => {
     setShowLogin(false);
-    const token = localStorage.getItem("accessToken");
-    const storedName = localStorage.getItem("userName");
-    if (token) {
-      setIsLoggedIn(true);
-      setStoredUserName(storedName || "");
-    }
+    checkAuthStatus();
   };
 
   const handleLogout = async () => {
     try {
       await logoutUser();
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("userName");
       setIsLoggedIn(false);
-      setShowLogin(false);
-      setStoredUserName("");
+      setStoredFirstName("");
     } catch (error) {
       console.error("Logout failed:", error);
       alert("Something went wrong during logout.");
@@ -107,7 +112,7 @@ const Navbar = () => {
               {isLoggedIn && (
                 <div className="flex items-center gap-2 text-gray-800 font-semibold">
                   <img src="/images/sword.png" className="h-5 w-5" />
-                  Hi, {storedUserName}
+                  Hi, {storedFirstName}
                 </div>
               )}
               <Link to="/" onClick={toggleMenu} className="hover:text-amber-500">Home</Link>
@@ -152,7 +157,7 @@ const Navbar = () => {
             <div className="relative">
               <button onClick={() => setShowDropdown((prev) => !prev)} className="flex items-center gap-2 text-md font-medium text-gray-700 hover:text-black">
                 <img src="/images/sword.png" className="h-5 w-5" />
-                Hi, {storedUserName}
+                Hi, {storedFirstName}
                 <FaChevronDown className="text-xs" />
               </button>
               {showDropdown && (

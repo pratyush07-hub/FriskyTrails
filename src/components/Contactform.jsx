@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { contactUs } from "../api/contact.api";
 
 const Contactform = () => {
   const [formData, setFormData] = useState({
@@ -12,9 +13,18 @@ const Contactform = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    try{
+      const response = await contactUs({ name: formData.name, email: formData.email, mobile: formData.mobile, message: formData.message });
+      if (response.success) {
+        alert("Message sent successfully!");
+      } else {
+        alert("Failed to send message.");
+      }
+    }catch (error) {
+      alert(error.response?.data?.message || "An error occurred while sending the message.");
+    }
     setFormData({
       name: "",
       email: "",

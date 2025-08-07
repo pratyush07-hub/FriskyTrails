@@ -11,7 +11,7 @@ const generateAccessAndRefreshToken = async (userId) => {
     const refreshToken = user.generateRefreshToken();
 
     user.refreshToken = refreshToken;
-    user.save({ validateBeforeSave: false }); // password bhi hai mongo me but yaha ham de nahi rahe yaha bas refreshtoken de rahe isliye validation false
+    await user.save({ validateBeforeSave: false }); // password bhi hai mongo me but yaha ham de nahi rahe yaha bas refreshtoken de rahe isliye validation false
 
     return { accessToken, refreshToken };
   } catch (error) {
@@ -24,12 +24,16 @@ const generateAccessAndRefreshToken = async (userId) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { firstName, lastName, userName, email, password } = req.body;
   console.log("REGISTER REQ BODY:", req.body);
 
-  if ([userName, email, password].some((field) => typeof field !== "string" || field.trim() === "")) {
-  throw new ApiError(400, "All fields are required");
-}
+  if (
+    [userName, email, password].some(
+      (field) => typeof field !== "string" || field.trim() === ""
+    )
+  ) {
+    throw new ApiError(400, "All fields are required");
+  }
 
   const existedUser = await User.findOne({
     userName: userName.toLowerCase(),
@@ -39,14 +43,14 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "User already exists with this username or email");
   }
   const user = new User({
+    firstName: firstName.trim(),
+    lastName: lastName.trim(),
     userName: userName.toLowerCase(),
     email: email.toLowerCase(),
     password: password.trim(),
   });
-  console.log("password before saving:", user.password);
   await user.save();
-  
-  console.log("Password after saving:", user.password); // Should be hashed
+
   const createdUser = await User.findById(user._id).select("-password");
   return res
     .status(201)
@@ -66,7 +70,7 @@ const loginUser = asyncHandler(async (req, res) => {
   if (!user) {
     throw new ApiError(404, "User does not exist");
   }
-// console.log("Stored :",user.password); // should be a bcrypt hash
+  // console.log("Stored :",user.password); // should be a bcrypt hash
 
   const isPasswordValid = await user.isPasswordCorrect(password);
   if (!isPasswordValid) {
@@ -83,6 +87,8 @@ const loginUser = asyncHandler(async (req, res) => {
   const options = {
     httpOnly: true,
     secure: true,
+    sameSite: "Lax",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
   };
   return res
     .status(200)
@@ -97,34 +103,56 @@ const loginUser = asyncHandler(async (req, res) => {
       "User logged in Successfully"
     );
 });
+const getCurrentUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id).select("-password -refreshToken");
+  if (!user) {
+    throw new ApiError(404, "User not found");
+  }
 
-const logoutUser = asyncHandler( async (req, res) => {
-    await User.findByIdAndUpdate(
-        req.user._id,
-        {
-            $unset: {
-                refreshToken: 1     // this removes the field from document
-            }
-        },
-        {
-            new: true
-        }
-    )
+  return res.status(200).json(new ApiResponse(200, { user }));
+});
 
-    const options = {
-        httpOnly: true,
-        secure: true
+const logoutUser = asyncHandler(async (req, res) => {
+  const token = req.cookies.accessToken || req.body.accessToken;
+  const options = {
+    httpOnly: true,
+    secure: true,
+    sameSite: "Lax",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  };
+
+  if (!token || !req.user) {
+    return res
+      .status(200)
+      .clearCookie("accessToken", options)
+      .clearCookie("refreshToken", options)
+      .json(new ApiResponse(200, {}, "User logged out"));
+  }
+
+  await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $unset: {
+        refreshToken: 1,
+      },
+    },
+    {
+      new: true,
     }
+  );
 
-    return res.status(200)
+
+  return res
+    .status(200)
     .clearCookie("accessToken", options)
     .clearCookie("refreshToken", options)
-    .json(new ApiResponse(200, {}, "User logged Out"))
+    .json(new ApiResponse(200, {}, "User logged out"));
+});
 
-})
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
-  const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken;
+  const incomingRefreshToken =
+    req.cookies.refreshToken || req.body.refreshToken;
   if (!incomingRefreshToken) {
     throw new ApiError(401, "Unauthorized request");
   }
@@ -170,4 +198,4 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     throw new ApiError(401, error?.message || "Invalid refresh token");
   }
 });
-export { registerUser, loginUser, refreshAccessToken , logoutUser};
+export { registerUser, loginUser, refreshAccessToken, logoutUser, getCurrentUser };

@@ -31,7 +31,7 @@ const Ser = () => {
           <div
             className="w-full sm:w-[90%] md:w-[80%] lg:w-[70%] h-[45vh] rounded-3xl shadow-6xl p-4 relative"
             style={{
-              backgroundImage: `url('/holidaysimages/testimonialsbanner.png')`,
+              backgroundImage: `url('/holidaysimages/testimonial.webp')`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
