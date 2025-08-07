@@ -79,7 +79,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex top-9 lg:top-11 fixed justify-center z-50 w-full">
+    <div className="flex top-12 lg:top-11 fixed justify-center z-50 w-full">
       <div className="h-auto lg:h-[10vh] w-full bg-white flex flex-col lg:flex-row justify-between items-center md:p-2 lg:p-4 px-4">
         {/* Logo and Hamburger */}
         <div className="flex justify-between items-center w-full lg:w-auto">

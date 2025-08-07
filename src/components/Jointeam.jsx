@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 const Jointeam = ({ onClose }) => {
   const modalRef = useRef();
@@ -47,10 +47,13 @@ const Jointeam = ({ onClose }) => {
     <div
       ref={modalRef}
       onClick={closeModal}
-      className="fixed inset-0 flex bg-opacity-30 backdrop-blur-sm justify-center items-center z-50"
+      className="fixed inset-0 flex bg-opacity-30 backdrop-blur-sm justify-center items-center z-50 px-4"
     >
-      <div className="bg-white w-[36vw] h-[80vh] m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
-        <form onSubmit={handleSubmit} className="flex flex-col w-[26vw] gap-4">
+      <div className="bg-white w-full sm:w-[90vw] md:w-[70vw] lg:w-[36vw] max-h-[90vh] sm:h-auto lg:h-[80vh] m-auto flex justify-center items-center rounded-lg shadow-lg p-4 sm:p-6 overflow-y-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col w-full sm:w-[90%] md:w-[80%] lg:w-[26vw] gap-4"
+        >
           {/* Name */}
           <input
             type="text"
@@ -88,7 +91,7 @@ const Jointeam = ({ onClose }) => {
 
           {/* Position */}
           <input
-            type="name"
+            type="text"
             name="position"
             placeholder="Position Applying For"
             value={formData.position}
