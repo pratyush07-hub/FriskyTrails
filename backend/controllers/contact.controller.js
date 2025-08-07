@@ -1,5 +1,5 @@
 import { Contact } from "../models/contact.model.js";
-import { ApiResponse } from "../utils/aoiResponse.js";
+import { ApiResponse } from "../utils/apiResponse.js";
 import { ApiError } from "../utils/apiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 

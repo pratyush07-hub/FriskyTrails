@@ -1,19 +1,6 @@
 import { useEffect, useState } from "react";
 import { adventure } from "../api/adventure.api";
 
-// import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
-
-// const token = Cookies.get("accessToken"); // or whatever name you're using
-
-    const token = localStorage.getItem("accessToken");
-
-let userId = null;
-
-if (token) {
-  const decoded = jwtDecode(token);
-  userId = decoded.id; // assuming your JWT contains `id` field
-}
 const Form = () => {
   const [formData, setFormData] = useState({
     from: "",
@@ -30,10 +17,10 @@ const Form = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const response = adventure({ user: userId,fromCity: formData.from, toCity: formData.to, duration: formData.duration, budget: formData.budget, date: formData.date, guests: formData.guests });
+      const response = await adventure({ fromCity: formData.from, toCity: formData.to, duration: formData.duration, budget: formData.budget, date: formData.date, guests: formData.guests });
       if (response.success) {
         alert("Adventure booked successfully!");
       } else { 

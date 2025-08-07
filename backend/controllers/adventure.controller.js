@@ -1,10 +1,10 @@
 import { Adventure } from "../models/adventure.model.js";
-import { ApiResponse } from "../utils/aoiResponse.js";
+import { ApiResponse } from "../utils/apiResponse.js";
 import { ApiError } from "../utils/apiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
 const adventure = asyncHandler(async (req, res) => {
-    const { user, fromCity, toCity, duration, budget , date, guests } = req.body;
+    const { fromCity, toCity, duration, budget , date, guests } = req.body;
     if (
         [fromCity, toCity, duration, budget, date, guests].some((field) =>
         field?.trim() === "")
@@ -12,7 +12,7 @@ const adventure = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All fields are required");
     }
     const adventure = new Adventure({
-        user,
+        user: req.user._id, 
         fromCity,
         toCity,
         duration,
