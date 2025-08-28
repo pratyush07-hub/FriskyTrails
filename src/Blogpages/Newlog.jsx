@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Right from "../assets/right.svg";
 import Facebook from "../assets/facebook.svg";
 import Twitter from "../assets/twitter.svg";
@@ -6,8 +7,15 @@ import Linkedin from "../assets/linkedin.svg";
 import Instagram from "../assets/instagram.svg";
 import Blogleft from "../components/Blogleft";
 import Blogright from "../components/Blogright";
+import { getSingleBlog } from "../api/blog.api";
 
-const Newblog = () => {
+const Newlog = () => {
+  const { slug } = useParams();
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Form state
   const [formData, setFormData] = useState({
     from: "",
     to: "",
@@ -16,6 +24,20 @@ const Newblog = () => {
     date: "",
     guests: "",
   });
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        const res = await getSingleBlog(slug);
+        setBlog(res.data);
+      } catch (err) {
+        setError("Blog not found",err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlog();
+  }, [slug]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,6 +56,9 @@ const Newblog = () => {
     });
   };
 
+  if (loading) return <p className="text-center mt-10">Loading blog...</p>;
+  if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
+
   return (
     <div className="min-h-screen mt-30 w-full">
       <div
@@ -42,33 +67,32 @@ const Newblog = () => {
           backgroundImage: "url('/images/bgbanner.svg')",
         }}
       >
+        {/* Breadcrumb */}
         <div className="flex items-center gap-2 px-4 xl:pl-20 pt-6 text-sm sm:text-base">
           <h3 className="font-semibold">Home</h3>
           <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
           <h3 className="font-semibold">Destination</h3>
           <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
-          <h3 className="font-semibold text-gray-600">Chennai</h3>
+          <h3 className="font-semibold text-gray-600">{blog?.location?.name || "Blog"}</h3>
         </div>
 
+        {/* Blog Title */}
         <h1 className="text-2xl sm:text-3xl xl:pl-20 md:text-4xl font-semibold tracking-tighter px-4 pt-8 md:pt-4">
-          Places to see in Chennai
+          {blog?.title}
         </h1>
 
+        {/* Blog Image */}
         <img
           className="mx-auto rounded-2xl mt-6 w-[90vw] max-w-5xl"
-          src="/images/filters.webp"
-          alt="image"
+          src={blog?.image}
+          alt={blog?.title}
         />
 
         {/* Form Section */}
         <div className="bg-white w-[90vw] rounded-lg mt-6 mx-auto shadow-lg">
           <div className="grid grid-cols-3 text-xs sm:text-base pt-4 font-semibold">
-            <h1 className="text-center border py-4 border-gray-300">
-              Holidays
-            </h1>
-            <h1 className="text-center border py-4 border-gray-300">
-              Adventures
-            </h1>
+            <h1 className="text-center border py-4 border-gray-300">Holidays</h1>
+            <h1 className="text-center border py-4 border-gray-300">Adventures</h1>
             <h1 className="text-center border py-4 border-gray-300">Hotels</h1>
           </div>
 
@@ -106,9 +130,7 @@ const Newblog = () => {
 
             {/* Duration */}
             <div className="w-full sm:w-[45%] lg:w-[15%]">
-              <label className="block font-semibold mb-1">
-                Duration (in Days)
-              </label>
+              <label className="block font-semibold mb-1">Duration (in Days)</label>
               <input
                 type="number"
                 name="duration"
@@ -177,47 +199,29 @@ const Newblog = () => {
 
         {/* Blog Section */}
         <div className="w-full flex flex-col lg:flex-row pt-10 gap-6">
-          {/* Left sidebar */}
-          {/* <div className=""> */}
-
+          {/* Left sidebar - socials */}
           <div className="lg:w-[15%] hidden xl:flex flex-col pl-6 items-center sticky top-0">
             <div className="flex gap-4 pt-6">
               <a href="https://www.facebook.com/friskytrails/" target="_blank">
-                <img
-                  className="w-8 h-8 sm:w-10 sm:h-10"
-                  src={Facebook}
-                  alt=""
-                  />
+                <img className="w-8 h-8 sm:w-10 sm:h-10" src={Facebook} alt="" />
               </a>
               <a href="https://x.com/frisky_trails" target="_blank">
                 <img className="w-8 h-8 sm:w-10 sm:h-10" src={Twitter} alt="" />
               </a>
-              <a
-                href="https://www.linkedin.com/company/friskytrails/"
-                target="_blank"
-                >
-                <img
-                  className="w-8 h-8 sm:w-10 sm:h-10"
-                  src={Linkedin}
-                  alt=""
-                  />
+              <a href="https://www.linkedin.com/company/friskytrails/" target="_blank">
+                <img className="w-8 h-8 sm:w-10 sm:h-10" src={Linkedin} alt="" />
               </a>
               <a href="https://www.instagram.com/friskytrails/" target="_blank">
-                <img
-                  className="w-8 h-8 sm:w-10 sm:h-10"
-                  src={Instagram}
-                  alt=""
-                  />
+                <img className="w-8 h-8 sm:w-10 sm:h-10" src={Instagram} alt="" />
               </a>
-            {/* </div> */}
-          </div>
+            </div>
             <div className="hidden xl:block w-[100%] h-[200px] sm:h-[300px] lg:h-[78vh] mt-4 bg-[url('/blogimages/blogbanner.png')] bg-cover bg-center rounded-lg shadow-lg" />
-                  </div>
+          </div>
 
           {/* Middle content */}
-          <div className="lg:w-[55%] w-full px-0 lg:pl-10 overflow-y-visible lg:overflow-y-auto custom-scrollbar lg:max-h-[calc(100vh-100px)]">
-            <Blogleft />
-          </div>
+<div className="lg:w-[55%] w-full px-0 lg:pl-10 overflow-y-visible lg:overflow-y-auto custom-scrollbar lg:max-h-[calc(100vh-100px)]">
+  <Blogleft blog={blog} />
+</div>
 
           {/* Right sidebar */}
           <div className="hidden lg:block lg:w-[30%] w-full sticky top-0">
@@ -229,4 +233,4 @@ const Newblog = () => {
   );
 };
 
-export default Newblog;
+export default Newlog;

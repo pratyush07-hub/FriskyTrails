@@ -13,6 +13,11 @@ import Newblog from "./Blogpages/Newblog";
 import Scrolltotop from "./components/Scrolltotop";
 import Productpage from "./Productpage/Productpage";
 import Hiring from "./pages/Hiring";
+import CreateBlogForm from "./admin/createBlogForm";
+import Dashboard from "./admin/Dashboard";
+import CreateLocationForm from "./admin/CreateLocationForm";
+import LocationPage from "./Blogpages/LocationPage";
+import Newlog from "./Blogpages/Newlog";
 
 const App = () => {
   return (
@@ -29,6 +34,11 @@ const App = () => {
         <Route path="/blog/newblog" element={<Newblog />} />  
         <Route path="/tours" element={<Productpage />} />  
         <Route path="/hiring" element={<Hiring />} />  
+        <Route path="/create-blog" element={<CreateBlogForm />} />  
+        <Route path="/create-location" element={<CreateLocationForm />} />  
+        <Route path="/admin-dashboard" element={<Dashboard />} />  
+        <Route path="/locations/:slug" element={<LocationPage />} />
+        <Route path="/blog/:slug" element={<Newlog />} />
       </Routes>
       <End />
       <Last />
