@@ -7,17 +7,17 @@ import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import End from "./sections/End";
 import Last from "./components/Last";
-import "/src/styles/Class.css";
+// import "/src/styles/Class.css";
 import Holidays from "./ServicesPages/Holidays";
 import Newblog from "./Blogpages/Newblog";
 import Scrolltotop from "./components/Scrolltotop";
 import Productpage from "./Productpage/Productpage";
 import Hiring from "./pages/Hiring";
-import CreateBlogForm from "./admin/createBlogForm";
 import Dashboard from "./admin/Dashboard";
 import CreateLocationForm from "./admin/CreateLocationForm";
 import LocationPage from "./Blogpages/LocationPage";
 import Newlog from "./Blogpages/Newlog";
+import CreateBlogForm from "./admin/CreateBlogForm";
 
 const App = () => {
   return (
