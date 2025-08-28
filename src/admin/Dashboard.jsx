@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CreateBlogForm from "./createBlogForm";
+import CreateBlogForm from "./CreateBlogForm";
 
 
 const Dashboard = () => {
