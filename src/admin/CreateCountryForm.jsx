@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { createLocation } from "../api/admin.api";
+import { createCountry } from "../api/admin.api";
 
-
-const CreateLocationForm = () => {
+const CreateCountryForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     slug: "",
-    description: "",
   });
   const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
@@ -38,42 +36,44 @@ const CreateLocationForm = () => {
     const data = new FormData();
     data.append("name", formData.name);
     data.append("slug", formData.slug);
-    data.append("description", formData.description);
     if (imageFile) {
       data.append("image", imageFile);
     }
 
     try {
-      const res = await createLocation(data);
-      setMessage(res.message || "Location created successfully!");
-      console.log(res.location);
+      const res = await createCountry(data);
+      setMessage(res.message || "Country created successfully!");
+      console.log(res.country);
 
       // Reset form
-      setFormData({ name: "", slug: "", description: "" });
+      setFormData({ name: "", slug: "" });
       setImageFile(null);
     } catch (err) {
       console.error(err);
-      setMessage("Failed to create location");
+      setMessage("Failed to create country");
     }
   };
 
   return (
     <div className="p-6 max-w-lg mx-auto mt-30 bg-white rounded-xl shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-center">Create New Location</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">Create New Country</h2>
       <form
         onSubmit={handleSubmit}
         encType="multipart/form-data"
         className="flex flex-col gap-4"
       >
+        {/* Country Name */}
         <input
           type="text"
           name="name"
-          placeholder="Location Name"
+          placeholder="Country Name"
           value={formData.name}
           onChange={handleChange}
           required
           className="p-2 border rounded"
         />
+
+        {/* Slug (readonly, auto-generated) */}
         <input
           type="text"
           name="slug"
@@ -84,14 +84,8 @@ const CreateLocationForm = () => {
           className="p-2 border rounded bg-gray-100"
           readOnly
         />
-        <textarea
-          name="description"
-          placeholder="Short Description"
-          value={formData.description}
-          onChange={handleChange}
-          rows="3"
-          className="p-2 border rounded"
-        />
+
+        {/* Image Upload */}
         <input
           type="file"
           name="image"
@@ -100,11 +94,12 @@ const CreateLocationForm = () => {
           className="p-2 border rounded"
         />
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className="bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+          className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
         >
-          Create Location
+          Create Country
         </button>
       </form>
 
@@ -113,4 +108,4 @@ const CreateLocationForm = () => {
   );
 };
 
-export default CreateLocationForm;
+export default CreateCountryForm;

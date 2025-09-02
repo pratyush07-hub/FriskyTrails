@@ -43,11 +43,11 @@ const Newblog = () => {
         }}
       >
         <div className="flex items-center gap-2 px-4 xl:pl-20 pt-6 text-sm sm:text-base">
-          <h3 className="font-semibold">Home</h3>
+          <h3 className="font-semibold">India</h3>
           <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
-          <h3 className="font-semibold">Destination</h3>
+          <h3 className="font-semibold">Kerala</h3>
           <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
-          <h3 className="font-semibold text-gray-600">Chennai</h3>
+          <h3 className="font-semibold text-gray-600">Kochi</h3>
         </div>
 
         <h1 className="text-2xl sm:text-3xl xl:pl-20 md:text-4xl font-semibold tracking-tighter px-4 pt-8 md:pt-4">

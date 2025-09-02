@@ -1,4 +1,3 @@
-
 import Ser from '../sections/Ser'
 
 

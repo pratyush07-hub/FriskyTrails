@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createBlog, getLocations } from "../api/admin.api";
+import { createBlog, getCountries, getStates, getCities } from "../api/admin.api";
 
 const CreateBlogForm = () => {
   const [formData, setFormData] = useState({
@@ -8,32 +8,64 @@ const CreateBlogForm = () => {
     intro: "",
     content: "",
     authorName: "",
-    location: "",
-    highlights: "",
-    timings: "",
+    country: "",
+    state: "",
+    city: "",
   });
 
-  const [locations, setLocations] = useState([]);
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
   const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
 
-  // Fetch locations on mount
+  // Fetch countries on mount
   useEffect(() => {
-    const fetchLocations = async () => {
+    const fetchCountries = async () => {
       try {
-        const res = await getLocations();
-        setLocations(res.data);
+        const res = await getCountries();
+        setCountries(res.data);
       } catch (err) {
-        console.error("Failed to fetch locations", err);
+        console.error("Failed to fetch countries", err);
       }
     };
-    fetchLocations();
+    fetchCountries();
   }, []);
 
-  // Handle input changes
+  // Fetch states when country changes
+  useEffect(() => {
+    const fetchStates = async () => {
+      if (!formData.country) return;
+      try {
+        const res = await getStates(formData.country);
+        setStates(res.data);
+        setFormData(prev => ({ ...prev, state: "", city: "" }));
+        setCities([]);
+      } catch (err) {
+        console.error("Failed to fetch states", err);
+      }
+    };
+    fetchStates();
+  }, [formData.country]);
+
+  // Fetch cities when state changes
+  useEffect(() => {
+    const fetchCities = async () => {
+      if (!formData.state) return;
+      try {
+        const res = await getCities(formData.state);
+        setCities(res.data);
+        setFormData(prev => ({ ...prev, city: "" }));
+      } catch (err) {
+        console.error("Failed to fetch cities", err);
+      }
+    };
+    fetchCities();
+  }, [formData.state]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
 
     // Auto-generate slug from title
     if (name === "title") {
@@ -41,179 +73,91 @@ const CreateBlogForm = () => {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)+/g, "");
-      setFormData((prev) => ({ ...prev, slug: generatedSlug }));
+      setFormData(prev => ({ ...prev, slug: generatedSlug }));
     }
   };
 
-  // Handle image selection
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const data = new FormData();
-    data.append("title", formData.title);
-    data.append("slug", formData.slug);
-    data.append("intro", formData.intro);
-    data.append("content", formData.content);
-    data.append("authorName", formData.authorName);
-    data.append("location", formData.location);
-    data.append("highlights", formData.highlights);
-    data.append("timings", formData.timings);
-    if (imageFile) {
-      data.append("image", imageFile);
+    for (const key in formData) {
+      data.append(key, formData[key]);
     }
+    if (imageFile) data.append("image", imageFile);
 
     try {
       const res = await createBlog(data);
       setMessage(res.message || "✅ Blog created successfully!");
       console.log(res.data);
 
-      // Reset form
       setFormData({
         title: "",
         slug: "",
         intro: "",
         content: "",
         authorName: "",
-        location: "",
-        highlights: "",
-        timings: "",
+        country: "",
+        state: "",
+        city: "",
       });
       setImageFile(null);
+      setStates([]);
+      setCities([]);
     } catch (err) {
       console.error(err);
-      setMessage("❌ Failed to create blog");
+      setMessage("Failed to create blog");
     }
   };
 
   return (
     <div className="p-4 max-w-xl mt-30 mx-auto">
       <h2 className="text-xl font-bold mb-4">Create New Blog</h2>
-      <form
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-        className="flex flex-col gap-4"
-      >
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4">
+
         {/* Title */}
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          value={formData.title}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded"
-        />
+        <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} required className="p-2 border rounded" />
 
         {/* Slug */}
-        <input
-          type="text"
-          name="slug"
-          placeholder="Slug"
-          value={formData.slug}
-          disabled
-          className="p-2 border rounded bg-gray-100 cursor-not-allowed"
-        />
+        <input type="text" name="slug" placeholder="Slug" value={formData.slug} disabled className="p-2 border rounded bg-gray-100 cursor-not-allowed" />
 
         {/* Intro */}
-        <textarea
-          name="intro"
-          placeholder="Short Intro"
-          value={formData.intro}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded min-h-[80px]"
-        />
+        <textarea name="intro" placeholder="Short Intro" value={formData.intro} onChange={handleChange} required className="p-2 border rounded min-h-[80px]" />
 
         {/* Content */}
-        <textarea
-          name="content"
-          placeholder="Enter full blog content"
-          value={formData.content}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded min-h-[200px] w-full"
-        />
+        <textarea name="content" placeholder="Enter full blog content" value={formData.content} onChange={handleChange} required className="p-2 border rounded min-h-[200px] w-full" />
 
         {/* Author Name */}
-        <input
-          type="text"
-          name="authorName"
-          placeholder="Author Name"
-          value={formData.authorName}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded"
-        />
+        <input type="text" name="authorName" placeholder="Author Name" value={formData.authorName} onChange={handleChange} required className="p-2 border rounded" />
 
-        {/* Location Dropdown */}
-        <select
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded"
-        >
-          <option value="">Select Location</option>
-          {locations.map((loc) => (
-            <option key={loc._id} value={loc._id}>
-              {loc.name}
-            </option>
-          ))}
+        {/* Country */}
+        <select name="country" value={formData.country} onChange={handleChange} required className="p-2 border rounded">
+          <option value="">Select Country</option>
+          {countries.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
         </select>
 
-        {/* Highlights */}
-        <textarea
-          name="highlights"
-          placeholder="Highlights (comma separated)"
-          value={formData.highlights}
-          onChange={handleChange}
-          className="p-2 border rounded min-h-[60px]"
-        />
+        {/* State */}
+        <select name="state" value={formData.state} onChange={handleChange} required className="p-2 border rounded" disabled={!states.length}>
+          <option value="">Select State</option>
+          {states.map(s => <option key={s._id} value={s._id}>{s.name}</option>)}
+        </select>
 
-        {/* Timings */}
-        <input
-          type="text"
-          name="timings"
-          placeholder="Timings (e.g., 9 AM - 6 PM)"
-          value={formData.timings}
-          onChange={handleChange}
-          className="p-2 border rounded"
-        />
+        {/* City */}
+        <select name="city" value={formData.city} onChange={handleChange} required className="p-2 border rounded" disabled={!cities.length}>
+          <option value="">Select City</option>
+          {cities.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+        </select>
 
         {/* Image Upload */}
-        <input
-          key={imageFile ? imageFile.name : "file"}
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={handleImageChange}
-          className="p-2 border rounded"
-        />
+        <input key={imageFile ? imageFile.name : "file"} type="file" name="image" accept="image/*" onChange={handleImageChange} className="p-2 border rounded" />
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-        >
-          Create Blog
-        </button>
+        <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Create Blog</button>
       </form>
 
-      {/* Message */}
-      {message && (
-        <p
-          className={`mt-4 text-center font-medium ${
-            message.includes("Failed") ? "text-red-600" : "text-green-600"
-          }`}
-        >
-          {message}
-        </p>
-      )}
+      {message && <p className={`mt-4 text-center font-medium ${message.includes("Failed") ? "text-red-600" : "text-green-600"}`}>{message}</p>}
     </div>
   );
 };

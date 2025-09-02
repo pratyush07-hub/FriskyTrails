@@ -10,7 +10,7 @@ const Admodal = ({ onClose }) => {
     }
 
     return (
-        <div ref={modalRef} onClick={closeModal} className='fixed inset-0 flex justify-center z-50 pt-32 px-4 sm:px-6 md:px-8'>
+        <div ref={modalRef} onClick={closeModal} className='fixed inset-0 flex justify-center z-50 pt-29 px-4 sm:px-6 md:px-8'>
             <div className='relative h-auto sm:h-[50vh] w-full sm:w-[90vw] md:w-[75vw] lg:w-[55vw] xl:w-[40vw] rounded-lg drop-shadow-lg bg-[rgb(10,3,34)] flex flex-col sm:flex-row overflow-y-auto max-h-[90vh]'>
 
                 {/* Close Button */}
