@@ -33,4 +33,15 @@ const getCurrentUser = async ( ) => {
   }
 }  
 
-export { loginUser, registerUser , logoutUser , getCurrentUser };
+
+const googleAuth = async (code) => {
+  try {
+    const response = await axiosInstance.post("/api/v1/user/google-auth", { code });
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : { message: error.message };
+  }
+};
+
+
+export { loginUser, registerUser , logoutUser , getCurrentUser, googleAuth };

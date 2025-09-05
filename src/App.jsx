@@ -30,8 +30,14 @@ import Hotels from "./ServicesPages/Hotels";
 import CountryPage from "./admin/CountryPage";
 import StatePage from "./admin/StatePage";
 import CityPage from "./admin/CityPage";
+import ProductDetails from "./admin/ProductDetails";
+import ProductsPage from "./admin/ProductsPage";
+import CreateProductPage from "./admin/CreateProductPage";
+
+
 
 const App = () => {
+
   return (
     <>
       <Header />
@@ -63,6 +69,10 @@ const App = () => {
         <Route path="/country/:slug/blogs" element={<CountryPage />} />
         <Route path="/state/:slug/blogs" element={<StatePage />} />
         <Route path="/city/:slug/blogs" element={<CityPage />} />
+
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/product/:slug" element={<ProductDetails />} />
+        <Route path="/admin/create-product" element={<CreateProductPage />} />
       </Routes>
       <End />
       <Last />

@@ -130,6 +130,58 @@ export const getCityWithBlogs = async (slug) => {
   }
 };
 
+const createProduct = async (formData) => {
+  try {
+    const response = await axiosInstance.post("/api/v1/admin/create-product", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+
+// Get all products
+const getProducts = async () => {
+  try {
+    const response = await axiosInstance.get("/api/v1/admin/products");
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+
+// Get single product by slug
+const getProductBySlug = async (slug) => {
+  try {
+    const response = await axiosInstance.get(`/api/v1/admin/product/${slug}`);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+
+// Update product
+const updateProduct = async (slug, formData) => {
+  try {
+    const response = await axiosInstance.put(`/api/v1/admin/product/${slug}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+
+// Delete product
+const deleteProduct = async (slug) => {
+  try {
+    const response = await axiosInstance.delete(`/api/v1/admin/product/${slug}`);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
 
 
-export { createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs};
+export { createProduct, getProducts, getProductBySlug, updateProduct, deleteProduct, createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs};

@@ -23,6 +23,8 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    country: { type: mongoose.Schema.Types.ObjectId, ref: "Country" },
+    state: { type: mongoose.Schema.Types.ObjectId, ref: "State" },
     city: { type: mongoose.Schema.Types.ObjectId, ref: "City" },
   },
   { timestamps: true }
