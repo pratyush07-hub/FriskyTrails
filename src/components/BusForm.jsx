@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { adventure } from "../api/adventure.api"; // replace with your actual API
+import { busTicket } from "../api/busTicket.api";
+
 
 const BusForm = () => {
   const [formData, setFormData] = useState({
-    from: "",
-    to: "",
-    departure: "",
+    fromCity: "",
+    toCity: "",
+    departureDate: "",
     returnDate: "",
-    guests: "",
+    passengers: "",
   });
 
   const [showMobileForm, setShowMobileForm] = useState(false);
@@ -19,7 +20,7 @@ const BusForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await adventure(formData);
+      const response = await busTicket(formData); // Call correct API
       if (response.success) {
         alert("Bus ticket booked successfully!");
       } else {
@@ -32,11 +33,11 @@ const BusForm = () => {
       );
     }
     setFormData({
-      from: "",
-      to: "",
-      departure: "",
+      fromCity: "",
+      toCity: "",
+      departureDate: "",
       returnDate: "",
-      guests: "",
+      passengers: "",
     });
     setShowMobileForm(false);
   };
@@ -50,25 +51,25 @@ const BusForm = () => {
   }, [showMobileForm]);
 
   const labels = {
-    from: "From",
-    to: "To",
-    departure: "Departure",
+    fromCity: "From",
+    toCity: "To",
+    departureDate: "Departure",
     returnDate: "Return (Optional)",
-    guests: "Guests",
+    passengers: "Passengers",
   };
 
   const placeholders = {
-    from: "Enter departure city",
-    to: "Enter destination city",
-    departure: "Select departure date",
+    fromCity: "Enter departure city",
+    toCity: "Enter destination city",
+    departureDate: "Select departure date",
     returnDate: "Select return date",
-    guests: "No. of passengers",
+    passengers: "Number of passengers",
   };
 
   return (
     <>
-      {/* ============ Tablet/Desktop Form ============ */}
-      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-40 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4">
+      {/* Tablet/Desktop Form */}
+      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-20 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4">
         <h2 className="text-2xl text-orange-400 font-bold pb-4 text-center">
           Bus Tickets
         </h2>
@@ -83,9 +84,9 @@ const BusForm = () => {
               </label>
               <input
                 type={
-                  ["departure", "returnDate"].includes(field)
+                  ["departureDate", "returnDate"].includes(field)
                     ? "date"
-                    : field === "guests"
+                    : field === "passengers"
                     ? "number"
                     : "text"
                 }
@@ -94,7 +95,7 @@ const BusForm = () => {
                 value={formData[field]}
                 onChange={handleChange}
                 min={
-                  ["departure", "returnDate"].includes(field)
+                  ["departureDate", "returnDate"].includes(field)
                     ? new Date().toISOString().split("T")[0]
                     : "0"
                 }
@@ -114,8 +115,8 @@ const BusForm = () => {
         </form>
       </div>
 
-      {/* ============ Mobile Trigger Button ============ */}
-      <div className="md:hidden relative text-center bottom-30 z-10">
+      {/* Mobile Trigger Button */}
+      <div className="md:hidden relative text-center bottom-8 z-10">
         <button
           onClick={() => setShowMobileForm(true)}
           className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:bg-amber-400 text-white px-6 py-3 rounded-xl shadow-md font-semibold"
@@ -124,10 +125,9 @@ const BusForm = () => {
         </button>
       </div>
 
-      {/* ============ Mobile Popup Form ============ */}
+      {/* Mobile Popup Form */}
       {showMobileForm && (
         <div className="md:hidden fixed top-[20%] left-1/2 transform -translate-x-1/2 w-[90vw] h-auto py-8 bg-white rounded-xl shadow-xl z-30 px-4 border border-gray-200 overflow-y-auto">
-          {/* Close Button */}
           <button
             className="absolute top-3 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
             onClick={() => setShowMobileForm(false)}
@@ -147,9 +147,9 @@ const BusForm = () => {
                 </label>
                 <input
                   type={
-                    ["departure", "returnDate"].includes(field)
+                    ["departureDate", "returnDate"].includes(field)
                       ? "date"
-                      : field === "guests"
+                      : field === "passengers"
                       ? "number"
                       : "text"
                   }
@@ -158,7 +158,7 @@ const BusForm = () => {
                   value={formData[field]}
                   onChange={handleChange}
                   min={
-                    ["departure", "returnDate"].includes(field)
+                    ["departureDate", "returnDate"].includes(field)
                       ? new Date().toISOString().split("T")[0]
                       : "0"
                   }
@@ -167,8 +167,6 @@ const BusForm = () => {
                 />
               </div>
             ))}
-
-            {/* Submit Button */}
             <div className="w-full">
               <button
                 type="submit"

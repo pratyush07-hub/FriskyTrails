@@ -4,7 +4,7 @@ import { ApiResponse } from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import slugify from "slugify";
 
-// controllers/product.controller.js
+// ✅ Create Product
 export const createProduct = asyncHandler(async (req, res) => {
   const { name, slug, description, price, country, state, city } = req.body;
 
@@ -12,14 +12,19 @@ export const createProduct = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Name, Slug, and Price are required");
   }
 
-  const image = req.file ? req.file.path : null;
+  // Handle multiple images
+  const images = req.files ? req.files.map((file) => file.path) : [];
+
+  if (images.length > 5) {
+    throw new ApiError(400, "You can upload up to 5 images only");
+  }
 
   const product = await Product.create({
     name,
     slug,
     description,
     price,
-    image,
+    images,
     country,
     state,
     city,
@@ -34,7 +39,7 @@ export const createProduct = asyncHandler(async (req, res) => {
 export const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find()
     .populate("city", "name slug state country")
-    .select("name slug description image price city createdAt");
+    .select("name slug description images price city createdAt");
 
   return res
     .status(200)
@@ -47,7 +52,7 @@ export const getProductBySlug = asyncHandler(async (req, res) => {
 
   const product = await Product.findOne({ slug })
     .populate("city", "name slug state country")
-    .select("name slug description image price city createdAt");
+    .select("name slug description images price city createdAt");
 
   if (!product) {
     throw new ApiError(404, "Product not found");
@@ -72,8 +77,13 @@ export const updateProduct = asyncHandler(async (req, res) => {
     updateData.slug = slugify(name, { lower: true, strict: true });
   }
 
-  if (req.file) {
-    updateData.image = req.file.path;
+  // If new images uploaded, replace existing ones
+  if (req.files && req.files.length > 0) {
+    updateData.images = req.files.map((file) => file.path);
+
+    if (updateData.images.length > 5) {
+      throw new ApiError(400, "You can upload up to 5 images only");
+    }
   }
 
   const product = await Product.findOneAndUpdate({ slug }, updateData, {

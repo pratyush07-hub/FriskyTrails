@@ -1,4 +1,4 @@
-import HillImage from "/images/hilly.png";
+import HillImage from "/images/blog.webp";
 import Box from "../sections/Box";
 
 import Latestblog from "../sections/Latestblog";
@@ -8,7 +8,7 @@ const Blog = () => {
   
 
   return (
-    <div className="w-full mt-23 md:mt-28 lg:mt-30 xl:mt-28">
+    <div className="w-full mt-23 md:mt-28 lg:mt-30 xl:mt-30">
       <div
         style={{
           height: "400px",

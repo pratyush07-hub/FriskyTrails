@@ -4,21 +4,21 @@ import { createProduct, getCountries, getStates, getCities } from "../api/admin.
 const CreateProductPage = () => {
   const [formData, setFormData] = useState({
     name: "",
-    slug: "",   // ✅ Added slug
+    slug: "",
     description: "",
     price: "",
-    image: null,
+    images: [],   // ✅ multiple images
     country: "",
     state: "",
     city: "",
   });
-  const [preview, setPreview] = useState(null);
+  const [previews, setPreviews] = useState([]); // ✅ multiple previews
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
 
-  // ✅ Auto-generate slug when name changes
+  // ✅ Auto-generate slug
   useEffect(() => {
     if (formData.name) {
       const generatedSlug = formData.name
@@ -76,9 +76,13 @@ const CreateProductPage = () => {
   // ✅ Handle input changes
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "image") {
-      setFormData({ ...formData, image: files[0] });
-      setPreview(URL.createObjectURL(files[0]));
+    if (name === "images") {
+      const selectedFiles = Array.from(files);
+      setFormData({ ...formData, images: selectedFiles });
+
+      // preview URLs
+      const previewUrls = selectedFiles.map((file) => URL.createObjectURL(file));
+      setPreviews(previewUrls);
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -90,28 +94,33 @@ const CreateProductPage = () => {
     try {
       const formObj = new FormData();
       formObj.append("name", formData.name);
-      formObj.append("slug", formData.slug);   // ✅ Include slug
+      formObj.append("slug", formData.slug);
       formObj.append("description", formData.description);
       formObj.append("price", formData.price);
       formObj.append("country", formData.country);
       formObj.append("state", formData.state);
       formObj.append("city", formData.city);
-      if (formData.image) formObj.append("image", formData.image);
+
+      // append multiple images
+      formData.images.forEach((file) => {
+        formObj.append("images", file);
+      });
 
       const res = await createProduct(formObj);
       alert("✅ Product created successfully!");
-    //   console.log(res);
-      setFormData({
-      name: "",
-      slug: "",
-      description: "",
-      price: "",
-      image: null,
-      country: "",
-      state: "",
-      city: "",
-    });
 
+      // reset
+      setFormData({
+        name: "",
+        slug: "",
+        description: "",
+        price: "",
+        images: [],
+        country: "",
+        state: "",
+        city: "",
+      });
+      setPreviews([]);
     } catch (error) {
       alert(error.message || "❌ Failed to create product");
     }
@@ -134,12 +143,12 @@ const CreateProductPage = () => {
           required
         />
 
-        {/* Slug (auto-filled but editable) */}
+        {/* Slug */}
         <input
           type="text"
           name="slug"
           placeholder="Slug"
-          autoComplete="off" 
+          autoComplete="off"
           value={formData.slug}
           onChange={handleChange}
           className="w-full p-3 border rounded-xl"
@@ -216,19 +225,28 @@ const CreateProductPage = () => {
           ))}
         </select>
 
-        {/* Image Upload */}
+        {/* Images Upload */}
         <input
           type="file"
-          name="image"
+          name="images"
+          multiple
+          accept="image/*"
           onChange={handleChange}
           className="w-full p-3 border rounded-xl"
         />
-        {preview && (
-          <img
-            src={preview}
-            alt="Preview"
-            className="w-40 h-28 object-cover mt-3 rounded-lg"
-          />
+
+        {/* Preview */}
+        {previews.length > 0 && (
+          <div className="flex flex-wrap gap-3 mt-3">
+            {previews.map((src, idx) => (
+              <img
+                key={idx}
+                src={src}
+                alt={`Preview ${idx}`}
+                className="w-32 h-24 object-cover rounded-lg border"
+              />
+            ))}
+          </div>
         )}
 
         <button

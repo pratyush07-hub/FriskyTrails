@@ -16,8 +16,14 @@ const productSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    image: {
-      type: String,
+    images: {
+      type: [String], 
+      validate: {
+        validator: function (val) {
+          return val.length <= 5; 
+        },
+        message: "You can upload up to 5 images only.",
+      },
     },
     price: {
       type: Number,
@@ -30,6 +36,7 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Auto-generate slug before saving
 productSchema.pre("save", function (next) {
   if (this.isModified("name")) {
     this.slug = this.name
@@ -40,4 +47,5 @@ productSchema.pre("save", function (next) {
   next();
 });
 
-export const Product = mongoose.models.Product || mongoose.model("Product", productSchema);
+export const Product =
+  mongoose.models.Product || mongoose.model("Product", productSchema);

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { adventure } from "../api/adventure.api"; // replace with your actual API call
+import { hotelBooking } from "../api/hotel.api"; // Correct API import
 
 const HotelForm = () => {
   const [formData, setFormData] = useState({
     city: "",
     property: "",
-    checkIn: "",
-    checkOut: "",
+    checkInDate: "",
+    checkOutDate: "",
     guests: "",
   });
 
@@ -19,7 +19,7 @@ const HotelForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await adventure(formData);
+      const response = await hotelBooking(formData); // Call correct API
       if (response.success) {
         alert("Hotel booked successfully!");
       } else {
@@ -34,8 +34,8 @@ const HotelForm = () => {
     setFormData({
       city: "",
       property: "",
-      checkIn: "",
-      checkOut: "",
+      checkInDate: "",
+      checkOutDate: "",
       guests: "",
     });
     setShowMobileForm(false);
@@ -58,23 +58,23 @@ const HotelForm = () => {
   const labels = {
     city: "City",
     property: "Property",
-    checkIn: "Check-In",
-    checkOut: "Check-Out",
+    checkInDate: "Check-In",
+    checkOutDate: "Check-Out",
     guests: "Guests",
   };
 
   const placeholders = {
     city: "Enter city",
     property: "Enter property",
-    checkIn: "Select date",
-    checkOut: "Select date",
+    checkInDate: "Select date",
+    checkOutDate: "Select date",
     guests: "No. of guests",
   };
 
   return (
     <>
-      {/* ============ Tablet/Desktop Form ============ */}
-      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-40 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4">
+      {/* Tablet/Desktop Form */}
+      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-20 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4">
         <h2 className="text-2xl text-orange-400 font-bold pb-4 text-center">
           Hotels
         </h2>
@@ -89,7 +89,7 @@ const HotelForm = () => {
               </label>
               <input
                 type={
-                  field === "checkIn" || field === "checkOut"
+                  field === "checkInDate" || field === "checkOutDate"
                     ? "date"
                     : field === "guests"
                     ? "number"
@@ -100,7 +100,7 @@ const HotelForm = () => {
                 value={formData[field]}
                 onChange={handleChange}
                 min={
-                  field === "checkIn" || field === "checkOut"
+                  field === "checkInDate" || field === "checkOutDate"
                     ? new Date().toISOString().split("T")[0]
                     : "0"
                 }
@@ -120,8 +120,8 @@ const HotelForm = () => {
         </form>
       </div>
 
-      {/* ============ Mobile Trigger Button ============ */}
-      <div className="md:hidden relative text-center bottom-30 z-10">
+      {/* Mobile Trigger Button */}
+      <div className="md:hidden relative text-center bottom-10 z-10">
         <button
           onClick={() => setShowMobileForm(true)}
           className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:bg-amber-400 text-white px-6 py-3 rounded-xl shadow-md font-semibold"
@@ -130,10 +130,9 @@ const HotelForm = () => {
         </button>
       </div>
 
-      {/* ============ Mobile Popup Form ============ */}
+      {/* Mobile Popup Form */}
       {showMobileForm && (
         <div className="md:hidden fixed top-[20%] left-1/2 transform -translate-x-1/2 w-[90vw] h-auto py-8 bg-white rounded-xl shadow-xl z-30 px-4 border border-gray-200 overflow-y-auto">
-          {/* Close Button */}
           <button
             className="absolute top-3 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
             onClick={() => setShowMobileForm(false)}
@@ -153,7 +152,7 @@ const HotelForm = () => {
                 </label>
                 <input
                   type={
-                    field === "checkIn" || field === "checkOut"
+                    field === "checkInDate" || field === "checkOutDate"
                       ? "date"
                       : field === "guests"
                       ? "number"
@@ -164,7 +163,7 @@ const HotelForm = () => {
                   value={formData[field]}
                   onChange={handleChange}
                   min={
-                    field === "checkIn" || field === "checkOut"
+                    field === "checkInDate" || field === "checkOutDate"
                       ? new Date().toISOString().split("T")[0]
                       : "0"
                   }
@@ -174,7 +173,6 @@ const HotelForm = () => {
               </div>
             ))}
 
-            {/* Submit Button */}
             <div className="w-full">
               <button
                 type="submit"

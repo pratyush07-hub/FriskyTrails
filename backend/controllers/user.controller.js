@@ -221,10 +221,10 @@ const googleAuth = asyncHandler(async (req, res) => {
 
     const { id_token } = tokenRes.data;
 
-    // 2. Verify ID token
     const ticket = await client.verifyIdToken({
       idToken: id_token,
       audience: process.env.GOOGLE_CLIENT_ID,
+      // clockTolerance: 5 * 60,
     });
     const payload = ticket.getPayload();
 
@@ -265,7 +265,7 @@ const googleAuth = asyncHandler(async (req, res) => {
         )
       );
   } catch (error) {
-    alert("Google Auth Error:", error.response?.data || error.message);
+    console.error("Google Auth Error:", error.response?.data || error.message);
     throw new ApiError(500, "Google authentication failed");
   }
 });

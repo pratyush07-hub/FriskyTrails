@@ -9,7 +9,7 @@ const Productpage = () => {
   return (
     <>
       <div className="min-h-screen w-full">
-        <div className="w-[80%] m-auto">
+        <div className="w-[80%] mt-30 m-auto">
           <div className="flex items-center pt-6">
             <h3 className="font-semibold">Home</h3>
             <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />

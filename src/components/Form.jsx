@@ -74,7 +74,7 @@ const Form = () => {
   return (
     <>
       {/* ============ Tablet/Desktop Form ============ */}
-      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-40 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4">
+      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-20 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4">
         <h2 className="text-2xl text-orange-400 font-bold pb-4 text-center">
           Where's Your Next Adventure?
         </h2>
@@ -118,7 +118,7 @@ const Form = () => {
       </div>
 
       {/* ============ Mobile Trigger Button ============ */}
-      <div className="md:hidden relative text-center bottom-30 z-10">
+      <div className="md:hidden relative text-center bottom-10 z-10">
         <button
           onClick={() => setShowMobileForm(true)}
           className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:bg-amber-400 text-white px-6 py-3 rounded-xl shadow-md font-semibold"

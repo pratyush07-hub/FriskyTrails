@@ -4,13 +4,13 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import Form from "../components/Form";
-import HillImage from "/images/hilly.png";
+import HillImage from "/services/holiday.webp";
 import Deals from "./Deals";
 
 const Ser = () => {
   return (
     <>
-      <div className="min-h-screen w-full">
+      <div className="min-h-screen mt-20 md:mt-30 w-full">
         {/* Banner Section */}
         <div
           className="h-[40vh] sm:h-[50vh] md:h-[60vh] w-full"
@@ -29,7 +29,7 @@ const Ser = () => {
         {/* Testimonials Banner */}
         <div className="min-h-[70vh] w-full flex items-center justify-center px-4">
           <div
-            className="w-full sm:w-[90%] md:w-[80%] lg:w-[70%] h-[45vh] rounded-3xl shadow-6xl p-4 relative"
+            className="hidden md:block w-full sm:w-[90%] md:w-[80%] lg:w-[80%] h-[50vh] rounded-3xl shadow-6xl p-4 relative"
             style={{
               backgroundImage: `url('/holidaysimages/testimonial.webp')`,
               backgroundSize: "cover",
@@ -40,7 +40,7 @@ const Ser = () => {
             <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold pt-20 md:pt-28 pl-4">
               Loved For Experiences!
             </h1>
-            <p className="text-white text-base sm:text-lg pl-4 max-w-[90%] md:max-w-[60%] mt-2">
+            <p className="text-white text-base sm:text-lg pl-4 max-w-[90%] md:max-w-[40%] mt-2">
               Read stories from travellers who trusted us to craft their perfect
               journeys!
             </p>
@@ -48,10 +48,30 @@ const Ser = () => {
               View Testimonials
             </button>
           </div>
+          <div
+            className="md:hidden w-full sm:w-[90%] md:w-[80%] lg:w-[80%] h-[50vh] rounded-3xl shadow-6xl p-4 relative"
+            style={{
+              backgroundImage: `url('/holidaysimages/testimonialmob.webp')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold">
+              Loved For Experiences!
+            </h1>
+            <p className="text-white text-base sm:text-lg pl-4 max-w-[100%] mt-1">
+              Read stories from travellers who trusted us to craft their
+              journeys!
+            </p>
+            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-41 ml-16 text-white font-bold rounded-full py-1 px-2 text-xs">
+              View Testimonials
+            </button>
+          </div>
         </div>
 
         {/* Holiday Packages */}
-        <div className="w-full max-w-[1280px] px-4 sm:px-8 md:px-12 mx-auto py-10">
+        <div className="w-full max-w-[1280px] px-4 sm:px-8 md:px-12 mx-auto py-4">
           <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl">
             Find Your Perfect “Holiday” Package
           </h1>

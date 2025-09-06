@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { adventure } from "../api/adventure.api"; // replace with your actual API call
+import { transport } from "../api/transport.api"; // Correct API import
 
 const TransportForm = () => {
   const [formData, setFormData] = useState({
-    from: "",
-    to: "",
+    fromLocation: "",
+    toLocation: "",
     duration: "",
-    type: "",
+    transportType: "",
     date: "",
   });
 
@@ -19,7 +19,7 @@ const TransportForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await adventure(formData);
+      const response = await transport(formData); // Call correct API
       if (response.success) {
         alert("Transport booked successfully!");
       } else {
@@ -32,10 +32,10 @@ const TransportForm = () => {
       );
     }
     setFormData({
-      from: "",
-      to: "",
+      fromLocation: "",
+      toLocation: "",
       duration: "",
-      type: "",
+      transportType: "",
       date: "",
     });
     setShowMobileForm(false);
@@ -56,25 +56,25 @@ const TransportForm = () => {
   }, [showMobileForm]);
 
   const labels = {
-    from: "From",
-    to: "To",
+    fromLocation: "From",
+    toLocation: "To",
     duration: "Duration",
-    type: "Type",
+    transportType: "Type",
     date: "Date",
   };
 
   const placeholders = {
-    from: "Enter starting point",
-    to: "Enter destination",
-    duration: "Enter duration",
-    type: "Bus, Train, Flight...",
+    fromLocation: "Enter starting point",
+    toLocation: "Enter destination",
+    duration: "Enter duration (e.g., 5h)",
+    transportType: "Bus, Train, Flight...",
     date: "Select date",
   };
 
   return (
     <>
       {/* ============ Tablet/Desktop Form ============ */}
-      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-40 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4">
+      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-20 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4">
         <h2 className="text-2xl text-orange-400 font-bold pb-4 text-center">
           Transport
         </h2>
@@ -88,13 +88,7 @@ const TransportForm = () => {
                 {labels[field]}
               </label>
               <input
-                type={
-                  field === "date"
-                    ? "date"
-                    : field === "duration"
-                    ? "number"
-                    : "text"
-                }
+                type={field === "date" ? "date" : field === "duration" ? "text" : "text"}
                 name={field}
                 placeholder={placeholders[field]}
                 value={formData[field]}
@@ -117,7 +111,7 @@ const TransportForm = () => {
       </div>
 
       {/* ============ Mobile Trigger Button ============ */}
-      <div className="md:hidden relative text-center bottom-30 z-10">
+      <div className="md:hidden relative text-center bottom-10 z-10">
         <button
           onClick={() => setShowMobileForm(true)}
           className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:bg-amber-400 text-white px-6 py-3 rounded-xl shadow-md font-semibold"
@@ -129,7 +123,6 @@ const TransportForm = () => {
       {/* ============ Mobile Popup Form ============ */}
       {showMobileForm && (
         <div className="md:hidden fixed top-[20%] left-1/2 transform -translate-x-1/2 w-[90vw] h-auto py-8 bg-white rounded-xl shadow-xl z-30 px-4 border border-gray-200 overflow-y-auto">
-          {/* Close Button */}
           <button
             className="absolute top-3 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
             onClick={() => setShowMobileForm(false)}
@@ -148,13 +141,7 @@ const TransportForm = () => {
                   {labels[field]}
                 </label>
                 <input
-                  type={
-                    field === "date"
-                      ? "date"
-                      : field === "duration"
-                      ? "number"
-                      : "text"
-                  }
+                  type={field === "date" ? "date" : field === "duration" ? "text" : "text"}
                   name={field}
                   placeholder={placeholders[field]}
                   value={formData[field]}
@@ -165,8 +152,6 @@ const TransportForm = () => {
                 />
               </div>
             ))}
-
-            {/* Submit Button */}
             <div className="w-full">
               <button
                 type="submit"
