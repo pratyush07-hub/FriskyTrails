@@ -16,7 +16,7 @@ const LoginModal = ({ onClose }) => {
 
   // Handle input changes dynamically
   const handleChange = (e) => {
-    console.log(`Field changed: ${e.target.name} = ${e.target.value}`);
+    // console.log(`Field changed: ${e.target.name} = ${e.target.value}`);
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -30,13 +30,13 @@ const LoginModal = ({ onClose }) => {
           setLoading(true);
 
           const response = await googleAuth(authResult.code);
-          console.log("Google Auth API Response:", response);
+          // console.log("Google Auth API Response:", response);
 
           if (response.success) {
             localStorage.setItem("accessToken", response.data.accessToken);
             localStorage.setItem("userName", response.data.user.userName);
             localStorage.setItem("firstName", response.data.user.firstName);
-            console.log("User stored in localStorage:", response.data.user);
+            // console.log("User stored in localStorage:", response.data.user);
             onClose();
           } else {
             console.warn("Google login failed: No success flag in response");
@@ -104,10 +104,10 @@ const LoginModal = ({ onClose }) => {
 
   // Disable scroll when modal is open
   useEffect(() => {
-    console.log("LoginModal mounted. Disabling scroll");
+    // console.log("LoginModal mounted. Disabling scroll");
     document.body.style.overflow = "hidden";
     return () => {
-      console.log("LoginModal unmounted. Restoring scroll");
+      // console.log("LoginModal unmounted. Restoring scroll");
       document.body.style.overflow = "auto";
     };
   }, []);
