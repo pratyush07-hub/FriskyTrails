@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createBlog, getCountries, getStates, getCities } from "../api/admin.api";
+import JoditEditor from 'jodit-react';
 
 const CreateBlogForm = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ const CreateBlogForm = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [imageFile, setImageFile] = useState(null);
+  const editor = useRef(null);
   const [message, setMessage] = useState("");
 
   // Fetch countries on mount
@@ -128,7 +130,19 @@ const CreateBlogForm = () => {
         <textarea name="intro" placeholder="Short Intro" value={formData.intro} onChange={handleChange} required className="p-2 border rounded min-h-[80px]" />
 
         {/* Content */}
-        <textarea name="content" placeholder="Enter full blog content" value={formData.content} onChange={handleChange} required className="p-2 border rounded min-h-[200px] w-full" />
+        {/* Content */}
+<JoditEditor
+  ref={editor}
+  value={formData.content}
+  config={{
+    readonly: false,
+    height: 300,
+      pastePlain: false,    // Important: allows formatted content to be pasted
+    cleanHTML: false,
+  }}
+  onBlur={newContent => setFormData(prev => ({ ...prev, content: newContent }))}
+/>
+
 
         {/* Author Name */}
         <input type="text" name="authorName" placeholder="Author Name" value={formData.authorName} onChange={handleChange} required className="p-2 border rounded" />
