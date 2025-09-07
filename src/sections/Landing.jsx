@@ -3,13 +3,18 @@ import { motion } from "framer-motion";
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
 const Landing = () => {
-  const videoRef = useRef(null);
+  const desktopVideoRef = useRef(null);  
+  const mobileVideoRef = useRef(null); 
   const [isMuted, setIsMuted] = useState(true);
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
+    if (desktopVideoRef.current) {
+      desktopVideoRef.current.muted = !desktopVideoRef.current.muted;
+      setIsMuted(desktopVideoRef.current.muted);
+    }
+    if (mobileVideoRef.current) {
+      mobileVideoRef.current.muted = !mobileVideoRef.current.muted;
+      setIsMuted(mobileVideoRef.current.muted);
     }
   };
 
@@ -19,7 +24,7 @@ const Landing = () => {
       <div className="h-[72vh] md:h-[62vh] w-full">
         <video
           className="absolute md:block h-[62vh] top-0 w-full left-0 object-cover"
-          ref={videoRef}
+          ref={desktopVideoRef}   
           src="/images/Webvi.mp4"
           autoPlay
           loop
@@ -28,7 +33,7 @@ const Landing = () => {
         />
         <video
           className="absolute md:hidden top-0 w-full h-[72vh] left-0 object-cover"
-          ref={videoRef}
+          ref={mobileVideoRef}   
           src="/images/mobile.webm"
           autoPlay
           loop
@@ -43,7 +48,6 @@ const Landing = () => {
         </button>
       </div>
 
-      {/* <Scroll /> */}
       <div className="animation w-full">
         <div className="relative text flex whitespace-nowrap overflow-hidden">
           <motion.h1
@@ -59,7 +63,6 @@ const Landing = () => {
                 src="/logo.PNG"
                 alt=""
               />
-              {/* Explore every destination, Every season – with FriskyTrails! */}
               <h1 className="md:text-6xl text-3xl">
                 Explore every destination, Every season – with FriskyTrails!
               </h1>
@@ -72,13 +75,12 @@ const Landing = () => {
             md:transition={{ ease: "linear", repeat: Infinity, duration: 16 }}
             className="text-7xl font-bold"
           >
-            <span className="flex justify-center items-center ml-20 md:ml-40 text-white  md:[text-shadow:_-2px_-2px_0_#0a0322,2px_2px_0_#0a0322,-2px_2px_0_#0a0322,2px_-2px_0_#0a0322] [text-shadow:_-1px_-1px_0_rgba(10,3,34,0.4),1px_1px_0_rgba(10,3,34,0.4),-1px_1px_0_rgba(10,3,34,0.4),1px_-1px_0_rgba(10,3,34,0.4)]">
+            <span className="flex justify-center items-center ml-20 md:ml-40 text-white md:[text-shadow:_-2px_-2px_0_#0a0322,2px_2px_0_#0a0322,-2px_2px_0_#0a0322,2px_-2px_0_#0a0322] [text-shadow:_-1px_-1px_0_rgba(10,3,34,0.4),1px_1px_0_rgba(10,3,34,0.4),-1px_1px_0_rgba(10,3,34,0.4),1px_-1px_0_rgba(10,3,34,0.4)]">
               <img
                 className="h-20 w-20 md:h-40 md:w-40"
                 src="/logo.PNG"
                 alt=""
               />
-              {/* Explore every destination, Every season – with FriskyTrails! */}
               <h1 className="md:text-6xl text-3xl">
                 Explore every destination, Every season – with FriskyTrails!
               </h1>
@@ -91,25 +93,3 @@ const Landing = () => {
 };
 
 export default Landing;
-
-{
-  /* Overlay (optional for text visibility) */
-}
-{
-  /* <div className="absolute top-0 left-0 w-full h-[65vh] bg-black/50" /> */
-}
-
-{
-  /* Centered Text */
-}
-{
-  /* <div className="relative z-10 flex items-center justify-center h-full"> */
-}
-{
-  /* <h1 className="text-white text-4xl text-center font-bold">
-          Welcome to FriskyTrails
-        </h1> */
-}
-{
-  /* </div> */
-}
