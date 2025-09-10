@@ -37,15 +37,13 @@ const Blogs = () => {
                 style={{ backgroundImage: `url(${item.image})` }}
               >
                 <div className="h-full w-full bg-black/30 rounded-lg p-2">
-                  <button className="font-semibold rounded-lg active:scale-95 transition-all duration-300 bg-[rgb(233,99,33)] text-white shadow px-2 py-1">
-                    Holiday Destinations
-                  </button>
+                  
                   <div className="h-[4vh]">
-                    <h2 className="text-white mt-36 lg:mt-50 xl:mt-42 font-semibold">
+                    <h2 className="text-white mt-42 lg:mt-50 xl:mt-50 font-semibold">
                       {item.des}
                     </h2>
                   </div>
-                  <button className="backdrop-blur-lg rounded-lg text-white active:scale-95 mt-6 w-full h-[5vh]">
+                  <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 rounded-lg text-white active:scale-95 mt-6 w-full h-[5vh]">
                     Read More
                   </button>
                 </div>

@@ -89,16 +89,32 @@ const Jointeam = ({ onClose }) => {
             required
           />
 
-          {/* Position */}
-          <input
-            type="text"
-            name="position"
-            placeholder="Position Applying For"
-            value={formData.position}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
-            required
-          />
+          {/* Position Applying For */}
+          <div>
+            <label className="text-gray-600 text-sm pl-2 mb-1 block">
+              Position Applying For
+            </label>
+            <select
+              name="position"
+              value={formData.position}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+              required
+            >
+              <option value="" disabled>
+                Select a position
+              </option>
+              <option value="Software Engineer / Senior Software Engineer">
+                Software Engineer / Senior Software Engineer
+              </option>
+              <option value="Graphic Designer">Graphic Designer</option>
+              <option value="Social Media">Social Media</option>
+              <option value="Frontend Developer">Frontend Developer</option>
+              <option value="Travel Executive / Travel Consultant">
+                Travel Executive / Travel Consultant
+              </option>
+            </select>
+          </div>
 
           {/* Attach Resume */}
           <div>

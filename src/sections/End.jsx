@@ -34,16 +34,16 @@ const End = () => {
                 </h3>
               </div>
               <div className="images flex ml-4 mt-6 items-center gap-4">
-                <a href="https://www.facebook.com/friskytrails/" target="_blank">
+                <a href="https://www.facebook.com/friskytrails/" target="_blank" rel="noopener noreferrer">
                   <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Facebook} alt="" />
                 </a>
-                <a href="https://x.com/frisky_trails" target="_blank">
+                <a href="https://x.com/frisky_trails" target="_blank" rel="noopener noreferrer">
                   <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Twitter} alt="" />
                 </a>
-                <a href="https://www.linkedin.com/company/friskytrails/" target="_blank">
+                <a href="https://www.linkedin.com/company/friskytrails/" target="_blank" rel="noopener noreferrer">
                   <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Linkedin} alt="" />
                 </a>
-                <a href="https://www.instagram.com/friskytrails/" target="_blank">
+                <a href="https://www.instagram.com/friskytrails/" target="_blank" rel="noopener noreferrer">
                   <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Instagram} alt="" />
                 </a>
               </div>
@@ -54,12 +54,19 @@ const End = () => {
                 <div className="h-[40vh] w-[14vw]">
                   <h1 className="text-white text-3xl mt-1.5 font-semibold">Short Links</h1>
                   <div className="mt-8">
-                    {["About Us", "Adventures", "Services", "Reviews"].map((text, i) => (
+                    {[
+                      { text: "About Us", path: "/about" },
+                      { text: "Adventures", path: "/adventures" },
+                      { text: "Services", path: "/services/holidays" },
+                      { text: "Reviews", path: "/reviews" }
+                    ].map((item, i) => (
                       <div key={i} className="flex mt-4 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="gray">
                           <path d="M9 6C9 6 15 10.4189 15 12C15 13.5812 9 18 9 18" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <h3 className="text-gray-400 font-semibold ml-1">{text}</h3>
+                        <Link to={item.path}>
+                          <h3 className="text-gray-400 font-semibold ml-1 hover:text-white">{item.text}</h3>
+                        </Link>
                       </div>
                     ))}
                   </div>
@@ -67,12 +74,19 @@ const End = () => {
                 <div className="h-[40vh] w-[14vw] ml-10">
                   <h1 className="text-white text-3xl mt-1.5 font-semibold">Quick Links</h1>
                   <div className="mt-8 ml-2">
-                    {["Contact Us", "Blogs", "Hiring", "Partner with Us"].map((text, i) => (
+                    {[
+                      { text: "Contact Us", path: "/contact" },
+                      { text: "Blogs", path: "/blog" },
+                      { text: "Hiring", path: "/hiring" },
+                      { text: "Partner with Us", path: "/partner" }
+                    ].map((item, i) => (
                       <div key={i} className="flex mt-4 items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="gray">
                           <path d="M9 6C9 6 15 10.4189 15 12C15 13.5812 9 18 9 18" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <h3 className="text-gray-400 font-semibold ml-1">{text}</h3>
+                        <Link to={item.path}>
+                          <h3 className="text-gray-400 font-semibold ml-1 hover:text-white">{item.text}</h3>
+                        </Link>
                       </div>
                     ))}
                   </div>
@@ -145,16 +159,16 @@ const End = () => {
             </h3>
           </div>
           <div className="images mt-4 flex justify-center items-center gap-4">
-            <a href="https://www.facebook.com/friskytrails/" target="_blank">
+            <a href="https://www.facebook.com/friskytrails/" target="_blank" rel="noopener noreferrer">
               <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Facebook} alt="" />
             </a>
-            <a href="https://x.com/frisky_trails" target="_blank">
+            <a href="https://x.com/frisky_trails" target="_blank" rel="noopener noreferrer">
               <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Twitter} alt="" />
             </a>
-            <a href="https://www.linkedin.com/company/friskytrails/" target="_blank">
+            <a href="https://www.linkedin.com/company/friskytrails/" target="_blank" rel="noopener noreferrer">
               <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Linkedin} alt="" />
             </a>
-            <a href="https://www.instagram.com/friskytrails/" target="_blank">
+            <a href="https://www.instagram.com/friskytrails/" target="_blank" rel="noopener noreferrer">
               <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Instagram} alt="" />
             </a>
           </div>

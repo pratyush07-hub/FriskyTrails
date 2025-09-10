@@ -24,7 +24,7 @@ const Hiring = () => {
   ];
 
   return (
-    <div className="min-h-screen mt-23 md:mt-28 lg:mt-30 xl:mt-28 w-full">
+    <div className="min-h-screen mt-23 md:mt-28 lg:mt-30 xl:mt-32 w-full">
       {/* Banner */}
       <div className="w-full h-[40vh] sm:h-[50vh] md:h-[60vh]">
         <img
@@ -68,7 +68,7 @@ const Hiring = () => {
             <div className="text-lg sm:text-xl md:text-2xl font-semibold px-4 md:px-6 py-4 md:py-6 text-center md:text-left">
               {item.Openings}
             </div>
-            <div className="px-4 md:px-6 pb-4 md:pb-6">
+            <div className="px-4 md:px-6 pb-4 md:pb-6 mt-4 w-full md:w-auto flex justify-center items-center">
               <button
                 onClick={toggleJointeam}
                 className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 text-white rounded-lg px-4 sm:px-5 py-2 sm:py-3 font-semibold active:scale-95 transition duration-200"

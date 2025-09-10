@@ -17,11 +17,10 @@ const CreateBlogForm = () => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState(null); // For cover image if needed
   const editor = useRef(null);
   const [message, setMessage] = useState("");
 
-  // Fetch countries on mount
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -34,7 +33,6 @@ const CreateBlogForm = () => {
     fetchCountries();
   }, []);
 
-  // Fetch states when country changes
   useEffect(() => {
     const fetchStates = async () => {
       if (!formData.country) return;
@@ -50,7 +48,6 @@ const CreateBlogForm = () => {
     fetchStates();
   }, [formData.country]);
 
-  // Fetch cities when state changes
   useEffect(() => {
     const fetchCities = async () => {
       if (!formData.state) return;
@@ -69,7 +66,6 @@ const CreateBlogForm = () => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
 
-    // Auto-generate slug from title
     if (name === "title") {
       const generatedSlug = value
         .toLowerCase()
@@ -116,56 +112,59 @@ const CreateBlogForm = () => {
   };
 
   return (
-    <div className="p-4 max-w-xl mt-30 mx-auto">
+    <div className="p-4 w-[70%] mt-30 mx-auto">
       <h2 className="text-xl font-bold mb-4">Create New Blog</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4">
 
-        {/* Title */}
         <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} required className="p-2 border rounded" />
 
-        {/* Slug */}
         <input type="text" name="slug" placeholder="Slug" value={formData.slug} disabled className="p-2 border rounded bg-gray-100 cursor-not-allowed" />
 
-        {/* Intro */}
         <textarea name="intro" placeholder="Short Intro" value={formData.intro} onChange={handleChange} required className="p-2 border rounded min-h-[80px]" />
 
-        {/* Content */}
-        {/* Content */}
-<JoditEditor
-  ref={editor}
-  value={formData.content}
-  config={{
-    readonly: false,
-    height: 300,
-      pastePlain: false,    // Important: allows formatted content to be pasted
-    cleanHTML: false,
-  }}
-  onBlur={newContent => setFormData(prev => ({ ...prev, content: newContent }))}
-/>
+        {/* Content Editor with Quick Image Upload */}
+        <JoditEditor
+          ref={editor}
+          value={formData.content}
+          config={{
+            readonly: false,
+            height: 400,
+            toolbarSticky: false,
+            pastePlain: false,
+            cleanHTML: false,
+            askBeforePasteFromWord: false,
+            askBeforePasteHTML: false,
+            toolbar: [
+              "bold", "italic", "underline", "|",
+              "ul", "ol", "|",
+              "link", "image", "table", "|",
+              "align", "undo", "redo"
+            ],
+            uploader: {
+              insertImageAsBase64URI: true, // Quick image upload without server
+              url: "",
+            }
+          }}
+          onBlur={newContent => setFormData(prev => ({ ...prev, content: newContent }))}
+        />
 
-
-        {/* Author Name */}
         <input type="text" name="authorName" placeholder="Author Name" value={formData.authorName} onChange={handleChange} required className="p-2 border rounded" />
 
-        {/* Country */}
         <select name="country" value={formData.country} onChange={handleChange} required className="p-2 border rounded">
           <option value="">Select Country</option>
           {countries.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
         </select>
 
-        {/* State */}
         <select name="state" value={formData.state} onChange={handleChange} required className="p-2 border rounded" disabled={!states.length}>
           <option value="">Select State</option>
           {states.map(s => <option key={s._id} value={s._id}>{s.name}</option>)}
         </select>
 
-        {/* City */}
         <select name="city" value={formData.city} onChange={handleChange} required className="p-2 border rounded" disabled={!cities.length}>
           <option value="">Select City</option>
           {cities.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
         </select>
 
-        {/* Image Upload */}
         <input key={imageFile ? imageFile.name : "file"} type="file" name="image" accept="image/*" onChange={handleImageChange} className="p-2 border rounded" />
 
         <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Create Blog</button>

@@ -79,7 +79,7 @@ const data = [
     title: "Find Your Perfect Gateway",
     image: "/rewardsimages/trolly.png",
     des: "Explore our handpicked travel packages and thrilling adventures tailored just for you.",
-    button: "Read Now",
+    button: "Book Now",
   },
   {
     title: "Save More, Travel More",
