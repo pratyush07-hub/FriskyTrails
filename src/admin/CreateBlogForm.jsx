@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { createBlog, getCountries, getStates, getCities } from "../api/admin.api";
-import JoditEditor from 'jodit-react';
+import Editor from "../components/Editor";
 
 const CreateBlogForm = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +17,7 @@ const CreateBlogForm = () => {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
-  const [imageFile, setImageFile] = useState(null); // For cover image if needed
-  const editor = useRef(null);
+  const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -90,7 +89,6 @@ const CreateBlogForm = () => {
     try {
       const res = await createBlog(data);
       setMessage(res.message || "✅ Blog created successfully!");
-      console.log(res.data);
 
       setFormData({
         title: "",
@@ -106,7 +104,7 @@ const CreateBlogForm = () => {
       setStates([]);
       setCities([]);
     } catch (err) {
-      console.error(err);
+      console.error("Error creating blog:", err);
       setMessage("Failed to create blog");
     }
   };
@@ -115,62 +113,107 @@ const CreateBlogForm = () => {
     <div className="p-4 w-[70%] mt-30 mx-auto">
       <h2 className="text-xl font-bold mb-4">Create New Blog</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4">
-
-        <input type="text" name="title" placeholder="Title" value={formData.title} onChange={handleChange} required className="p-2 border rounded" />
-
-        <input type="text" name="slug" placeholder="Slug" value={formData.slug} disabled className="p-2 border rounded bg-gray-100 cursor-not-allowed" />
-
-        <textarea name="intro" placeholder="Short Intro" value={formData.intro} onChange={handleChange} required className="p-2 border rounded min-h-[80px]" />
-
-        {/* Content Editor with Quick Image Upload */}
-        <JoditEditor
-          ref={editor}
-          value={formData.content}
-          config={{
-            readonly: false,
-            height: 400,
-            toolbarSticky: false,
-            pastePlain: false,
-            cleanHTML: false,
-            askBeforePasteFromWord: false,
-            askBeforePasteHTML: false,
-            toolbar: [
-              "bold", "italic", "underline", "|",
-              "ul", "ol", "|",
-              "link", "image", "table", "|",
-              "align", "undo", "redo"
-            ],
-            uploader: {
-              insertImageAsBase64URI: true, // Quick image upload without server
-              url: "",
-            }
-          }}
-          onBlur={newContent => setFormData(prev => ({ ...prev, content: newContent }))}
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          value={formData.title}
+          onChange={handleChange}
+          required
+          className="p-2 border rounded"
         />
 
-        <input type="text" name="authorName" placeholder="Author Name" value={formData.authorName} onChange={handleChange} required className="p-2 border rounded" />
+        <input
+          type="text"
+          name="slug"
+          placeholder="Slug"
+          value={formData.slug}
+          disabled
+          className="p-2 border rounded bg-gray-100 cursor-not-allowed"
+        />
 
-        <select name="country" value={formData.country} onChange={handleChange} required className="p-2 border rounded">
+        <textarea
+          name="intro"
+          placeholder="Short Intro"
+          value={formData.intro}
+          onChange={handleChange}
+          required
+          className="p-2 border rounded min-h-[80px]"
+        />
+
+        {/* Custom Editor */}
+        <Editor content={formData.content} onChange={(content) => setFormData(prev => ({ ...prev, content }))} />
+
+        <input
+          type="text"
+          name="authorName"
+          placeholder="Author Name"
+          value={formData.authorName}
+          onChange={handleChange}
+          required
+          className="p-2 border rounded"
+        />
+
+        <select
+          name="country"
+          value={formData.country}
+          onChange={handleChange}
+          required
+          className="p-2 border rounded"
+        >
           <option value="">Select Country</option>
-          {countries.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+          {countries.map(c => (
+            <option key={c._id} value={c._id}>{c.name}</option>
+          ))}
         </select>
 
-        <select name="state" value={formData.state} onChange={handleChange} required className="p-2 border rounded" disabled={!states.length}>
+        <select
+          name="state"
+          value={formData.state}
+          onChange={handleChange}
+          required
+          className="p-2 border rounded"
+          disabled={!states.length}
+        >
           <option value="">Select State</option>
-          {states.map(s => <option key={s._id} value={s._id}>{s.name}</option>)}
+          {states.map(s => (
+            <option key={s._id} value={s._id}>{s.name}</option>
+          ))}
         </select>
 
-        <select name="city" value={formData.city} onChange={handleChange} required className="p-2 border rounded" disabled={!cities.length}>
+        <select
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+          required
+          className="p-2 border rounded"
+          disabled={!cities.length}
+        >
           <option value="">Select City</option>
-          {cities.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+          {cities.map(c => (
+            <option key={c._id} value={c._id}>{c.name}</option>
+          ))}
         </select>
 
-        <input key={imageFile ? imageFile.name : "file"} type="file" name="image" accept="image/*" onChange={handleImageChange} className="p-2 border rounded" />
+        <input
+          key={imageFile ? imageFile.name : "file"}
+          type="file"
+          name="image"
+          accept="image/*"
+          onChange={handleImageChange}
+          className="p-2 border rounded"
+        />
 
-        <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">Create Blog</button>
+        <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+          Create Blog
+        </button>
       </form>
 
-      {message && <p className={`mt-4 text-center font-medium ${message.includes("Failed") ? "text-red-600" : "text-green-600"}`}>{message}</p>}
+      {message && (
+        <p className={`mt-4 text-center font-medium ${message.includes("Failed") ? "text-red-600" : "text-green-600"}`}>
+          {message}
+        </p>
+      )}
     </div>
   );
 };

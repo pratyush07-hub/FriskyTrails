@@ -14,3 +14,37 @@
 .swiper-pagination-bullet{
     background-color: rgb(255,99,33) !important;
 }
+
+/* Ensure ReactQuill editor is visibly sized */
+.ql-container {
+  min-height: 220px;
+  background-color: #ffffff;
+}
+
+.ql-editor {
+  min-height: 180px;
+}
+
+/* Harden visibility for cases where global CSS might hide the editor */
+.quill-wrapper {
+  display: block !important;
+}
+
+.quill-wrapper .ql-toolbar {
+  display: block !important;
+  background-color: #ffffff;
+  z-index: 1;
+}
+
+.quill-wrapper .ql-container {
+  display: block !important;
+  height: 300px;
+}
+
+/* Controls under the editor */
+.quill-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
