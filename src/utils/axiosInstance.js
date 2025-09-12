@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
     import.meta.env.MODE === "production"
       ? import.meta.env.VITE_API_URL_PROD
       : import.meta.env.VITE_API_URL_LOCAL,
-    timeout: 10000,
+    timeout: 30000,
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json',

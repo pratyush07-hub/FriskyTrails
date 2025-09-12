@@ -1,260 +1,125 @@
 import { useEffect, useState } from "react";
 import { createProduct, getCountries, getStates, getCities } from "../api/admin.api";
+import Editor from "../components/Editor";
 
 const CreateProductPage = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    slug: "",
-    description: "",
-    price: "",
-    images: [],   // ✅ multiple images
-    country: "",
-    state: "",
-    city: "",
+    name: "", slug: "", description: "", productType: "",
+    offerPrice: "", actualPrice: "", productHighlights: "", productOverview: "",
+    thingsToCarry: "", additionalInfo: "", faq: "", country: "", state: "", city: "",
+    reviews: "", rating: ""
   });
-  const [previews, setPreviews] = useState([]); // ✅ multiple previews
 
+  const [images, setImages] = useState([]);
+  const [previews, setPreviews] = useState([]);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
 
-  // ✅ Auto-generate slug
+  // Auto generate slug
   useEffect(() => {
     if (formData.name) {
-      const generatedSlug = formData.name
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)+/g, "");
-      setFormData((prev) => ({ ...prev, slug: generatedSlug }));
+      setFormData(prev => ({
+        ...prev,
+        slug: formData.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "")
+      }));
     }
   }, [formData.name]);
 
-  // ✅ Fetch countries
+  // Load countries
   useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const res = await getCountries();
-        setCountries(res.data);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
-      }
-    };
-    fetchCountries();
+    (async () => {
+      const res = await getCountries();
+      setCountries(res.data);
+    })();
   }, []);
 
-  // ✅ Fetch states
+  // Load states when country changes
   useEffect(() => {
     if (formData.country) {
-      const fetchStates = async () => {
-        try {
-          const res = await getStates(formData.country);
-          setStates(res.data);
-          setCities([]);
-        } catch (error) {
-          console.error("Error fetching states:", error);
-        }
-      };
-      fetchStates();
+      (async () => {
+        const res = await getStates(formData.country);
+        setStates(res.data);
+        setCities([]);
+      })();
     }
   }, [formData.country]);
 
-  // ✅ Fetch cities
+  // Load cities when state changes
   useEffect(() => {
     if (formData.state) {
-      const fetchCities = async () => {
-        try {
-          const res = await getCities(formData.state);
-          setCities(res.data);
-        } catch (error) {
-          console.error("Error fetching cities:", error);
-        }
-      };
-      fetchCities();
+      (async () => {
+        const res = await getCities(formData.state);
+        setCities(res.data);
+      })();
     }
   }, [formData.state]);
 
-  // ✅ Handle input changes
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "images") {
-      const selectedFiles = Array.from(files);
-      setFormData({ ...formData, images: selectedFiles });
-
-      // preview URLs
-      const previewUrls = selectedFiles.map((file) => URL.createObjectURL(file));
-      setPreviews(previewUrls);
+    if(name === "images") {
+      const selected = Array.from(files);
+      if(selected.length > 5) return alert("❌ You can upload up to 5 images.");
+      setImages(selected);
+      setPreviews(selected.map(f => URL.createObjectURL(f)));
     } else {
       setFormData({ ...formData, [name]: value });
     }
   };
 
-  // ✅ Submit form
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    try {
-      const formObj = new FormData();
-      formObj.append("name", formData.name);
-      formObj.append("slug", formData.slug);
-      formObj.append("description", formData.description);
-      formObj.append("price", formData.price);
-      formObj.append("country", formData.country);
-      formObj.append("state", formData.state);
-      formObj.append("city", formData.city);
+    const formObj = new FormData();
+    for(const key in formData) formObj.append(key, formData[key]);
+    images.forEach(f => formObj.append("images", f));
 
-      // append multiple images
-      formData.images.forEach((file) => {
-        formObj.append("images", file);
-      });
-
-      const res = await createProduct(formObj);
-      alert("✅ Product created successfully!");
-
-      // reset
-      setFormData({
-        name: "",
-        slug: "",
-        description: "",
-        price: "",
-        images: [],
-        country: "",
-        state: "",
-        city: "",
-      });
-      setPreviews([]);
-    } catch (error) {
-      alert(error.message || "❌ Failed to create product");
-    }
+    await createProduct(formObj);
+    alert("✅ Product created successfully!");
+    setFormData({
+      name: "", slug: "", description: "", productType: "",
+      offerPrice: "", actualPrice: "", productHighlights: "", productOverview: "",
+      thingsToCarry: "", additionalInfo: "", faq: "", country: "", state: "", city: "",
+      reviews: "", rating: ""
+    });
+    setImages([]);
+    setPreviews([]);
   };
 
   return (
     <div className="max-w-3xl mt-30 mx-auto p-6 bg-white rounded-xl shadow">
-      <h2 className="text-2xl font-bold text-orange-500 mb-6 text-center">
-        Add New Product
-      </h2>
+      <h2 className="text-2xl font-bold text-orange-500 mb-6 text-center">Add New Product</h2>
       <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Name */}
-        <input
-          type="text"
-          name="name"
-          placeholder="Product Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-xl"
-          required
-        />
+        <input type="text" name="name" placeholder="Product Name" value={formData.name} onChange={handleChange} required/>
+        <input type="text" name="slug" placeholder="Slug" value={formData.slug} onChange={handleChange} required/>
+        <input type="text" name="productType" placeholder="Product Type" value={formData.productType} onChange={handleChange} required/>
+        <input type="number" name="offerPrice" placeholder="Offer Price" value={formData.offerPrice} onChange={handleChange} required/>
+        <input type="number" name="actualPrice" placeholder="Actual Price" value={formData.actualPrice} onChange={handleChange} required/>
+        <input type="text" name="reviews" placeholder="Reviews" value={formData.reviews} onChange={handleChange}/>
+        <input type="number" name="rating" placeholder="Rating" value={formData.rating} onChange={handleChange}/>
+        <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange}/>
+        <Editor content={formData.productHighlights} onChange={c => setFormData(p => ({...p, productHighlights: c}))}/>
+        <Editor content={formData.productOverview} onChange={c => setFormData(p => ({...p, productOverview: c}))}/>
+        <Editor content={formData.thingsToCarry} onChange={c => setFormData(p => ({...p, thingsToCarry: c}))}/>
+        <Editor content={formData.additionalInfo} onChange={c => setFormData(p => ({...p, additionalInfo: c}))}/>
+        <Editor content={formData.faq} onChange={c => setFormData(p => ({...p, faq: c}))}/>
 
-        {/* Slug */}
-        <input
-          type="text"
-          name="slug"
-          placeholder="Slug"
-          autoComplete="off"
-          value={formData.slug}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-xl"
-          required
-        />
-
-        {/* Description */}
-        <textarea
-          name="description"
-          placeholder="Product Description"
-          value={formData.description}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-xl"
-        />
-
-        {/* Price */}
-        <input
-          type="number"
-          name="price"
-          placeholder="Price"
-          value={formData.price}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-xl"
-          required
-        />
-
-        {/* Country */}
-        <select
-          name="country"
-          value={formData.country}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-xl"
-          required
-        >
+        <select name="country" value={formData.country} onChange={handleChange}>
           <option value="">Select Country</option>
-          {countries.map((c) => (
-            <option key={c._id} value={c._id}>
-              {c.name}
-            </option>
-          ))}
+          {countries.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
         </select>
-
-        {/* State */}
-        <select
-          name="state"
-          value={formData.state}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-xl"
-          required
-          disabled={!formData.country}
-        >
+        <select name="state" value={formData.state} onChange={handleChange} disabled={!formData.country}>
           <option value="">Select State</option>
-          {states.map((s) => (
-            <option key={s._id} value={s._id}>
-              {s.name}
-            </option>
-          ))}
+          {states.map(s => <option key={s._id} value={s._id}>{s.name}</option>)}
         </select>
-
-        {/* City */}
-        <select
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-          className="w-full p-3 border rounded-xl"
-          required
-          disabled={!formData.state}
-        >
+        <select name="city" value={formData.city} onChange={handleChange} disabled={!formData.state}>
           <option value="">Select City</option>
-          {cities.map((c) => (
-            <option key={c._id} value={c._id}>
-              {c.name}
-            </option>
-          ))}
+          {cities.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
         </select>
 
-        {/* Images Upload */}
-        <input
-          type="file"
-          name="images"
-          multiple
-          accept="image/*"
-          onChange={handleChange}
-          className="w-full p-3 border rounded-xl"
-        />
+        <input type="file" name="images" multiple accept="image/*" onChange={handleChange}/>
+        {previews.length>0 && <div className="flex flex-wrap gap-3 mt-3">{previews.map((src,idx)=><img key={idx} src={src} className="w-32 h-24 object-cover rounded-lg border"/>)}</div>}
 
-        {/* Preview */}
-        {previews.length > 0 && (
-          <div className="flex flex-wrap gap-3 mt-3">
-            {previews.map((src, idx) => (
-              <img
-                key={idx}
-                src={src}
-                alt={`Preview ${idx}`}
-                className="w-32 h-24 object-cover rounded-lg border"
-              />
-            ))}
-          </div>
-        )}
-
-        <button
-          type="submit"
-          className="w-full bg-gradient-to-r from-orange-500 to-amber-400 text-white font-semibold py-3 rounded-xl hover:scale-95"
-        >
-          Create Product
-        </button>
+        <button type="submit" className="w-full bg-orange-500 text-white py-3 rounded-xl">Create Product</button>
       </form>
     </div>
   );

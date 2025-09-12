@@ -4,8 +4,25 @@ import Payment from "../assets/payment.svg";
 import Call from "../assets/calling.svg";
 import Content from "./Content";
 
-
 const Productpage = () => {
+  // Example data — you can replace or fetch this from an API
+  const product = {
+    title: "Big Bus Paris Hop-On Hop-Off Tour with Optional River Cruise",
+    location: "Chennai, Tamil Nadu",
+    reviews: "⭐⭐⭐⭐⭐ Reviews",
+    oldPrice: "₹5,047",
+    newPrice: "₹4,047",
+    contact: "+91-75015 16714",
+    contactHours: "10:30 AM - 8:00 PM (Mon to Sat)",
+    images: [
+      "/images/kashmir.webp",
+      "/images/kerala.webp",
+      "/images/thailand.png",
+      "/images/bali.png",
+      "/images/malaysia.png",
+    ],
+  };
+
   return (
     <>
       <div className="min-h-screen w-full">
@@ -18,22 +35,22 @@ const Productpage = () => {
             <h3 className="font-semibold text-gray-600">Chennai</h3>
           </div>
           <h1 className="text-3xl tracking-tighter font-bold pt-4">
-            Big Bus Paris Hop-On Hop-Off Tour with Optional River Cruise
+            {product.title}
           </h1>
 
           <div className="flex justify-between">
             <div className="email flex items-center gap-4 pt-2">
               <div className="flex items-center gap-1">
-                <h3 className="text-gray-500">⭐⭐⭐⭐⭐ Reviews</h3>
+                <h3 className="text-gray-500">{product.reviews}</h3>
               </div>
               <div className="border-1 h-full border-gray-400"></div>{" "}
               {/* Vertical Line */}
               <div className="number flex justify-center items-center">
-                <h3 className="text-gray-500">Chennai, Tamil Nadu</h3>
+                <h3 className="text-gray-500">{product.location}</h3>
               </div>
             </div>
             <button className="py-2 flex items-center gap-2 px-6 font-semibold text-white active:scale-95 transition-all duration-300 bg-[rgb(233,99,33)] rounded-3xl">
-              <img className="invert h-5 w-5" src={Share} alt="" />
+              <img className="invert h-5 w-5" src={Share} alt="share" />
               Share
             </button>
           </div>
@@ -46,7 +63,7 @@ const Productpage = () => {
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out hover:scale-110"
                   style={{
-                    backgroundImage: "url('/images/kashmir.webp')",
+                    backgroundImage: `url('${product.images[0]}')`,
                   }}
                 ></div>
               </div>
@@ -54,7 +71,7 @@ const Productpage = () => {
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out hover:scale-110"
                   style={{
-                    backgroundImage: "url('/images/kerala.webp')",
+                    backgroundImage: `url('${product.images[1]}')`,
                   }}
                 ></div>
               </div>
@@ -66,7 +83,7 @@ const Productpage = () => {
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out hover:scale-110"
                   style={{
-                    backgroundImage: "url('/images/thailand.png')",
+                    backgroundImage: `url('${product.images[2]}')`,
                   }}
                 ></div>
               </div>
@@ -78,7 +95,7 @@ const Productpage = () => {
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out hover:scale-110"
                   style={{
-                    backgroundImage: "url('/images/bali.png')",
+                    backgroundImage: `url('${product.images[3]}')`,
                   }}
                 ></div>
               </div>
@@ -86,13 +103,14 @@ const Productpage = () => {
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out hover:scale-110"
                   style={{
-                    backgroundImage: "url('/images/malaysia.png')",
+                    backgroundImage: `url('${product.images[4]}')`,
                   }}
                 ></div>
               </div>
             </div>
           </div>
         </div>
+
         <div className="w-[80%] m-auto flex min-h-screen">
           <div className="w-[70%] min-h-screen m-auto">
             <Content />
@@ -108,9 +126,9 @@ const Productpage = () => {
                 <div className="">
                   <span className="font-semibold">From</span>
                   <span className="line-through pl-2 text-xl text-gray-500">
-                    ₹5,047
+                    {product.oldPrice}
                   </span>
-                  <h1 className="text-3xl font-bold text-orange-500">₹4,047</h1>
+                  <h1 className="text-3xl font-bold text-orange-500">{product.newPrice}</h1>
                   <span className="font-semibold">per person</span>
                 </div>
                 <div>
@@ -120,9 +138,8 @@ const Productpage = () => {
                 </div>
               </div>
               <div className="flex gap-4 w-[90%] m-auto items-center pt-2">
-                <img className="h-6 w-6" src={Payment} alt="" />
+                <img className="h-6 w-6" src={Payment} alt="payment" />
                 <p className="text-sm">
-                  {" "}
                   <span className="underline font-semibold">
                     Reserve now & pay later
                   </span>{" "}
@@ -146,12 +163,14 @@ const Productpage = () => {
                       <img
                         className="h-[20px] w-[20px] object-contain invert"
                         src={Call}
-                        alt=""
+                        alt="call"
                       />
                     </div>
                     <div>
-                    <a className="text-xl" href="tel:+917501516714">+91-75015 16714</a>
-                    <h3>10:30 AM - 8:00 PM (Mon to Sat)</h3>
+                      <a className="text-xl" href={`tel:${product.contact}`}>
+                        {product.contact}
+                      </a>
+                      <h3>{product.contactHours}</h3>
                     </div>
                   </div>
                 </div>
@@ -165,3 +184,4 @@ const Productpage = () => {
 };
 
 export default Productpage;
+
