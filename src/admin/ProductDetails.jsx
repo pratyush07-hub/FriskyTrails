@@ -11,7 +11,10 @@ const ProductDetails = () => {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
 
-  const baseUrl = "http://localhost:8000"; // Adjust to your backend
+  const baseUrl = process.env.NODE_ENV === "development"
+  ? "http://localhost:8000"
+  : "https://your-vercel-app.vercel.app";
+
 
   useEffect(() => {
     const fetchProduct = async () => {
