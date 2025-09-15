@@ -4,8 +4,10 @@ import Form from "../components/Popupform";
 import Arrow from "../assets/rightarrow.svg";
 import Choose from "../sections/Choose";
 import Promise from "../sections/Promise";
+import { useNavigate } from 'react-router-dom'
 
 const About = () => {
+  const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
   const [showJointeam, setShowJointeam] = useState(false);
   // Toggle function
@@ -131,12 +133,12 @@ const About = () => {
         </div>
         <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-10 gap-4 md:gap-10">
           <button
-            onClick={toggleJointeam}
-            className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 md:mt-8 border-1 flex gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-4 md:px-6 py-2 md:py-3"
+            onClick={() => navigate("/hiring")}
+            className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 md:mt-8 border-1 flex justify-center md:justify-normal gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-4 md:px-6 py-2 md:py-3"
           >
             Join Our Team!
           </button>
-          {showJointeam && <Jointeam onClose={() => setShowJointeam(false)} />}
+          {/* {showJointeam && <Jointeam onClose={() => setShowJointeam(false)} />} */}
         </div>
       </div>
       <div className="md:hidden w-[90vw] mx-auto">
@@ -160,12 +162,12 @@ const About = () => {
         </div>
         <div className="flex flex-col md:flex-row justify-center pb-6 md:pb-10 gap-4 md:gap-10">
           <button
-            onClick={toggleJointeam}
+            onClick={() => navigate("/hiring")}
             className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 md:mt-8 border-1 flex justify-center md:justify-normal gap-1 font-semibold rounded-lg active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white px-4 md:px-6 py-2 md:py-3"
           >
             Join Our Team!
           </button>
-          {showJointeam && <Jointeam onClose={() => setShowJointeam(false)} />}
+          {/* {showJointeam && <Jointeam onClose={() => setShowJointeam(false)} />} */}
         </div>
       </div>
     </div>

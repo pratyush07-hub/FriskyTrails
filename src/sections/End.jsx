@@ -30,17 +30,17 @@ const End = () => {
                   <a href="tel:+917501516714">+91-75015 16714</a>
                 </h3>
                 <h3 className="text-gray-400 font-bold ml-4 mt-2">
-                  <a href="mailto:friskytrails@gmail.com">friskytrails@gmail.com</a>
+                  <a href="mailto:friskytrails@gmail.com">contact@friskytrails.in</a>
                 </h3>
               </div>
               <div className="images flex ml-4 mt-6 items-center gap-4">
-                <a href="https://www.facebook.com/friskytrails/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.facebook.com/friskytrailscommunity/" target="_blank" rel="noopener noreferrer">
                   <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Facebook} alt="" />
                 </a>
                 <a href="https://x.com/frisky_trails" target="_blank" rel="noopener noreferrer">
                   <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Twitter} alt="" />
                 </a>
-                <a href="https://www.linkedin.com/company/friskytrails/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/company/friskytrailsofficial/" target="_blank" rel="noopener noreferrer">
                   <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Linkedin} alt="" />
                 </a>
                 <a href="https://www.instagram.com/friskytrails/" target="_blank" rel="noopener noreferrer">
@@ -152,20 +152,20 @@ const End = () => {
           </h3>
           <div className="email mt-2 md:flex md:mb-2 md:justify-center md:gap-10">
             <h3 className="text-gray-400 font-bold text-center">
-              <a href="mailto:friskytrails@gmail.com">friskytrails@gmail.com</a>
+              <a href="mailto:friskytrails@gmail.com">contact@friskytrails.in</a>
             </h3>
             <h3 className="text-gray-400 font-bold text-center">
               <a href="tel:+917501516714">+91-75015 16714</a>
             </h3>
           </div>
           <div className="images mt-4 flex justify-center items-center gap-4">
-            <a href="https://www.facebook.com/friskytrails/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/friskytrailscommunity/" target="_blank" rel="noopener noreferrer">
               <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Facebook} alt="" />
             </a>
             <a href="https://x.com/frisky_trails" target="_blank" rel="noopener noreferrer">
               <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Twitter} alt="" />
             </a>
-            <a href="https://www.linkedin.com/company/friskytrails/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/company/friskytrailsofficial/" target="_blank" rel="noopener noreferrer">
               <img className="w-8 h-8 object-cover bg-white rounded-lg" src={Linkedin} alt="" />
             </a>
             <a href="https://www.instagram.com/friskytrails/" target="_blank" rel="noopener noreferrer">

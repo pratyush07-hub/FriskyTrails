@@ -24,7 +24,7 @@ const Hiring = () => {
   ];
 
   return (
-    <div className="min-h-screen mt-23 md:mt-28 lg:mt-30 xl:mt-32 w-full">
+    <div className="min-h-screen mt-23 md:mt-28 lg:mt-30 xl:mt-28 w-full">
       {/* Banner */}
       <div className="w-full h-[40vh] sm:h-[50vh] md:h-[60vh]">
         <img

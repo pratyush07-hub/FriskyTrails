@@ -72,7 +72,7 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <h2 className="text-xl md:text-2xl font-semibold text-gray-600 cursor-pointer">
-                    friskytrails@gmail.com
+                    contact@friskytrails.in
                   </h2>
                 </div>
               </div>
