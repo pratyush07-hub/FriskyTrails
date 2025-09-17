@@ -6,15 +6,16 @@ import Payment from "../assets/payment.svg";
 import Call from "../assets/calling.svg";
 import { getProductBySlug } from "../api/admin.api";
 import Content from "../Productpage/Content";
+import BookingModal from "../components/BookingModal"; // Added import
 
 const ProductDetails = () => {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
+  const [showBooking, setShowBooking] = useState(false); // Added state
 
   const baseUrl = process.env.NODE_ENV === "development"
-  ? "http://localhost:8000"
-  : "https://your-vercel-app.vercel.app";
-
+    ? "http://localhost:8000"
+    : "https://your-vercel-app.vercel.app";
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -28,12 +29,14 @@ const ProductDetails = () => {
     fetchProduct();
   }, [slug]);
 
+  const openBookingModal = () => setShowBooking(true); // Added function
+  const closeBookingModal = () => setShowBooking(false); // Added function
+
   if (!product) return <p className="text-center py-10">Loading...</p>;
 
   return (
     <div className="min-h-screen w-full">
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mt-30 m-auto px-4">
-        {/* Breadcrumb */}
         <div className="flex items-center pt-4 sm:pt-6 flex-wrap gap-2">
           <h3 className="font-semibold text-sm sm:text-base">Home</h3>
           <img className="h-3 w-3 sm:h-4 sm:w-4 mt-1" src={Right} alt="rightarrow" />
@@ -42,10 +45,8 @@ const ProductDetails = () => {
           <h3 className="font-semibold text-gray-600 text-sm sm:text-base truncate">{product.name}</h3>
         </div>
 
-        {/* Title */}
         <h1 className="text-xl sm:text-2xl md:text-3xl tracking-tighter font-bold pt-4">{product.name}</h1>
 
-        {/* Reviews and Location */}
         <div className="flex flex-col sm:flex-row sm:justify-between gap-4 pt-2">
           <div className="email flex items-center gap-2 sm:gap-4 flex-wrap">
             <div className="flex items-center gap-1">
@@ -67,12 +68,10 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {/* Image Gallery */}
       <div className="h-[60vh] sm:h-[70vh] md:h-[80vh] w-full pt-4 px-4">
         <div className="h-[50vh] sm:h-[60vh] md:h-[70vh] w-full max-w-7xl rounded-lg bg-white m-auto">
           {product.images && product.images.length > 0 && (
             <>
-              {/* Mobile Layout - Single Column */}
               <div className="block sm:hidden space-y-2 h-full overflow-y-auto">
                 {product.images.map((img, idx) => (
                   <div key={idx} className={`w-full rounded-xl shadow-2xl relative overflow-hidden ${
@@ -86,7 +85,6 @@ const ProductDetails = () => {
                 ))}
               </div>
 
-              {/* Tablet Layout - 2 Columns */}
               <div className="hidden sm:block lg:hidden grid grid-cols-2 h-full gap-2">
                 {product.images.map((img, idx) => (
                   <div key={idx} className={`w-full rounded-xl shadow-2xl relative overflow-hidden ${
@@ -100,9 +98,7 @@ const ProductDetails = () => {
                 ))}
               </div>
 
-              {/* Desktop Layout - 3 Columns */}
               <div className="hidden lg:grid grid-cols-3 h-full gap-3">
-                {/* Left Column */}
                 <div className="space-y-3">
                   {product.images.slice(0, 2).map((img, idx) => (
                     <div key={idx} className="h-[33vh] w-full rounded-2xl shadow-2xl relative overflow-hidden">
@@ -114,7 +110,6 @@ const ProductDetails = () => {
                   ))}
                 </div>
 
-                {/* Middle Column */}
                 <div className="flex items-center justify-center">
                   {product.images[2] ? (
                     <div className="h-[68vh] w-full rounded-2xl shadow-2xl relative overflow-hidden">
@@ -133,7 +128,6 @@ const ProductDetails = () => {
                   ) : null}
                 </div>
 
-                {/* Right Column */}
                 <div className="space-y-3">
                   {product.images.slice(3, 5).map((img, idx) => (
                     <div key={idx} className="h-[33vh] w-full rounded-2xl shadow-2xl relative overflow-hidden">
@@ -150,20 +144,16 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      {/* Content and Sidebar */}
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] m-auto flex flex-col lg:flex-row min-h-screen px-4">
         <div className="w-full lg:w-[70%] min-h-screen m-auto order-2 lg:order-1">
-          {/* Content Section */}
           <Content product={product} />
         </div>
 
         <div className="w-full lg:w-[30%] min-h-screen m-auto order-1 lg:order-2 mb-8 lg:mb-0">
-          {/* Discount Banner */}
           <div className="h-[6vh] sm:h-[4vh] relative w-full bg-orange-500 m-auto rounded-t-lg">
             <span className="text-white absolute right-2 top-1 text-sm sm:text-base">Save upto 50%</span>
           </div>
 
-          {/* Price Section */}
           <div className="min-h-[25vh] sm:h-[20vh] w-full border-1 border-orange-500 bg-white m-auto rounded-b-lg">
             <div className="flex flex-col sm:flex-row items-center justify-between w-[90%] sm:w-[86%] m-auto p-4 sm:p-0">
               <div className="text-center sm:text-left mb-4 sm:mb-0">
@@ -173,7 +163,10 @@ const ProductDetails = () => {
                 <span className="font-semibold text-sm sm:text-base">per person</span>
               </div>
               <div>
-                <button className="py-2 px-6 sm:px-10 flex text-lg sm:text-xl items-center gap-2 font-semibold text-white active:scale-95 transition-all duration-300 bg-[rgb(233,99,33)] rounded-3xl">
+                <button
+                  onClick={openBookingModal} // Added onClick here
+                  className="py-2 px-6 sm:px-10 flex text-lg sm:text-xl items-center gap-2 font-semibold text-white active:scale-95 transition-all duration-300 bg-[rgb(233,99,33)] rounded-3xl"
+                >
                   Book Now
                 </button>
               </div>
@@ -186,7 +179,6 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          {/* Got a Question Section */}
           <div className="min-h-[40vh] sm:h-[36vh] w-full border-1 border-orange-500 mt-6 sm:mt-10 bg-white m-auto rounded-lg">
             <div className="flex items-center justify-between w-[90%] m-auto p-4">
               <div>
@@ -210,6 +202,9 @@ const ProductDetails = () => {
 
         </div>
       </div>
+
+      {/* Booking Modal Added Here */}
+      {showBooking && <BookingModal productSlug={product.slug} onClose={closeBookingModal} />}
     </div>
   );
 };
