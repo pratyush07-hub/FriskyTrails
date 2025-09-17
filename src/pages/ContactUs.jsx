@@ -58,7 +58,9 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <h2 className="text-xl md:text-2xl font-semibold text-gray-600 cursor-pointer">
-                    +91-75015 16714
+                    <a href="tel:+917501516714">
+              +91-75015 16714
+            </a>
                   </h2>
                 </div>
               </div>
@@ -72,7 +74,9 @@ const ContactUs = () => {
                 </div>
                 <div>
                   <h2 className="text-xl md:text-2xl font-semibold text-gray-600 cursor-pointer">
-                    contact@friskytrails.in
+                    <a href="mailto:contact@friskytrails.in">
+              contact@friskytrails.in
+            </a>
                   </h2>
                 </div>
               </div>

@@ -31,7 +31,7 @@ const Modal = ({ onClose }) => {
                     <Link to="/services/holidays"><h3 className='py-3 hover:text-[rgb(255,99,33)]'>Holidays</h3></Link>
                     <Link to="/services/activities"><h3 className='py-3 hover:text-[rgb(255,99,33)]'>Activities</h3></Link>
                     <Link to="/services/hotels"><h3 className='py-3 hover:text-[rgb(255,99,33)]'>Hotels</h3></Link>
-                    <Link to="/services/transport"><h3 className='py-3 hover:text-[rgb(255,99,33)]'>Transport</h3></Link>
+                    <Link to="/services/transport"><h3 className='py-3 hover:text-[rgb(255,99,33)]'>Cab Service</h3></Link>
                 </div>
 
                 <div className='text-white pt-4 pl-8 sm:pl-8 md:pl-12 cursor-pointer'>

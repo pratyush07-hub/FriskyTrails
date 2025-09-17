@@ -37,7 +37,9 @@ const Knowus = () => {
             </div>
             <div>
               <h3 className="text-gray-600 text-sm sm:text-base">Phone No:</h3>
-              <h2 className="text-base sm:text-lg font-semibold text-orange-500 cursor-pointer">+91-75015 16714</h2>
+              <h2 className="text-base sm:text-lg font-semibold text-orange-500 cursor-pointer"><a href="tel:+917501516714">
+              +91-75015 16714
+            </a></h2>
             </div>
           </div>
 
@@ -48,7 +50,9 @@ const Knowus = () => {
             </div>
             <div>
               <h3 className="text-gray-600 text-sm sm:text-base">Email Address:</h3>
-              <h2 className="text-base sm:text-lg font-semibold text-orange-500 cursor-pointer">contact@friskytrails.in</h2>
+              <h2 className="text-base sm:text-lg font-semibold text-orange-500 cursor-pointer"><a href="mailto:contact@friskytrails.in">
+              contact@friskytrails.in
+            </a></h2>
             </div>
           </div>
         </div>

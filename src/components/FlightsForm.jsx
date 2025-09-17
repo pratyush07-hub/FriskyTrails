@@ -66,8 +66,8 @@ const FlightsForm = () => {
     returnDate: "Return (Optional)",
     travelClass: "Class",
     passengers: "Passengers",
-    price: "Price (Optional)",
-    airline: "Airline (Optional)"
+    price: "Price",
+    airline: "Airline"
   };
 
   const placeholders = {
@@ -75,16 +75,18 @@ const FlightsForm = () => {
     toCity: "Enter destination city",
     departureDate: "Select departure date",
     returnDate: "Select return date",
-    travelClass: "Economy, Business...",
+    travelClass: "Select class",
     passengers: "Number of passengers",
     price: "Enter price",
     airline: "Enter airline name"
   };
 
+  const classOptions = ["Economy", "Business", "First Class"];
+
   return (
     <>
       {/* Tablet/Desktop Form */}
-      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-20 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4">
+      <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-20 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4 overflow-visible">
         <h2 className="text-2xl text-orange-400 font-bold pb-4 text-center">
           Flights
         </h2>
@@ -97,26 +99,47 @@ const FlightsForm = () => {
               <label className="block font-semibold mb-1 pl-1">
                 {labels[field]}
               </label>
-              <input
-                type={
-                  ["departureDate", "returnDate"].includes(field)
-                    ? "date"
-                    : field === "passengers" || field === "price"
-                    ? "number"
-                    : "text"
-                }
-                name={field}
-                placeholder={placeholders[field]}
-                value={formData[field]}
-                onChange={handleChange}
-                min={
-                  ["departureDate", "returnDate"].includes(field)
-                    ? new Date().toISOString().split("T")[0]
-                    : "0"
-                }
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required={field !== "returnDate" && field !== "price" && field !== "airline"}
-              />
+              {field === "travelClass" ? (
+                <div className="relative w-full">
+                  <select
+                    name={field}
+                    value={formData[field]}
+                    onChange={handleChange}
+                    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    required
+                  >
+                    <option value="" disabled>
+                      {placeholders[field]}
+                    </option>
+                    {classOptions.map((option, idx) => (
+                      <option key={idx} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ) : (
+                <input
+                  type={
+                    ["departureDate", "returnDate"].includes(field)
+                      ? "date"
+                      : field === "passengers" || field === "price"
+                      ? "number"
+                      : "text"
+                  }
+                  name={field}
+                  placeholder={placeholders[field]}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  min={
+                    ["departureDate", "returnDate"].includes(field)
+                      ? new Date().toISOString().split("T")[0]
+                      : "0"
+                  }
+                  className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  required={field !== "returnDate" && field !== "price" && field !== "airline"}
+                />
+              )}
             </div>
           ))}
           <div className="w-full md:w-auto">
@@ -142,7 +165,7 @@ const FlightsForm = () => {
 
       {/* Mobile Popup Form */}
       {showMobileForm && (
-        <div className="md:hidden fixed top-[20%] left-1/2 transform -translate-x-1/2 w-[90vw] h-auto py-8 bg-white rounded-xl shadow-xl z-30 px-4 border border-gray-200 overflow-y-auto">
+        <div className="md:hidden fixed top-[20%] left-1/2 transform -translate-x-1/2 w-[95vw] h-auto py-8 bg-white rounded-xl shadow-xl z-30 px-4 border border-gray-200 overflow-visible">
           <button
             className="absolute top-3 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
             onClick={() => setShowMobileForm(false)}
@@ -160,26 +183,47 @@ const FlightsForm = () => {
                 <label className="block font-semibold mb-1 pl-1">
                   {labels[field]}
                 </label>
-                <input
-                  type={
-                    ["departureDate", "returnDate"].includes(field)
-                      ? "date"
-                      : field === "passengers" || field === "price"
-                      ? "number"
-                      : "text"
-                  }
-                  name={field}
-                  placeholder={placeholders[field]}
-                  value={formData[field]}
-                  onChange={handleChange}
-                  min={
-                    ["departureDate", "returnDate"].includes(field)
-                      ? new Date().toISOString().split("T")[0]
-                      : "0"
-                  }
-                  className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  required={field !== "returnDate" && field !== "price" && field !== "airline"}
-                />
+                {field === "travelClass" ? (
+                  <div className="relative w-full">
+                    <select
+                      name={field}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                      required
+                    >
+                      <option value="" disabled>
+                        {placeholders[field]}
+                      </option>
+                      {classOptions.map((option, idx) => (
+                        <option key={idx} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                ) : (
+                  <input
+                    type={
+                      ["departureDate", "returnDate"].includes(field)
+                        ? "date"
+                        : field === "passengers" || field === "price"
+                        ? "number"
+                        : "text"
+                    }
+                    name={field}
+                    placeholder={placeholders[field]}
+                    value={formData[field]}
+                    onChange={handleChange}
+                    min={
+                      ["departureDate", "returnDate"].includes(field)
+                        ? new Date().toISOString().split("T")[0]
+                        : "0"
+                    }
+                    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    required={field !== "returnDate" && field !== "price" && field !== "airline"}
+                  />
+                )}
               </div>
             ))}
             <div className="w-full">

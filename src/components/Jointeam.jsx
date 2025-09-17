@@ -58,7 +58,7 @@ const Jointeam = ({ onClose }) => {
           <input
             type="text"
             name="name"
-            placeholder="Your Name"
+            placeholder="Your Name*"
             value={formData.name}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
@@ -69,7 +69,7 @@ const Jointeam = ({ onClose }) => {
           <input
             type="tel"
             name="mobile"
-            placeholder="Your Mobile Number"
+            placeholder="Your Mobile Number*"
             pattern="[6-9]{1}[0-9]{9}"
             maxLength="10"
             value={formData.mobile}
@@ -82,7 +82,7 @@ const Jointeam = ({ onClose }) => {
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder="Email Address*"
             value={formData.email}
             onChange={handleChange}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
@@ -92,7 +92,7 @@ const Jointeam = ({ onClose }) => {
           {/* Position Applying For */}
           <div>
             <label className="text-gray-600 text-sm pl-2 mb-1 block">
-              Position Applying For
+              Position Applying For*
             </label>
             <select
               name="position"
@@ -119,7 +119,7 @@ const Jointeam = ({ onClose }) => {
           {/* Attach Resume */}
           <div>
             <label className="text-gray-600 text-sm pl-2 mb-1 block">
-              Attach Resume (PDF/DOC)
+              Attach Resume (PDF/DOC)*
             </label>
             <input
               type="file"

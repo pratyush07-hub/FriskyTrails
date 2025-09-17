@@ -8,7 +8,7 @@ const Deals = () => {
     },
     {
       image: "/holidaysimages/Rishikesh.webp",
-      title: "Rishikesh",
+      title: " Uttarakhand",
       duration: "5 Nights / 6 days",
       column: "left",
     },

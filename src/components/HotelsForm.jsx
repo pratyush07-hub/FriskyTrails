@@ -4,7 +4,7 @@ import { hotelBooking } from "../api/hotel.api"; // Correct API import
 const HotelForm = () => {
   const [formData, setFormData] = useState({
     city: "",
-    property: "",
+    budget: "",
     checkInDate: "",
     checkOutDate: "",
     guests: "",
@@ -33,7 +33,7 @@ const HotelForm = () => {
     }
     setFormData({
       city: "",
-      property: "",
+      budget: "",
       checkInDate: "",
       checkOutDate: "",
       guests: "",
@@ -57,7 +57,7 @@ const HotelForm = () => {
 
   const labels = {
     city: "City",
-    property: "Property",
+    budget: "Budget (in ₹)",
     checkInDate: "Check-In",
     checkOutDate: "Check-Out",
     guests: "Guests",
@@ -65,7 +65,7 @@ const HotelForm = () => {
 
   const placeholders = {
     city: "Enter city",
-    property: "Enter property",
+    budget: "Enter budget",
     checkInDate: "Select date",
     checkOutDate: "Select date",
     guests: "No. of guests",
@@ -87,26 +87,45 @@ const HotelForm = () => {
               <label className="block font-semibold mb-1 pl-1">
                 {labels[field]}
               </label>
-              <input
-                type={
-                  field === "checkInDate" || field === "checkOutDate"
-                    ? "date"
-                    : field === "guests"
-                    ? "number"
-                    : "text"
-                }
-                name={field}
-                placeholder={placeholders[field]}
-                value={formData[field]}
-                onChange={handleChange}
-                min={
-                  field === "checkInDate" || field === "checkOutDate"
-                    ? new Date().toISOString().split("T")[0]
-                    : "0"
-                }
-                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required
-              />
+              {field === "budget" ? (
+                <div className="relative">
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                    ₹
+                  </span>
+                  <input
+                    type="number"
+                    name={field}
+                    placeholder={placeholders[field]}
+                    value={formData[field]}
+                    onChange={handleChange}
+                    min="0"
+                    step="100"
+                    className="w-full pl-8 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    required
+                  />
+                </div>
+              ) : (
+                <input
+                  type={
+                    field === "checkInDate" || field === "checkOutDate"
+                      ? "date"
+                      : field === "guests"
+                      ? "number"
+                      : "text"
+                  }
+                  name={field}
+                  placeholder={placeholders[field]}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  min={
+                    field === "checkInDate" || field === "checkOutDate"
+                      ? new Date().toISOString().split("T")[0]
+                      : "0"
+                  }
+                  className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  required
+                />
+              )}
             </div>
           ))}
           <div className="w-full md:w-auto">
@@ -150,26 +169,45 @@ const HotelForm = () => {
                 <label className="block font-semibold mb-1 pl-1">
                   {labels[field]}
                 </label>
-                <input
-                  type={
-                    field === "checkInDate" || field === "checkOutDate"
-                      ? "date"
-                      : field === "guests"
-                      ? "number"
-                      : "text"
-                  }
-                  name={field}
-                  placeholder={placeholders[field]}
-                  value={formData[field]}
-                  onChange={handleChange}
-                  min={
-                    field === "checkInDate" || field === "checkOutDate"
-                      ? new Date().toISOString().split("T")[0]
-                      : "0"
-                  }
-                  className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  required
-                />
+                {field === "budget" ? (
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                      ₹
+                    </span>
+                    <input
+                      type="number"
+                      name={field}
+                      placeholder={placeholders[field]}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      min="0"
+                      step="100"
+                      className="w-full pl-8 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                      required
+                    />
+                  </div>
+                ) : (
+                  <input
+                    type={
+                      field === "checkInDate" || field === "checkOutDate"
+                        ? "date"
+                        : field === "guests"
+                        ? "number"
+                        : "text"
+                    }
+                    name={field}
+                    placeholder={placeholders[field]}
+                    value={formData[field]}
+                    onChange={handleChange}
+                    min={
+                      field === "checkInDate" || field === "checkOutDate"
+                        ? new Date().toISOString().split("T")[0]
+                        : "0"
+                    }
+                    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    required
+                  />
+                )}
               </div>
             ))}
 
