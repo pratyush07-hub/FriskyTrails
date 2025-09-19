@@ -54,7 +54,7 @@ const About = () => {
 
       <div className="">
         <h1 className="text-3xl md:text-4xl font-semibold mt-4 md:mt-24 text-[rgb(255,99,33)] text-center">
-          What is FriskyTrails?
+          Why FriskyTrails?
         </h1>
         <div className="w-full md:w-[70vw] mx-auto flex justify-center">
           <p className="text-center mt-2 md:mt-8 text-base md:text-xl text-gray-600">
