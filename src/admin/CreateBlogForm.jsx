@@ -6,6 +6,8 @@ const CreateBlogForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
+    intro: "",
+    conclusion: "",
     authorName: "",
     country: "",
     state: "",
@@ -88,7 +90,7 @@ const CreateBlogForm = () => {
   };
 
   const addBlock = () => {
-    setBlocks([...blocks, { id: Date.now(), intro: "", content: "" }]);
+    setBlocks([...blocks, { id: Date.now(), heading: "", content: "" }]);
   };
 
   const removeBlock = (id) => {
@@ -111,12 +113,14 @@ const CreateBlogForm = () => {
       setFormData({
         title: "",
         slug: "",
+        intro: "",
+        conclusion: "",
         authorName: "",
         country: "",
         state: "",
         city: "",
       });
-      setBlocks([{ id: Date.now(), intro: "", content: "" }]);
+      setBlocks([{ id: Date.now(), heading: "", content: "" }]);
       setImageFile(null);
       setStates([]);
       setCities([]);
@@ -152,6 +156,11 @@ const CreateBlogForm = () => {
           disabled
           className="p-2 border rounded bg-gray-100 cursor-not-allowed"
         />
+        <label className="block font-semibold mt-4 mb-1">Short Intro</label>
+<Editor
+  content={formData.intro}
+  onChange={(val) => setFormData(prev => ({ ...prev, intro: val }))}
+/>
 
         {/* Dynamic Blocks */}
         {blocks.map((block, idx) => (
@@ -159,10 +168,10 @@ const CreateBlogForm = () => {
             <h3 className="font-semibold">Block {idx + 1}</h3>
 
             <div>
-              <label className="block mb-2 font-medium">Short Intro</label>
+              <label className="block mb-2 font-medium">Heading</label>
               <Editor
-                content={block.intro}
-                onChange={(val) => handleBlockChange(block.id, "intro", val)}
+                content={block.heading}
+                onChange={(val) => handleBlockChange(block.id, "heading", val)}
               />
             </div>
 
@@ -193,6 +202,12 @@ const CreateBlogForm = () => {
         >
           + Add Block
         </button>
+
+        <label className="block font-semibold mt-4 mb-1">Conclusion</label>
+<Editor
+  content={formData.conclusion}
+  onChange={(val) => setFormData(prev => ({ ...prev, conclusion: val }))}
+/>
 
         <input
           type="text"

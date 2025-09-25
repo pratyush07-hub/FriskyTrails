@@ -6,16 +6,22 @@ const Blogleft = ({ blog }) => {
 
   return (
     <div className="pt-6 pb-10 overflow-y-auto max-h-[80vh] w-full custom-scrollbar">
+
+      {blog.intro && (
+        <div className="prose prose-lg max-w-none w-[90%] mx-auto mb-6">
+          <div dangerouslySetInnerHTML={{ __html: blog.intro }} />
+        </div>
+      )}
       {blog.blocks
   .sort((a, b) => a.order - b.order)
   .map((block, index) => (
     <div key={index} className="w-[90%] mx-auto mb-8">
-      {/* Order and Short Intro on same line */}
-      {block.intro && (
+      {/* Order and Heading on same line */}
+      {block.heading && (
         <p className="leading-relaxed">
           <strong>{block.order}.</strong>{" "}
           <span
-            dangerouslySetInnerHTML={{ __html: block.intro.replace(/^<p>|<\/p>$/g, "") }}
+            dangerouslySetInnerHTML={{ __html: block.heading.replace(/^<p>|<\/p>$/g, "") }}
           />
         </p>
       )}
@@ -41,6 +47,11 @@ const Blogleft = ({ blog }) => {
     </div>
 ))}
 
+{blog.conclusion && (
+        <div className="prose prose-lg max-w-none w-[90%] mx-auto mt-6">
+          <div dangerouslySetInnerHTML={{ __html: blog.conclusion }} />
+        </div>
+      )}
     </div>
   );
 };
@@ -49,6 +60,8 @@ const Blogleft = ({ blog }) => {
 Blogleft.propTypes = {
   blog: PropTypes.shape({
     title: PropTypes.string,
+    intro: PropTypes.string,
+    conclusion: PropTypes.string,
     authorName: PropTypes.string,
     country: PropTypes.object,
     state: PropTypes.object,
@@ -56,7 +69,7 @@ Blogleft.propTypes = {
     blocks: PropTypes.arrayOf(
       PropTypes.shape({
         order: PropTypes.number.isRequired,
-        intro: PropTypes.string,
+        heading: PropTypes.string,
         content: PropTypes.string,
         image: PropTypes.string,
       })
