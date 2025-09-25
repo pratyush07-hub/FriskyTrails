@@ -17,6 +17,15 @@ const createBlog = async (formData) => {
   }
 };
 
+const uploadEditorImage = async (file) => {
+  const formData = new FormData();
+  formData.append("image", file);
+  const response = await axiosInstance.post("/api/v1/admin/upload-editor-image", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return response.data;
+};
+
 
 const createCountry = async (formData) => {
   try {
@@ -183,5 +192,47 @@ const deleteProduct = async (slug) => {
   }
 };
 
+const createProductType = async (formData) => {
+  try {
+    const response = await axiosInstance.post(
+      "/api/v1/admin/create-productType",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
 
-export { createProduct, getProducts, getProductBySlug, updateProduct, deleteProduct, createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs};
+const getProductTypeBySlug = async (slug) => {
+  try{
+    const response = await axiosInstance.get(`/api/v1/admin/productTypes/${slug}`);
+    return response.data;
+  } catch (error){
+    throw error.response ? error.response.data : error.message;
+  }
+}
+const getProductTypeBySlugWithProduct = async (slug) => {
+  try{
+    const response = await axiosInstance.get(`/api/v1/admin/productTypes/${slug}/product`);
+    return response.data;
+  } catch (error){
+    throw error.response ? error.response.data : error.message;
+  }
+}
+
+const getAllProductTypes = async () => {
+  try{
+    const response = await axiosInstance.get(`/api/v1/admin/all-productTypes`);
+    return response.data;
+  } catch (error){
+    throw error.response ? error.response.data : error.message;
+  }
+}
+
+export { createProduct, getProducts, getProductBySlug, updateProduct, deleteProduct, createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs, createProductType, getProductTypeBySlug, getProductTypeBySlugWithProduct, getAllProductTypes, uploadEditorImage };

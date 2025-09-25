@@ -1,8 +1,8 @@
 import axiosInstance from "../utils/axiosInstance";
 
-const bookProduct = async ({ productSlug, name, email, date, guests }) => {
+const bookProduct = async ({ name, email, mobile, date, guest, message, productSlug }) => {
   try {
-    const response = await axiosInstance.post("/api/v1/admin/bookings", { productSlug, name, email, date, guests });
+    const response = await axiosInstance.post("/api/v1/admin/bookings", { name, email, mobile, date, guest, message, productSlug });
     return response.data;
   }
     catch (error) {

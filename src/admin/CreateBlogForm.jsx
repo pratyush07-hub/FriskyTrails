@@ -6,13 +6,16 @@ const CreateBlogForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
-    intro: "",
-    content: "",
     authorName: "",
     country: "",
     state: "",
     city: "",
   });
+
+  // blocks will hold [{ id, intro, content }]
+  const [blocks, setBlocks] = useState([
+    { id: Date.now(), intro: "", content: "" },
+  ]);
 
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -38,7 +41,7 @@ const CreateBlogForm = () => {
       try {
         const res = await getStates(formData.country);
         setStates(res.data);
-        setFormData(prev => ({ ...prev, state: "", city: "" }));
+        setFormData((prev) => ({ ...prev, state: "", city: "" }));
         setCities([]);
       } catch (err) {
         console.error("Failed to fetch states", err);
@@ -53,7 +56,7 @@ const CreateBlogForm = () => {
       try {
         const res = await getCities(formData.state);
         setCities(res.data);
-        setFormData(prev => ({ ...prev, city: "" }));
+        setFormData((prev) => ({ ...prev, city: "" }));
       } catch (err) {
         console.error("Failed to fetch cities", err);
       }
@@ -63,19 +66,33 @@ const CreateBlogForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (name === "title") {
       const generatedSlug = value
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)+/g, "");
-      setFormData(prev => ({ ...prev, slug: generatedSlug }));
+      setFormData((prev) => ({ ...prev, slug: generatedSlug }));
     }
   };
 
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
+  };
+
+  const handleBlockChange = (id, field, value) => {
+    setBlocks((prev) =>
+      prev.map((b) => (b.id === id ? { ...b, [field]: value } : b))
+    );
+  };
+
+  const addBlock = () => {
+    setBlocks([...blocks, { id: Date.now(), intro: "", content: "" }]);
+  };
+
+  const removeBlock = (id) => {
+    setBlocks((prev) => prev.filter((b) => b.id !== id));
   };
 
   const handleSubmit = async (e) => {
@@ -84,6 +101,7 @@ const CreateBlogForm = () => {
     for (const key in formData) {
       data.append(key, formData[key]);
     }
+    data.append("blocks", JSON.stringify(blocks));
     if (imageFile) data.append("image", imageFile);
 
     try {
@@ -93,13 +111,12 @@ const CreateBlogForm = () => {
       setFormData({
         title: "",
         slug: "",
-        intro: "",
-        content: "",
         authorName: "",
         country: "",
         state: "",
         city: "",
       });
+      setBlocks([{ id: Date.now(), intro: "", content: "" }]);
       setImageFile(null);
       setStates([]);
       setCities([]);
@@ -112,7 +129,11 @@ const CreateBlogForm = () => {
   return (
     <div className="p-4 w-[70%] mt-30 mx-auto">
       <h2 className="text-xl font-bold mb-4">Create New Blog</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="flex flex-col gap-4"
+      >
         <input
           type="text"
           name="title"
@@ -132,17 +153,46 @@ const CreateBlogForm = () => {
           className="p-2 border rounded bg-gray-100 cursor-not-allowed"
         />
 
-        <textarea
-          name="intro"
-          placeholder="Short Intro"
-          value={formData.intro}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded min-h-[80px]"
-        />
+        {/* Dynamic Blocks */}
+        {blocks.map((block, idx) => (
+          <div key={block.id} className="p-4 border rounded space-y-4 bg-gray-50">
+            <h3 className="font-semibold">Block {idx + 1}</h3>
 
-        {/* Custom Editor */}
-        <Editor content={formData.content} onChange={(content) => setFormData(prev => ({ ...prev, content }))} />
+            <div>
+              <label className="block mb-2 font-medium">Short Intro</label>
+              <Editor
+                content={block.intro}
+                onChange={(val) => handleBlockChange(block.id, "intro", val)}
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-medium">Content</label>
+              <Editor
+                content={block.content}
+                onChange={(val) => handleBlockChange(block.id, "content", val)}
+              />
+            </div>
+
+            {blocks.length > 1 && (
+              <button
+                type="button"
+                onClick={() => removeBlock(block.id)}
+                className="text-red-500 underline"
+              >
+                Remove Block
+              </button>
+            )}
+          </div>
+        ))}
+
+        <button
+          type="button"
+          onClick={addBlock}
+          className="px-4 py-2 bg-blue-600 text-white rounded"
+        >
+          + Add Block
+        </button>
 
         <input
           type="text"
@@ -162,8 +212,10 @@ const CreateBlogForm = () => {
           className="p-2 border rounded"
         >
           <option value="">Select Country</option>
-          {countries.map(c => (
-            <option key={c._id} value={c._id}>{c.name}</option>
+          {countries.map((c) => (
+            <option key={c._id} value={c._id}>
+              {c.name}
+            </option>
           ))}
         </select>
 
@@ -176,8 +228,10 @@ const CreateBlogForm = () => {
           disabled={!states.length}
         >
           <option value="">Select State</option>
-          {states.map(s => (
-            <option key={s._id} value={s._id}>{s.name}</option>
+          {states.map((s) => (
+            <option key={s._id} value={s._id}>
+              {s.name}
+            </option>
           ))}
         </select>
 
@@ -190,8 +244,10 @@ const CreateBlogForm = () => {
           disabled={!cities.length}
         >
           <option value="">Select City</option>
-          {cities.map(c => (
-            <option key={c._id} value={c._id}>{c.name}</option>
+          {cities.map((c) => (
+            <option key={c._id} value={c._id}>
+              {c.name}
+            </option>
           ))}
         </select>
 
@@ -204,13 +260,20 @@ const CreateBlogForm = () => {
           className="p-2 border rounded"
         />
 
-        <button type="submit" className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+        <button
+          type="submit"
+          className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        >
           Create Blog
         </button>
       </form>
 
       {message && (
-        <p className={`mt-4 text-center font-medium ${message.includes("Failed") ? "text-red-600" : "text-green-600"}`}>
+        <p
+          className={`mt-4 text-center font-medium ${
+            message.includes("Failed") ? "text-red-600" : "text-green-600"
+          }`}
+        >
           {message}
         </p>
       )}

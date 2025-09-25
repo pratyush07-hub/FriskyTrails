@@ -1,7 +1,16 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const Popupform = ({ onClose }) => {
   const modalRef = useRef();
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden"; 
+
+    return () => {
+      document.body.style.overflow = "auto"; 
+    };
+  }, []);
 
   const closeModal = (e) => {
     if (modalRef.current === e.target) {
@@ -40,7 +49,7 @@ const Popupform = ({ onClose }) => {
     <div
       ref={modalRef}
       onClick={closeModal}
-      className="fixed inset-0 flex bg-opacity-30 backdrop-blur-sm justify-center items-center z-70"
+      className="fixed inset-0 flex bg-black bg-opacity-30 backdrop-blur-sm justify-center items-center z-70"
     >
       <div className="bg-white w-[36vw] h-[70vh] m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
         <form onSubmit={handleSubmit} className="flex flex-col w-[26vw] gap-4">

@@ -33,6 +33,8 @@ import CityPage from "./admin/CityPage";
 import ProductDetails from "./admin/ProductDetails";
 import ProductsPage from "./admin/ProductsPage";
 import CreateProductPage from "./admin/CreateProductPage";
+import CreateProductType from "./admin/CreateProductType";
+import ProductType from "./admin/ProductType";
 
 
 
@@ -73,6 +75,8 @@ const App = () => {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/admin/create-product" element={<CreateProductPage />} />
+        <Route path="/create-productType" element={<CreateProductType />} />
+        <Route path="/productType/:slug/product" element={<ProductType />} />
       </Routes>
       <End />
       <Last />

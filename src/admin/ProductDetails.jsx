@@ -6,7 +6,7 @@ import Payment from "../assets/payment.svg";
 import Call from "../assets/calling.svg";
 import { getProductBySlug } from "../api/admin.api";
 import Content from "../Productpage/Content";
-import BookingModal from "../components/BookingModal"; // Added import
+import BookingModal from "../components/BookingModal";
 
 const ProductDetails = () => {
   const { slug } = useParams();
