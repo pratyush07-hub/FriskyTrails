@@ -4,7 +4,7 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 // import Form from "../components/Form";
-import HillImage from "/services/flight.webp";
+import HillImage from "/services/flight.jpeg";
 import Deals from "./Deals";
 import FlightsForm from "../components/FlightsForm";
 

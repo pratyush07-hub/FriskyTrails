@@ -21,18 +21,42 @@ Quill.register(HeightStyle, true);
 const Editor = ({ content, onChange }) => {
   const quillRef = useRef(null);
 
-  const modules = useMemo(
-    () => ({
-      toolbar: [
+ const modules = useMemo(
+  () => ({
+    toolbar: {
+      container: [
         [{ header: [1, 2, false] }],
         ["bold", "italic", "underline"],
         [{ list: "ordered" }, { list: "bullet" }],
         ["link", "image", "code-block"],
       ],
-      clipboard: { matchVisual: false },
-    }),
-    []
-  );
+      handlers: {
+        image: function () {
+          const input = document.createElement("input");
+          input.setAttribute("type", "file");
+          input.setAttribute("accept", "image/*"); // allows webp too
+          input.click();
+
+          input.onchange = async () => {
+            const file = input.files[0];
+            if (/^image\//.test(file.type)) {
+              const reader = new FileReader();
+              reader.onload = () => {
+                const quill = quillRef.current?.getEditor?.();
+                const range = quill.getSelection();
+                quill.insertEmbed(range.index, "image", reader.result);
+              };
+              reader.readAsDataURL(file); // supports webp
+            }
+          };
+        },
+      },
+    },
+    clipboard: { matchVisual: false },
+  }),
+  []
+);
+
 
   const applyImageWidth = (widthValue) => {
     const quill = quillRef.current?.getEditor?.();
