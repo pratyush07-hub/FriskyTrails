@@ -16,31 +16,6 @@ const Newlog = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-  const [formData, setFormData] = useState({
-    from: "",
-    to: "",
-    duration: "",
-    budget: "",
-    date: "",
-    guests: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data:", formData);
-    setFormData({
-      from: "",
-      to: "",
-      duration: "",
-      budget: "",
-      date: "",
-      guests: "",
-    });
-  };
  useEffect(() => {
     const fetchBlog = async () => {
       try {
@@ -84,126 +59,9 @@ if (!blog) return null;
           src={blog.coverImage}
           alt="image"
         />
-
-        {/* Form Section */}
-        <div className="bg-white w-[90vw] rounded-lg mt-6 mx-auto shadow-lg">
-          <div className="grid grid-cols-3 text-xs sm:text-base pt-4 font-semibold">
-            <h1 className="text-center border py-4 border-gray-300">
-              Holidays
-            </h1>
-            <h1 className="text-center border py-4 border-gray-300">
-              Adventures
-            </h1>
-            <h1 className="text-center border py-4 border-gray-300">Hotels</h1>
-          </div>
-
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-wrap gap-4 justify-center w-full px-4 py-2 md:py-6"
-          >
-            {/* From */}
-            <div className="w-full sm:w-[45%] lg:w-[15%]">
-              <label className="block font-semibold mb-1">From City</label>
-              <input
-                type="text"
-                name="from"
-                value={formData.from}
-                onChange={handleChange}
-                placeholder="Enter location"
-                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required
-              />
-            </div>
-
-            {/* To */}
-            <div className="w-full sm:w-[45%] lg:w-[15%]">
-              <label className="block font-semibold mb-1">To City</label>
-              <input
-                type="text"
-                name="to"
-                value={formData.to}
-                onChange={handleChange}
-                placeholder="Enter destination"
-                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required
-              />
-            </div>
-
-            {/* Duration */}
-            <div className="w-full sm:w-[45%] lg:w-[15%]">
-              <label className="block font-semibold mb-1">
-                Duration (in Days)
-              </label>
-              <input
-                type="number"
-                name="duration"
-                value={formData.duration}
-                onChange={handleChange}
-                placeholder="Enter duration"
-                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required
-              />
-            </div>
-
-            {/* Budget */}
-            <div className="w-full sm:w-[45%] lg:w-[15%]">
-              <label className="block font-semibold mb-1">Budget (in ₹)</label>
-              <input
-                type="number"
-                name="budget"
-                value={formData.budget}
-                onChange={handleChange}
-                placeholder="Enter amount"
-                min="0"
-                step="1000"
-                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required
-              />
-            </div>
-
-            {/* Date */}
-            <div className="w-full sm:w-[45%] lg:w-[15%]">
-              <label className="block font-semibold mb-1">Departure Date</label>
-              <input
-                type="date"
-                name="date"
-                value={formData.date}
-                onChange={handleChange}
-                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required
-              />
-            </div>
-
-            {/* Guests */}
-            <div className="w-full sm:w-[45%] lg:w-[15%]">
-              <label className="block font-semibold mb-1">No. of Guests</label>
-              <input
-                type="number"
-                name="guests"
-                value={formData.guests}
-                onChange={handleChange}
-                placeholder="No. of persons"
-                className="w-full px-3 py-1 md:px-3 md:py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required
-              />
-            </div>
-
-            {/* Button */}
-            <div className="w-full sm:w-auto mt-2">
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6 text-white rounded-xl font-semibold w-full"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-
         {/* Blog Section */}
         <div className="w-full flex flex-col lg:flex-row pt-10 gap-6">
           {/* Left sidebar */}
-          {/* <div className=""> */}
 
           <div className="lg:w-[15%] hidden xl:flex flex-col pl-6 items-center sticky top-0">
             <div className="flex gap-4 pt-6">
@@ -234,7 +92,7 @@ if (!blog) return null;
                   alt=""
                   />
               </a>
-            {/* </div> */}
+
           </div>
             <div className="hidden xl:block w-[100%] h-[200px] sm:h-[300px] lg:h-[78vh] mt-4 bg-[url('/blogimages/blogbanner.png')] bg-cover bg-center rounded-lg shadow-lg" />
                   </div>

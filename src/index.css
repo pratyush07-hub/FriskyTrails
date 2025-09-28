@@ -31,3 +31,56 @@ html,body{
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #a0a0a0; /* Slightly darker on hover */
 }
+/* Ensure Quill lists */
+.ql-editor ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+  padding-left: 1em;
+}
+
+.ql-editor ol {
+  list-style-type: decimal;
+  margin-left: 1.5em;
+  padding-left: 1em;
+}
+
+/* Optional: tweak spacing for nested lists */
+.ql-editor ul li,
+.ql-editor ol li {
+  margin-bottom: 0.25rem;
+}
+
+/* Make sure editor content has readable line height */
+.ql-editor {
+  line-height: 1.6;
+}
+
+/* ✅ Bullet and Numbered List Styling */
+.blog-content ul {
+  list-style-type: disc !important;
+  margin-left: 1.5rem !important;
+  padding-left: 1rem !important;
+}
+
+.blog-content ol {
+  list-style-type: decimal !important;
+  margin-left: 1.5rem !important;
+  padding-left: 1rem !important;
+}
+
+.blog-content li {
+  margin-bottom: 0.25rem;
+  line-height: 1.6;
+}
+
+/* ✅ Optional: Improve readability */
+.blog-content {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* ✅ Support dark mode if needed */
+.dark .blog-content {
+  color: #ddd;
+}
