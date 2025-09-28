@@ -84,3 +84,8 @@ html,body{
 .dark .blog-content {
   color: #ddd;
 }
+.blog-heading h1,
+.blog-heading h2,
+.blog-heading h3 {
+  margin: 0; /* removes default spacing so it aligns with order number */
+}

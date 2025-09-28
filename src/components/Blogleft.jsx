@@ -19,14 +19,15 @@ const Blogleft = ({ blog }) => {
           <div key={index} className="w-[90%] mx-auto mb-8">
             {/* Heading */}
             {block.heading && (
-              <p className="leading-relaxed font-semibold text-lg mb-2">
-                <strong>{block.order}.</strong>{" "}
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: block.heading.replace(/^<p>|<\/p>$/g, ""),
-                  }}
-                />
-              </p>
+              <div className="flex items-start mb-2">
+  <span className="font-bold mr-2">{block.order}.</span>
+  <div
+    className="blog-heading flex-1"
+    dangerouslySetInnerHTML={{ __html: block.heading }}
+  />
+</div>
+
+
             )}
 
             {/* Content */}
