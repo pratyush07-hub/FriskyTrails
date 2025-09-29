@@ -60,7 +60,7 @@ if (!blog) return null;
           alt="image"
         />
         {/* Blog Section */}
-        <div className="w-full flex flex-col lg:flex-row pt-10 gap-6">
+        <div className="w-full flex justify-center flex-col lg:flex-row pt-10">
           {/* Left sidebar */}
 
           {/* <div className="lg:w-[15%] hidden xl:flex flex-col pl-6 items-center sticky top-0">
@@ -98,9 +98,9 @@ if (!blog) return null;
                   </div> */}
 
           {/* Middle content */}
-          <div className="flex gap-6">
+          {/* <div className="flex w-full gap-6"> */}
   {/* Left content */}
-  <div className="lg:w-[65%] w-full">
+  <div className="lg:w-[60%] pt-3 w-full">
     <Blogleft blog={blog} />
   </div>
 
@@ -109,7 +109,7 @@ if (!blog) return null;
     <div className="sticky top-26"> {/* adjust top spacing if you have a navbar */}
       <Blogright />
     </div>
-  </div>
+  {/* </div> */}
 </div>
 
         </div>
