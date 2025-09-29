@@ -4,10 +4,10 @@ const Blogleft = ({ blog }) => {
   if (!blog || !blog.blocks) return null;
 
   return (
-    <div className="pt-6 pb-10 overflow-y-auto max-h-[80vh] w-full custom-scrollbar">
+    <div className="pt-6 pb-10 h-auto w-full">
       {/* Intro Section */}
       {blog.intro && (
-        <div className="blog-content prose prose-lg max-w-none w-[90%] mx-auto mb-6">
+        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
           <div dangerouslySetInnerHTML={{ __html: blog.intro }} />
         </div>
       )}
@@ -16,7 +16,7 @@ const Blogleft = ({ blog }) => {
       {blog.blocks
         .sort((a, b) => a.order - b.order)
         .map((block, index) => (
-          <div key={index} className="w-[90%] mx-auto mb-8">
+          <div key={index} className="w-[90%] mx-auto mb-8 bg-orange-200 p-4 rounded-lg">
             {/* Heading */}
             {block.heading && (
               <div className="flex items-start mb-2">
@@ -53,7 +53,7 @@ const Blogleft = ({ blog }) => {
 
       {/* Conclusion */}
       {blog.conclusion && (
-        <div className="blog-content prose prose-lg max-w-none w-[90%] mx-auto mt-6">
+        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mt-6">
           <div dangerouslySetInnerHTML={{ __html: blog.conclusion }} />
         </div>
       )}

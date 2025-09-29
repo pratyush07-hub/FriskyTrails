@@ -35,7 +35,7 @@ if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
 if (!blog) return null;
 
   return (
-    <div className="min-h-screen mt-30 w-full">
+    <div className="min-h-screen mt-20 lg:mt-28 w-full">
       <div
         className="w-full min-h-[460px] bg-no-repeat bg-contain"
         style={{
@@ -63,7 +63,7 @@ if (!blog) return null;
         <div className="w-full flex flex-col lg:flex-row pt-10 gap-6">
           {/* Left sidebar */}
 
-          <div className="lg:w-[15%] hidden xl:flex flex-col pl-6 items-center sticky top-0">
+          {/* <div className="lg:w-[15%] hidden xl:flex flex-col pl-6 items-center sticky top-0">
             <div className="flex gap-4 pt-6">
               <a href="https://www.facebook.com/friskytrails/" target="_blank">
                 <img
@@ -95,17 +95,23 @@ if (!blog) return null;
 
           </div>
             <div className="hidden xl:block w-[100%] h-[200px] sm:h-[300px] lg:h-[78vh] mt-4 bg-[url('/blogimages/blogbanner.png')] bg-cover bg-center rounded-lg shadow-lg" />
-                  </div>
+                  </div> */}
 
           {/* Middle content */}
-          <div className="lg:w-[55%] w-full px-0 lg:pl-10 overflow-y-visible lg:overflow-y-auto custom-scrollbar lg:max-h-[calc(100vh-100px)]">
-            <Blogleft blog={blog} />
-          </div>
+          <div className="flex gap-6">
+  {/* Left content */}
+  <div className="lg:w-[65%] w-full">
+    <Blogleft blog={blog} />
+  </div>
 
-          {/* Right sidebar */}
-          <div className="hidden lg:block lg:w-[30%] w-full sticky top-0">
-            <Blogright />
-          </div>
+  {/* Right sidebar */}
+  <div className="hidden lg:block lg:w-[30%]">
+    <div className="sticky top-26"> {/* adjust top spacing if you have a navbar */}
+      <Blogright />
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
     </div>
