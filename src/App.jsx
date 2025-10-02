@@ -35,6 +35,7 @@ import ProductsPage from "./admin/ProductsPage";
 import CreateProductPage from "./admin/CreateProductPage";
 import CreateProductType from "./admin/CreateProductType";
 import ProductType from "./admin/ProductType";
+import NotFound from "./components/NotFound";
 
 
 
@@ -77,6 +78,7 @@ const App = () => {
         <Route path="/admin/create-product" element={<CreateProductPage />} />
         <Route path="/create-productType" element={<CreateProductType />} />
         <Route path="/productType/:slug/product" element={<ProductType />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <End />
       <Last />
