@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createProductType } from "../api/admin.api";
+import { getCurrentUser } from "../api/user.api";
+import NotFound from "../components/NotFound";
+
 
 const CreateProductType = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +11,32 @@ const CreateProductType = () => {
   });
   const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+      const checkAdmin = async () => {
+        try {
+          const res = await getCurrentUser();
+          const user = res.data.user;
+          console.log(user);
+          if (!user || user.admin != true) {
+            setIsAllowed(false);
+          } else {
+            setIsAdmin(true);
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Failed to verify user");
+          window.location.href = "/";
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      checkAdmin();
+    }, []);
   // Handle text input
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,6 +81,9 @@ const CreateProductType = () => {
       setMessage("Failed to create product type");
     }
   };
+  if (loading) return null;
+  if (!isAllowed) return <NotFound />;
+  if (!isAdmin) return null;
 
   return (
     <div className="p-6 max-w-lg mx-auto mt-30 bg-white rounded-xl shadow-md">

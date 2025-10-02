@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { createBlog, getCountries, getStates, getCities } from "../api/admin.api";
+import { getCurrentUser } from "../api/user.api";
 import Editor from "../components/Editor";
+import NotFound from "../components/NotFound"; // Import your 404 page
 
 const CreateBlogForm = () => {
   const [formData, setFormData] = useState({
@@ -13,18 +15,39 @@ const CreateBlogForm = () => {
     state: "",
     city: "",
   });
-
-  // blocks will hold [{ id, intro, content }]
-  const [blocks, setBlocks] = useState([
-    { id: Date.now(), intro: "", content: "" },
-  ]);
-
+  const [blocks, setBlocks] = useState([{ id: Date.now(), heading: "", content: "" }]);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
 
+  // Admin check
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const res = await getCurrentUser();
+        const user = res.data.user;
+        if (!user || !user.admin) {
+          setIsAllowed(false); // Show 404
+        } else {
+          setIsAdmin(true);
+        }
+      } catch (err) {
+        console.error(err);
+        setIsAllowed(false); // Show 404 on error
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAdmin();
+  }, []);
+
+  // Fetch countries
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -37,6 +60,7 @@ const CreateBlogForm = () => {
     fetchCountries();
   }, []);
 
+  // Fetch states on country change
   useEffect(() => {
     const fetchStates = async () => {
       if (!formData.country) return;
@@ -52,6 +76,7 @@ const CreateBlogForm = () => {
     fetchStates();
   }, [formData.country]);
 
+  // Fetch cities on state change
   useEffect(() => {
     const fetchCities = async () => {
       if (!formData.state) return;
@@ -66,10 +91,10 @@ const CreateBlogForm = () => {
     fetchCities();
   }, [formData.state]);
 
+  // Handle text input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-
     if (name === "title") {
       const generatedSlug = value
         .toLowerCase()
@@ -79,37 +104,26 @@ const CreateBlogForm = () => {
     }
   };
 
-  const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
-  };
+  // Handle image input
+  const handleImageChange = (e) => setImageFile(e.target.files[0]);
 
   const handleBlockChange = (id, field, value) => {
-    setBlocks((prev) =>
-      prev.map((b) => (b.id === id ? { ...b, [field]: value } : b))
-    );
+    setBlocks((prev) => prev.map((b) => (b.id === id ? { ...b, [field]: value } : b)));
   };
 
-  const addBlock = () => {
-    setBlocks([...blocks, { id: Date.now(), heading: "", content: "" }]);
-  };
-
-  const removeBlock = (id) => {
-    setBlocks((prev) => prev.filter((b) => b.id !== id));
-  };
+  const addBlock = () => setBlocks([...blocks, { id: Date.now(), heading: "", content: "" }]);
+  const removeBlock = (id) => setBlocks((prev) => prev.filter((b) => b.id !== id));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    for (const key in formData) {
-      data.append(key, formData[key]);
-    }
+    for (const key in formData) data.append(key, formData[key]);
     data.append("blocks", JSON.stringify(blocks));
     if (imageFile) data.append("image", imageFile);
 
     try {
       const res = await createBlog(data);
       setMessage(res.message || "✅ Blog created successfully!");
-
       setFormData({
         title: "",
         slug: "",
@@ -130,6 +144,10 @@ const CreateBlogForm = () => {
     }
   };
 
+  if (loading) return null;
+  if (!isAllowed) return <NotFound />; // Show 404 to non-admins
+  if (!isAdmin) return null;
+  
   return (
     <div className="p-4 w-[70%] mt-30 mx-auto">
       <h2 className="text-xl font-bold mb-4">Create New Blog</h2>

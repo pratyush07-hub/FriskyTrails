@@ -7,7 +7,7 @@ import Knowus from "../components/Knowus";
 const ContactUs = () => {
   return (
     <>
-      <div className="relative min-h-screen mt-23 md:mt-28 lg:mt-30 xl:mt-60 w-full">
+      <div className="relative min-h-screen mt-32 md:mt-28 lg:mt-30 xl:mt-60 w-full">
         <h1 className="font-bold text-4xl md:text-8xl tracking-tight text-center mt-16 md:mt-30">
           Contact Us
         </h1>

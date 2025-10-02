@@ -1,20 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createCountry } from "../api/admin.api";
+import { getCurrentUser } from "../api/user.api";
+import NotFound from "../components/NotFound";
 
 const CreateCountryForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    slug: "",
-  });
+  const [formData, setFormData] = useState({ name: "", slug: "" });
   const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const res = await getCurrentUser();
+        const user = res.data.user;
+        console.log(user);
+        if (!user || user.admin != true) {
+          setIsAllowed(false);
+          // alert("You are not an admin!");
+          // window.location.href = "/";
+        } else {
+          setIsAdmin(true);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Failed to verify user");
+        window.location.href = "/";
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAdmin();
+  }, []);
 
   // Handle text input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // Auto-generate slug when typing name
     if (name === "name") {
       const generatedSlug = value
         .toLowerCase()
@@ -32,20 +58,14 @@ const CreateCountryForm = () => {
   // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const data = new FormData();
     data.append("name", formData.name);
     data.append("slug", formData.slug);
-    if (imageFile) {
-      data.append("image", imageFile);
-    }
+    if (imageFile) data.append("image", imageFile);
 
     try {
       const res = await createCountry(data);
       setMessage(res.message || "Country created successfully!");
-      console.log(res.country);
-
-      // Reset form
       setFormData({ name: "", slug: "" });
       setImageFile(null);
     } catch (err) {
@@ -53,6 +73,10 @@ const CreateCountryForm = () => {
       setMessage("Failed to create country");
     }
   };
+
+  if (loading) return null;
+  if (!isAllowed) return <NotFound />;
+  if (!isAdmin) return null;
 
   return (
     <div className="p-6 max-w-lg mx-auto mt-30 bg-white rounded-xl shadow-md">
@@ -62,7 +86,6 @@ const CreateCountryForm = () => {
         encType="multipart/form-data"
         className="flex flex-col gap-4"
       >
-        {/* Country Name */}
         <input
           type="text"
           name="name"
@@ -72,20 +95,14 @@ const CreateCountryForm = () => {
           required
           className="p-2 border rounded"
         />
-
-        {/* Slug (readonly, auto-generated) */}
         <input
           type="text"
           name="slug"
           placeholder="Slug"
           value={formData.slug}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded bg-gray-100"
           readOnly
+          className="p-2 border rounded bg-gray-100"
         />
-
-        {/* Image Upload */}
         <input
           type="file"
           name="image"
@@ -93,8 +110,6 @@ const CreateCountryForm = () => {
           onChange={handleImageChange}
           className="p-2 border rounded"
         />
-
-        {/* Submit Button */}
         <button
           type="submit"
           className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
@@ -102,7 +117,6 @@ const CreateCountryForm = () => {
           Create Country
         </button>
       </form>
-
       {message && <p className="mt-4 text-center text-green-600">{message}</p>}
     </div>
   );

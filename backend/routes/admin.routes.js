@@ -30,7 +30,7 @@ router.get("/product/:slug", getProductBySlug);
 router.put("/product/:slug", upload.array("images", 5), updateProduct, verifyJWT, verifyAdmin);
 router.delete("/product/:slug", deleteProduct);
 
-router.post("/bookings", verifyJWT, createBooking);
+router.post("/bookings", verifyJWT, verifyAdmin, createBooking);
 router.get("/bookings", verifyJWT, verifyAdmin, getAllBookings);
 router.get("/bookings/:slug", verifyJWT, verifyAdmin, getBookingsByProduct);
 

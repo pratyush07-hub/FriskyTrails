@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { createState, getCountries } from "../api/admin.api";
+import { createState, getCountries } from "../api/admin.api"
+import { getCurrentUser } from "../api/user.api";
+import NotFound from "../components/NotFound";;
 
 const CreateStateForm = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +13,32 @@ const CreateStateForm = () => {
   const [countries, setCountries] = useState([]);
   const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+      const checkAdmin = async () => {
+        try {
+          const res = await getCurrentUser();
+          const user = res.data.user;
+          console.log(user);
+          if (!user || user.admin != true) {
+            setIsAllowed(false);
+          } else {
+            setIsAdmin(true);
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Failed to verify user");
+          window.location.href = "/";
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      checkAdmin();
+    }, []);
   // Fetch countries on mount
   useEffect(() => {
     const fetchCountries = async () => {
@@ -74,6 +101,9 @@ const CreateStateForm = () => {
       setMessage("❌ Failed to create state");
     }
   };
+  if (loading) return null;
+  if (!isAllowed) return <NotFound />;
+  if (!isAdmin) return null;
 
   return (
     <div className="p-4 max-w-xl mt-30 mx-auto">

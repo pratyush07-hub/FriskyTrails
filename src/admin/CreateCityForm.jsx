@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { createCity, getCountries, getStates } from "../api/admin.api";
+import { getCurrentUser } from "../api/user.api";
+import NotFound from "../components/NotFound";
 
 const CreateCityForm = () => {
   const [formData, setFormData] = useState({
@@ -8,11 +10,35 @@ const CreateCityForm = () => {
     country: "",
     state: "",
   });
-
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
+
+  // Admin check
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const res = await getCurrentUser();
+        const user = res.data.user;
+        if (!user || !user.admin) {
+          setIsAllowed(false); // Show 404
+        } else {
+          setIsAdmin(true);
+        }
+      } catch (err) {
+        console.error(err);
+        setIsAllowed(false); // Show 404 on error
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAdmin();
+  }, []);
 
   // Fetch countries on mount
   useEffect(() => {
@@ -32,7 +58,7 @@ const CreateCityForm = () => {
     const fetchStates = async () => {
       if (!formData.country) return;
       try {
-        const res = await getStates(formData.country); 
+        const res = await getStates(formData.country);
         setStates(res.data);
       } catch (err) {
         console.error("Failed to fetch states", err);
@@ -46,7 +72,6 @@ const CreateCityForm = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Auto-generate slug from city name
     if (name === "name") {
       const generatedSlug = value
         .toLowerCase()
@@ -57,9 +82,7 @@ const CreateCityForm = () => {
   };
 
   // Handle image selection
-  const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
-  };
+  const handleImageChange = (e) => setImageFile(e.target.files[0]);
 
   // Submit form
   const handleSubmit = async (e) => {
@@ -70,38 +93,28 @@ const CreateCityForm = () => {
     data.append("slug", formData.slug);
     data.append("country", formData.country);
     data.append("state", formData.state);
-    if (imageFile) {
-      data.append("image", imageFile);
-    }
+    if (imageFile) data.append("image", imageFile);
 
     try {
       const res = await createCity(data);
       setMessage(res.message || "✅ City created successfully!");
-      console.log(res.data);
-
-      // Reset form
-      setFormData({
-        name: "",
-        slug: "",
-        country: "",
-        state: "",
-      });
+      setFormData({ name: "", slug: "", country: "", state: "" });
       setImageFile(null);
+      setStates([]);
     } catch (err) {
       console.error(err);
       setMessage("❌ Failed to create city");
     }
   };
 
+  if (loading) return null;
+  if (!isAllowed) return <NotFound />; // Show 404 for non-admins
+  if (!isAdmin) return null;
+
   return (
     <div className="p-4 max-w-xl mt-30 mx-auto">
       <h2 className="text-xl font-bold mb-4">Create New City</h2>
-      <form
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-        className="flex flex-col gap-4"
-      >
-        {/* City Name */}
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4">
         <input
           type="text"
           name="name"
@@ -111,8 +124,6 @@ const CreateCityForm = () => {
           required
           className="p-2 border rounded"
         />
-
-        {/* Slug (auto-generated) */}
         <input
           type="text"
           name="slug"
@@ -121,8 +132,6 @@ const CreateCityForm = () => {
           disabled
           className="p-2 border rounded bg-gray-100 cursor-not-allowed"
         />
-
-        {/* Country Dropdown */}
         <select
           name="country"
           value={formData.country}
@@ -137,8 +146,6 @@ const CreateCityForm = () => {
             </option>
           ))}
         </select>
-
-        {/* State Dropdown */}
         <select
           name="state"
           value={formData.state}
@@ -153,8 +160,6 @@ const CreateCityForm = () => {
             </option>
           ))}
         </select>
-
-        {/* Image Upload */}
         <input
           key={imageFile ? imageFile.name : "file"}
           type="file"
@@ -163,8 +168,6 @@ const CreateCityForm = () => {
           onChange={handleImageChange}
           className="p-2 border rounded"
         />
-
-        {/* Submit Button */}
         <button
           type="submit"
           className="bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition"
@@ -172,14 +175,8 @@ const CreateCityForm = () => {
           Create City
         </button>
       </form>
-
-      {/* Message */}
       {message && (
-        <p
-          className={`mt-4 text-center font-medium ${
-            message.includes("Failed") ? "text-red-600" : "text-green-600"
-          }`}
-        >
+        <p className={`mt-4 text-center font-medium ${message.includes("Failed") ? "text-red-600" : "text-green-600"}`}>
           {message}
         </p>
       )}

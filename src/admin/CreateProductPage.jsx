@@ -7,6 +7,8 @@ import {
   getAllProductTypes 
 } from "../api/admin.api";
 import Editor from "../components/Editor";
+import { getCurrentUser } from "../api/user.api";
+import NotFound from "../components/NotFound";
 
 const CreateProductPage = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +36,32 @@ const CreateProductPage = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [productTypes, setProductTypes] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const res = await getCurrentUser();
+        const user = res.data.user;
+        console.log(user);
+        if (!user || user.admin != true) {
+          setIsAllowed(false);
+        } else {
+          setIsAdmin(true);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Failed to verify user");
+        window.location.href = "/";
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAdmin();
+  }, []);
   // Auto generate slug
   useEffect(() => {
     if (formData.name) {
@@ -144,9 +171,12 @@ const CreateProductPage = () => {
       alert("❌ Failed to create product");
     }
   };
+  if (loading) return null;
+  if (!isAllowed) return <NotFound />;
+  if (!isAdmin) return null;
 
   return (
-    <div className="max-w-3xl mt-10 mx-auto p-6 bg-white rounded-xl shadow">
+    <div className="max-w-3xl mt-30 mx-auto p-6 bg-white rounded-xl shadow">
       <h2 className="text-2xl font-bold text-orange-500 mb-6 text-center">
         Add New Product
       </h2>
