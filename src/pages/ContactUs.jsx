@@ -36,66 +36,86 @@ const ContactUs = () => {
           <h1 className="text-4xl md:text-6xl font-bold text-center">
             Office In India
           </h1>
-          <div className="flex flex-col lg:flex-row xl:gap-60 pb-4">
-            <div className="lg:pl-10 xl:pl-30 pt-6 md:pt-16 w-[90%] mx-auto lg:w-[60%] xl:w-[50%]">
+          <div className="flex justify-center pt-6 md:pt-10">
+            <div className="w-[50%] h-[300px] md:h-[400px] lg:h-[450px] xl:h-[500px] flex justify-center items-center rounded-md">
               <img
                 className="h-auto lg:h-[45vh] w-full lg:w-[90%] xl:w-[35vw]"
                 src="/images/office.webp"
                 alt=""
               />
             </div>
-            <div className="flex flex-col gap-2 lg:pt-2  w-[90%] mx-auto lg:w-[40%] xl:w-[50%]">
-              <h1 className="text-3xl md:text-5xl font-bold pt-4 lg:pt-18">
-                Siliguri Office
-              </h1>
-              <div className="flex items-center pt-4 md:pt-8 gap-4">
-                <div className="round flex items-center justify-center bg-gradient-to-r from-[rgb(255,99,33)] text-xl to-amber-400 h-[40px] w-[40px] rounded-full">
-                  <img
-                    className="h-[20px] w-[20px] object-contain invert"
-                    src={Call}
-                    alt=""
-                  />
+            <div className="w-[50%] gap-14 h-[300px] md:h-[400px] lg:h-[450px] xl:h-[500px]">
+              <div className="w-[84%] pt-20 flex flex-row justify-between">
+                <div className="flex items-center h-20 gap-4">
+                  <div className="round flex items-center justify-center bg-gradient-to-r from-[rgb(255,99,33)] text-xl to-amber-400 h-[40px] w-[40px] rounded-full">
+                    <img
+                      className="h-[20px] w-[20px] object-contain invert"
+                      src={Call}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <h2 className="text-xl md:text-2xl font-semibold text-gray-600 cursor-pointer">
+                      <a href="tel:+917501516714">+91-75015 16714</a>
+                    </h2>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-xl md:text-2xl font-semibold text-gray-600 cursor-pointer">
-                    <a href="tel:+917501516714">
-              +91-75015 16714
-            </a>
-                  </h2>
-                </div>
-              </div>
-              <div className="flex pt-4 items-center gap-4">
-                <div className="round flex items-center justify-center bg-gradient-to-r from-[rgb(255,99,33)] text-xl to-amber-400 h-[40px] w-[40px] rounded-full">
-                  <img
-                    className="h-[20px] w-[20px] object-contain invert"
-                    src={Email}
-                    alt=""
-                  />
-                </div>
-                <div>
-                  <h2 className="text-xl md:text-2xl font-semibold text-gray-600 cursor-pointer">
-                    <a href="mailto:contact@friskytrails.in">
-              contact@friskytrails.in
-            </a>
-                  </h2>
+                <div className="flex items-center h-20 gap-4">
+                  <div className="round flex items-center justify-center bg-gradient-to-r from-[rgb(255,99,33)] text-xl to-amber-400 h-[40px] w-[40px] rounded-full">
+                    <img
+                      className="h-[20px] w-[20px] object-contain invert"
+                      src={Email}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <h2 className="text-xl md:text-2xl font-semibold text-gray-600 cursor-pointer">
+                      <a href="mailto:contact@friskytrails.in">
+                        contact@friskytrails.in
+                      </a>
+                    </h2>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-start gap-4 pb-4 pt-4">
-                {/* Icon */}
-                <div className="flex-shrink-0 flex items-center justify-center bg-gradient-to-r from-[rgb(248,159,124)] to-amber-300 border-orange-500 h-[40px] w-[40px] rounded-full">
-                  <img
-                    className="h-[20px] w-[20px] object-contain"
-                    src={Location}
-                    alt="Location"
-                  />
-                </div>
+              <div className="h-0.5 w-[90%] bg-gray-600"></div>
+              <div className="w-[84%] pt-6">
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-row gap-4">
+                    <div className="flex-shrink-0 flex items-center justify-center bg-gradient-to-r from-[rgb(248,159,124)] to-amber-300 border-orange-500 h-[40px] w-[40px] rounded-full">
+                      <img
+                        className="h-[20px] w-[20px] object-contain"
+                        src={Location}
+                        alt="Location"
+                      />
+                    </div>
+                    <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-600 cursor-pointer leading-snug max-w-[90vw] sm:max-w-[80vw] lg:max-w-[32vw]">
+                      <p className="text-2xl text-gray-800 pb-2 pt-1">
+                        Silliguri Office
+                      </p>
+                      Uttarapan Market Complex, G15, Hill Cart Rd, opposite of
+                      Biswadeep Cinema Hall, Ward 1, Patiram Jote, Siliguri,
+                      West Bengal 734001
+                    </p>
+                  </div>
+                  <div className="flex flex-row gap-4">
+                    <div className="flex-shrink-0 flex items-center justify-center bg-gradient-to-r from-[rgb(248,159,124)] to-amber-300 border-orange-500 h-[40px] w-[40px] rounded-full">
+                      <img
+                        className="h-[20px] w-[20px] object-contain"
+                        src={Location}
+                        alt="Location"
+                      />
+                    </div>
 
-                {/* Address Text */}
-                <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-600 cursor-pointer leading-snug max-w-[90vw] sm:max-w-[80vw] lg:max-w-[32vw]">
-                  Uttarapan Market Complex, G15, Hill Cart Rd, opposite of
-                  Biswadeep Cinema Hall, Ward 1, Patiram Jote, Siliguri, West
-                  Bengal 734001
-                </p>
+                    <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-600 cursor-pointer leading-snug max-w-[90vw] sm:max-w-[80vw] lg:max-w-[32vw]">
+                      <p className="text-2xl text-gray-800 pb-2 pt-1">
+                        Silliguri Office
+                      </p>
+                      Uttarapan Market Complex, G15, Hill Cart Rd, opposite of
+                      Biswadeep Cinema Hall, Ward 1, Patiram Jote, Siliguri,
+                      West Bengal 734001
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
