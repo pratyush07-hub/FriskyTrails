@@ -16,6 +16,22 @@ const createBlog = async (formData) => {
     throw error.response ? error.response.data : error.message;
   }
 };
+const getAllBlogs = async () => {
+  try {
+    const response = await axiosInstance.get("/api/v1/admin/blogs");
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+const getBlogById = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/api/v1/admin/blog/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+}
 
 const uploadEditorImage = async (file) => {
   const formData = new FormData();
@@ -170,6 +186,17 @@ const getProductBySlug = async (slug) => {
   }
 };
 
+const updateBlog = async (id, formData) => {
+  try {
+    const response = await axiosInstance.put(`/api/v1/admin/blog/${id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+
 // Update product
 const updateProduct = async (slug, formData) => {
   try {
@@ -235,4 +262,4 @@ const getAllProductTypes = async () => {
   }
 }
 
-export { createProduct, getProducts, getProductBySlug, updateProduct, deleteProduct, createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs, createProductType, getProductTypeBySlug, getProductTypeBySlugWithProduct, getAllProductTypes, uploadEditorImage };
+export { createProduct, updateBlog,getBlogById,getProducts, getProductBySlug, updateProduct, deleteProduct, createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs, createProductType, getProductTypeBySlug, getProductTypeBySlugWithProduct, getAllProductTypes, uploadEditorImage, getAllBlogs };

@@ -9,6 +9,7 @@ import CreateCountryForm from "./CreateCountryForm";
 import CreateProductPage from "./CreateProductPage";
 import CreateProductType from "./CreateProductType";
 import CreateStateForm from "./CreateStateForm";
+import AllBlogs from "./AllBlogs"; // ✅ Added AllBlogs component
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState(""); // No active tab by default
@@ -42,7 +43,9 @@ const Dashboard = () => {
   if (!isAllowed) return <NotFound />;
   if (!isAdmin) return null;
 
+  // ✅ Added All Blogs section
   const sections = [
+    { key: "all-blogs", title: "All Blogs", component: <AllBlogs /> },
     { key: "create-blog", title: "Create Blog", component: <CreateBlogForm /> },
     { key: "create-city", title: "Create City", component: <CreateCityForm /> },
     { key: "create-country", title: "Create Country", component: <CreateCountryForm /> },
@@ -84,6 +87,7 @@ const Dashboard = () => {
           >
             ⬅ Back to Dashboard
           </button>
+
           <div className="bg-white shadow-md rounded-lg p-6 border border-gray-100">
             {sections.find((s) => s.key === activeTab)?.component}
           </div>
