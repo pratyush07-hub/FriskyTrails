@@ -3,14 +3,14 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import HillImage from "/services/bus.webp";
+import HillImage from "/services/bus.png";
 import Deals from "./Deals";
 import BusForm from "../components/BusForm";
 
 const BusSer = () => {
   return (
     <>
-      <div className="min-h-screen mt-20 md:mt-30 w-full">
+      <div className="min-h-screen mt-20 md:mt-28 w-full">
         {/* Banner Section */}
         <div
           className="h-[40vh] sm:h-[50vh] md:h-[60vh] w-full"

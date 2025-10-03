@@ -3,8 +3,8 @@ import Email from '../assets/email.svg';
 
 // Example data array with image URLs and LinkedIn URLs
 const teamMembers = [
+  { img: '/members/sanya.jpg', linkedin: 'https://www.linkedin.com/in/sanya-batra-b22a0628a/' },
   { img: '/images/member1.jpg', linkedin: 'https://www.linkedin.com/in/pratyush-kumar-32741b2b2/' },
-  { img: '/images/member2.jpg', linkedin: 'https://linkedin.com/in/member2' },
   { img: '/images/member3.jpg', linkedin: 'https://linkedin.com/in/member3' },
   { img: '/images/member4.jpg', linkedin: 'https://linkedin.com/in/member4' },
   { img: '/images/member5.jpg', linkedin: 'https://linkedin.com/in/member5' },
