@@ -28,7 +28,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="min-h- mt-23 md:mt-28 lg:mt-30 xl:mt-29 w-full">
+    <div className="min-h- mt-23 md:mt-28 lg:mt-30 xl:mt-28 w-full">
       <div className="hidden lg:block"
               style={{
                 height: "620px",

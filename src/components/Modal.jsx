@@ -14,7 +14,7 @@ const Modal = ({ onClose }) => {
         <div
             ref={modalRef}
             onClick={closeModal}
-            className='fixed inset-0 flex justify-center z-50 pt-29 px-4 sm:px-6 md:px-8'
+            className='fixed inset-0 flex justify-center z-50 pt-28 px-4 sm:px-6 md:px-8'
         >
             <div className='relative h-[24vh] lg:h-[30vh] text-xl lg:text-base w-[50vw] sm:w-[50vw] lg:w-[25vw] xl:w-[20vw] rounded-lg drop-shadow-lg bg-[rgb(10,3,34)] flex'>
 

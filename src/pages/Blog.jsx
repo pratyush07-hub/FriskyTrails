@@ -8,7 +8,7 @@ const Blog = () => {
   
 
   return (
-    <div className="w-full mt-23 md:mt-28 lg:mt-30 xl:mt-30">
+    <div className="w-full mt-23 md:mt-28 lg:mt-30 xl:mt-28">
       <div
         style={{
           height: "400px",
