@@ -61,7 +61,7 @@ const Knowus = () => {
         </h1>
 
         {/* Overlapping Circles with Images */}
-        <div className="pt-6 sm:pt-10 flex items-center space-x-[-20px] relative z-0">
+        <div className="pt-6 sm:pt-10 flex items-center space-x-[-10px] relative z-0">
           {teamMembers.map((member, index) => (
             <a
               key={index}
@@ -73,7 +73,7 @@ const Knowus = () => {
               <img
                 src={member.img}
                 alt={`Team member ${index + 1}`}
-                className="h-[50px] sm:h-[60px] w-[50px] sm:w-[60px] rounded-full border-2 border-white object-cover shadow-md"
+                className="h-[60px] sm:h-[70px] w-[60px] sm:w-[70px] rounded-full border-2 border-white object-cover shadow-md"
               />
             </a>
           ))}
