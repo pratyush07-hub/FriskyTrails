@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Right from "../assets/right.svg";
-import Facebook from "../assets/facebook.svg";
-import Twitter from "../assets/twitter.svg";
-import Linkedin from "../assets/linkedin.svg";
-import Instagram from "../assets/instagram.svg";
+// import Facebook from "../assets/facebook.svg";
+// import Twitter from "../assets/twitter.svg";
+// import Linkedin from "../assets/linkedin.svg";
+// import Instagram from "../assets/instagram.svg";
 import Blogleft from "../components/Blogleft";
 import Blogright from "../components/Blogright";
 import { getSingleBlog } from "../api/blog.api";

@@ -1,111 +1,108 @@
+import PropTypes from "prop-types";
+
 const Content = ({ product }) => {
-  // Handle FAQ data - it might be HTML or JSON
+  if (!product) return null;
+
+  // Handle FAQ data - it might be JSON or HTML
   let faqData = [];
   let isFaqJson = false;
-  
-  if (product?.faq && typeof product.faq === 'string') {
+
+  if (product.faq && typeof product.faq === "string") {
     try {
-      // Check if it looks like JSON (starts with [ or {)
-      if (product.faq.trim().startsWith('[') || product.faq.trim().startsWith('{')) {
+      if (product.faq.trim().startsWith("[") || product.faq.trim().startsWith("{")) {
         const parsed = JSON.parse(product.faq);
         if (Array.isArray(parsed)) {
           faqData = parsed;
           isFaqJson = true;
         }
       }
-    } catch (error) {
-      // If it's not JSON, treat it as HTML content
+    } catch (err) {
+      // treat as HTML
       faqData = null;
       isFaqJson = false;
     }
   }
 
   return (
-    <div className="w-full max-h-[90vh] overflow-y-auto custom-scrollbar p-2 sm:p-4 rounded-lg shadow-md">
+    <div className="pt-6 pb-10 w-full">
       {/* Product Highlights */}
-      {product?.productHighlights && (
-        <>
-          <h3 className="text-lg sm:text-xl md:text-2xl">
-            {product.name}​{" "}
-            <span className="text-orange-500 font-semibold">Highlights</span>
-          </h3>
-          <div 
-            className="pt-2 text-gray-700 space-y-2"
-            dangerouslySetInnerHTML={{ __html: product.productHighlights }}
-          />
-        </>
+      {product.productHighlights && (
+        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
+          <div dangerouslySetInnerHTML={{ __html: product.productHighlights }} />
+        </div>
       )}
 
       {/* Product Overview */}
-      {product?.productOverview && (
-        <>
-          <h3 className="text-lg sm:text-xl md:text-2xl pt-6 sm:pt-8 md:pt-10">
-            {product.name}​{" "}
-            <span className="text-orange-500 font-semibold">Overview</span>
-          </h3>
-          <div 
-            className="pt-2 text-gray-700 space-y-2"
-            dangerouslySetInnerHTML={{ __html: product.productOverview }}
-          />
-        </>
+      {product.productOverview && (
+        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
+          <div dangerouslySetInnerHTML={{ __html: product.productOverview }} />
+        </div>
       )}
 
       {/* Things to Carry */}
-      {product?.thingsToCarry && (
-        <>
-          <h3 className="text-lg sm:text-xl md:text-2xl pt-6 sm:pt-8 md:pt-10">
-            {product.name}​{" "}
-            <span className="text-orange-500 font-semibold">Things to Carry</span>
-          </h3>
-          <div 
-            className="pt-2 text-gray-700 space-y-2"
-            dangerouslySetInnerHTML={{ __html: product.thingsToCarry }}
-          />
-        </>
+      {product.thingsToCarry && (
+        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
+          <div dangerouslySetInnerHTML={{ __html: product.thingsToCarry }} />
+        </div>
       )}
 
       {/* Additional Info */}
-      {product?.additionalInfo && (
-        <>
-          <h3 className="text-lg sm:text-xl md:text-2xl pt-6 sm:pt-8 md:pt-10">
-            {product.name}​{" "}
-            <span className="text-orange-500 font-semibold">Additional Info</span>
-          </h3>
-          <div 
-            className="pt-2 text-gray-700 space-y-2"
-            dangerouslySetInnerHTML={{ __html: product.additionalInfo }}
-          />
-        </>
+      {product.additionalInfo && (
+        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
+          <div dangerouslySetInnerHTML={{ __html: product.additionalInfo }} />
+        </div>
       )}
 
       {/* FAQ Section */}
-      {product?.faq && (
+      {product.faq && (
         <>
-          <h1 className="text-lg sm:text-xl md:text-2xl font-semibold pt-6 sm:pt-8 md:pt-10">{product.name} FAQs</h1>
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold pt-6 sm:pt-8 md:pt-10 w-[90%] mx-auto">
+            {product.name} FAQs
+          </h2>
+
           {isFaqJson && faqData && faqData.length > 0 ? (
-            // Render as JSON Q&A format
             faqData.map((item, index) => (
-              <div key={index} className="flex items-start gap-3 sm:gap-6 mt-4">
+              <div
+                key={index}
+                className="flex items-start gap-3 sm:gap-6 mt-4 w-[90%] mx-auto bg-orange-200 p-4 rounded-lg"
+              >
                 <div className="h-8 w-8 sm:h-10 sm:w-10 aspect-square text-white rounded-full flex justify-center items-center bg-gradient-to-r from-[rgb(255,99,33)] text-sm sm:text-xl to-amber-400 flex-shrink-0">
                   {index + 1}
                 </div>
                 <div className="min-w-0">
-                  <h1 className="text-base sm:text-lg md:text-xl font-semibold">{item.question}</h1>
-                  <h1 className="text-xs sm:text-sm">{item.answer}</h1>
+                  <h3 className="font-semibold text-base sm:text-lg md:text-xl">{item.question}</h3>
+                  <p className="text-sm sm:text-base">{item.answer}</p>
                 </div>
               </div>
             ))
           ) : (
-            // Render as HTML content
-            <div 
-              className="mt-4 prose prose-lg max-w-none"
-              dangerouslySetInnerHTML={{ __html: product.faq }}
-            />
+            <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mt-4">
+              <div dangerouslySetInnerHTML={{ __html: product.faq }} />
+            </div>
           )}
         </>
       )}
     </div>
   );
+};
+
+Content.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    productHighlights: PropTypes.string,
+    productOverview: PropTypes.string,
+    thingsToCarry: PropTypes.string,
+    additionalInfo: PropTypes.string,
+    faq: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(
+        PropTypes.shape({
+          question: PropTypes.string,
+          answer: PropTypes.string,
+        })
+      ),
+    ]),
+  }).isRequired,
 };
 
 export default Content;
