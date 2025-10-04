@@ -17,54 +17,40 @@ const Content = ({ product }) => {
         }
       }
     } catch (err) {
-      // treat as HTML
       faqData = null;
       isFaqJson = false;
     }
   }
 
+  // Helper to render a section
+  const renderSection = (title, htmlContent) => (
+    <div className="w-[90%] mx-auto mb-6">
+      <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-orange-500 mb-2">{title}</h3>
+      <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none">
+        <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      </div>
+    </div>
+  );
+
   return (
     <div className="pt-6 pb-10 w-full">
-      {/* Product Highlights */}
-      {product.productHighlights && (
-        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
-          <div dangerouslySetInnerHTML={{ __html: product.productHighlights }} />
-        </div>
-      )}
-
-      {/* Product Overview */}
-      {product.productOverview && (
-        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
-          <div dangerouslySetInnerHTML={{ __html: product.productOverview }} />
-        </div>
-      )}
-
-      {/* Things to Carry */}
-      {product.thingsToCarry && (
-        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
-          <div dangerouslySetInnerHTML={{ __html: product.thingsToCarry }} />
-        </div>
-      )}
-
-      {/* Additional Info */}
-      {product.additionalInfo && (
-        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
-          <div dangerouslySetInnerHTML={{ __html: product.additionalInfo }} />
-        </div>
-      )}
+      {/* Sections */}
+      {product.productHighlights && renderSection("Highlights", product.productHighlights)}
+      {product.productOverview && renderSection("Overview", product.productOverview)}
+      {product.thingsToCarry && renderSection("Things to Carry", product.thingsToCarry)}
+      {product.additionalInfo && renderSection("Additional Info", product.additionalInfo)}
 
       {/* FAQ Section */}
       {product.faq && (
-        <>
-          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold pt-6 sm:pt-8 md:pt-10 w-[90%] mx-auto">
+        <div className="w-[90%] mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-orange-500 mb-2">
             {product.name} FAQs
           </h2>
-
           {isFaqJson && faqData && faqData.length > 0 ? (
             faqData.map((item, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 sm:gap-6 mt-4 w-[90%] mx-auto bg-orange-200 p-4 rounded-lg"
+                className="flex items-start gap-3 sm:gap-6 mt-4 bg-orange-200 p-4 rounded-lg"
               >
                 <div className="h-8 w-8 sm:h-10 sm:w-10 aspect-square text-white rounded-full flex justify-center items-center bg-gradient-to-r from-[rgb(255,99,33)] text-sm sm:text-xl to-amber-400 flex-shrink-0">
                   {index + 1}
@@ -76,11 +62,11 @@ const Content = ({ product }) => {
               </div>
             ))
           ) : (
-            <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mt-4">
+            <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none mt-4">
               <div dangerouslySetInnerHTML={{ __html: product.faq }} />
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );
