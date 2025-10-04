@@ -6,10 +6,8 @@ const teamMembers = [
   { img: '/members/manasvi.png', linkedin: 'https://www.linkedin.com/in/manasvi-singh-9392aa24b/' },
   { img: '/members/kanish.jpg', linkedin: 'https://www.linkedin.com/in/kanish-das-9bb268282/' },
   { img: '/members/sathi.jpg', linkedin: 'https://www.linkedin.com/in/sathi-maity/' },
-  { img: '/members/member5.jpg', linkedin: 'https://www.linkedin.com/in/pratyush-kumar-32741b2b2/' },
   { img: '/members/khushboo.jpg', linkedin: 'https://www.linkedin.com/in/khushboo-bishnoi-8534672b7/' },
   { img: '/members/tushar.jpg', linkedin: 'https://www.linkedin.com/in/tushar-sharma-8003a836b/' },
-  { img: '/members/member7.jpg', linkedin: 'https://www.linkedin.com/in/pratyush-kumar-32741b2b2/' },
   { img: '/members/sanya.jpg', linkedin: 'https://www.linkedin.com/in/sanya-batra-b22a0628a/' },
 ];
 
