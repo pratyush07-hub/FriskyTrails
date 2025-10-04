@@ -10,7 +10,7 @@ const teamMembers = [
   { img: '/images/member5.jpg', linkedin: 'https://linkedin.com/in/member5' },
   { img: '/images/member6.jpg', linkedin: 'https://linkedin.com/in/member6' },
   { img: '/images/member7.jpg', linkedin: 'https://linkedin.com/in/member7' },
-  { img: '/images/member8.jpg', linkedin: 'https://linkedin.com/in/member8' },
+  { img: '/members/manasvi.png', linkedin: 'https://www.linkedin.com/in/manasvi-singh-9392aa24b/' },
 ];
 
 const Knowus = () => {
