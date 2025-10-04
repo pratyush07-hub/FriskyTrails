@@ -3,14 +3,14 @@ import Email from '../assets/email.svg';
 
 // Example data array with image URLs and LinkedIn URLs
 const teamMembers = [
-  { img: '/members/sanya.jpg', linkedin: 'https://www.linkedin.com/in/sanya-batra-b22a0628a/' },
-  { img: '/images/member1.jpg', linkedin: 'https://www.linkedin.com/in/pratyush-kumar-32741b2b2/' },
-  { img: '/images/member3.jpg', linkedin: 'https://linkedin.com/in/member3' },
-  { img: '/images/member4.jpg', linkedin: 'https://linkedin.com/in/member4' },
-  { img: '/images/member5.jpg', linkedin: 'https://linkedin.com/in/member5' },
-  { img: '/images/member6.jpg', linkedin: 'https://linkedin.com/in/member6' },
-  { img: '/images/member7.jpg', linkedin: 'https://linkedin.com/in/member7' },
   { img: '/members/manasvi.png', linkedin: 'https://www.linkedin.com/in/manasvi-singh-9392aa24b/' },
+  { img: '/members/kanish.jpg', linkedin: 'https://www.linkedin.com/in/kanish-das-9bb268282/' },
+  { img: '/members/sathi.jpg', linkedin: 'https://www.linkedin.com/in/sathi-maity/' },
+  { img: '/members/member5.jpg', linkedin: 'https://www.linkedin.com/in/pratyush-kumar-32741b2b2/' },
+  { img: '/members/khushboo.jpg', linkedin: 'https://www.linkedin.com/in/khushboo-bishnoi-8534672b7/' },
+  { img: '/members/tushar.jpg', linkedin: 'https://www.linkedin.com/in/tushar-sharma-8003a836b/' },
+  { img: '/members/member7.jpg', linkedin: 'https://www.linkedin.com/in/pratyush-kumar-32741b2b2/' },
+  { img: '/members/sanya.jpg', linkedin: 'https://www.linkedin.com/in/sanya-batra-b22a0628a/' },
 ];
 
 const Knowus = () => {

@@ -61,7 +61,7 @@ const ContactUs = () => {
             </div>
 
             {/* Info Section */}
-            <div className="w-full sm:w-[80%] md:w-[70%] lg:w-[50%] flex flex-col items-center gap-10 py-10 md:py-16">
+            <div className="w-full sm:w-[80%] md:w-[70%] lg:w-[50%] flex flex-col items-center gap-6 py-10 md:py-16">
               {/* Contact Info */}
               <div className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-start gap-6 sm:gap-4 px-4 sm:px-6">
                 {/* Phone */}
@@ -79,7 +79,7 @@ const ContactUs = () => {
                 </div>
 
                 {/* Email */}
-                <div className="flex items-center justify-center sm:justify-start gap-4">
+                <div className="flex items-center justify-center sm:justify-start gap-4 xl:pr-20">
                   <div className="flex items-center justify-center bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 h-[40px] w-[40px] rounded-full">
                     <img
                       className="h-[20px] w-[20px] object-contain invert"
@@ -132,11 +132,11 @@ const ContactUs = () => {
                   </div>
                   <div className="text-center sm:text-left">
                     <h3 className="text-lg sm:text-xl md:text-2xl text-gray-800 font-semibold pb-2">
-                      Kolkata Office
+                      Jaipur Office
                     </h3>
                     <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-snug max-w-[90vw] sm:max-w-[80vw] lg:max-w-[32vw] mx-auto sm:mx-0">
-                      Example Address, Near Central Park, Sector 5, Kolkata,
-                      West Bengal 700091
+                      Example Address, Near Central Park, Sector 5, Jaipur,
+                      Rajasthan 700091
                     </p>
                   </div>
                 </div>
