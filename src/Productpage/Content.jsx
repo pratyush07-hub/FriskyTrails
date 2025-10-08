@@ -24,8 +24,9 @@ const Content = ({ product }) => {
 
   // Helper to render a section
   const renderSection = (title, htmlContent) => (
-    <div className="w-[90%] mx-auto mb-6">
-      <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-orange-500 mb-2">{title}</h3>
+    <div className="w-full mx-auto mb-6">
+      <span className="text-lg sm:text-xl md:text-2xl font-semibold text-black mb-2">{product.name} </span>
+      <span className="text-lg sm:text-xl md:text-2xl font-semibold text-orange-500 mb-2">{title}</span>
       <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none">
         <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
       </div>
@@ -38,13 +39,13 @@ const Content = ({ product }) => {
       {product.productHighlights && renderSection("Highlights", product.productHighlights)}
       {product.productOverview && renderSection("Overview", product.productOverview)}
       {product.thingsToCarry && renderSection("Things to Carry", product.thingsToCarry)}
-      {product.additionalInfo && renderSection("Additional Info", product.additionalInfo)}
+      {product.additionalInfo && renderSection("Know Before You Book", product.additionalInfo)}
 
       {/* FAQ Section */}
       {product.faq && (
-        <div className="w-[90%] mx-auto">
-          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-orange-500 mb-2">
-            {product.name} FAQs
+        <div className="w-full mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-black mb-2">
+            {product.name} <span className="text-orange-500">FAQ</span>
           </h2>
           {isFaqJson && faqData && faqData.length > 0 ? (
             faqData.map((item, index) => (

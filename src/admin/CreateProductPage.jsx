@@ -45,8 +45,7 @@ const CreateProductPage = () => {
       try {
         const res = await getCurrentUser();
         const user = res.data.user;
-        console.log(user);
-        if (!user || user.admin != true) {
+        if (!user || user.admin !== true) {
           setIsAllowed(false);
         } else {
           setIsAdmin(true);
@@ -62,7 +61,8 @@ const CreateProductPage = () => {
 
     checkAdmin();
   }, []);
-  // Auto generate slug
+
+  // Auto-generate slug
   useEffect(() => {
     if (formData.name) {
       setFormData((prev) => ({
@@ -136,7 +136,6 @@ const CreateProductPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const formObj = new FormData();
       for (const key in formData) formObj.append(key, formData[key]);
@@ -171,6 +170,7 @@ const CreateProductPage = () => {
       alert("❌ Failed to create product");
     }
   };
+
   if (loading) return null;
   if (!isAllowed) return <NotFound />;
   if (!isAdmin) return null;
@@ -270,35 +270,66 @@ const CreateProductPage = () => {
           className="p-2 border rounded w-full"
         />
 
-        {/* Editors */}
-        <Editor
-          content={formData.productHighlights}
-          onChange={(c) =>
-            setFormData((p) => ({ ...p, productHighlights: c }))
-          }
-        />
-        <Editor
-          content={formData.productOverview}
-          onChange={(c) =>
-            setFormData((p) => ({ ...p, productOverview: c }))
-          }
-        />
-        <Editor
-          content={formData.thingsToCarry}
-          onChange={(c) =>
-            setFormData((p) => ({ ...p, thingsToCarry: c }))
-          }
-        />
-        <Editor
-          content={formData.additionalInfo}
-          onChange={(c) =>
-            setFormData((p) => ({ ...p, additionalInfo: c }))
-          }
-        />
-        <Editor
-          content={formData.faq}
-          onChange={(c) => setFormData((p) => ({ ...p, faq: c }))}
-        />
+        {/* Editors with Labels */}
+        <div className="space-y-4">
+          <div>
+            <label className="block mb-1 font-semibold text-gray-700">
+              Product Highlights
+            </label>
+            <Editor
+              content={formData.productHighlights}
+              onChange={(c) =>
+                setFormData((p) => ({ ...p, productHighlights: c }))
+              }
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1 font-semibold text-gray-700">
+              Product Overview
+            </label>
+            <Editor
+              content={formData.productOverview}
+              onChange={(c) =>
+                setFormData((p) => ({ ...p, productOverview: c }))
+              }
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1 font-semibold text-gray-700">
+              Things to Carry
+            </label>
+            <Editor
+              content={formData.thingsToCarry}
+              onChange={(c) =>
+                setFormData((p) => ({ ...p, thingsToCarry: c }))
+              }
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1 font-semibold text-gray-700">
+              Know before you book (Additional Info)
+            </label>
+            <Editor
+              content={formData.additionalInfo}
+              onChange={(c) =>
+                setFormData((p) => ({ ...p, additionalInfo: c }))
+              }
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1 font-semibold text-gray-700">
+              FAQ
+            </label>
+            <Editor
+              content={formData.faq}
+              onChange={(c) => setFormData((p) => ({ ...p, faq: c }))}
+            />
+          </div>
+        </div>
 
         {/* Location */}
         <div className="flex gap-4">

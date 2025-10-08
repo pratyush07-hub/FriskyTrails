@@ -36,9 +36,17 @@ const ProductDetails = () => {
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mt-30 m-auto px-4">
         <div className="flex items-center pt-4 sm:pt-6 flex-wrap gap-2">
           <h3 className="font-semibold text-sm sm:text-base">Home</h3>
-          <img className="h-3 w-3 sm:h-4 sm:w-4 mt-1" src={Right} alt="rightarrow" />
+          <img
+            className="h-3 w-3 sm:h-4 sm:w-4 mt-1"
+            src={Right}
+            alt="rightarrow"
+          />
           <h3 className="font-semibold text-sm sm:text-base">Products</h3>
-          <img className="h-3 w-3 sm:h-4 sm:w-4 mt-1" src={Right} alt="rightarrow" />
+          <img
+            className="h-3 w-3 sm:h-4 sm:w-4 mt-1"
+            src={Right}
+            alt="rightarrow"
+          />
           <h3 className="font-semibold text-gray-600 text-sm sm:text-base truncate">
             {product.name}
           </h3>
@@ -52,7 +60,8 @@ const ProductDetails = () => {
           <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
             <div className="flex items-center gap-1">
               <h3 className="text-gray-500 text-sm sm:text-base">
-                {"⭐".repeat(product.rating || 5)} ({product.reviews || 0} Reviews)
+                {"⭐".repeat(product.rating || 5)} ({product.reviews || 0}{" "}
+                Reviews)
               </h3>
             </div>
             <div className="border h-full border-gray-300 hidden sm:block"></div>
@@ -64,7 +73,11 @@ const ProductDetails = () => {
           </div>
 
           <button className="py-2 flex items-center justify-center gap-2 px-4 sm:px-6 font-semibold text-white active:scale-95 transition-all duration-300 bg-[rgb(233,99,33)] rounded-3xl text-sm sm:text-base w-fit">
-            <img className="invert h-4 w-4 sm:h-5 sm:w-5" src={Share} alt="share" />
+            <img
+              className="invert h-4 w-4 sm:h-5 sm:w-5"
+              src={Share}
+              alt="share"
+            />
             Share
           </button>
         </div>
@@ -163,10 +176,10 @@ const ProductDetails = () => {
         </div>
 
         {/* Right - Sticky Sidebar */}
-        <div className="w-full lg:w-[30%] order-1 lg:order-2 lg:pl-6">
-          <div className="lg:sticky lg:top-28 space-y-6">
+        <div className="w-full lg:w-[30%] order-1 lg:order-2 pt-14 lg:pl-6">
+          <div className="lg:sticky lg:top-28">
             {/* Price Card */}
-            <div className="bg-white border border-orange-500 rounded-lg shadow-md overflow-hidden">
+            <div className="hidden lg:block bg-white border border-orange-500 rounded-lg shadow-md overflow-hidden">
               <div className="bg-orange-500 py-4 relative">
                 <span className="text-white absolute right-2 top-1 text-xs sm:text-sm md:text-base">
                   Save upto 50%
@@ -178,10 +191,10 @@ const ProductDetails = () => {
                     From
                   </span>
                   <span className="line-through pl-2 text-base sm:text-lg md:text-xl text-gray-500">
-                    ₹{product.actualPrice}
+                    ₹{product.offerPrice}
                   </span>
                   <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-500">
-                    ₹{product.offerPrice}
+                    ₹{product.actualPrice}
                   </h1>
                   <span className="font-semibold text-xs sm:text-sm md:text-base">
                     per person
@@ -209,8 +222,30 @@ const ProductDetails = () => {
               </div>
             </div>
 
+            {/* Mobile & Tablet Version (Fixed Bottom) */}
+<div className="lg:hidden fixed inset-x-0 bottom-0 w-full bg-white border-t border-orange-500 shadow-md p-3 flex justify-between items-center z-50">
+  <div className="flex flex-col">
+    <span className="text-sm line-through text-gray-500">
+      ₹{product.offerPrice}
+    </span>
+    <div className="flex items-baseline gap-1">
+      <span className="text-lg font-bold text-orange-500">
+        ₹{product.actualPrice}
+      </span>
+      <span className="text-md text-gray-600">per person</span>
+    </div>
+  </div>
+  <button
+    onClick={openBookingModal}
+    className="py-2 px-4 text-sm font-semibold text-white bg-[rgb(233,99,33)] rounded-3xl active:scale-95 transition-all duration-300"
+  >
+    Book Now
+  </button>
+</div>
+
+
             {/* Contact Card */}
-            <div className="bg-white border border-orange-500 rounded-lg shadow-md p-4 sm:p-5">
+            <div className="bg-white border border-orange-500 rounded-lg shadow-md p-4 mt-10 sm:p-5">
               <h1 className="text-orange-500 text-lg sm:text-xl md:text-2xl font-semibold">
                 Got a Question?
               </h1>
