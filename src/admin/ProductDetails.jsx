@@ -223,26 +223,27 @@ const ProductDetails = () => {
             </div>
 
             {/* Mobile & Tablet Version (Fixed Bottom) */}
-<div className="lg:hidden fixed inset-x-0 bottom-0 w-full bg-white border-t border-orange-500 shadow-md p-3 flex justify-between items-center z-50">
-  <div className="flex flex-col">
-    <span className="text-sm line-through text-gray-500">
-      ₹{product.offerPrice}
-    </span>
-    <div className="flex items-baseline gap-1">
-      <span className="text-lg font-bold text-orange-500">
-        ₹{product.actualPrice}
-      </span>
-      <span className="text-md text-gray-600">per person</span>
-    </div>
-  </div>
-  <button
-    onClick={openBookingModal}
-    className="py-2 px-4 text-sm font-semibold text-white bg-[rgb(233,99,33)] rounded-3xl active:scale-95 transition-all duration-300"
-  >
-    Book Now
-  </button>
-</div>
+            {/* Mobile & Tablet Version (Fixed Bottom) */}
+            <div className="lg:hidden fixed inset-x-0 bottom-0 w-full bg-white border-t border-orange-500 shadow-md p-4 flex justify-between items-center z-50">
+              <div className="flex flex-col justify-center">
+                <span className="text-lg line-through text-gray-500">
+                  ₹{product.offerPrice}
+                </span>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-2xl font-bold text-orange-500">
+                    ₹{product.actualPrice}
+                  </span>
+                  <span className="text-lg text-gray-600">per person</span>
+                </div>
+              </div>
 
+              <button
+                onClick={openBookingModal}
+                className="py-2 px-6 text-base font-semibold text-white bg-[rgb(233,99,33)] rounded-3xl active:scale-95 transition-all duration-300"
+              >
+                Book Now
+              </button>
+            </div>
 
             {/* Contact Card */}
             <div className="bg-white border border-orange-500 rounded-lg shadow-md p-4 mt-10 sm:p-5">
