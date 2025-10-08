@@ -7,11 +7,21 @@ import Call from "../assets/calling.svg";
 import { getProductBySlug } from "../api/admin.api";
 import Content from "../Productpage/Content";
 import BookingModal from "../components/BookingModal";
+import Choose from "../sections/Choose";
 
 const ProductDetails = () => {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
   const [showBooking, setShowBooking] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (!product?.images || product.images.length === 0) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % product.images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [product?.images]);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -33,7 +43,7 @@ const ProductDetails = () => {
   return (
     <div className="min-h-screen w-full">
       {/* Breadcrumb */}
-      <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mt-30 m-auto px-4">
+      <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mt-22 lg:mt-30 m-auto px-4">
         <div className="flex items-center pt-4 sm:pt-6 flex-wrap gap-2">
           <h3 className="font-semibold text-sm sm:text-base">Home</h3>
           <img
@@ -88,39 +98,40 @@ const ProductDetails = () => {
         <div className="w-full max-w-7xl rounded-lg bg-white m-auto">
           {product.images && product.images.length > 0 && (
             <>
-              {/* Mobile */}
-              <div className="block sm:hidden space-y-2">
-                {product.images.map((img, idx) => (
-                  <div
-                    key={idx}
-                    className="w-full h-52 rounded-xl shadow-2xl relative overflow-hidden"
-                  >
+              {/* Mobile & Tablet Auto Slider */}
+              <div className="block lg:hidden relative overflow-hidden rounded-xl shadow-2xl">
+                <div
+                  className="flex transition-transform duration-700 ease-in-out"
+                  style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                >
+                  {product.images.map((img, idx) => (
                     <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-300 hover:scale-110"
-                      style={{ backgroundImage: `url('${img}')` }}
-                    ></div>
-                  </div>
-                ))}
+                      key={idx}
+                      className="flex-shrink-0 w-full h-64 sm:h-80 relative overflow-hidden"
+                    >
+                      <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{ backgroundImage: `url('${img}')` }}
+                      ></div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Navigation Dots */}
+                <div className="absolute bottom-3 left-0 right-0 flex justify-center space-x-2">
+                  {product.images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentIndex(idx)}
+                      className={`h-2 w-2 rounded-full ${
+                        currentIndex === idx ? "bg-orange-500" : "bg-gray-300"
+                      }`}
+                    ></button>
+                  ))}
+                </div>
               </div>
 
-              {/* Tablet */}
-              <div className="hidden sm:block lg:hidden grid grid-cols-2 gap-2">
-                {product.images.map((img, idx) => (
-                  <div
-                    key={idx}
-                    className={`w-full rounded-xl shadow-2xl relative overflow-hidden ${
-                      idx === 2 ? "col-span-2 h-60" : "h-40"
-                    }`}
-                  >
-                    <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-300 hover:scale-110"
-                      style={{ backgroundImage: `url('${img}')` }}
-                    ></div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Desktop */}
+              {/* Desktop Grid View */}
               <div className="hidden lg:grid grid-cols-3 gap-3">
                 <div className="space-y-3">
                   {product.images.slice(0, 2).map((img, idx) => (
@@ -169,14 +180,14 @@ const ProductDetails = () => {
       </div>
 
       {/* Main Section */}
-      <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[90%] m-auto flex flex-col lg:flex-row px-4 gap-8 mt-10">
+      <div className="w-[100%] sm:w-[90%] md:w-[85%] lg:w-[90%] m-auto flex flex-col lg:flex-row px-4 gap-8 mt-6 md:mt-10">
         {/* Left - Content */}
-        <div className="w-full lg:w-[70%] order-2 lg:order-1">
+        <div className="w-full lg:w-[70%] lg:order-1">
           <Content product={product} />
         </div>
 
         {/* Right - Sticky Sidebar */}
-        <div className="w-full lg:w-[30%] order-1 lg:order-2 pt-14 lg:pl-6">
+        <div className="w-full lg:w-[30%] lg:order-2 pt-14 lg:pl-6">
           <div className="lg:sticky lg:top-28">
             {/* Price Card */}
             <div className="hidden lg:block bg-white border border-orange-500 rounded-lg shadow-md overflow-hidden">
@@ -223,30 +234,28 @@ const ProductDetails = () => {
             </div>
 
             {/* Mobile & Tablet Version (Fixed Bottom) */}
-            {/* Mobile & Tablet Version (Fixed Bottom) */}
-            <div className="lg:hidden fixed inset-x-0 bottom-0 w-full bg-white border-t border-orange-500 shadow-md p-4 flex justify-between items-center z-50">
+            <div className="lg:hidden fixed inset-x-0 bottom-0 w-full bg-white border-t border-orange-500 shadow-md py-5 px-2 flex justify-between items-center z-50">
               <div className="flex flex-col justify-center">
-                <span className="text-lg line-through text-gray-500">
+                <span className="text-md line-through text-gray-500">
                   ₹{product.offerPrice}
                 </span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-2xl font-bold text-orange-500">
+                  <span className="text-xl font-bold text-orange-500">
                     ₹{product.actualPrice}
                   </span>
-                  <span className="text-lg text-gray-600">per person</span>
+                  <span className="text-md text-gray-600">per person</span>
                 </div>
               </div>
-
               <button
                 onClick={openBookingModal}
-                className="py-2 px-6 text-base font-semibold text-white bg-[rgb(233,99,33)] rounded-3xl active:scale-95 transition-all duration-300"
+                className="py-2 px-4 text-base font-semibold text-white bg-[rgb(233,99,33)] rounded-3xl active:scale-95 transition-all duration-300"
               >
                 Book Now
               </button>
             </div>
 
             {/* Contact Card */}
-            <div className="bg-white border border-orange-500 rounded-lg shadow-md p-4 mt-10 sm:p-5">
+            <div className="hidden md:block bg-white border border-orange-500 rounded-lg shadow-md p-4 mb-2 md:mb-0 md:mt-10 sm:p-5">
               <h1 className="text-orange-500 text-lg sm:text-xl md:text-2xl font-semibold">
                 Got a Question?
               </h1>
@@ -278,6 +287,9 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="md:hidden -mt-20">
+        <Choose />
       </div>
 
       {/* Booking Modal */}

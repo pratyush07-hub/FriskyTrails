@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Call from "../assets/calling.svg";
 
 const Content = ({ product }) => {
   if (!product) return null;
@@ -34,11 +35,36 @@ const Content = ({ product }) => {
   );
 
   return (
-    <div className="pt-6 pb-10 w-full">
+    <div className="pt-6 w-full">
       {/* Sections */}
       {product.productHighlights && renderSection("Highlights", product.productHighlights)}
       {product.productOverview && renderSection("Overview", product.productOverview)}
       {product.thingsToCarry && renderSection("Things to Carry", product.thingsToCarry)}
+      <div className="md:hidden bg-white border border-orange-500 rounded-lg shadow-md p-4 mb-4 md:mb-0 md:mt-10 sm:p-5">
+                    <h1 className="text-orange-500 text-lg sm:text-xl md:text-2xl font-semibold">
+                      Got a Question?
+                    </h1>
+                    <p className="text-sm sm:text-base md:text-lg mt-2">
+                      Our destination expert will be happy to help you resolve your queries for this tour.
+                    </p>
+                    <div className="flex gap-3 sm:gap-4 items-center w-full mt-4">
+                      <div className="flex items-center justify-center bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 h-9 w-9 sm:h-10 sm:w-10 rounded-full">
+                        <img className="h-4 w-4 sm:h-5 sm:w-5 invert" src={Call} alt="call" />
+                      </div>
+                      <div>
+                        <a
+                          className="text-base sm:text-lg md:text-xl font-semibold block"
+                          href="tel:+91-9876543210"
+                        >
+                          +91-9876543210
+                        </a>
+                        <h3 className="text-xs sm:text-sm">Mon-Sun: 9AM-8PM</h3>
+                        <h3 className="text-xs sm:text-sm break-all">
+                          support@friskytrails.com
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
       {product.additionalInfo && renderSection("Know Before You Book", product.additionalInfo)}
 
       {/* FAQ Section */}
