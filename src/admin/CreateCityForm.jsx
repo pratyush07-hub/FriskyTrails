@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { createCity, getCountries, getStates } from "../api/admin.api";
 import { getCurrentUser } from "../api/user.api";
 import NotFound from "../components/NotFound";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const CreateCityForm = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +11,7 @@ const CreateCityForm = () => {
     slug: "",
     country: "",
     state: "",
+    howToReach: "",
   });
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -26,13 +29,13 @@ const CreateCityForm = () => {
         const res = await getCurrentUser();
         const user = res.data.user;
         if (!user || !user.admin) {
-          setIsAllowed(false); // Show 404
+          setIsAllowed(false);
         } else {
           setIsAdmin(true);
         }
       } catch (err) {
         console.error(err);
-        setIsAllowed(false); // Show 404 on error
+        setIsAllowed(false);
       } finally {
         setLoading(false);
       }
@@ -40,7 +43,7 @@ const CreateCityForm = () => {
     checkAdmin();
   }, []);
 
-  // Fetch countries on mount
+  // Fetch countries
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -53,7 +56,7 @@ const CreateCityForm = () => {
     fetchCountries();
   }, []);
 
-  // Fetch states when country changes
+  // Fetch states on country change
   useEffect(() => {
     const fetchStates = async () => {
       if (!formData.country) return;
@@ -81,8 +84,13 @@ const CreateCityForm = () => {
     }
   };
 
-  // Handle image selection
+  // Handle image
   const handleImageChange = (e) => setImageFile(e.target.files[0]);
+
+  // Handle howToReach editor
+  const handleHowToReachChange = (value) => {
+    setFormData((prev) => ({ ...prev, howToReach: value }));
+  };
 
   // Submit form
   const handleSubmit = async (e) => {
@@ -93,12 +101,13 @@ const CreateCityForm = () => {
     data.append("slug", formData.slug);
     data.append("country", formData.country);
     data.append("state", formData.state);
+    data.append("howToReach", formData.howToReach);
     if (imageFile) data.append("image", imageFile);
 
     try {
       const res = await createCity(data);
       setMessage(res.message || "✅ City created successfully!");
-      setFormData({ name: "", slug: "", country: "", state: "" });
+      setFormData({ name: "", slug: "", country: "", state: "", howToReach: "" });
       setImageFile(null);
       setStates([]);
     } catch (err) {
@@ -108,13 +117,17 @@ const CreateCityForm = () => {
   };
 
   if (loading) return null;
-  if (!isAllowed) return <NotFound />; // Show 404 for non-admins
+  if (!isAllowed) return <NotFound />;
   if (!isAdmin) return null;
 
   return (
     <div className="p-4 max-w-xl mt-30 mx-auto">
       <h2 className="text-xl font-bold mb-4">Create New City</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="flex flex-col gap-4"
+      >
         <input
           type="text"
           name="name"
@@ -132,6 +145,7 @@ const CreateCityForm = () => {
           disabled
           className="p-2 border rounded bg-gray-100 cursor-not-allowed"
         />
+
         <select
           name="country"
           value={formData.country}
@@ -146,6 +160,7 @@ const CreateCityForm = () => {
             </option>
           ))}
         </select>
+
         <select
           name="state"
           value={formData.state}
@@ -160,6 +175,7 @@ const CreateCityForm = () => {
             </option>
           ))}
         </select>
+
         <input
           key={imageFile ? imageFile.name : "file"}
           type="file"
@@ -168,6 +184,19 @@ const CreateCityForm = () => {
           onChange={handleImageChange}
           className="p-2 border rounded"
         />
+
+        {/* ✅ How To Reach Section */}
+        <div className="mt-4">
+          <label className="block font-semibold mb-2">How to Reach</label>
+          <ReactQuill
+            theme="snow"
+            value={formData.howToReach}
+            onChange={handleHowToReachChange}
+            placeholder="Add travel information (air, train, road, etc.)"
+            className="bg-white rounded"
+          />
+        </div>
+
         <button
           type="submit"
           className="bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition"
@@ -175,8 +204,13 @@ const CreateCityForm = () => {
           Create City
         </button>
       </form>
+
       {message && (
-        <p className={`mt-4 text-center font-medium ${message.includes("Failed") ? "text-red-600" : "text-green-600"}`}>
+        <p
+          className={`mt-4 text-center font-medium ${
+            message.includes("Failed") ? "text-red-600" : "text-green-600"
+          }`}
+        >
           {message}
         </p>
       )}

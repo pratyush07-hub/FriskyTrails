@@ -154,7 +154,7 @@ const CreateProductPage = () => {
         actualPrice: "",
         productHighlights: "",
         productOverview: "",
-        thingsToCarry: "",
+        // thingsToCarry: "",
         additionalInfo: "",
         faq: "",
         country: "",
@@ -219,6 +219,52 @@ const CreateProductPage = () => {
           ))}
         </select>
 
+        {/* Location */}
+        <div className="flex gap-4">
+          <select
+            name="country"
+            value={formData.country}
+            onChange={handleChange}
+            className="p-2 border rounded w-full"
+          >
+            <option value="">Select Country</option>
+            {countries.map((c) => (
+              <option key={c._id} value={c._id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+
+          <select
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            disabled={!formData.country}
+            className="p-2 border rounded w-full"
+          >
+            <option value="">Select State</option>
+            {states.map((s) => (
+              <option key={s._id} value={s._id}>
+                {s.name}
+              </option>
+            ))}
+          </select>
+
+          <select
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            disabled={!formData.state}
+            className="p-2 border rounded w-full"
+          >
+            <option value="">Select City</option>
+            {cities.map((c) => (
+              <option key={c._id} value={c._id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+        </div>
         {/* Prices */}
         <div className="flex gap-4">
           <input
@@ -296,7 +342,7 @@ const CreateProductPage = () => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block mb-1 font-semibold text-gray-700">
               Things to Carry
             </label>
@@ -306,7 +352,7 @@ const CreateProductPage = () => {
                 setFormData((p) => ({ ...p, thingsToCarry: c }))
               }
             />
-          </div>
+          </div> */}
 
           <div>
             <label className="block mb-1 font-semibold text-gray-700">
@@ -331,52 +377,6 @@ const CreateProductPage = () => {
           </div>
         </div>
 
-        {/* Location */}
-        <div className="flex gap-4">
-          <select
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-            className="p-2 border rounded w-full"
-          >
-            <option value="">Select Country</option>
-            {countries.map((c) => (
-              <option key={c._id} value={c._id}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-
-          <select
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            disabled={!formData.country}
-            className="p-2 border rounded w-full"
-          >
-            <option value="">Select State</option>
-            {states.map((s) => (
-              <option key={s._id} value={s._id}>
-                {s.name}
-              </option>
-            ))}
-          </select>
-
-          <select
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            disabled={!formData.state}
-            className="p-2 border rounded w-full"
-          >
-            <option value="">Select City</option>
-            {cities.map((c) => (
-              <option key={c._id} value={c._id}>
-                {c.name}
-              </option>
-            ))}
-          </select>
-        </div>
 
         {/* Images */}
         <input

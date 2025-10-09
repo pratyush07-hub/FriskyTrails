@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { createProductType } from "../api/admin.api";
 import { getCurrentUser } from "../api/user.api";
 import NotFound from "../components/NotFound";
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Editor styling
 
 const CreateProductType = () => {
   const [formData, setFormData] = useState({
     name: "",
     slug: "",
+    thingsToCarry: "",
   });
   const [imageFile, setImageFile] = useState(null);
   const [message, setMessage] = useState("");
@@ -16,33 +18,31 @@ const CreateProductType = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      const checkAdmin = async () => {
-        try {
-          const res = await getCurrentUser();
-          const user = res.data.user;
-          console.log(user);
-          if (!user || user.admin != true) {
-            setIsAllowed(false);
-          } else {
-            setIsAdmin(true);
-          }
-        } catch (err) {
-          console.error(err);
-          alert("Failed to verify user");
-          window.location.href = "/";
-        } finally {
-          setLoading(false);
+    const checkAdmin = async () => {
+      try {
+        const res = await getCurrentUser();
+        const user = res.data.user;
+        if (!user || user.admin !== true) {
+          setIsAllowed(false);
+        } else {
+          setIsAdmin(true);
         }
-      };
-  
-      checkAdmin();
-    }, []);
-  // Handle text input
+      } catch (err) {
+        console.error(err);
+        alert("Failed to verify user");
+        window.location.href = "/";
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAdmin();
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    // Auto-generate slug when typing name
+    // Auto-generate slug from name
     if (name === "name") {
       const generatedSlug = value
         .toLowerCase()
@@ -52,35 +52,34 @@ const CreateProductType = () => {
     }
   };
 
-  // Handle image input
+  const handleEditorChange = (value) => {
+    setFormData((prev) => ({ ...prev, thingsToCarry: value }));
+  };
+
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = new FormData();
     data.append("name", formData.name);
     data.append("slug", formData.slug);
-    if (imageFile) {
-      data.append("image", imageFile);
-    }
+    data.append("thingsToCarry", formData.thingsToCarry);
+    if (imageFile) data.append("image", imageFile);
 
     try {
       const res = await createProductType(data);
       setMessage(res.message || "Product type created successfully!");
-      console.log(res);
-
-      // Reset form
-      setFormData({ name: "", slug: "" });
+      setFormData({ name: "", slug: "", thingsToCarry: "" });
       setImageFile(null);
     } catch (err) {
       console.error(err);
       setMessage("Failed to create product type");
     }
   };
+
   if (loading) return null;
   if (!isAllowed) return <NotFound />;
   if (!isAdmin) return null;
@@ -88,6 +87,7 @@ const CreateProductType = () => {
   return (
     <div className="p-6 max-w-lg mx-auto mt-30 bg-white rounded-xl shadow-md">
       <h2 className="text-2xl font-bold mb-4 text-center">Create Product Type</h2>
+
       <form
         onSubmit={handleSubmit}
         encType="multipart/form-data"
@@ -104,7 +104,7 @@ const CreateProductType = () => {
           className="p-2 border rounded"
         />
 
-        {/* Slug (readonly, auto-generated) */}
+        {/* Slug */}
         <input
           type="text"
           name="slug"
@@ -115,6 +115,19 @@ const CreateProductType = () => {
           className="p-2 border rounded bg-gray-100"
           readOnly
         />
+
+        {/* Things to Carry */}
+        <div>
+          <label className="block mb-1 font-semibold text-gray-700">
+            Things to Carry
+          </label>
+          <ReactQuill
+            theme="snow"
+            value={formData.thingsToCarry}
+            onChange={handleEditorChange}
+            placeholder="List the items people should carry..."
+          />
+        </div>
 
         {/* Image Upload */}
         <input

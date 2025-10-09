@@ -145,6 +145,16 @@ const getCities = async (stateId) => {
   }
 };
 
+export const getCityById = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/api/v1/admin/city/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+
+
 
 export const getCityWithBlogs = async (slug) => {
   try {
@@ -244,6 +254,14 @@ const getProductTypeBySlug = async (slug) => {
     throw error.response ? error.response.data : error.message;
   }
 }
+const getProductTypeById = async (id) => {
+  try{
+    const response = await axiosInstance.get(`/api/v1/admin/productType/${id}`);
+    return response.data;
+  } catch (error){
+    throw error.response ? error.response.data : error.message;
+  }
+}
 const getProductTypeBySlugWithProduct = async (slug) => {
   try{
     const response = await axiosInstance.get(`/api/v1/admin/productTypes/${slug}/product`);
@@ -262,4 +280,4 @@ const getAllProductTypes = async () => {
   }
 }
 
-export { createProduct, updateBlog,getBlogById,getProducts, getProductBySlug, updateProduct, deleteProduct, createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs, createProductType, getProductTypeBySlug, getProductTypeBySlugWithProduct, getAllProductTypes, uploadEditorImage, getAllBlogs };
+export { createProduct, updateBlog,getBlogById,getProducts, getProductBySlug, updateProduct, deleteProduct, createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs, createProductType, getProductTypeBySlug, getProductTypeBySlugWithProduct, getAllProductTypes, uploadEditorImage, getAllBlogs, getProductTypeById };

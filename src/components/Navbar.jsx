@@ -93,7 +93,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex top-9 fixed justify-center z-50 w-full">
+    <div className="flex top-10 fixed justify-center z-80 w-full">
       <div className="h-auto lg:h-[10vh] w-full bg-white flex flex-col lg:flex-row justify-between items-center md:p-2 lg:p-4 px-4">
         {/* Logo and Hamburger */}
         <div className="flex justify-between items-center w-full lg:w-auto">
@@ -107,7 +107,7 @@ const Navbar = () => {
               FriskyTrails
             </h1>
           </div>
-          <button onClick={toggleMenu} className="lg:hidden p-2 z-50 relative">
+          <button onClick={toggleMenu} className="lg:hidden p-2 z-80 relative">
             {isMenuOpen ? (
               <span className="text-2xl font-bold">✕</span>
             ) : (
@@ -122,12 +122,12 @@ const Navbar = () => {
 
         {/* Overlay */}
         {isMenuOpen && (
-          <div className="fixed inset-0 bg-black/40 z-40" onClick={toggleMenu}></div>
+          <div className="fixed inset-0 bg-black/40 z-80" onClick={toggleMenu}></div>
         )}
 
         {/* Mobile Drawer */}
         <div
-          className={`fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out overflow-y-auto ${
+          className={`fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white shadow-lg z-80 transform transition-transform duration-300 ease-in-out overflow-y-auto ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >

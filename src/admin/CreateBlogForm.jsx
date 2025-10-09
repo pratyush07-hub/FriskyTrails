@@ -174,6 +174,52 @@ const CreateBlogForm = () => {
           disabled
           className="p-2 border rounded bg-gray-100 cursor-not-allowed"
         />
+        <select
+          name="country"
+          value={formData.country}
+          onChange={handleChange}
+          required
+          className="p-2 border rounded"
+        >
+          <option value="">Select Country</option>
+          {countries.map((c) => (
+            <option key={c._id} value={c._id}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+
+        <select
+          name="state"
+          value={formData.state}
+          onChange={handleChange}
+          required
+          className="p-2 border rounded"
+          disabled={!states.length}
+        >
+          <option value="">Select State</option>
+          {states.map((s) => (
+            <option key={s._id} value={s._id}>
+              {s.name}
+            </option>
+          ))}
+        </select>
+
+        <select
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+          required
+          className="p-2 border rounded"
+          disabled={!cities.length}
+        >
+          <option value="">Select City</option>
+          {cities.map((c) => (
+            <option key={c._id} value={c._id}>
+              {c.name}
+            </option>
+          ))}
+        </select>
         <label className="block font-semibold mt-4 mb-1">Short Intro</label>
 <Editor
   content={formData.intro}
@@ -237,52 +283,6 @@ const CreateBlogForm = () => {
           className="p-2 border rounded"
         />
 
-        <select
-          name="country"
-          value={formData.country}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded"
-        >
-          <option value="">Select Country</option>
-          {countries.map((c) => (
-            <option key={c._id} value={c._id}>
-              {c.name}
-            </option>
-          ))}
-        </select>
-
-        <select
-          name="state"
-          value={formData.state}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded"
-          disabled={!states.length}
-        >
-          <option value="">Select State</option>
-          {states.map((s) => (
-            <option key={s._id} value={s._id}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-
-        <select
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-          required
-          className="p-2 border rounded"
-          disabled={!cities.length}
-        >
-          <option value="">Select City</option>
-          {cities.map((c) => (
-            <option key={c._id} value={c._id}>
-              {c.name}
-            </option>
-          ))}
-        </select>
 
         <input
           key={imageFile ? imageFile.name : "file"}
