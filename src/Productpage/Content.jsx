@@ -5,7 +5,7 @@ import Call from "../assets/calling.svg";
 const Content = ({ product, thingsToCarry, howToReach }) => {
   if (!product) return null;
 
-  const MAX_WORDS = 150;
+  const MAX_WORDS = 50;
   const [expandedSections, setExpandedSections] = useState({});
 
   const toggleSection = (key) => {
