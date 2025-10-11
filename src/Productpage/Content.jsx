@@ -158,13 +158,15 @@ const Content = ({ product, thingsToCarry, howToReach }) => {
           <div>
             <a
               className="text-base sm:text-lg md:text-xl font-semibold block"
-              href="tel:+91-9876543210"
+              href="tel:+91-7501516714"
             >
-              +91-9876543210
+              +91-75015 16714
             </a>
             <h3 className="text-xs sm:text-sm">Mon-Sun: 9AM-8PM</h3>
             <h3 className="text-xs sm:text-sm break-all">
-              support@friskytrails.com
+              <a href="mailto:contact@friskytrails.in" className="text-black md:hidden lg:block">
+              contact@friskytrails.in
+            </a>
             </h3>
           </div>
         </div>
@@ -189,7 +191,6 @@ const Content = ({ product, thingsToCarry, howToReach }) => {
           <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-black mb-2">
             {product.name} <span className="text-orange-500">FAQ</span>
           </h2>
-
           {isFaqJson && faqData && faqData.length > 0 ? (
             faqData.map((item, index) => (
               <div

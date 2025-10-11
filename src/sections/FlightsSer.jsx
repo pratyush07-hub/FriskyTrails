@@ -49,6 +49,7 @@ const FlightsSer = () => {
               View Testimonials
             </button>
           </div>
+          {/* mobile */}
           <div
             className="md:hidden w-full sm:w-[90%] md:w-[80%] lg:w-[80%] h-[50vh] rounded-3xl shadow-6xl p-4 relative"
             style={{
@@ -58,17 +59,21 @@ const FlightsSer = () => {
               backgroundRepeat: "no-repeat",
             }}
           >
+            <div className="flex flex-col px-4">
             <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold">
               Loved For Experiences!
             </h1>
-            <p className="text-white text-base sm:text-lg pl-4 max-w-[100%] mt-1">
+            <p className="text-white text-base sm:text-lg max-w-[100%] mt-1">
               Read stories from travellers who trusted us to craft their
               journeys!
             </p>
-            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-41 ml-16 text-white font-bold rounded-full py-1 px-2 text-xs">
+            </div>
+            <div className="absolute bottom-13 left-34">
+            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 text-white font-bold rounded-full py-2 px-3 text-xs">
               View Testimonials
             </button>
           </div>
+            </div>
         </div>
 
         {/* Holiday Packages */}
