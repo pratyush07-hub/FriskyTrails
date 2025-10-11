@@ -4,7 +4,11 @@ import Right from "../assets/right.svg";
 import Share from "../assets/share.svg";
 import Payment from "../assets/payment.svg";
 import Call from "../assets/calling.svg";
-import { getProductBySlug, getProductTypeById, getCityById } from "../api/admin.api";
+import {
+  getProductBySlug,
+  getProductTypeById,
+  getCityById,
+} from "../api/admin.api";
 import Content from "../Productpage/Content";
 import BookingModal from "../components/BookingModal";
 import Choose from "../sections/Choose";
@@ -36,14 +40,18 @@ const ProductDetails = () => {
 
         // Things to Carry (ensure it's an array)
         if (productData.productType) {
-  const typeRes = await getProductTypeById(productData.productType);
-  let carryString = "";
-  if (typeRes.data.thingsToCarry) {
-    carryString = typeRes.data.thingsToCarry; // keep HTML string
-  }
-  setThingsToCarry(carryString); // pass HTML string
-}
+          const typeRes = await getProductTypeById(productData.productType);
+          let carryData = typeRes.data.thingsToCarry || "";
 
+          if (carryData) {
+            try {
+              const parsed = JSON.parse(carryData);
+              setThingsToCarry(Array.isArray(parsed) ? parsed : [carryData]);
+            } catch {
+              setThingsToCarry(carryData); // fallback: treat as HTML string
+            }
+          }
+        }
 
         // How to Reach
         if (productData.city?._id) {
@@ -70,9 +78,17 @@ const ProductDetails = () => {
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mt-22 lg:mt-30 m-auto px-4">
         <div className="flex items-center pt-4 sm:pt-6 flex-wrap gap-2">
           <h3 className="font-semibold text-sm sm:text-base">Home</h3>
-          <img className="h-3 w-3 sm:h-4 sm:w-4 mt-1" src={Right} alt="rightarrow" />
+          <img
+            className="h-3 w-3 sm:h-4 sm:w-4 mt-1"
+            src={Right}
+            alt="rightarrow"
+          />
           <h3 className="font-semibold text-sm sm:text-base">Products</h3>
-          <img className="h-3 w-3 sm:h-4 sm:w-4 mt-1" src={Right} alt="rightarrow" />
+          <img
+            className="h-3 w-3 sm:h-4 sm:w-4 mt-1"
+            src={Right}
+            alt="rightarrow"
+          />
           <h3 className="font-semibold text-gray-600 text-sm sm:text-base truncate">
             {product.name}
           </h3>
@@ -86,7 +102,8 @@ const ProductDetails = () => {
           <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
             <div className="flex items-center gap-1">
               <h3 className="text-gray-500 text-sm sm:text-base">
-                {"⭐".repeat(product.rating || 5)} ({product.reviews || 0} Reviews)
+                {"⭐".repeat(product.rating || 5)} ({product.reviews || 0}{" "}
+                Reviews)
               </h3>
             </div>
             <div className="border h-full border-gray-300 hidden sm:block"></div>
@@ -98,7 +115,11 @@ const ProductDetails = () => {
           </div>
 
           <button className="py-2 flex items-center justify-center gap-2 px-4 sm:px-6 font-semibold text-white active:scale-95 transition-all duration-300 bg-[rgb(233,99,33)] rounded-3xl text-sm sm:text-base w-fit">
-            <img className="invert h-4 w-4 sm:h-5 sm:w-5" src={Share} alt="share" />
+            <img
+              className="invert h-4 w-4 sm:h-5 sm:w-5"
+              src={Share}
+              alt="share"
+            />
             Share
           </button>
         </div>
@@ -161,7 +182,9 @@ const ProductDetails = () => {
                     <div
                       className="absolute inset-0 bg-cover bg-center transition-transform duration-300 hover:scale-110"
                       style={{
-                        backgroundImage: `url('${product.images[2] || product.images[0]}')`,
+                        backgroundImage: `url('${
+                          product.images[2] || product.images[0]
+                        }')`,
                       }}
                     ></div>
                   </div>
@@ -193,7 +216,7 @@ const ProductDetails = () => {
           <Content
             product={product}
             howToReach={howToReach}
-            thingsToCarry={thingsToCarry} 
+            thingsToCarry={thingsToCarry}
           />
         </div>
 
@@ -208,14 +231,18 @@ const ProductDetails = () => {
               </div>
               <div className="p-4 sm:p-5 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div className="text-center sm:text-left">
-                  <span className="font-semibold text-xs sm:text-sm md:text-base">From</span>
+                  <span className="font-semibold text-xs sm:text-sm md:text-base">
+                    From
+                  </span>
                   <span className="line-through pl-2 text-base sm:text-lg md:text-xl text-gray-500">
                     ₹{product.offerPrice}
                   </span>
                   <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-500">
                     ₹{product.actualPrice}
                   </h1>
-                  <span className="font-semibold text-xs sm:text-sm md:text-base">per person</span>
+                  <span className="font-semibold text-xs sm:text-sm md:text-base">
+                    per person
+                  </span>
                 </div>
                 <button
                   onClick={openBookingModal}
@@ -225,29 +252,50 @@ const ProductDetails = () => {
                 </button>
               </div>
               <div className="flex items-start gap-2 sm:gap-3 px-4 pb-4">
-                <img className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" src={Payment} alt="payment" />
+                <img
+                  className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0"
+                  src={Payment}
+                  alt="payment"
+                />
                 <p className="text-xs sm:text-sm md:text-base leading-snug">
-                  <span className="underline font-semibold">Reserve now & pay later</span> to book your spot and pay nothing today
+                  <span className="underline font-semibold">
+                    Reserve now & pay later
+                  </span>{" "}
+                  to book your spot and pay nothing today
                 </p>
               </div>
             </div>
 
             {/* Contact Card */}
             <div className="hidden md:block bg-white border border-orange-500 rounded-lg shadow-md p-4 mb-2 md:mb-0 md:mt-10 sm:p-5">
-              <h1 className="text-orange-500 text-lg sm:text-xl md:text-2xl font-semibold">Got a Question?</h1>
+              <h1 className="text-orange-500 text-lg sm:text-xl md:text-2xl font-semibold">
+                Got a Question?
+              </h1>
               <p className="text-sm sm:text-base md:text-lg mt-2">
-                Our destination expert will be happy to help you resolve your queries for this tour.
+                Our destination expert will be happy to help you resolve your
+                queries for this tour.
               </p>
               <div className="flex gap-3 sm:gap-4 items-center w-full mt-4">
                 <div className="flex items-center justify-center bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 h-9 w-9 sm:h-10 sm:w-10 rounded-full">
-                  <img className="h-4 w-4 sm:h-5 sm:w-5 invert" src={Call} alt="call" />
+                  <img
+                    className="h-4 w-4 sm:h-5 sm:w-5 invert"
+                    src={Call}
+                    alt="call"
+                  />
                 </div>
                 <div>
-                  <a className="text-base sm:text-lg md:text-xl font-semibold block" href="tel:+91-9876543210">
-                    +91-9876543210
+                  <a
+                    className="text-base sm:text-lg md:text-xl font-semibold block"
+                    href="tel:+91-7501516714"
+                  >
+                    +91-75015 16714
                   </a>
                   <h3 className="text-xs sm:text-sm">Mon-Sun: 9AM-8PM</h3>
-                  <h3 className="text-xs sm:text-sm break-all">support@friskytrails.com</h3>
+                  <h3 className="text-xs sm:text-sm break-all font-semibold">
+                    <a href="mailto:contact@friskytrails.in" className="text-black md:hidden lg:block">
+              contact@friskytrails.in
+            </a>
+                  </h3>
                 </div>
               </div>
             </div>
@@ -258,9 +306,13 @@ const ProductDetails = () => {
       {/* Mobile Fixed Book Now Bar */}
       <div className="lg:hidden fixed inset-x-0 bottom-0 w-full bg-white border-t border-orange-500 shadow-md py-5 px-2 flex justify-between items-center z-50">
         <div className="flex flex-col justify-center">
-          <span className="text-md line-through text-gray-500">₹{product.offerPrice}</span>
+          <span className="text-md line-through text-gray-500">
+            ₹{product.offerPrice}
+          </span>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold text-orange-500">₹{product.actualPrice}</span>
+            <span className="text-xl font-bold text-orange-500">
+              ₹{product.actualPrice}
+            </span>
             <span className="text-md text-gray-600">per person</span>
           </div>
         </div>
@@ -272,12 +324,14 @@ const ProductDetails = () => {
         </button>
       </div>
 
-      <div className="md:hidden -mt-20">
+      <div className="lg:mt-10 -mt-20 lg:mb-4">
         <Choose />
       </div>
 
       {/* Booking Modal */}
-      {showBooking && <BookingModal productSlug={product.slug} onClose={closeBookingModal} />}
+      {showBooking && (
+        <BookingModal productSlug={product.slug} onClose={closeBookingModal} />
+      )}
     </div>
   );
 };
