@@ -224,6 +224,7 @@ const CreateProductPage = () => {
           <select
             name="country"
             value={formData.country}
+            required
             onChange={handleChange}
             className="p-2 border rounded w-full"
           >

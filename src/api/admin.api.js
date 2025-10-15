@@ -195,10 +195,19 @@ const getProductBySlug = async (slug) => {
     throw error.response ? error.response.data : error.message;
   }
 };
-
-const updateBlog = async (id, formData) => {
+export const getProductById = async (id) => {
   try {
-    const response = await axiosInstance.put(`/api/v1/admin/blog/${id}`, formData, {
+    const { data } = await axiosInstance.get(`/api/v1/admin/product/${id}`);
+    return data; 
+  } catch (error) {
+    console.error("Error fetching product by ID:", error);
+    throw new Error(error.response?.data?.message || "Failed to fetch product");
+  }
+};
+
+const updateBlog = async (slug, formData) => {
+  try {
+    const response = await axiosInstance.put(`/api/v1/admin/blog/${slug}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     return response.data;

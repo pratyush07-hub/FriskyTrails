@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react";
 import Right from "../assets/right.svg";
-// import Facebook from "../assets/facebook.svg";
-// import Twitter from "../assets/twitter.svg";
-// import Linkedin from "../assets/linkedin.svg";
-// import Instagram from "../assets/instagram.svg";
 import Blogleft from "../components/Blogleft";
 import Blogright from "../components/Blogright";
 import { getSingleBlog } from "../api/blog.api";
 import { useParams } from "react-router-dom";
 
 const Newlog = () => {
-
-    const { slug } = useParams();
+  const { slug } = useParams();
   const [blog, setBlog] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
- useEffect(() => {
+  useEffect(() => {
     const fetchBlog = async () => {
       try {
         const res = await getSingleBlog(slug);
@@ -29,10 +24,10 @@ const Newlog = () => {
     };
     fetchBlog();
   }, [slug]);
-  
+
   if (loading) return <p className="text-center mt-10">Loading blog...</p>;
-if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
-if (!blog) return null;
+  if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
+  if (!blog) return null;
 
   return (
     <div className="min-h-screen mt-20 lg:mt-28 w-full">
@@ -42,12 +37,27 @@ if (!blog) return null;
           backgroundImage: "url('/images/bgbanner.svg')",
         }}
       >
-        <div className="flex items-center gap-2 px-4 xl:pl-20 pt-6 text-sm sm:text-base">
+        {/* <div className="flex items-center gap-2 px-4 xl:pl-20 pt-6 text-sm sm:text-base">
           <h3 className="font-semibold">{blog.country.name}</h3>
           <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
           <h3 className="font-semibold">{blog.state.name}</h3>
           <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
           <h3 className="font-semibold text-gray-600">{blog.city.name}</h3>
+        </div> */}
+        <div className="flex items-center gap-2 px-4 xl:pl-20 pt-6 text-sm sm:text-base">
+          {blog.country && (
+            <h3 className="font-semibold">{blog.country?.name}</h3>
+          )}
+          {blog.country && blog.state && (
+            <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
+          )}
+          {blog.state && <h3 className="font-semibold">{blog.state?.name}</h3>}
+          {blog.state && blog.city && (
+            <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
+          )}
+          {blog.city && (
+            <h3 className="font-semibold text-gray-600">{blog.city?.name}</h3>
+          )}
         </div>
 
         <h1 className="text-2xl sm:text-3xl xl:pl-20 md:text-4xl font-semibold tracking-tighter px-4 pt-8 md:pt-4">
@@ -99,19 +109,20 @@ if (!blog) return null;
 
           {/* Middle content */}
           {/* <div className="flex w-full gap-6"> */}
-  {/* Left content */}
-  <div className="lg:w-[60%] pt-3 w-full">
-    <Blogleft blog={blog} />
-  </div>
+          {/* Left content */}
+          <div className="lg:w-[60%] pt-3 w-full">
+            <Blogleft blog={blog} />
+          </div>
 
-  {/* Right sidebar */}
-  <div className="hidden lg:block lg:w-[30%]">
-    <div className="sticky top-26"> {/* adjust top spacing if you have a navbar */}
-      <Blogright />
-    </div>
-  {/* </div> */}
-</div>
-
+          {/* Right sidebar */}
+          <div className="hidden lg:block lg:w-[30%]">
+            <div className="sticky top-26">
+              {" "}
+              {/* adjust top spacing if you have a navbar */}
+              <Blogright />
+            </div>
+            {/* </div> */}
+          </div>
         </div>
       </div>
     </div>

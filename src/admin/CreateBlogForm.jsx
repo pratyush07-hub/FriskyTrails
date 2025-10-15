@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
-import { createBlog, getCountries, getStates, getCities } from "../api/admin.api";
+import {
+  createBlog,
+  getCountries,
+  getStates,
+  getCities,
+} from "../api/admin.api";
 import { getCurrentUser } from "../api/user.api";
 import Editor from "../components/Editor";
 import NotFound from "../components/NotFound"; // Import your 404 page
@@ -14,8 +19,11 @@ const CreateBlogForm = () => {
     country: "",
     state: "",
     city: "",
+    faq: "",
   });
-  const [blocks, setBlocks] = useState([{ id: Date.now(), heading: "", content: "" }]);
+  const [blocks, setBlocks] = useState([
+    { id: Date.now(), heading: "", content: "" },
+  ]);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -33,13 +41,13 @@ const CreateBlogForm = () => {
         const res = await getCurrentUser();
         const user = res.data.user;
         if (!user || !user.admin) {
-          setIsAllowed(false); // Show 404
+          setIsAllowed(false);
         } else {
           setIsAdmin(true);
         }
       } catch (err) {
         console.error(err);
-        setIsAllowed(false); // Show 404 on error
+        setIsAllowed(false); 
       } finally {
         setLoading(false);
       }
@@ -108,11 +116,15 @@ const CreateBlogForm = () => {
   const handleImageChange = (e) => setImageFile(e.target.files[0]);
 
   const handleBlockChange = (id, field, value) => {
-    setBlocks((prev) => prev.map((b) => (b.id === id ? { ...b, [field]: value } : b)));
+    setBlocks((prev) =>
+      prev.map((b) => (b.id === id ? { ...b, [field]: value } : b))
+    );
   };
 
-  const addBlock = () => setBlocks([...blocks, { id: Date.now(), heading: "", content: "" }]);
-  const removeBlock = (id) => setBlocks((prev) => prev.filter((b) => b.id !== id));
+  const addBlock = () =>
+    setBlocks([...blocks, { id: Date.now(), heading: "", content: "" }]);
+  const removeBlock = (id) =>
+    setBlocks((prev) => prev.filter((b) => b.id !== id));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -133,6 +145,7 @@ const CreateBlogForm = () => {
         country: "",
         state: "",
         city: "",
+        faq: "",
       });
       setBlocks([{ id: Date.now(), heading: "", content: "" }]);
       setImageFile(null);
@@ -145,9 +158,9 @@ const CreateBlogForm = () => {
   };
 
   if (loading) return null;
-  if (!isAllowed) return <NotFound />; // Show 404 to non-admins
+  if (!isAllowed) return <NotFound />; 
   if (!isAdmin) return null;
-  
+
   return (
     <div className="p-4 w-[70%] mt-30 mx-auto">
       <h2 className="text-xl font-bold mb-4">Create New Blog</h2>
@@ -193,7 +206,6 @@ const CreateBlogForm = () => {
           name="state"
           value={formData.state}
           onChange={handleChange}
-          required
           className="p-2 border rounded"
           disabled={!states.length}
         >
@@ -209,7 +221,6 @@ const CreateBlogForm = () => {
           name="city"
           value={formData.city}
           onChange={handleChange}
-          required
           className="p-2 border rounded"
           disabled={!cities.length}
         >
@@ -221,14 +232,17 @@ const CreateBlogForm = () => {
           ))}
         </select>
         <label className="block font-semibold mt-4 mb-1">Short Intro</label>
-<Editor
-  content={formData.intro}
-  onChange={(val) => setFormData(prev => ({ ...prev, intro: val }))}
-/>
+        <Editor
+          content={formData.intro}
+          onChange={(val) => setFormData((prev) => ({ ...prev, intro: val }))}
+        />
 
         {/* Dynamic Blocks */}
         {blocks.map((block, idx) => (
-          <div key={block.id} className="p-4 border rounded space-y-4 bg-gray-50">
+          <div
+            key={block.id}
+            className="p-4 border rounded space-y-4 bg-gray-50"
+          >
             <h3 className="font-semibold">Block {idx + 1}</h3>
 
             <div>
@@ -268,10 +282,19 @@ const CreateBlogForm = () => {
         </button>
 
         <label className="block font-semibold mt-4 mb-1">Conclusion</label>
-<Editor
-  content={formData.conclusion}
-  onChange={(val) => setFormData(prev => ({ ...prev, conclusion: val }))}
-/>
+        <Editor
+          content={formData.conclusion}
+          onChange={(val) =>
+            setFormData((prev) => ({ ...prev, conclusion: val }))
+          }
+        />
+        <label className="block font-semibold mt-4 mb-1">FAQ</label>
+        <Editor
+          content={formData.faq}
+          onChange={(val) =>
+            setFormData((prev) => ({ ...prev, faq: val }))
+          }
+        />
 
         <input
           type="text"
@@ -282,7 +305,6 @@ const CreateBlogForm = () => {
           required
           className="p-2 border rounded"
         />
-
 
         <input
           key={imageFile ? imageFile.name : "file"}

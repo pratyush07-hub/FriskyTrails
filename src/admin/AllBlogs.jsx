@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import EditBlogForm from "./EditBlogForm"; // ✅ Import new form
+import EditBlogForm from "./EditBlogForm";
 import { getAllBlogs } from "../api/admin.api";
 
 const AllBlogs = () => {

@@ -6,6 +6,7 @@ import LoginModal from "./LoginModal";
 import { logoutUser, getCurrentUser } from "../api/user.api";
 import Arrow from "../assets/arrow.svg";
 import { FaChevronDown } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -143,7 +144,8 @@ const Navbar = () => {
 
               {isLoggedIn && (
                 <div className="flex items-center gap-2 text-gray-800 font-semibold">
-                  <img src="/images/sword.png" className="h-5 w-5" />
+                  {/* <img src="/images/sword.png" className="h-5 w-5" /> */}
+                <FaUser className="text-md" />
                   Hi, {storedFirstName}
                 </div>
               )}
@@ -278,7 +280,9 @@ const Navbar = () => {
                 onClick={() => setShowDropdown((prev) => !prev)}
                 className="flex items-center gap-2 text-md font-medium text-gray-700 hover:text-black"
               >
-                <img src="/images/sword.png" className="h-5 w-5" />
+                {/* <img src="/images/sword.png" className="h-5 w-5" /> */}
+                <FaUser className="text-md" />
+
                 Hi, {storedFirstName}
                 <FaChevronDown className="text-xs" />
               </button>

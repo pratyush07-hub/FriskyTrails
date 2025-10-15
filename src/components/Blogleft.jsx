@@ -7,7 +7,7 @@ const Blogleft = ({ blog }) => {
     <div className="pt-6 pb-10 h-auto w-full">
       {/* Intro Section */}
       {blog.intro && (
-        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
+        <div className="blog-content bg-white p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
           <div dangerouslySetInnerHTML={{ __html: blog.intro }} />
         </div>
       )}
@@ -16,7 +16,7 @@ const Blogleft = ({ blog }) => {
       {blog.blocks
         .sort((a, b) => a.order - b.order)
         .map((block, index) => (
-          <div key={index} className="w-[90%] mx-auto mb-8 bg-orange-200 p-4 rounded-lg">
+          <div key={index} className="w-[90%] mx-auto mb-8 bg-white p-4 rounded-lg">
             {/* Heading */}
             {block.heading && (
               <div className="flex items-start mb-2">
@@ -53,8 +53,13 @@ const Blogleft = ({ blog }) => {
 
       {/* Conclusion */}
       {blog.conclusion && (
-        <div className="blog-content bg-orange-200 p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mt-6">
+        <div className="blog-content bg-white p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mt-6">
           <div dangerouslySetInnerHTML={{ __html: blog.conclusion }} />
+        </div>
+      )}
+      {blog.faq && (
+        <div className="blog-content bg-white p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mt-6">
+          <div dangerouslySetInnerHTML={{ __html: blog.faq }} />
         </div>
       )}
     </div>
@@ -66,6 +71,7 @@ Blogleft.propTypes = {
     title: PropTypes.string,
     intro: PropTypes.string,
     conclusion: PropTypes.string,
+    faq: PropTypes.string,
     authorName: PropTypes.string,
     country: PropTypes.object,
     state: PropTypes.object,
