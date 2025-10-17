@@ -305,11 +305,11 @@ const Navbar = () => {
               >
                 Login
               </button>
-              {showLogin && <LoginModal onClose={handleLoginClose} />}
             </>
           )}
         </div>
       </div>
+          {showLogin && <LoginModal onClose={handleLoginClose} />}
     </div>
   );
 };

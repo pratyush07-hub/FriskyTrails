@@ -14,114 +14,87 @@ const LoginModal = ({ onClose }) => {
   });
   const [loading, setLoading] = useState(false);
 
-  // Handle input changes dynamically
   const handleChange = (e) => {
-    // console.log(`Field changed: ${e.target.name} = ${e.target.value}`);
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Google login flow
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: async (authResult) => {
-      console.log("Google OAuth Success Response:", authResult);
       try {
         if (authResult.code) {
-          console.log("Google Auth Code:", authResult.code);
           setLoading(true);
-
           const response = await googleAuth(authResult.code);
-          // console.log("Google Auth API Response:", response);
-
           if (response.success) {
             localStorage.setItem("accessToken", response.data.accessToken);
             localStorage.setItem("userName", response.data.user.userName);
             localStorage.setItem("firstName", response.data.user.firstName);
-            // console.log("User stored in localStorage:", response.data.user);
             onClose();
           } else {
-            console.warn("Google login failed: No success flag in response");
+            alert("Google login failed");
           }
-        } else {
-          console.warn("Google login did not return a code");
         }
       } catch (error) {
-        console.error("Google Login Error:", error);
-        alert(error.message || "Google login failed");
+        console.error(error);
+        alert("Google login failed");
       } finally {
         setLoading(false);
       }
     },
     onError: (err) => {
-      console.error("Google OAuth Error:", err);
+      console.error(err);
       alert("Google login failed");
     },
     flow: "auth-code",
   });
 
-  // Form submission for Login / Register
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // console.log("Form submitted. Mode:", isLogin ? "Login" : "Register", "Form Data:", form);
-
     try {
       if (isLogin) {
-        console.log("Attempting login with:", { email: form.email });
         const response = await loginUser({
           email: form.email,
           password: form.password,
         });
-        // console.log("Login API Response:", response);
-
         if (response.success) {
           localStorage.setItem("accessToken", response.data.accessToken);
           localStorage.setItem("userName", response.data.user.userName);
           localStorage.setItem("firstName", response.data.user.firstName);
-          // console.log("Login successful. User stored:", response.data.user);
           onClose();
         } else {
-          alert("Login failed: No success flag in response");
+          alert("Login failed");
         }
       } else {
-        console.log("Attempting registration with:", form);
         const response = await registerUser(form);
-        console.log("Register API Response:", response);
-
         if (response.success) {
           alert("Registration successful. Please login.");
           setIsLogin(true);
         } else {
-          console.warn("Registration failed: No success flag in response");
+          alert("Registration failed");
         }
       }
     } catch (error) {
-      console.error("Form Submit Error:", error);
+      console.error(error);
       alert(error.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
 
-  // Disable scroll when modal is open
   useEffect(() => {
-    // console.log("LoginModal mounted. Disabling scroll");
     document.body.style.overflow = "hidden";
     return () => {
-      // console.log("LoginModal unmounted. Restoring scroll");
       document.body.style.overflow = "auto";
     };
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[1000] bg-white/90 lg:bg-neutral-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-sm bg-white border border-gray-300 rounded-xl shadow-xl p-6 relative animate-fadeIn">
+    <div className="fixed inset-0 z-[1000] bg-white flex justify-center items-center px-4">
+      <div className="relative w-full max-w-sm p-6 bg-white rounded-xl shadow-xl animate-fadeIn">
         {/* Close button */}
         <button
-          onClick={() => {
-            console.log("Modal closed");
-            onClose();
-          }}
-          className="absolute top-2 right-3 text-2xl font-bold text-gray-500 hover:text-black"
+          onClick={onClose}
+          className="absolute top-3 right-3 text-2xl font-bold text-gray-500 hover:text-black"
         >
           &times;
         </button>
@@ -131,7 +104,7 @@ const LoginModal = ({ onClose }) => {
           {isLogin ? "Login" : "Register"}
         </h2>
 
-        {/* Auth Form */}
+        {/* Form */}
         <form onSubmit={handleSubmit}>
           {!isLogin && (
             <>
@@ -187,11 +160,7 @@ const LoginModal = ({ onClose }) => {
             disabled={loading}
             className="w-full bg-black text-white py-2 rounded hover:bg-amber-500 transition-all disabled:opacity-50"
           >
-            {loading
-              ? "Please wait..."
-              : isLogin
-              ? "Login"
-              : "Register"}
+            {loading ? "Please wait..." : isLogin ? "Login" : "Register"}
           </button>
         </form>
 
@@ -199,10 +168,7 @@ const LoginModal = ({ onClose }) => {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-500 mb-2">or</p>
           <button
-            onClick={() => {
-              console.log("Google login button clicked");
-              handleGoogleLogin();
-            }}
+            onClick={handleGoogleLogin}
             disabled={loading}
             className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded hover:bg-gray-100 transition disabled:opacity-50"
           >
@@ -221,10 +187,7 @@ const LoginModal = ({ onClose }) => {
             {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
             <button
               type="button"
-              onClick={() => {
-                setIsLogin(!isLogin);
-                console.log("Toggled mode:", !isLogin ? "Login" : "Register");
-              }}
+              onClick={() => setIsLogin(!isLogin)}
               className="text-blue-500 hover:underline"
             >
               {isLogin ? "Register" : "Login"}
