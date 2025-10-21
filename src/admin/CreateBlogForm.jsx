@@ -288,7 +288,7 @@ const CreateBlogForm = () => {
             setFormData((prev) => ({ ...prev, conclusion: val }))
           }
         />
-        <label className="block font-semibold mt-4 mb-1">FAQ</label>
+        <label className="block font-semibold mt-4 mb-1">FAQs</label>
         <Editor
           content={formData.faq}
           onChange={(val) =>

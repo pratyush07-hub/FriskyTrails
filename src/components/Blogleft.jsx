@@ -80,12 +80,16 @@ const Blogleft = ({ blog }) => {
       {/* Conclusion */}
       {blog.conclusion && (
         <div className="blog-content bg-white p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mt-6">
+          <h2 className="hidden md:block text-2xl font-semibold mb-4 text-orange-500">Conclusion</h2>
+          <h4 className="md:hidden text-xl font-semibold mb-4 text-orange-500">Conclusion</h4>
           <div dangerouslySetInnerHTML={{ __html: blog.conclusion }} />
         </div>
       )}
       {blog.faq && (
         <div className="blog-content bg-white p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mt-6">
-          <div dangerouslySetInnerHTML={{ __html: blog.faq }} />
+          <h2 className="hidden md:block text-2xl font-semibold mb-4 text-orange-500">Frequently Asked Questions</h2>
+          <h4 className="md:hidden text-xl font-semibold mb-4 text-orange-500">Frequently Asked Questions</h4>
+          <div dangerouslySetInnerHTML={{ __html: blog.faq }} className="faq-content" />
         </div>
       )}
     </div>

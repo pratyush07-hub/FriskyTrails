@@ -99,3 +99,23 @@
   font-size: 1.5rem;
   font-weight: 500;
 }
+
+/* All questions (Q1., Q2., … + full question text) */
+.blog-content p strong:first-child + strong {
+  font-weight: 700;   /* bold */
+  color: #000;        /* black */
+}
+
+/* Optional: bold Q1./Q2. label */
+.blog-content p strong:first-child {
+  font-weight: 700;
+  color: #000;
+}
+
+/* All answers (text after Ans.) */
+.blog-content p strong + text,
+.blog-content p:has(strong:contains("Ans.")) {
+  color: #6b7280;     /* Tailwind gray-500 */
+  font-weight: 400;   /* normal */
+}
+

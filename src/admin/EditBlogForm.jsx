@@ -14,6 +14,7 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
     country: "",
     state: "",
     city: "",
+    faq: "",
   });
   const [blocks, setBlocks] = useState([]);
   const [countries, setCountries] = useState([]);
@@ -60,6 +61,7 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
           country: blog.country?._id || "",
           state: blog.state?._id || "",
           city: blog.city?._id || "",
+          faq: blog.faq || "",
         });
 
         setBlocks(
@@ -229,6 +231,9 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
         {/* Conclusion */}
         <label className="block font-semibold mt-4 mb-1">Conclusion</label>
         <Editor content={formData.conclusion} onChange={(val) => setFormData(prev => ({ ...prev, conclusion: val }))} />
+        {/* FAQs */}
+        <label className="block font-semibold mt-4 mb-1">FAQs</label>
+        <Editor content={formData.faq} onChange={(val) => setFormData(prev => ({ ...prev, faq: val }))} />
 
         {/* Author */}
         <input type="text" name="authorName" value={formData.authorName} onChange={handleChange} required className="p-2 border rounded" />
