@@ -235,10 +235,10 @@ const ProductDetails = () => {
                     From
                   </span>
                   <span className="line-through pl-2 text-base sm:text-lg md:text-xl text-gray-500">
-                    ₹{product.offerPrice}
+                    ₹{product.actualPrice}
                   </span>
                   <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-500">
-                    ₹{product.actualPrice}
+                    ₹{product.offerPrice}
                   </h1>
                   <span className="font-semibold text-xs sm:text-sm md:text-base">
                     per person
@@ -307,11 +307,11 @@ const ProductDetails = () => {
       <div className="lg:hidden fixed inset-x-0 bottom-0 w-full bg-white border-t border-orange-500 shadow-md py-5 px-2 flex justify-between items-center z-50">
         <div className="flex flex-col justify-center">
           <span className="text-md line-through text-gray-500">
-            ₹{product.offerPrice}
+            ₹{product.actualPrice}
           </span>
           <div className="flex items-baseline gap-1">
             <span className="text-xl font-bold text-orange-500">
-              ₹{product.actualPrice}
+              ₹{product.offerPrice}
             </span>
             <span className="text-md text-gray-600">per person</span>
           </div>

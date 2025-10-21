@@ -48,6 +48,7 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
     const fetchBlog = async () => {
       try {
         const res = await getBlogById(blogId);
+        console.log("Blog fetch response:", res);
         const blog = res.data;
         console.log("Fetched blog:", blog);
         console.log("Blog blocks:", blog.state?._id, blog.state);
@@ -63,7 +64,7 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
           city: blog.city?._id || "",
           faq: blog.faq || "",
         });
-
+        
         setBlocks(
           blog.blocks.map((b) => ({
             id: b._id || Date.now() + Math.random(),

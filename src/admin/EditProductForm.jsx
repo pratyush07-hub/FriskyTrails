@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Editor from "../components/Editor";
+import NotFound from "../components/NotFound";
 import { getProductById, updateProduct, getCountries, getStates, getCities, getAllProductTypes } from "../api/admin.api";
+import { getCurrentUser } from "../api/user.api";
 
 const EditProductForm = ({ productId, onClose, onUpdate }) => {
   const [formData, setFormData] = useState({
@@ -20,7 +22,7 @@ const EditProductForm = ({ productId, onClose, onUpdate }) => {
     city: "",
   });
 
-  const [images, setImages] = useState([]); // existing images URLs
+  const [images, setImages] = useState([]); // existing URLs
   const [newImages, setNewImages] = useState([]); // newly selected files
   const [previews, setPreviews] = useState([]);
   const [countries, setCountries] = useState([]);
@@ -30,12 +32,33 @@ const EditProductForm = ({ productId, onClose, onUpdate }) => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
 
-  // Fetch product data
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAllowed, setIsAllowed] = useState(true);
+
+  // Check admin
+  useEffect(() => {
+    const checkAdmin = async () => {
+      try {
+        const res = await getCurrentUser();
+        const user = res.data.user;
+        if (!user || !user.admin) setIsAllowed(false);
+        else setIsAdmin(true);
+      } catch {
+        setIsAllowed(false);
+      }
+    };
+    checkAdmin();
+  }, []);
+
+  // Fetch product
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        console.log("Fetching product with ID f:", productId);
         const res = await getProductById(productId);
+        console.log("Response:", res);
         const product = res.data;
+        console.log("Fetched product:", product);
 
         setFormData({
           name: product.name || "",
@@ -61,26 +84,26 @@ const EditProductForm = ({ productId, onClose, onUpdate }) => {
         setLoading(false);
       }
     };
-
     if (productId) fetchProduct();
   }, [productId]);
 
-  // Load countries
+  // Fetch countries
   useEffect(() => {
-    (async () => {
+    const fetchCountries = async () => {
       try {
         const res = await getCountries();
         setCountries(res.data);
       } catch (err) {
         console.error(err);
       }
-    })();
+    };
+    fetchCountries();
   }, []);
 
-  // Load states when country changes
+  // Fetch states when country changes
   useEffect(() => {
-    if (!formData.country) return setStates([]);
-    (async () => {
+    const fetchStates = async () => {
+      if (!formData.country) return setStates([]);
       try {
         const res = await getStates(formData.country);
         setStates(res.data);
@@ -89,13 +112,14 @@ const EditProductForm = ({ productId, onClose, onUpdate }) => {
       } catch (err) {
         console.error(err);
       }
-    })();
+    };
+    fetchStates();
   }, [formData.country]);
 
-  // Load cities when state changes
+  // Fetch cities when state changes
   useEffect(() => {
-    if (!formData.state) return setCities([]);
-    (async () => {
+    const fetchCities = async () => {
+      if (!formData.state) return setCities([]);
       try {
         const res = await getCities(formData.state);
         setCities(res.data);
@@ -103,19 +127,21 @@ const EditProductForm = ({ productId, onClose, onUpdate }) => {
       } catch (err) {
         console.error(err);
       }
-    })();
+    };
+    fetchCities();
   }, [formData.state]);
 
-  // Load product types
+  // Fetch product types
   useEffect(() => {
-    (async () => {
+    const fetchProductTypes = async () => {
       try {
         const res = await getAllProductTypes();
         setProductTypes(res.data);
       } catch (err) {
         console.error(err);
       }
-    })();
+    };
+    fetchProductTypes();
   }, []);
 
   const handleChange = e => {
@@ -131,7 +157,6 @@ const EditProductForm = ({ productId, onClose, onUpdate }) => {
     } else {
       setFormData(prev => ({ ...prev, [name]: value }));
 
-      // Auto-generate slug if name changes
       if (name === "name") {
         setFormData(prev => ({
           ...prev,
@@ -152,7 +177,6 @@ const EditProductForm = ({ productId, onClose, onUpdate }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
     try {
       const data = new FormData();
       for (const key in formData) data.append(key, formData[key]);
@@ -169,19 +193,62 @@ const EditProductForm = ({ productId, onClose, onUpdate }) => {
   };
 
   if (loading) return <div>Loading...</div>;
+  if (!isAllowed) return <NotFound />;
+  if (!isAdmin) return null;
 
   return (
     <div className="p-4 w-[70%] mt-10 mx-auto">
       <h2 className="text-xl font-bold mb-4">Edit Product</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-4">
 
-        {/* Name & Slug */}
-        <input type="text" name="name" value={formData.name} onChange={handleChange} required className="p-2 border rounded" />
-        <input type="text" name="slug" value={formData.slug} disabled className="p-2 border rounded bg-gray-100 cursor-not-allowed" />
+        {/* Product Name */}
+<label htmlFor="name" className="block mb-1 font-medium">Product Name</label>
+<input
+  type="text"
+  id="name"
+  name="name"
+  value={formData.name}
+  onChange={handleChange}
+  required
+  className="p-2 border rounded"
+/>
 
-        {/* Prices */}
-        <input type="number" name="offerPrice" value={formData.offerPrice} onChange={handleChange} placeholder="Offer Price" required className="p-2 border rounded" />
-        <input type="number" name="actualPrice" value={formData.actualPrice} onChange={handleChange} placeholder="Actual Price" required className="p-2 border rounded" />
+{/* Slug */}
+<label htmlFor="slug" className="block mb-1 font-medium">Slug</label>
+<input
+  type="text"
+  id="slug"
+  name="slug"
+  value={formData.slug}
+  disabled
+  className="p-2 border rounded bg-gray-100 cursor-not-allowed"
+/>
+
+{/* Actual Price */}
+<label htmlFor="actualPrice" className="block mb-1 font-medium">Actual Price</label>
+<input
+  type="number"
+  id="actualPrice"
+  name="actualPrice"
+  value={formData.actualPrice}
+  onChange={handleChange}
+  placeholder="Actual Price"
+  required
+  className="p-2 border rounded"
+/>
+{/* Offer Price */}
+<label htmlFor="offerPrice" className="block mb-1 font-medium">Offer Price</label>
+<input
+  type="number"
+  id="offerPrice"
+  name="offerPrice"
+  value={formData.offerPrice}
+  onChange={handleChange}
+  placeholder="Offer Price"
+  required
+  className="p-2 border rounded"
+/>
+
 
         {/* Product Type */}
         <select name="productType" value={formData.productType} onChange={handleChange} className="p-2 border rounded">

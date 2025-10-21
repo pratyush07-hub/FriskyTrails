@@ -189,21 +189,48 @@ const getProducts = async () => {
 // Get single product by slug
 const getProductBySlug = async (slug) => {
   try {
-    const response = await axiosInstance.get(`/api/v1/admin/product/${slug}`);
+    const response = await axiosInstance.get(`/api/v1/admin/product/slug/${slug}`);
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : error.message;
   }
 };
+// export const getProductById = async (id) => {
+//   try {
+//     console.log("Fetching product with ID f api:", id);
+//     const response = await axiosInstance.get(`/api/v1/admin/product/${id}`);
+//     console.log("Response from getProductById:", response);
+//     return response.data; 
+//   } catch (error) {
+//     console.error("Error fetching product by ID:", error);
+//     throw new Error(error.response?.data?.message || "Failed to fetch product");
+//   }
+// };
+
 export const getProductById = async (id) => {
   try {
-    const { data } = await axiosInstance.get(`/api/v1/admin/product/${id}`);
-    return data; 
+    console.log("Fetching product with ID f api:", id);
+    const response = await axiosInstance.get(`/api/v1/admin/product/id/${id}`);
+    console.log("Response from getProductById:", response);
+    return response.data;
   } catch (error) {
-    console.error("Error fetching product by ID:", error);
-    throw new Error(error.response?.data?.message || "Failed to fetch product");
+    // More robust error logging
+    if (error.response) {
+      // Server responded with a status code out of 2xx
+      console.error("Server error:", error.response.data);
+      throw new Error(error.response.data.message || "Failed to fetch product");
+    } else if (error.request) {
+      // Request was made but no response received
+      console.error("No response received:", error.request);
+      throw new Error("No response from server. Please try again later.");
+    } else {
+      // Something else caused the error
+      console.error("Error setting up request:", error.message);
+      throw new Error(error.message);
+    }
   }
 };
+
 
 const updateBlog = async (slug, formData) => {
   try {

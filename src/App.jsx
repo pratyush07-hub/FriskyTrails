@@ -76,7 +76,7 @@ const App = () => {
 
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/tours/:slug" element={<ProductDetails />} />
-        <Route path="/admin/create-product" element={<CreateProductPage />} />
+        <Route path="/create-product" element={<CreateProductPage />} />
         <Route path="/create-productType" element={<CreateProductType />} />
         <Route path="/productType/:slug/product" element={<ProductType />} />
         <Route path="/get-blogs" element={<AllBlogs />} />

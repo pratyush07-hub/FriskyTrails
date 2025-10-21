@@ -141,8 +141,9 @@ const CreateProductPage = () => {
       for (const key in formData) formObj.append(key, formData[key]);
       images.forEach((f) => formObj.append("images", f));
 
-      await createProduct(formObj);
-      alert("✅ Product created successfully!");
+      const res = await createProduct(formObj);
+      console.log(res);
+      alert("Product created successfully!");
 
       // Reset form
       setFormData({
