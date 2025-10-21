@@ -48,6 +48,8 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
       try {
         const res = await getBlogById(blogId);
         const blog = res.data;
+        console.log("Fetched blog:", blog);
+        console.log("Blog blocks:", blog.state?._id, blog.state);
 
         setFormData({
           title: blog.title,
@@ -62,7 +64,7 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
 
         setBlocks(
           blog.blocks.map((b) => ({
-            id: b._id || Date.now(),
+            id: b._id || Date.now() + Math.random(),
             heading: b.heading || "",
             content: b.content || "",
             image: b.image || "",
@@ -70,6 +72,7 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
         );
 
         setCoverImagePreview(blog.coverImage || "");
+
       } catch (err) {
         console.error("Failed to fetch blog", err);
       } finally {
@@ -150,7 +153,9 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
       prev.map((b) => (b.id === id ? { ...b, [field]: value } : b))
     );
   };
-  const addBlock = () => setBlocks([...blocks, { id: Date.now(), heading: "", content: "", image: "" }]);
+  // const addBlock = () => setBlocks([...blocks, { id: Date.now(), heading: "", content: "", image: "" }]);
+  const addBlock = () => setBlocks([...blocks, { id: Date.now() + Math.random(), heading: "", content: "", image: "" }]);
+
   const removeBlock = (id) => setBlocks((prev) => prev.filter((b) => b.id !== id));
 
   // Submit
@@ -163,12 +168,12 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
 
     try {
       const res = await updateBlog(blogId, data);
-      setMessage(res.message || "✅ Blog updated successfully!");
+      setMessage(res.message || "Blog updated successfully!");
       if (onUpdate) onUpdate();
       if (onClose) onClose();
     } catch (err) {
       console.error(err);
-      setMessage("❌ Failed to update blog");
+      setMessage("Failed to update blog");
     }
   };
 
@@ -190,17 +195,35 @@ const EditBlogForm = ({ blogId, onClose, onUpdate }) => {
 
         {/* Dynamic Blocks */}
         {blocks.map((block, idx) => (
-          <div key={block.id} className="p-4 border rounded space-y-4 bg-gray-50">
-            <h3 className="font-semibold">Block {idx + 1}</h3>
-            <label className="block mb-2 font-medium">Heading</label>
-            <Editor content={block.heading} onChange={(val) => handleBlockChange(block.id, "heading", val)} />
+  <div key={block.id} className="p-4 border rounded space-y-4 bg-gray-50">
+    <h3 className="font-semibold">Block {idx + 1}</h3>
 
-            <label className="block mb-2 font-medium">Content</label>
-            <Editor content={block.content} onChange={(val) => handleBlockChange(block.id, "content", val)} />
+    <label className="block mb-2 font-medium">Heading</label>
+    <Editor
+      key={`editor-heading-${block.id}`} // unique per block + field
+      content={block.heading}
+      onChange={(val) => handleBlockChange(block.id, "heading", val)}
+    />
 
-            {blocks.length > 1 && <button type="button" onClick={() => removeBlock(block.id)} className="text-red-500 underline">Remove Block</button>}
-          </div>
-        ))}
+    <label className="block mb-2 font-medium">Content</label>
+    <Editor
+      key={`editor-content-${block.id}`} // unique per block + field
+      content={block.content}
+      onChange={(val) => handleBlockChange(block.id, "content", val)}
+    />
+
+    {blocks.length > 1 && (
+      <button
+        type="button"
+        onClick={() => removeBlock(block.id)}
+        className="text-red-500 underline"
+      >
+        Remove Block
+      </button>
+    )}
+  </div>
+))}
+
         <button type="button" onClick={addBlock} className="px-4 py-2 bg-blue-600 text-white rounded">+ Add Block</button>
 
         {/* Conclusion */}

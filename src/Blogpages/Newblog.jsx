@@ -37,7 +37,7 @@ const Newblog = () => {
   return (
     <div className="min-h-screen mt-30 w-full">
       <div
-        className="w-full min-h-[460px] bg-no-repeat bg-contain"
+        className="w-full min-h-[640px] bg-no-repeat bg-contain"
         style={{
           backgroundImage: "url('/images/bgbanner.svg')",
         }}

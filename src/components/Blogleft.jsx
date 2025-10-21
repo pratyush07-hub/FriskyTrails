@@ -4,7 +4,7 @@ const Blogleft = ({ blog }) => {
   if (!blog || !blog.blocks) return null;
 
   return (
-    <div className="pt-6 pb-10 h-auto w-full">
+    <div className="pt-2 md:pt-6 pb-10 h-auto w-full">
       {/* Intro Section */}
       {blog.intro && (
         <div className="blog-content bg-white p-4 rounded-lg prose prose-lg max-w-none w-[90%] mx-auto mb-6">
@@ -18,7 +18,7 @@ const Blogleft = ({ blog }) => {
         .map((block, index) => (
           <div key={index} className="w-[90%] mx-auto mb-8 bg-white p-4 rounded-lg">
             {/* Heading */}
-            {block.heading && (
+            {/* {block.heading && (
               <div className="flex items-start mb-2">
   <span className="font-bold mr-2">{block.order}.</span>
   <div
@@ -26,9 +26,35 @@ const Blogleft = ({ blog }) => {
     dangerouslySetInnerHTML={{ __html: block.heading }}
   />
 </div>
+            )} */}
+            {block.heading && (() => {
+  // Extract heading level using regex
+  const match = block.heading.match(/<h([1-6])[^>]*>/);
+  const level = match ? parseInt(match[1]) : 3; // default to h3 if not found
 
+  // Define font size map
+  const sizeMap = {
+    1: "text-3xl", // Tailwind classes
+    2: "text-2xl",
+    3: "text-xl",
+    4: "text-lg",
+    5: "text-base",
+    6: "text-sm",
+  };
 
-            )}
+  return (
+    <div className="flex items-start">
+      <span className={`font-bold mt-1.5 mr-2 ${sizeMap[level]}`}>
+        {block.order}.
+      </span>
+      <div
+        className="blog-heading flex-1"
+        dangerouslySetInnerHTML={{ __html: block.heading }}
+      />
+    </div>
+  );
+})()}
+
 
             {/* Content */}
             {block.content && (

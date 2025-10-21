@@ -107,7 +107,7 @@ if (selectedBlog) {
 
               <div className="text-xs text-gray-400 flex flex-wrap gap-2 mb-3">
                 <span>✍️ {blog.authorName}</span>
-                {blog.city && <span>📍 {blog.city}</span>}
+                {blog.city?.name && <span>📍 {blog.city?.name}</span>}
               </div>
 
               <div className="flex justify-between items-center">

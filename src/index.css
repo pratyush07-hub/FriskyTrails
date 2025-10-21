@@ -89,3 +89,48 @@ html,body{
 .blog-heading h3 {
   margin: 0; /* removes default spacing so it aligns with order number */
 }
+
+/* ✅ Heading styles for blog content */
+.blog-content h1,
+.blog-heading h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.blog-content h2,
+.blog-heading h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.blog-content h3,
+.blog-heading h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.blog-content strong,
+.blog-heading strong {
+  font-weight: 600;
+}
+
+.blog-content u,
+.blog-heading u {
+  text-decoration: underline;
+}
+
+.ql-editor h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.ql-editor h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+.ql-editor h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}

@@ -32,7 +32,7 @@ const Newlog = () => {
   return (
     <div className="min-h-screen mt-20 lg:mt-28 w-full">
       <div
-        className="w-full min-h-[460px] bg-no-repeat bg-contain"
+        className="w-full min-h-[460px] bg-no-repeat md:bg-contain"
         style={{
           backgroundImage: "url('/images/bgbanner.svg')",
         }}
@@ -44,7 +44,7 @@ const Newlog = () => {
           <img className="h-4 w-4 mt-1" src={Right} alt="rightarrow" />
           <h3 className="font-semibold text-gray-600">{blog.city.name}</h3>
         </div> */}
-        <div className="flex items-center gap-2 px-4 xl:pl-20 pt-6 text-sm sm:text-base">
+        <div className="flex items-center gap-2 px-4 xl:pl-20 pt-8 md:pt-6 text-sm sm:text-base">
           {blog.country && (
             <h3 className="font-semibold">{blog.country?.name}</h3>
           )}
@@ -60,17 +60,17 @@ const Newlog = () => {
           )}
         </div>
 
-        <h1 className="text-2xl sm:text-3xl xl:pl-20 md:text-4xl font-semibold tracking-tighter px-4 pt-8 md:pt-4">
+        <h1 className="text-2xl sm:text-3xl xl:pl-20 md:text-4xl font-semibold tracking-tighter px-4 pt-4 md:pt-4">
           {blog.title}
         </h1>
 
         <img
-          className="mx-auto rounded-2xl mt-6 w-[90vw] h-[40vh] max-w-5xl"
+          className="mx-auto rounded-2xl mt-6 w-[90vw] h-[32vh] md:h-[40vh] max-w-5xl"
           src={blog.coverImage}
           alt="image"
         />
         {/* Blog Section */}
-        <div className="w-full flex justify-center flex-col lg:flex-row pt-10">
+        <div className="w-full flex justify-center flex-col lg:flex-row pt-0 md:pt-10">
           {/* Left sidebar */}
 
           {/* <div className="lg:w-[15%] hidden xl:flex flex-col pl-6 items-center sticky top-0">
