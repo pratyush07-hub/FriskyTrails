@@ -11,12 +11,19 @@ const Smallbox = () => {
     { name: "Uttarakhand", image: "/destinations/Uttarakhand.png" },
   ];
 
+//isme mene aspect height and with use kiya instead of vw,vh fixed values
+
   return (
     <>
       {data.map((item, index) => (
         <div
           key={index}
-          className="relative overflow-hidden h-[12vh] w-[27vw] md:w-[6vw] md:rounded-md"
+          className="
+            relative overflow-hidden 
+            aspect-[4/3] sm:aspect-[5/3] md:aspect-[3/2]  /* height scales by width */
+            w-full 
+            rounded-md md:rounded-lg lg:rounded-xl
+          "
           style={{
             backgroundImage: `url(${item.image})`,
             backgroundSize: "cover",
@@ -24,12 +31,12 @@ const Smallbox = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          {/* Black overlay */}
-          <div className="absolute inset-0 bg-black/30 md:bg-black/20"></div>
+      
+          <div className="absolute inset-0 bg-black/40 sm:bg-black/30 md:bg-black/20"></div>
 
-          {/* Centered text */}
+       
           <div className="relative flex justify-center items-center h-full w-full">
-            <h3 className="text-white tracking-tighter text-xs font-bold uppercase">
+            <h3 className="text-gray-300   tracking-tight text-[0.6rem] sm:text-xs md:text-sm lg:text-base font-bold ">
               {item.name}
             </h3>
           </div>
