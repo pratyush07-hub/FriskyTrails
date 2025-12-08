@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { loginUser, registerUser, googleAuth } from "../api/user.api";
 import { useGoogleLogin } from "@react-oauth/google";
+import axiosInstance from "../utils/axiosInstance";
 
 const LoginModal = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -19,32 +20,47 @@ const LoginModal = ({ onClose }) => {
   };
 
   const handleGoogleLogin = useGoogleLogin({
+    flow: "auth-code",
+    redirect_uri: window.location.origin,
     onSuccess: async (authResult) => {
       try {
         if (authResult.code) {
           setLoading(true);
-          const response = await googleAuth(authResult.code);
+          // Send the redirect URI (current origin) to match what Google expects
+          const redirectUri = window.location.origin;
+          const response = await googleAuth(authResult.code, redirectUri);
           if (response.success) {
-            localStorage.setItem("accessToken", response.data.accessToken);
-            localStorage.setItem("userName", response.data.user.userName);
-            localStorage.setItem("firstName", response.data.user.firstName);
+            const { accessToken, refreshToken, user } = response.data;
+            
+            // Store tokens and user data
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+            localStorage.setItem("userName", user.userName);
+            localStorage.setItem("firstName", user.firstName);
+            
+            // Set default auth header
+            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+            
+            // Close the modal
             onClose();
+            
+            // Refresh the page to apply auth state
+            window.location.reload();
           } else {
-            alert("Google login failed");
+            alert(response.message || "Google login failed");
           }
         }
       } catch (error) {
-        console.error(error);
-        alert("Google login failed");
+        console.error('Google login error:', error);
+        alert(error.response?.data?.message || "Google login failed. Please try again.");
       } finally {
         setLoading(false);
       }
     },
     onError: (err) => {
-      console.error(err);
-      alert("Google login failed");
+      console.error('Google OAuth error:', err);
+      alert("Failed to connect with Google. Please try again.");
     },
-    flow: "auth-code",
   });
 
   const handleSubmit = async (e) => {

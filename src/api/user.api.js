@@ -34,9 +34,9 @@ const getCurrentUser = async ( ) => {
 }  
 
 
-const googleAuth = async (code) => {
+const googleAuth = async (code, redirect_uri) => {
   try {
-    const response = await axiosInstance.post("/api/v1/user/google-auth", { code });
+    const response = await axiosInstance.post("/api/v1/user/google-auth", { code, redirect_uri });
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : { message: error.message };

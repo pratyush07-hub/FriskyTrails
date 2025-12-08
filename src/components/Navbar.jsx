@@ -4,6 +4,7 @@ import Modal from "../components/Modal";
 import Admodal from "../components/Admodal";
 import LoginModal from "./LoginModal";
 import { logoutUser, getCurrentUser } from "../api/user.api";
+import axiosInstance from "../utils/axiosInstance";
 import Arrow from "../assets/arrow.svg";
 import { FaChevronDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
@@ -85,11 +86,33 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await logoutUser();
+      // Clear all auth related data
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('firstName');
+      
+      // Clear axios auth header
+      delete axiosInstance.defaults.headers.common['Authorization'];
+      
+      // Update UI state
       setIsLoggedIn(false);
       setStoredFirstName("");
+      setShowDropdown(false);
+      
+      // Optional: Redirect to home page
+      window.location.href = '/';
     } catch (error) {
       console.error("Logout failed:", error);
-      alert("Something went wrong during logout.");
+      // Even if logout API fails, clear local state
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('userName');
+      localStorage.removeItem('firstName');
+      delete axiosInstance.defaults.headers.common['Authorization'];
+      setIsLoggedIn(false);
+      setStoredFirstName("");
+      window.location.href = '/';
     }
   };
 
