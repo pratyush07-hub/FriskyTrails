@@ -2,6 +2,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import {data} from '../lib/corouselData'
 
 const Cards = () => {
   const settings = {
@@ -11,162 +13,92 @@ const Cards = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
     responsive: [
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
+      { breakpoint: 1280, settings: { slidesToShow: 3 } },
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 640, settings: { slidesToShow: 1 } },
     ],
   };
 
   return (
-    <div>
-      <style>
-  {`
-    .slick-slide > div {
-      margin: 0 15px;
-    }
-    .slick-list {
-      margin: 0 -15px;
-    }
+    <div className="w-full py-10 bg-[#faf4e8]">
+      <h1 className="text-center text-3xl sm:text-4xl md:text-5xl font-bold">
+        Upcoming Trips & Adventures
+      </h1>
 
-    .slick-prev, .slick-next {
-      z-index: 10 !important;
-      width: 45px;
-      height: 45px;
-      top: 45%;
-      transform: translateY(-50%);
-    }
+      <div className="w-full max-w-7xl mx-auto px-4 mt-10">
+        <Slider {...settings}>
+          {data.map((item, index) => (
+            <div key={index} className="px-3">
+              <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden">
 
-    .slick-prev:before, .slick-next:before {
-      color: orange !important;
-      font-size: 32px !important;
-      opacity: 1 !important;
-    }
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-52 sm:h-64 md:h-72 object-cover"
+                />
 
-    /* Default position for xl and above (outside the cards) */
-    .slick-prev {
-      left: -55px !important;
-    }
+                <div className="p-4 sm:p-5 flex flex-col gap-2">
+                  <p className="text-gray-500 text-sm flex items-center gap-1">
+                    ⭐ {item.rating} Overall Reviews
+                  </p>
 
-    .slick-next {
-      right: -55px !important;
-    }
+                  <h2 className="font-semibold text-lg sm:text-xl md:text-2xl line-clamp-2 leading-tight">
+                    {item.title}
+                  </h2>
 
-    /* Hide arrows when not needed */
-    .slick-disabled {
-      display: none !important;
-    }
-
-    /* Overlap arrows for screens smaller than xl (below 1280px) */
-    @media (max-width: 1279px) {
-      .slick-prev {
-        left: 0px !important;
-      }
-
-      .slick-next {
-        right: 0px !important;
-      }
-    }
-  `}
-</style>
-
-
-      <div className="trip h-auto mt-8 mb-4 w-full">
-        <div className="mx-4 md:mx-32 flex justify-center text-center">
-          <h1 className="text-3xl md:text-4xl font-bold">
-            Upcoming Trips & Adventures
-          </h1>
-        </div>
-        <div className="w-[90vw] m-auto">
-          <div className="mt-10 relative">
-            <Slider {...settings}>
-              {data.map((d, index) => (
-                <div key={index} className="overflow-hidden">
-                  <div className="card h-auto overflow-hidden rounded-xl bg-white shadow-lg">
-                    <img
-                      className="h-[30vh] w-full rounded-t-xl transition-transform duration-300 hover:scale-105 object-cover"
-                      src={d.image}
-                      alt=""
-                    />
-                    <h3 className="text-gray-400 mt-4 ml-4">
-                      ⭐{d.rating} Overall Reviews
-                    </h3>
-                    <h1 className="mt-2 ml-4 mr-5 text-2xl">{d.title}</h1>
-                    <div className="mt-6 ml-4 mb-4 flex justify-between items-center">
-                      <div>
-                        <span className="text-[rgb(255,99,33)] font-semibold text-2xl">
-                          {d.price}
-                        </span>
-                        <span className="text-gray-400"> /person</span>
-                      </div>
-                      <Link to="/tours">
-                        <button className="bg-white mr-4 border border-gray-300 font-semibold rounded-full active:scale-90 transition-all duration-300 hover:bg-[rgb(255,99,33)] hover:text-white px-4 py-2">
-                          Book Now
-                        </button>
-                      </Link>
+                  <div className="mt-4 flex items-center justify-between">
+                    <div className="flex items-baseline">
+                      <span className="text-[rgb(255,99,33)] font-bold text-xl sm:text-2xl">
+                        {item.price}
+                      </span>
+                      <span className="text-gray-400 ml-1 text-sm">
+                        /person
+                      </span>
                     </div>
+
+                    <Link to="/tours">
+                      <button className="rounded-full p-3   border border-gray-300 text-sm sm:text-base font-semibold bg-white hover:bg-[rgb(255,99,33)] hover:text-white transition-all">
+                        Book Now
+                      </button>
+                    </Link>
                   </div>
                 </div>
-              ))}
-            </Slider>
-          </div>
-        </div>
+
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );
 };
 
-const data = [
-  {
-    title: "Rishikesh, India (River Rafting & Bungee Jumping)",
-    image: "/images/tower.avif",
-    price: "₹1,500",
-    rating: 4.8,
-  },
-  {
-    title: "Manali, India (Paragliding & Trekking)",
-    image: "/images/secondpage.avif",
-    price: "₹2,000",
-    rating: 4.7,
-  },
-  {
-    title: "Auli, India (Skiing & Snowboarding)",
-    image: "/images/car.jpg",
-    price: "₹3,000",
-    rating: 4.6,
-  },
-  {
-    title: "Leh Ladakh, India (Bike Riding & Camping)",
-    image:
-      "https://www.adventurenation.com/blog/wp-content/uploads/2022/09/Ladakh-Bike-Tour.jpg",
-    price: "₹5,000",
-    rating: 4.9,
-  },
-  {
-    title: "Andaman & Nicobar Islands (Scuba Diving & Snorkeling)",
-    image:
-      "https://www.go2andaman.com/wp-content/uploads/2021/06/scuba-diving.png",
-    price: "₹3,500",
-    rating: 4.8,
-  },
-];
+/* ---------- CUSTOM ARROWS ---------- */
+const PrevArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-20 
+               bg-orange-100 hover:bg-orange-200 text-orange-500
+               w-10 h-10 rounded-full flex items-center justify-center shadow-md"
+  >
+    <FaChevronLeft />
+  </button>
+);
+
+const NextArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-20 
+               bg-orange-100 hover:bg-orange-200 text-orange-500
+               w-10 h-10 rounded-full flex items-center justify-center shadow-md"
+  >
+    <FaChevronRight />
+  </button>
+);
+
 
 export default Cards;
