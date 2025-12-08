@@ -9,7 +9,8 @@ const Header = () => {
   return (
     <>
       {/* Desktop / Tablet Header */}
-      <div className="fixed hidden top-0 md:flex h-[6vh] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 z-[60] w-full justify-between items-center px-12">
+      <div className="fixed hidden top-0 md:flex h-[6vh] bg-gray-100
+  z-[60] w-full justify-between items-center px-12">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
             <img className="w-5 md:hidden lg:block h-5" src={Email} alt="email" />

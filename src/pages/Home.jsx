@@ -7,10 +7,10 @@ import Landing from "../sections/Landing";
 // import Header from "../components/Header";
 // import Navbar from "../components/Navbar";
 import Next from "../sections/Next";
-import Feedback from "../sections/Feedback";
 import Choose from "../sections/Choose";
 import Rewards from "../sections/Rewards";
 import Blogs from "../sections/Blogs";
+import Testimonial from "../sections/Testimonial";
 
 const Home = () => {
   return (
@@ -30,7 +30,7 @@ const Home = () => {
         <Choose />
         <Blogs />
         <Rewards />
-        <Feedback />
+       <Testimonial/>
       {/* </div> */}
     </>
   );
