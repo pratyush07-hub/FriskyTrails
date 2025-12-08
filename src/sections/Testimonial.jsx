@@ -1,5 +1,5 @@
 import { TestimonialMarquee } from './TestimonialMarquee';
-import { testimonialData } from '../lib/TestimonialData.jsx';
+import { testimonialData } from '../lib/TestimonialData.js';
 
 const Testimonial = () => {
   return (
