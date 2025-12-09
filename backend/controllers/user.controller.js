@@ -202,11 +202,26 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 });
 
 const googleAuth = asyncHandler(async (req, res) => {
-  const { code } = req.body;
+  const { code, redirect_uri } = req.body;
   // console.log("Received code from frontend:", code);
 
   if (!code) {
     throw new ApiError(400, "Authorization code is required");
+  }
+
+  // Use redirect_uri from request if provided, otherwise fall back to env variable
+  // For localhost, the frontend will send the current origin as redirect_uri
+  const redirectUri = redirect_uri || process.env.GOOGLE_REDIRECT_URI;
+
+  // Validate required environment variables
+  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+    console.error("Missing Google OAuth credentials in environment variables");
+    throw new ApiError(500, "Google OAuth configuration is missing");
+  }
+
+  if (!redirectUri) {
+    console.error("Missing redirect URI");
+    throw new ApiError(400, "Redirect URI is required");
   }
 
   try {
@@ -215,9 +230,14 @@ const googleAuth = asyncHandler(async (req, res) => {
       code,
       client_id: process.env.GOOGLE_CLIENT_ID,
       client_secret: process.env.GOOGLE_CLIENT_SECRET,
-      redirect_uri: process.env.GOOGLE_REDIRECT_URI,
+      redirect_uri: redirectUri,
       grant_type: "authorization_code",
     });
+
+    if (!tokenRes.data || !tokenRes.data.id_token) {
+      console.error("Invalid token response from Google:", tokenRes.data);
+      throw new ApiError(500, "Failed to get ID token from Google");
+    }
 
     const { id_token } = tokenRes.data;
 
@@ -229,14 +249,25 @@ const googleAuth = asyncHandler(async (req, res) => {
     const payload = ticket.getPayload();
 
     // 3. Find or create user
-    let user = await User.findOne({ email: payload.email });
+    let user = await User.findOne({ email: payload.email.toLowerCase() });
     if (!user) {
+      // Generate a unique username if the base username already exists
+      let baseUserName = payload.email.split("@")[0].toLowerCase();
+      let userName = baseUserName;
+      let counter = 1;
+      
+      // Check if username exists and append number if needed
+      while (await User.findOne({ userName })) {
+        userName = `${baseUserName}${counter}`;
+        counter++;
+      }
+
       user = new User({
-        firstName: payload.given_name || "",
+        firstName: payload.given_name || "User",
         lastName: payload.family_name || "",
-        userName: payload.email.split("@")[0],
+        userName: userName,
         email: payload.email.toLowerCase(),
-        password: "hegvebhe##23@@1223",
+        password: "hegvebhe##23@@1223", // Dummy password for OAuth users
       });
       await user.save({ validateBeforeSave: false });
     }
@@ -265,8 +296,33 @@ const googleAuth = asyncHandler(async (req, res) => {
         )
       );
   } catch (error) {
-    console.error("Google Auth Error:", error.response?.data || error.message);
-    throw new ApiError(500, "Google authentication failed");
+    console.error("Google Auth Error Details:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+      redirectUri: redirectUri,
+      hasClientId: !!process.env.GOOGLE_CLIENT_ID,
+      hasClientSecret: !!process.env.GOOGLE_CLIENT_SECRET,
+    });
+
+    // Provide more specific error messages
+    if (error.response?.data?.error) {
+      const googleError = error.response.data.error;
+      if (googleError === "invalid_grant") {
+        throw new ApiError(400, "Authorization code is invalid or has expired. Please try again.");
+      } else if (googleError === "redirect_uri_mismatch") {
+        throw new ApiError(400, `Redirect URI mismatch. Expected: ${redirectUri}. Please check Google Cloud Console configuration.`);
+      } else {
+        throw new ApiError(500, `Google authentication failed: ${googleError}`);
+      }
+    }
+
+    // If it's already an ApiError, rethrow it
+    if (error instanceof ApiError) {
+      throw error;
+    }
+
+    throw new ApiError(500, error.message || "Google authentication failed");
   }
 });
 
