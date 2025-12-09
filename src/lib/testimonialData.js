@@ -15,7 +15,6 @@ export const testimonialData = [
   },
   {
     name: "Harsh Choudhary",
- 
     image: "/feedback/Harsh-Chaudhary.png",
     review: "Thank you so much for your kind words! 🌟 We're thrilled to hear that you had a wonderful holiday with FriskyTrails",
     rating: 5
