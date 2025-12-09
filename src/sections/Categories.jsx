@@ -28,7 +28,7 @@ export default function HoverRevealButton() {
   return (
     <>
       <div className="hidden xl:block min-h-[60vh] w-full">
-        <h1 className="text-3xl md:text-5xl text-center font-bold">
+        <h1 className="text-3xl md:text-5xl text-center font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
           Curated Categories
         </h1>
 
@@ -65,7 +65,7 @@ export default function HoverRevealButton() {
       </div>
       {/* mobile view */}
       <div className="xl:hidden h-auto mb-4 w-full px-4">
-        <h1 className="text-3xl md:text-5xl text-center font-bold">
+        <h1 className="text-3xl md:text-5xl text-center font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
           Curated Categories
         </h1>
 

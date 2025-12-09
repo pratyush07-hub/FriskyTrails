@@ -54,7 +54,7 @@ const Testimonial = () => {
       </h3>
 
       {/* Main Bold Black Heading */}
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
         What Says Our Visitors
       </h1>
 

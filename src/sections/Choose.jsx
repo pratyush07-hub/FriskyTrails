@@ -1,73 +1,80 @@
-import choose from "@/assets/choose.png";
+import choose from "../assets/choose.png";
 
-const Choose= () => {
+const Choose = () => {
   const leftFeatures = [
     {
-      title: "Color Schemes",
-      description: "Choosing the right colors is crucial in setting the mood of a space"
+      title: "Thrilling Adventures",
+      description: "Discover handpicked trails, treks, and outdoor experiences designed to spark your inner explorer."
     },
     {
-      title: "Furniture Selection",
-      description: "Opt for furniture that blends aesthetics and functionality"
+      title: "Expert Trail Guidance",
+      description: "Navigate confidently with detailed trail maps, difficulty ratings, and safety recommendations."
     },
     {
-      title: "Lighting",
-      description: "Proper lighting enhances the ambiance and usability of a room"
+      title: "Real-Time Travel Insights",
+      description: "Stay updated with live weather, route conditions, and important alerts before you start your journey."
     }
   ];
+  
 
   const rightFeatures = [
     {
-      title: "Textures Materials",
-      description: "Incorporating diverse textures, like wood, metal, and fabrics, adds depth and interest to your décor"
+      title: "Premium Gear Suggestions",
+      description: "Get curated gear recommendations tailored to each adventure—from hiking essentials to camping kits."
     },
     {
-      title: "Accessories",
-      description: "Personalizing spaces with art, plants, and accessories helps reflect your personality"
+      title: "Community Adventure Stories",
+      description: "Read real travel experiences shared by adventurers to inspire your next epic journey."
     },
     {
-      title: "Space Optimization",
-      description: "Smart layouts and multifunctional furniture maximize small spaces"
+      title: "Smart Trip Planning",
+      description: "Plan your adventure effortlessly with optimized routes, estimated timings, and essential checklists."
     }
   ];
-
+  
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-20">
+    <div className="min-h-screen">
+      <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-24">
+        
         {/* Main Heading */}
-        <h1 
-          className="text-center text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-snug sm:leading-tight lg:leading-tight mb-6 sm:mb-12 lg:mb-20"
-          style={{ 
-            fontFamily: "'Playfair Display', Georgia, serif",
-            color: "#1a3a2f",
-            fontStyle: "italic",
-            fontWeight: 400
-          }}
-        >
-          We provide different<br />
-          types of Interior design
-        </h1>
+        <h1
+  className="text-center text-4xl sm:text-5xl md:text-5xl lg:text-5xl leading-tight font-bold mb-10 sm:mb-16 lg:mb-24"
+  style={{
+    fontFamily: "'Playfair Display', Georgia, serif",
+  }}
+>
+  {/* Small screens: only "Why Choose Us" */}
+  <span className="block lg:hidden">Why Choose Us?</span>
 
-        {/* Features Grid - Always 3 columns */}
-        <div className="grid grid-cols-3 gap-3 sm:gap-6 lg:gap-12 items-start">
+  {/* Medium & larger screens: full line */}
+  <span className="hidden lg:block">Why Choose Us for Your Next Adventure?</span>
+</h1>
+
+        {/* Responsive Grid — small/md = 1 col, large = 3 col */}
+        <div className="
+          grid 
+          grid-cols-1 
+          md:grid-cols-1 
+          lg:grid-cols-3 
+          gap-10 sm:gap-12 lg:gap-20 
+          items-start
+        ">
           
           {/* Left Features */}
-          <div className="space-y-3 sm:space-y-6 lg:space-y-8">
+          <div className="space-y-6">
             {leftFeatures.map((feature, index) => (
-              <div key={index} className="pb-2 sm:pb-4 lg:pb-6 border-b border-gray-200">
-                <h3 
-                  className="text-xs sm:text-base md:text-lg lg:text-2xl font-bold mb-1 sm:mb-2 lg:mb-3"
-                  style={{ 
+              <div key={index} className="pb-4 border-b border-gray-200">
+                <h3
+                  className="text-2xl sm:text-xl md:text-2xl md:font-semibold  mb-2"
+                  style={{
                     fontFamily: "'Playfair Display', Georgia, serif",
-                    color: "#1a3a2f"
+                     color: "#1a3a2f"
+                  
                   }}
                 >
                   {feature.title}
                 </h3>
-                <p 
-                  className="text-[10px] sm:text-xs md:text-sm lg:text-base leading-relaxed"
-                  style={{ color: "#4a5568" }}
-                >
+                <p className="text-sm sm:text-base text-gray-600">
                   {feature.description}
                 </p>
               </div>
@@ -76,46 +83,60 @@ const Choose= () => {
 
           {/* Center Image */}
           <div className="flex justify-center">
-            <div 
-              className="relative overflow-hidden w-full"
-              style={{
-                borderRadius: "0 0 100px 100px"
-              }}
+            <div
+              className="
+                relative 
+                overflow-hidden 
+                w-full 
+                max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full
+              "
             >
               <img
                 src={choose}
-                alt="Beautiful interior design with cozy living room featuring colorful cushions and modern furniture"
-                className="w-full object-cover"
+                alt="Interior design"
+                className="
+                  w-full 
+                  object-cover
+
+                  /* Small + Medium: simple rectangle */
+                  rounded-none 
+
+                  /* Large screens: bring back curve */
+                  lg:rounded-t-[20px]
+                  lg:rounded-b-[150px]
+                "
                 style={{
-                  borderRadius: "0 0 100px 100px",
-                  height: "clamp(180px, 40vw, 550px)"
+                  /* small + md = fixed height, no clamp */
+                  height: "400px",
+
+                  /* large = auto responsive height */
+                  transition: "all 0.3s ease-in-out",
                 }}
               />
             </div>
           </div>
 
           {/* Right Features */}
-          <div className="space-y-3 sm:space-y-6 lg:space-y-8">
+          <div className="space-y-6">
             {rightFeatures.map((feature, index) => (
-              <div key={index} className="pb-2 sm:pb-4 lg:pb-6 border-b border-gray-200">
-                <h3 
-                  className="text-xs sm:text-base md:text-lg lg:text-2xl font-bold mb-1 sm:mb-2 lg:mb-3"
-                  style={{ 
+              <div key={index} className="pb-4 border-b border-gray-200">
+                 <h3
+                  className="text-2xl sm:text-xl md:text-2xl md:font-semibold  mb-2"
+                  style={{
                     fontFamily: "'Playfair Display', Georgia, serif",
-                    color: "#1a3a2f"
+                     color: "#1a3a2f"
+                  
                   }}
                 >
                   {feature.title}
                 </h3>
-                <p 
-                  className="text-[10px] sm:text-xs md:text-sm lg:text-base leading-relaxed"
-                  style={{ color: "#4a5568" }}
-                >
+                <p className="text-md sm:text-md text-gray-700">
                   {feature.description}
                 </p>
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </div>
