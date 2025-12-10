@@ -21,44 +21,55 @@ const Blogs = () => {
   ];
 
   return (
-    <div className="h-auto w-[90vw] m-auto mb-12 ">
-      {/* Heading */}
+    <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto py-16 sm:py-20">
+      {/* Perfect Responsive Heading */}
       <h1
-        className="text-center text-2xl sm:text-3xl md:text-5xl font-bold"
+        className="text-3xl  md:text-4xl lg:text-5xl font-bold text-center mb-12 sm:mb-16 lg:mb-20 leading-tight tracking-tight"
         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
       >
         Enjoy Fresh Travel Blogs
       </h1>
 
-      {/* Blog Cards */}
-      <div className="mt-8 md:mt-12 overflow-x-auto xl:overflow-visible">
-        <div className="flex xl:grid xl:grid-cols-4 gap-8 pb-4 min-w-[40vw] lg:min-w-0">
-          {data.map((item, index) => (
-            <div
-              key={index}
-              className="relative min-w-[70vw] md:min-w-[45vw] xl:min-w-0 h-[44vh] rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105"
-              style={{ backgroundImage: `url(${item.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
-            >
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/25 flex flex-col justify-end p-4">
-                <h2 className="text-white font-semibold text-lg sm:text-xl md:text-2xl mb-3 line-clamp-2">
-                  {item.des}
-                </h2>
-                <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 text-white font-semibold py-2 rounded-lg w-full hover:brightness-110 active:scale-95 transition-all duration-300">
-                  Read More
+  
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full">
+        {data.map((item, index) => (
+          <Link
+            key={item.des}
+            to="/blog"
+            className="group relative w-full h-64 sm:h-72 md:h-80 lg:h-96 aspect-video rounded-3xl shadow-xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:-translate-y-2 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${item.image})` }}
+          >
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+            
+           
+            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-6 lg:p-8 pb-12 sm:pb-14">
+         
+              <h2 className="text-white font-bold text-base sm:text-lg md:text-xl lg:text-lg leading-tight line-clamp-2 mb-4 sm:mb-5 drop-shadow-lg tracking-tight">
+                {item.des}
+              </h2>
+              
+            
+              <div className="w-full sm:w-4/5 lg:w-full">
+                <button className="w-full bg-gradient-to-r from-orange-500/95 to-amber-400/95 backdrop-blur-sm text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl shadow-lg hover:from-orange-500 hover:to-amber-500 hover:shadow-xl hover:brightness-110 active:scale-95 transition-all duration-300 border border-white/20">
+                  Read More →
                 </button>
               </div>
             </div>
-          ))}
-        </div>
+
+          
+          </Link>
+        ))}
       </div>
 
-      {/* More Blogs Button */}
-      <div className="flex justify-center mt-6 lg:mt-10">
-        <Link to="/blog">
-          <button className="bg-white border border-gray-300 text-xl font-semibold rounded-full px-6 py-3 transition-all duration-300 hover:bg-amber-400 hover:text-white active:scale-95">
-            More Blogs
-          </button>
+      {/* Enhanced CTA Button */}
+      <div className="flex justify-center mt-12 lg:mt-16">
+        <Link 
+          to="/blog"
+          className="group relative inline-flex items-center px-8 sm:px-10 lg:px-12 py-4 sm:py-5 text-lg sm:text-xl font-semibold bg-white/95 backdrop-blur-sm border-2 border-gray-200/50 shadow-xl rounded-full hover:bg-gradient-to-r hover:from-orange-500 hover:to-amber-400 hover:text-white hover:border-transparent hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-500 overflow-hidden"
+        >
+          <span className="relative z-10 tracking-wide">More Blogs</span>
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-amber-400/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
         </Link>
       </div>
     </div>

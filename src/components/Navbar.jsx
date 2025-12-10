@@ -181,31 +181,49 @@ const Navbar = () => {
               </Link>
 
               {/* Services Toggle Section */}
-              <button
-                onClick={toggleServices}
-                className="flex items-center justify-between hover:text-amber-500"
-              >
-                <span>Services</span>
-                <img
-                  src={Arrow}
-                  alt="arrow"
-                  className={`w-4 h-4 ml-2 transition-transform duration-200 ${
-                    showServices ? "rotate-180" : "rotate-0"
-                  }`}
-                />
-              </button>
-
               {showServices && (
-                <div className="flex flex-col gap-2 pl-4 text-base">
-                  <Link to="/services/holidays" onClick={toggleMenu} className="hover:text-amber-500">Holidays</Link>
-                  <Link to="/services/activities" onClick={toggleMenu} className="hover:text-amber-500">Activities</Link>
-                  <Link to="/services/hotels" onClick={toggleMenu} className="hover:text-amber-500">Hotels</Link>
-                  <Link to="/services/transport" onClick={toggleMenu} className="hover:text-amber-500">Cab Service</Link>
-                  <Link to="/services/flights" onClick={toggleMenu} className="hover:text-amber-500">Flights</Link>
-                  <Link to="/services/rail-tickets" onClick={toggleMenu} className="hover:text-amber-500">Rail Tickets</Link>
-                  <Link to="/services/bus-tickets" onClick={toggleMenu} className="hover:text-amber-500">Bus Tickets</Link>
-                </div>
-              )}
+  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 
+                  bg-[#0a0a23] text-white 
+                  rounded-xl shadow-xl border border-white/10
+                  px-8 py-6 w-[320px]">
+
+    {/* Close button */}
+    <button 
+      onClick={toggleServices}
+      className="absolute top-3 right-4 text-white text-lg hover:text-amber-500"
+    >
+      ×
+    </button>
+
+    {/* Grid items */}
+    <div className="grid grid-cols-2 gap-y-4 gap-x-10 mt-2">
+
+      <Link to="/services/holidays" onClick={toggleMenu}
+        className="hover:text-amber-400">Holidays</Link>
+
+      <Link to="/services/flights" onClick={toggleMenu}
+        className="hover:text-amber-400">Flights</Link>
+
+      <Link to="/services/activities" onClick={toggleMenu}
+        className="hover:text-amber-400">Activities</Link>
+
+      <Link to="/services/rail-tickets" onClick={toggleMenu}
+        className="hover:text-amber-400">Rail Tickets</Link>
+
+      <Link to="/services/hotels" onClick={toggleMenu}
+        className="hover:text-amber-400">Hotels</Link>
+
+      <Link to="/services/bus-tickets" onClick={toggleMenu}
+        className="hover:text-amber-400">Bus Tickets</Link>
+
+      <Link to="/services/transport" onClick={toggleMenu}
+        className="hover:text-amber-400 col-span-2">Cab Service</Link>
+
+    </div>
+  </div>
+)}
+
+
 
               {/* Adventures */}
               <button
