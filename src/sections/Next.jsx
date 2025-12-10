@@ -12,7 +12,13 @@ const Next = () => {
 
   return (
     <div className="h-auto w-[90vw] mx-auto">
-      <h1 className="text-4xl font-bold text-center">Where to Next?</h1>
+<h1
+  className="text-4xl md:text-5xl font-bold text-center"
+  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+>
+  Where to Next?
+</h1>
+
 
       <div className="mt-6 mb-4 md:mt-10 overflow-x-auto pb-4 md:overflow-visible">
         <div className="flex md:grid md:grid-cols-3 gap-6 min-w-max md:min-w-0">
@@ -27,7 +33,7 @@ const Next = () => {
 
                 {/* Text with animation */}
                 <div className="absolute inset-0 flex items-end justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  <h1 className="text-4xl font-semibold text-white border-b-2 border-white pb-1">{item.name}</h1>
+                  <h1 className="text-4xl font-semibold text-white  border-white pb-1">{item.name}</h1>
                 </div>
               </div>
             </Link>
