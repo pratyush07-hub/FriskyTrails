@@ -42,12 +42,17 @@ const Navbar = () => {
     });
   };
 
+  // Close all modals and menus on scroll
   const handleScroll = () => {
     setShowModal(false);
     setShowAdmodal(false);
     setIsMenuOpen(false);
+    setShowServices(false);
+    setShowAdventures(false);
+    setShowDropdown(false);
   };
 
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest(".relative")) {
@@ -71,7 +76,6 @@ const Navbar = () => {
     try {
       await logout();
       setShowDropdown(false);
-      // Optional: Redirect to home page
       window.location.href = '/';
     } catch (error) {
       console.error("Logout failed:", error);
@@ -80,8 +84,18 @@ const Navbar = () => {
     }
   };
 
+  // Close all modals and mobile menu on any navigation
+  const handleNavigation = () => {
+    setShowModal(false);
+    setShowAdmodal(false);
+    setIsMenuOpen(false);
+    setShowServices(false);
+    setShowAdventures(false);
+    setShowDropdown(false);
+  };
+
   return (
-    <div className="flex top-10 fixed justify-center z-80 w-full">
+    <div className="flex top-10 fixed justify-center z-50 w-full">
       <div className="h-auto lg:h-[10vh] w-full bg-white flex flex-col lg:flex-row justify-between items-center md:p-2 lg:p-4 px-4">
         {/* Logo and Hamburger */}
         <div className="flex justify-between items-center w-full lg:w-auto">
@@ -131,63 +145,69 @@ const Navbar = () => {
 
               {isLoggedIn && (
                 <div className="flex items-center gap-2 text-gray-800 font-semibold">
-                  {/* <img src="/images/sword.png" className="h-5 w-5" /> */}
-                <FaUser className="text-md" />
+                  <FaUser className="text-md" />
                   Hi, {storedFirstName}
                 </div>
               )}
 
-              <Link to="/" onClick={toggleMenu} className="hover:text-amber-500">
+              <Link to="/" onClick={handleNavigation} className="hover:text-amber-500">
                 Home
               </Link>
-              <Link to="/about" onClick={toggleMenu} className="hover:text-amber-500">
+              <Link to="/about" onClick={handleNavigation} className="hover:text-amber-500">
                 About
               </Link>
 
               {/* Services Toggle Section */}
+              <button
+                onClick={toggleServices}
+                className="flex items-center justify-between hover:text-amber-500"
+              >
+                <span>Services</span>
+                <img
+                  src={Arrow}
+                  alt="arrow"
+                  className={`w-4 h-4 ml-2 transition-transform duration-200 ${
+                    showServices ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </button>
+
               {showServices && (
-  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 
                   bg-[#0a0a23] text-white 
                   rounded-xl shadow-xl border border-white/10
                   px-8 py-6 w-[320px]">
-
-    {/* Close button */}
-    <button 
-      onClick={toggleServices}
-      className="absolute top-3 right-4 text-white text-lg hover:text-amber-500"
-    >
-      ×
-    </button>
-
-    {/* Grid items */}
-    <div className="grid grid-cols-2 gap-y-4 gap-x-10 mt-2">
-
-      <Link to="/services/holidays" onClick={toggleMenu}
-        className="hover:text-amber-400">Holidays</Link>
-
-      <Link to="/services/flights" onClick={toggleMenu}
-        className="hover:text-amber-400">Flights</Link>
-
-      <Link to="/services/activities" onClick={toggleMenu}
-        className="hover:text-amber-400">Activities</Link>
-
-      <Link to="/services/rail-tickets" onClick={toggleMenu}
-        className="hover:text-amber-400">Rail Tickets</Link>
-
-      <Link to="/services/hotels" onClick={toggleMenu}
-        className="hover:text-amber-400">Hotels</Link>
-
-      <Link to="/services/bus-tickets" onClick={toggleMenu}
-        className="hover:text-amber-400">Bus Tickets</Link>
-
-      <Link to="/services/transport" onClick={toggleMenu}
-        className="hover:text-amber-400 col-span-2">Cab Service</Link>
-
-    </div>
-  </div>
-)}
-
-
+                  <button 
+                    onClick={toggleServices}
+                    className="absolute top-3 right-4 text-white text-lg hover:text-amber-500"
+                  >
+                    ×
+                  </button>
+                  <div className="grid grid-cols-2 gap-y-4 gap-x-10 mt-2">
+                    <Link to="/services/holidays" onClick={handleNavigation} className="hover:text-amber-400">
+                      Holidays
+                    </Link>
+                    <Link to="/services/flights" onClick={handleNavigation} className="hover:text-amber-400">
+                      Flights
+                    </Link>
+                    <Link to="/services/activities" onClick={handleNavigation} className="hover:text-amber-400">
+                      Activities
+                    </Link>
+                    <Link to="/services/rail-tickets" onClick={handleNavigation} className="hover:text-amber-400">
+                      Rail Tickets
+                    </Link>
+                    <Link to="/services/hotels" onClick={handleNavigation} className="hover:text-amber-400">
+                      Hotels
+                    </Link>
+                    <Link to="/services/bus-tickets" onClick={handleNavigation} className="hover:text-amber-400">
+                      Bus Tickets
+                    </Link>
+                    <Link to="/services/transport" onClick={handleNavigation} className="hover:text-amber-400 col-span-2">
+                      Cab Service
+                    </Link>
+                  </div>
+                </div>
+              )}
 
               {/* Adventures */}
               <button
@@ -207,32 +227,62 @@ const Navbar = () => {
               {showAdventures && (
                 <div className="flex flex-col gap-2 pl-4 text-base">
                   <h2 className="text-amber-500 font-bold">Aerial Activities</h2>
-                  <Link to="/services/aerial/paragliding" onClick={toggleMenu} className="hover:text-amber-500">Paragliding</Link>
-                  <Link to="/services/aerial/paramotoring" onClick={toggleMenu} className="hover:text-amber-500">Paramotoring</Link>
-                  <Link to="/services/aerial/hot-air-balloon" onClick={toggleMenu} className="hover:text-amber-500">Hot Air Balloon</Link>
-                  <Link to="/services/aerial/hummerchute-ride" onClick={toggleMenu} className="hover:text-amber-500">Hummerchute Ride</Link>
-                  <Link to="/services/aerial/skydiving" onClick={toggleMenu} className="hover:text-amber-500">Skydiving</Link>
+                  <Link to="/services/aerial/paragliding" onClick={handleNavigation} className="hover:text-amber-500">
+                    Paragliding
+                  </Link>
+                  <Link to="/services/aerial/paramotoring" onClick={handleNavigation} className="hover:text-amber-500">
+                    Paramotoring
+                  </Link>
+                  <Link to="/services/aerial/hot-air-balloon" onClick={handleNavigation} className="hover:text-amber-500">
+                    Hot Air Balloon
+                  </Link>
+                  <Link to="/services/aerial/hummerchute-ride" onClick={handleNavigation} className="hover:text-amber-500">
+                    Hummerchute Ride
+                  </Link>
+                  <Link to="/services/aerial/skydiving" onClick={handleNavigation} className="hover:text-amber-500">
+                    Skydiving
+                  </Link>
 
                   <h2 className="text-amber-500 font-bold">Water Activities</h2>
-                  <Link to="/services/water/scuba-diving" onClick={toggleMenu} className="hover:text-amber-500">Scuba Diving</Link>
-                  <Link to="/services/water/kayaking" onClick={toggleMenu} className="hover:text-amber-500">Kayaking</Link>
-                  <Link to="/services/water/boating" onClick={toggleMenu} className="hover:text-amber-500">Boating</Link>
-                  <Link to="/services/water/flyboarding" onClick={toggleMenu} className="hover:text-amber-500">Flyboarding</Link>
-                  <Link to="/services/water/surfing" onClick={toggleMenu} className="hover:text-amber-500">Surfing</Link>
+                  <Link to="/services/water/scuba-diving" onClick={handleNavigation} className="hover:text-amber-500">
+                    Scuba Diving
+                  </Link>
+                  <Link to="/services/water/kayaking" onClick={handleNavigation} className="hover:text-amber-500">
+                    Kayaking
+                  </Link>
+                  <Link to="/services/water/boating" onClick={handleNavigation} className="hover:text-amber-500">
+                    Boating
+                  </Link>
+                  <Link to="/services/water/flyboarding" onClick={handleNavigation} className="hover:text-amber-500">
+                    Flyboarding
+                  </Link>
+                  <Link to="/services/water/surfing" onClick={handleNavigation} className="hover:text-amber-500">
+                    Surfing
+                  </Link>
 
                   <h2 className="text-amber-500 font-bold">Land Activities</h2>
-                  <Link to="/services/land/trekking" onClick={toggleMenu} className="hover:text-amber-500">Trekking</Link>
-                  <Link to="/services/land/camping" onClick={toggleMenu} className="hover:text-amber-500">Camping</Link>
-                  <Link to="/services/land/bungee-jumping" onClick={toggleMenu} className="hover:text-amber-500">Bungee Jumping</Link>
-                  <Link to="/services/land/bike-trips" onClick={toggleMenu} className="hover:text-amber-500">Bike Trips</Link>
-                  <Link to="/services/land/atv-ride" onClick={toggleMenu} className="hover:text-amber-500">ATV Ride</Link>
+                  <Link to="/services/land/trekking" onClick={handleNavigation} className="hover:text-amber-500">
+                    Trekking
+                  </Link>
+                  <Link to="/services/land/camping" onClick={handleNavigation} className="hover:text-amber-500">
+                    Camping
+                  </Link>
+                  <Link to="/services/land/bungee-jumping" onClick={handleNavigation} className="hover:text-amber-500">
+                    Bungee Jumping
+                  </Link>
+                  <Link to="/services/land/bike-trips" onClick={handleNavigation} className="hover:text-amber-500">
+                    Bike Trips
+                  </Link>
+                  <Link to="/services/land/atv-ride" onClick={handleNavigation} className="hover:text-amber-500">
+                    ATV Ride
+                  </Link>
                 </div>
               )}
 
-              <Link to="/blog" onClick={toggleMenu} className="hover:text-amber-500">
+              <Link to="/blog" onClick={handleNavigation} className="hover:text-amber-500">
                 Blog
               </Link>
-              <Link to="/contact" onClick={toggleMenu} className="hover:text-amber-500">
+              <Link to="/contact" onClick={handleNavigation} className="hover:text-amber-500">
                 Contact Us
               </Link>
             </div>
@@ -285,9 +335,7 @@ const Navbar = () => {
                 onClick={() => setShowDropdown((prev) => !prev)}
                 className="flex items-center gap-2 text-md font-medium text-gray-700 hover:text-black"
               >
-                {/* <img src="/images/sword.png" className="h-5 w-5" /> */}
                 <FaUser className="text-md" />
-
                 Hi, {storedFirstName}
                 <FaChevronDown className="text-xs" />
               </button>
@@ -314,7 +362,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-          {showLogin && <LoginModal onClose={handleLoginClose} />}
+      {showLogin && <LoginModal onClose={handleLoginClose} />}
     </div>
   );
 };
