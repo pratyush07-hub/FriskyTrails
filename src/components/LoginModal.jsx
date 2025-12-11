@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { loginUser, registerUser, googleAuth } from "../api/user.api";
-import { useGoogleLogin } from "@react-oauth/google";
-import axiosInstance from "../utils/axiosInstance";
 
 const LoginModal = ({ onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -19,49 +17,11 @@ const LoginModal = ({ onClose }) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleGoogleLogin = useGoogleLogin({
-    flow: "auth-code",
-    redirect_uri: window.location.origin,
-    onSuccess: async (authResult) => {
-      try {
-        if (authResult.code) {
-          setLoading(true);
-          // Send the redirect URI (current origin) to match what Google expects
-          const redirectUri = window.location.origin;
-          const response = await googleAuth(authResult.code, redirectUri);
-          if (response.success) {
-            const { accessToken, refreshToken, user } = response.data;
-            
-            // Store tokens and user data
-            localStorage.setItem("accessToken", accessToken);
-            localStorage.setItem("refreshToken", refreshToken);
-            localStorage.setItem("userName", user.userName);
-            localStorage.setItem("firstName", user.firstName);
-            
-            // Set default auth header
-            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-            
-            // Close the modal
-            onClose();
-            
-            // Refresh the page to apply auth state
-            window.location.reload();
-          } else {
-            alert(response.message || "Google login failed");
-          }
-        }
-      } catch (error) {
-        console.error('Google login error:', error);
-        alert(error.response?.data?.message || "Google login failed. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    },
-    onError: (err) => {
-      console.error('Google OAuth error:', err);
-      alert("Failed to connect with Google. Please try again.");
-    },
-  });
+  const handleGoogleLogin = () => {
+    // Redirect to backend Google OAuth endpoint
+    // The backend will handle the OAuth flow and redirect back with a cookie
+    googleAuth();
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,10 +33,15 @@ const LoginModal = ({ onClose }) => {
           password: form.password,
         });
         if (response.success) {
-          localStorage.setItem("accessToken", response.data.accessToken);
-          localStorage.setItem("userName", response.data.user.userName);
-          localStorage.setItem("firstName", response.data.user.firstName);
+          // Token is stored in httpOnly cookie by backend, no need to store in localStorage
+          // Store user info for display purposes
+          if (response.user?.name) {
+            localStorage.setItem("userName", response.user.name);
+            localStorage.setItem("firstName", response.user.name.split(' ')[0] || response.user.name);
+          }
           onClose();
+          // Reload to update auth state
+          window.location.reload();
         } else {
           alert("Login failed");
         }
@@ -91,7 +56,7 @@ const LoginModal = ({ onClose }) => {
       }
     } catch (error) {
       console.error(error);
-      alert(error.response?.data?.message || "Something went wrong");
+      alert(error.response?.data?.message || error.message || "Something went wrong");
     } finally {
       setLoading(false);
     }

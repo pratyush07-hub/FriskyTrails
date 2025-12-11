@@ -12,9 +12,9 @@ dotenv.config({
 const allowedOrigins = [
   "http://localhost:5173",
   "http://127.0.0.1:5173",
-  "https://frisky-trails.vercel.app/",
+  "https://frisky-trails.vercel.app",
   process.env.CORS_ORIGIN,
-];
+].filter(Boolean);
 
 app.use((req, res, next) => {
   // Set COOP to allow popups for OAuth flows
@@ -59,6 +59,19 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
+// Request logging middleware
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
+import passport from "passport";
+import configurePassport from "./config/passport.js";
+
+// Initialize Passport
+configurePassport();
+app.use(passport.initialize());
+
 import contactRoutes from "./routes/contact.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import adventureRoutes from "./routes/adventure.routes.js";
@@ -81,15 +94,28 @@ app.use((req, res) => {
 
 // Global error handler middleware
 app.use((err, req, res, next) => {
-  console.error("Global Error Handler:", err);
+  console.error('\n--- ERROR DETAILS ---');
+  console.error('Timestamp:', new Date().toISOString());
+  console.error('Request URL:', req.originalUrl);
+  console.error('Request Method:', req.method);
+  console.error('Error Message:', err.message);
+  console.error('Error Stack:', err.stack);
+  if (err.errors) console.error('Validation Errors:', err.errors);
+  console.error('Request Body:', req.body);
+  console.error('Request Params:', req.params);
+  console.error('Request Query:', req.query);
+  console.error('--- END ERROR DETAILS ---\n');
   
   const statusCode = err.statusCode || err.code || 500;
-  const message = err.message || "Internal Server Error";
+  const message = err.message || 'Internal Server Error';
   
   res.status(statusCode).json({
     success: false,
     message: message,
-    ...(process.env.NODE_ENV === "development" && { stack: err.stack })
+    ...(process.env.NODE_ENV === 'development' && { 
+      stack: err.stack,
+      ...(err.errors && { errors: err.errors })
+    })
   });
 });
 

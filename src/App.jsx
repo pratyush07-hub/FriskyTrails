@@ -37,6 +37,10 @@ import CreateProductType from "./admin/CreateProductType";
 import ProductType from "./admin/ProductType";
 import NotFound from "./components/NotFound";
 import AllBlogs from "./admin/AllBlogs";
+import Unauthorized from "./components/Unauthorized";
+
+
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 
@@ -48,40 +52,67 @@ const App = () => {
       <Navbar />
       <Scrolltotop />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/services/holidays" element={<Holidays />} />
-        <Route path="/services/flights" element={<Flights />} />
-        <Route path="/services/offers" element={<Offers />} />
-        <Route path="/services/rail-tickets" element={<RailTickets />} />
-        <Route path="/services/hotels" element={<Hotels />} />
-        <Route path="/services/transport" element={<Transport />} />
-        <Route path="/services/activities" element={<Activities />} />
-        <Route path="/services/bus-tickets" element={<BusTickets />} />
-        <Route path="/blog/newblog" element={<Newblog />} />  
-        <Route path="/tours" element={<Productpage />} />  
-        <Route path="/hiring" element={<Hiring />} />  
-        <Route path="/create-blog" element={<CreateBlogForm />} />  
-        <Route path="/create-country" element={<CreateCountryForm />} />  
-        <Route path="/create-state" element={<CreateStateForm />} />  
-        <Route path="/create-city" element={<CreateCityForm />} />  
-        <Route path="/admin-dashboard" element={<Dashboard />} />  
-        {/* <Route path="/locations/:slug" element={<LocationPage />} /> */}
-        <Route path="/blog/:slug" element={<Newlog />} />
-        <Route path="/country/:slug/blogs" element={<CountryPage />} />
-        <Route path="/state/:slug/blogs" element={<StatePage />} />
-        <Route path="/city/:slug/blogs" element={<CityPage />} />
+  {/* Public Routes */}
+  <Route path="/" element={<Home />} />
+  <Route path="/about" element={<About />} />
+  <Route path="/blog" element={<Blog />} />
+  <Route path="/contact" element={<ContactUs />} />
+  <Route path="/tours" element={<Productpage />} />
+  <Route path="/hiring" element={<Hiring />} />
+  <Route path="/blog/newblog" element={<Newblog />} />
+  <Route path="/blog/:slug" element={<Newlog />} />
+  <Route path="/country/:slug/blogs" element={<CountryPage />} />
+  <Route path="/state/:slug/blogs" element={<StatePage />} />
+  <Route path="/city/:slug/blogs" element={<CityPage />} />
+  <Route path="/products" element={<ProductsPage />} />
+  <Route path="/tours/:slug" element={<ProductDetails />} />
+  <Route path="/productType/:slug/product" element={<ProductType />} />
+  <Route path="/get-blogs" element={<AllBlogs />} />
 
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/tours/:slug" element={<ProductDetails />} />
-        <Route path="/create-product" element={<CreateProductPage />} />
-        <Route path="/create-productType" element={<CreateProductType />} />
-        <Route path="/productType/:slug/product" element={<ProductType />} />
-        <Route path="/get-blogs" element={<AllBlogs />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+  {/* ============================== */}
+  {/* 🔐 PROTECTED ROUTES WRAPPER  */}
+  {/* ============================== */}
+  <Route
+    path="/services/*"
+    element={
+      <ProtectedRoute>
+        <Routes>
+          <Route path="holidays" element={<Holidays />} />
+          <Route path="flights" element={<Flights />} />
+          <Route path="offers" element={<Offers />} />
+          <Route path="rail-tickets" element={<RailTickets />} />
+          <Route path="hotels" element={<Hotels />} />
+          <Route path="transport" element={<Transport />} />
+          <Route path="activities" element={<Activities />} />
+          <Route path="bus-tickets" element={<BusTickets />} />
+        </Routes>
+      </ProtectedRoute>
+    }
+  />
+
+  <Route path="/unauthorized" element={<Unauthorized />} />
+
+  <Route
+    path="/admin/*"
+    element={
+      <ProtectedRoute adminOnly>
+        <Routes>
+          <Route path="admin-dashboard" element={<Dashboard />} />
+          <Route path="create-blog" element={<CreateBlogForm />} />
+          <Route path="create-country" element={<CreateCountryForm />} />
+          <Route path="create-state" element={<CreateStateForm />} />
+          <Route path="create-city" element={<CreateCityForm />} />
+          <Route path="create-product" element={<CreateProductPage />} />
+          <Route path="create-productType" element={<CreateProductType />} />
+        </Routes>
+      </ProtectedRoute>
+    }
+  />
+
+  {/* Not Found */}
+  <Route path="*" element={<NotFound />} />
+</Routes>
+
       <End />
       <Last />
     </>

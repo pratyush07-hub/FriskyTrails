@@ -3,22 +3,25 @@ import { Link } from "react-router-dom";
 import Modal from "../components/Modal";
 import Admodal from "../components/Admodal";
 import LoginModal from "./LoginModal";
-import { logoutUser, getCurrentUser } from "../api/user.api";
-import axiosInstance from "../utils/axiosInstance";
+import { logoutUser } from "../api/user.api";
+import { useAuth } from "../context/AuthContext";
 import Arrow from "../assets/arrow.svg";
 import { FaChevronDown } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
   const [showModal, setShowModal] = useState(false);
   const [showAdmodal, setShowAdmodal] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [storedFirstName, setStoredFirstName] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [showServices, setShowServices] = useState(false);
   const [showAdventures, setShowAdventures] = useState(false);
+  
+  // Derive state from AuthContext
+  const isLoggedIn = !!user;
+  const storedFirstName = user?.name?.split(' ')[0] || user?.email?.split('@')[0] || "";
 
   const toggleAdmodal = () => setShowAdmodal(!showAdmodal);
   const toggleModal = () => setShowModal(!showModal);
@@ -53,7 +56,6 @@ const Navbar = () => {
     };
     document.addEventListener("click", handleClickOutside);
     window.addEventListener("scroll", handleScroll);
-    checkAuthStatus();
 
     return () => {
       document.removeEventListener("click", handleClickOutside);
@@ -61,57 +63,19 @@ const Navbar = () => {
     };
   }, []);
 
-  const checkAuthStatus = async () => {
-    try {
-      const response = await getCurrentUser();
-      if (response.success) {
-        setIsLoggedIn(true);
-        setStoredFirstName(response.data.user.firstName || "");
-      } else {
-        setIsLoggedIn(false);
-        setStoredFirstName("");
-      }
-    } catch (error) {
-      setIsLoggedIn(false);
-      setStoredFirstName("");
-      console.log("User not logged in or token invalid." + error.message);
-    }
-  };
-
   const handleLoginClose = () => {
     setShowLogin(false);
-    checkAuthStatus();
   };
 
   const handleLogout = async () => {
     try {
-      await logoutUser();
-      // Clear all auth related data
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('userName');
-      localStorage.removeItem('firstName');
-      
-      // Clear axios auth header
-      delete axiosInstance.defaults.headers.common['Authorization'];
-      
-      // Update UI state
-      setIsLoggedIn(false);
-      setStoredFirstName("");
+      await logout();
       setShowDropdown(false);
-      
       // Optional: Redirect to home page
       window.location.href = '/';
     } catch (error) {
       console.error("Logout failed:", error);
-      // Even if logout API fails, clear local state
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('userName');
-      localStorage.removeItem('firstName');
-      delete axiosInstance.defaults.headers.common['Authorization'];
-      setIsLoggedIn(false);
-      setStoredFirstName("");
+      setShowDropdown(false);
       window.location.href = '/';
     }
   };
