@@ -1,112 +1,72 @@
 import axios from "axios";
 
+
 const axiosInstance = axios.create({
-    baseURL:
-    import.meta.env.MODE === "production"
-      ? import.meta.env.VITE_API_URL_PROD
-      : import.meta.env.VITE_API_URL_LOCAL,
-    timeout: 30000,
-    withCredentials: true,
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    }
+  baseURL:
+  import.meta.env.MODE === "production"
+    ? import.meta.env.VITE_API_URL_PROD
+    : import.meta.env.VITE_API_URL_LOCAL,
+  timeout: 30000,
+  withCredentials: true,
+  headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+  }
 });
 
-// Request interceptor to add auth token to requests
+
+// Request Interceptor
 axiosInstance.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('accessToken');
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        config.withCredentials = true;
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
+  (config) => {
+    const accessToken = localStorage.getItem("token");
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
+    return config;
+  },
+  (error) => {
+    
+    return Promise.reject(error);
+  }
 );
 
-// Variables for refresh token handling
-let isRefreshing = false;
-let failedQueue = [];
+// Response Interceptor
+let isRedirecting = false;
+let redirectTimeout = null;
 
-const processQueue = (error, token = null) => {
-  failedQueue.forEach(prom => {
-    if (error) {
-      prom.reject(error);
-    } else {
-      prom.resolve(token);
-    }
-  });
-  failedQueue = [];
-};
-
-// Response interceptor with token refresh logic
 axiosInstance.interceptors.response.use(
-  response => response,
-  async error => {
-    const originalRequest = error.config;
+  (response) => {
+    return response;
+  },
+  (error) => {
+    // Handle 401 Unauthorized errors
+    // Don't redirect for /api/v1/user/me calls (auth check) - these are expected to fail if not logged in
+    const isAuthCheck = error.config?.url?.includes('/api/v1/user/me');
     
-    // If error is not 401 or it's a retry request, reject
-    if (error.response?.status !== 401 || originalRequest._retry) {
-      if (error.response?.status === 401) {
-        // Clear auth state and redirect to login
-        window.localStorage.removeItem('accessToken');
-        window.localStorage.removeItem('userName');
-        window.localStorage.removeItem('firstName');
-        window.location.href = '/login';
+    if (error.response?.status === 401 && !isRedirecting && !isAuthCheck) {
+      // Clear any existing timeout
+      if (redirectTimeout) {
+        clearTimeout(redirectTimeout);
       }
-      return Promise.reject(error);
+      
+      isRedirecting = true;
+      localStorage.removeItem("token");
+      
+      // Only redirect if we're not already on the home page
+      if (window.location.pathname !== "/") {
+        window.location.href = "/";
+      }
+      
+      // Reset flag after a delay to allow for future redirects if needed
+      redirectTimeout = setTimeout(() => {
+        isRedirecting = false;
+        redirectTimeout = null;
+      }, 2000);
     }
-
-    // If we're already refreshing, add to queue
-    if (isRefreshing) {
-      return new Promise((resolve, reject) => {
-        failedQueue.push({ resolve, reject });
-      })
-      .then(token => {
-        originalRequest.headers['Authorization'] = 'Bearer ' + token;
-        return axiosInstance(originalRequest);
-      })
-      .catch(err => {
-        return Promise.reject(err);
-      });
-    }
-
-    originalRequest._retry = true;
-    isRefreshing = true;
-
-    try {
-      // Try to refresh the token
-      const response = await axiosInstance.post('/api/v1/user/refresh-token');
-      const { accessToken } = response.data;
-      
-      // Update the stored token
-      localStorage.setItem('accessToken', accessToken);
-      
-      // Update the Authorization header
-      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
-      
-      // Process the queue
-      processQueue(null, accessToken);
-      
-      // Retry the original request
-      return axiosInstance(originalRequest);
-    } catch (refreshError) {
-      // If refresh fails, clear everything and redirect to login
-      processQueue(refreshError, null);
-      window.localStorage.removeItem('accessToken');
-      window.localStorage.removeItem('userName');
-      window.localStorage.removeItem('firstName');
-      window.location.href = '/login';
-      return Promise.reject(refreshError);
-    } finally {
-      isRefreshing = false;
-    }
+    return Promise.reject(error);
   }
 );
 
 export default axiosInstance;
+
+

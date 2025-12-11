@@ -9,7 +9,8 @@ const Header = () => {
   return (
     <>
       {/* Desktop / Tablet Header */}
-      <div className="fixed hidden top-0 md:flex h-[6vh] bg-gray-100
+      <div className="fixed hidden top-0 md:flex h-[6vh] bg-gradient-to-b from-[#fffaf0] via-[#fff6f0] to-[#ffe9d6]
+
   z-[60] w-full justify-between items-center px-12">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
@@ -50,10 +51,10 @@ const Header = () => {
       </div>
 
       {/* Mobile Header */}
-      <div className="fixed top-0 md:hidden flex h-[6vh] z-20 w-full  bg-gray-100 justify-between items-center px-4">
+      <div className="fixed top-0 md:hidden flex h-[6vh] z-20 w-full   bg-gradient-to-b from-[#fffaf0] via-[#fff6f0] to-[#ffe9d6]">
         <div className="flex items-center gap-2">
           <img className="w-5 h-5" src={Call} alt="call" />
-          <a href="tel:+917501516714" className="text-black text-sm">
+          <a href="tel:+917501516714" className="text-black text-sm mr-2">
             Call Us
           </a>
         </div>

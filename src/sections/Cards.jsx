@@ -24,7 +24,7 @@ const Cards = () => {
   };
 
   return (
-    <div className="w-full py-10 bg-[#faf4e8]">
+    <div className="w-full py-8 bg-[#faf4e8]">
       <h1 className="text-center text-3xl sm:text-4xl md:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
         Upcoming Trips & Adventures
       </h1>

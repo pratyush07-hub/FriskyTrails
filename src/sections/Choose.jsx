@@ -1,146 +1,67 @@
-import choose from "../assets/choose.png";
+import Deals from '../assets/deals.png';
+import Work from '../assets/24.png';
+import Price from '../assets/price.png';
+import Booking from '../assets/booking.png';
 
 const Choose = () => {
-  const leftFeatures = [
-    {
-      title: "Thrilling Adventures",
-      description: "Discover handpicked trails, treks, and outdoor experiences designed to spark your inner explorer."
-    },
-    {
-      title: "Expert Trail Guidance",
-      description: "Navigate confidently with detailed trail maps, difficulty ratings, and safety recommendations."
-    },
-    {
-      title: "Real-Time Travel Insights",
-      description: "Stay updated with live weather, route conditions, and important alerts before you start your journey."
-    }
-  ];
-  
-
-  const rightFeatures = [
-    {
-      title: "Premium Gear Suggestions",
-      description: "Get curated gear recommendations tailored to each adventure—from hiking essentials to camping kits."
-    },
-    {
-      title: "Community Adventure Stories",
-      description: "Read real travel experiences shared by adventurers to inspire your next epic journey."
-    },
-    {
-      title: "Smart Trip Planning",
-      description: "Plan your adventure effortlessly with optimized routes, estimated timings, and essential checklists."
-    }
-  ];
-  
   return (
-    <div className="min-h-screen">
-      <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-24">
-        
-        {/* Main Heading */}
-        <h1
-  className="text-center text-4xl sm:text-5xl md:text-5xl lg:text-5xl leading-tight font-bold mb-10 sm:mb-16 lg:mb-24"
-  style={{
-    fontFamily: "'Playfair Display', Georgia, serif",
-  }}
->
-  {/* Small screens: only "Why Choose Us" */}
-  <span className="block lg:hidden">Why Choose Us?</span>
+    <div className='w-full'>
+      <h1 className='text-3xl mb-2 sm:text-4xl md:text-5xl font-bold text-center '  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Why Choose Us</h1>
 
-  {/* Medium & larger screens: full line */}
-  <span className="hidden lg:block">Why Choose Us for Your Next Adventure?</span>
-</h1>
-
-        {/* Responsive Grid — small/md = 1 col, large = 3 col */}
-        <div className="
-          grid 
-          grid-cols-1 
-          md:grid-cols-1 
-          lg:grid-cols-3 
-          gap-10 sm:gap-12 lg:gap-20 
-          items-start
-        ">
-          
-          {/* Left Features */}
-          <div className="space-y-6">
-            {leftFeatures.map((feature, index) => (
-              <div key={index} className="pb-4 border-b border-gray-200">
-                <h3
-                  className="text-2xl sm:text-xl md:text-2xl md:font-semibold  mb-2"
-                  style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
-                     color: "#1a3a2f"
-                  
-                  }}
-                >
-                  {feature.title}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* Center Image */}
-          <div className="flex justify-center">
+      {/* Mobile: Horizontal scroll | Tablet & above: Grid */}
+      <div className="mt-4 md:mt-10 max-w-[90vw] mx-auto">
+        <div className="flex sm:hidden gap-6 overflow-x-auto pb-4 w-full">
+          {data.map((item, index) => (
             <div
-              className="
-                relative 
-                overflow-hidden 
-                w-full 
-                max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full
-              "
+              key={index}
+              className="min-w-[70vw] rounded-lg bg-white border border-[#FF6321] shadow-lg px-4 pt-6 pb-6 text-center flex flex-col items-center"
             >
-              <img
-                src={choose}
-                alt="Interior design"
-                className="
-                  w-full 
-                  object-cover
-
-                  /* Small + Medium: simple rectangle */
-                  rounded-none 
-
-                  /* Large screens: bring back curve */
-                  lg:rounded-t-[20px]
-                  lg:rounded-b-[150px]
-                "
-                style={{
-                  /* small + md = fixed height, no clamp */
-                  height: "400px",
-
-                  /* large = auto responsive height */
-                  transition: "all 0.3s ease-in-out",
-                }}
-              />
+              <img className='h-16 w-16 mb-6' src={item.image} alt="img" />
+              <h2 className='text-lg font-semibold mb-3'>{item.title}</h2>
+              <p className='text-sm text-gray-600 tracking-tight'>{item.des}</p>
             </div>
-          </div>
+          ))}
+        </div>
 
-          {/* Right Features */}
-          <div className="space-y-6">
-            {rightFeatures.map((feature, index) => (
-              <div key={index} className="pb-4 border-b border-gray-200">
-                 <h3
-                  className="text-2xl sm:text-xl md:text-2xl md:font-semibold  mb-2"
-                  style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
-                     color: "#1a3a2f"
-                  
-                  }}
-                >
-                  {feature.title}
-                </h3>
-                <p className="text-md sm:text-md text-gray-700">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
+        {/* Tablet and above: Grid layout */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {data.map((item, index) => (
+            <div
+              key={index}
+              className="rounded-lg bg-white border border-[#FF6321] shadow-lg px-4 pt-6 pb-6 text-center flex flex-col items-center"
+            >
+              <img className='h-16 w-16 mb-6' src={item.image} alt="img" />
+              <h2 className='text-lg font-semibold mb-3'>{item.title}</h2>
+              <p className='text-sm text-gray-600 tracking-tight'>{item.des}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 };
+
+const data = [
+  {
+    title: "24/7 Travel Support",
+    image: Work,
+    des: "Our expert team is here round the clock to assist you with any travel queries. Just reach out, and we’ve got you covered.",
+  },
+  {
+    title: "Easy Booking Process",
+    image: Booking,
+    des: "Booking adventure or tour is now easier than ever, with unbeatable offers to make your trip even better!",
+  },
+  {
+    title: "Unbeatable Price",
+    image: Price,
+    des: "Get the lowest rates on hotels, holiday packages, Adventures and flights, so you can travel without breaking the bank.",
+  },
+  {
+    title: "Unmissable Deals",
+    image: Deals,
+    des: "From flights and hotels to buses, car rentals, and tour packages – grab the best deals for your next adventure!",
+  },
+];
 
 export default Choose;

@@ -11,10 +11,9 @@ const Next = () => {
   ];
 
   return (
-    <div className="h-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto py-12 sm:py-16">
+    <div className="h-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto py-8 sm:py-16 ">
       {/* Title - Fully responsive */}
-      <h1
-        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 sm:mb-12 leading-tight"
+      <h1 className='text-3xl mb-7 sm:text-4xl md:text-5xl font-bold text-center'
         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
       >
         Where to Next?

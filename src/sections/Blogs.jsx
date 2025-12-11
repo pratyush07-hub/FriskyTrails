@@ -21,14 +21,15 @@ const Blogs = () => {
   ];
 
   return (
-    <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto py-16 sm:py-20">
+    <div className="w-full mt-10 max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto py-2 ">
       {/* Perfect Responsive Heading */}
-      <h1
-        className="text-3xl  md:text-4xl lg:text-5xl font-bold text-center mb-12 sm:mb-16 lg:mb-20 leading-tight tracking-tight"
-        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-      >
-        Enjoy Fresh Travel Blogs
-      </h1>
+      <h2
+  className="text-3xl py-4 md:text-4xl lg:text-5xl font-bold text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 leading-tight tracking-tight"
+  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+>
+  Enjoy Fresh Travel Blogs
+</h2>
+
 
   
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 w-full">
