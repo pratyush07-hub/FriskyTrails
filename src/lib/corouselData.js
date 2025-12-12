@@ -1,34 +1,51 @@
 export const data = [
     {
-      title: "Rishikesh, India (River Rafting & Bungee Jumping)",
-      image: "/images/tower.avif",
-      price: "₹1,500",
+      title: "Meghalaya Group Tour Package",
+      image: "/upcoming/meghalaya.png",
+      price: "₹14999",
       rating: 4.8,
       link:'https://frisky-trails.vercel.app/tours/meghalaya-group-tour-package'
     },
     {
-      title: "Manali, India (Paragliding & Trekking)",
-      image: "/images/blog.webp",
-      price: "₹2,000",
+      title: "Kedarkantha Trek with Fun and Enjoyment",
+      image: "/upcoming/kedarkantha.png",
+      price: "₹4499",
       rating: 4.7,
-      link:'https://frisky-trails.vercel.app/tours/paragliding-in-manali'
+      link:'https://frisky-trails.vercel.app/tours/kedarkantha-trek'
     },
     {
-      title: "Auli, India (Skiing & Snowboarding)",
-      image: "/images/car.jpg",
-      price: "₹3,000",
+      title: "Chopta Tungnath Trek with Chandrashila",
+      image: "/upcoming/Tungnath.png",
+      price: "₹4999",
       rating: 4.6,
+       link:'https://frisky-trails.vercel.app/tours/chopta-tungnath-trek-with-chandrashila'
     },
     {
-      title: "Leh Ladakh, India (Bike Riding & Camping)",
-      image: "/images/hilly.png",
-      price: "₹5,000",
+      title: "Paragliding in Bir Billing",
+      image: "/upcoming/bir-billing.png",
+      price: "₹2499",
       rating: 4.9,
+       link:'https://frisky-trails.vercel.app/tours/paragliding-in-bir-billing'
     },
     {
-      title: "Andaman & Nicobar Islands (Scuba Diving & Snorkeling)",
-      image: "/images/andaman&Nicobar.avif",
-      price: "₹3,500",
+      title: "Paragliding in Manali with fun",
+      image: "/upcoming/Manali.png",
+      price: "₹1749",
       rating: 4.8,
+       link:'https://frisky-trails.vercel.app/tours/paragliding-in-manali'
+    },
+    {
+      title: 'Solang Valley Paragliding with fun ',
+      image:  "/upcoming/sonam-valley.png",
+      price: "₹3999",
+      rating: 4.8,
+       link:'https://frisky-trails.vercel.app/tours/solang-valley-paragliding'
+    },
+    {
+      title: 'Brahmatal Trek experience with fun',
+      image:  "/upcoming/Brhamtal.png",
+      price: "₹4499",
+      rating: 4.8,
+      link:'https://frisky-trails.vercel.app/tours/brahmatal-trek'
     },
   ];

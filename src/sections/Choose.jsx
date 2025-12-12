@@ -5,11 +5,11 @@ import Booking from '../assets/booking.png';
 
 const Choose = () => {
   return (
-    <div className='w-full'>
+    <div className='w-full mt-8 md:mt-12'>
       <h1 className='text-3xl mb-2 sm:text-4xl md:text-5xl font-bold text-center '  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Why Choose Us</h1>
 
       {/* Mobile: Horizontal scroll | Tablet & above: Grid */}
-      <div className="mt-4 md:mt-10 max-w-[90vw] mx-auto">
+      <div className="mt-6 md:mt-8 max-w-[90vw] mx-auto">
         <div className="flex sm:hidden gap-6 overflow-x-auto pb-4 w-full">
           {data.map((item, index) => (
             <div

@@ -28,10 +28,10 @@ const Rewards = () => {
   }, []);
 
   return (
-    <div className="h-auto w-full md:px-8 mb-8 lg:px-16">
+    <div className="h-auto w-full md:px-8 mb-8 lg:px-16 mt-8 md:mt-12">
       {/* Heading */}
       <h1
-        className="text-center text-3xl sm:text-4xl md:text-5xl pt-10 md:pt-2 font-bold"
+        className="text-center text-3xl sm:text-4xl md:text-5xl pt-6 md:pt-2 font-bold"
         style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
       >
         Discover More with FriskyTrails

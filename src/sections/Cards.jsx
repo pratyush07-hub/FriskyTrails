@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import {data} from '../lib/corouselData'
+import { data } from "../lib/corouselData";
 
 const Cards = () => {
   const settings = {
@@ -24,8 +24,11 @@ const Cards = () => {
   };
 
   return (
-    <div className="w-full py-8 bg-[#faf4e8]">
-      <h1 className="text-center text-3xl sm:text-4xl md:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
+    <div className="w-full py-6 md:py-8 mt-8 md:mt-12">
+      <h1
+        className="text-center text-3xl sm:text-4xl md:text-5xl font-bold"
+        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+      >
         Upcoming Trips & Adventures
       </h1>
 
@@ -33,15 +36,14 @@ const Cards = () => {
         <Slider {...settings}>
           {data.map((item, index) => (
             <div key={index} className="px-3">
-              <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden">
-
+              <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden h-full flex flex-col">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="w-full h-52 sm:h-64 md:h-72 object-cover"
                 />
 
-                <div className="p-4 sm:p-5 flex flex-col gap-2">
+                <div className="p-4 sm:p-5 flex flex-col gap-2 flex-1">
                   <p className="text-gray-500 text-sm flex items-center gap-1">
                     ⭐ {item.rating} Overall Reviews
                   </p>
@@ -60,19 +62,36 @@ const Cards = () => {
                       </span>
                     </div>
 
-                    <Link to="/tours">
+                    <Link to={item.link}>
                       <button className="rounded-full p-3   border border-gray-300 text-sm sm:text-base font-semibold bg-white hover:bg-[rgb(255,99,33)] hover:text-white transition-all">
                         Book Now
                       </button>
                     </Link>
                   </div>
                 </div>
-
               </div>
             </div>
           ))}
         </Slider>
       </div>
+
+      {/* Equal-height fix for react-slick slides */}
+      <style>
+        {`
+          .slick-track {
+            display: flex !important;
+            align-items: stretch !important;
+          }
+          .slick-slide {
+            height: auto !important;
+            display: flex !important;
+          }
+          .slick-slide > div {
+            display: flex !important;
+            width: 100%;
+          }
+        `}
+      </style>
     </div>
   );
 };
@@ -99,6 +118,5 @@ const NextArrow = ({ onClick }) => (
     <FaChevronRight />
   </button>
 );
-
 
 export default Cards;
