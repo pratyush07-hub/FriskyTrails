@@ -1,11 +1,8 @@
 import { Building2, ChevronRight, ArrowUpRight, Star } from "lucide-react";
-import { Hotel } from "../types/Hotel";
 
-interface TopHotelsProps {
-  hotels: Hotel[];
-}
 
-const TopHotels = ({ hotels }: TopHotelsProps) => {
+
+const TopHotels = ({ hotels }) => {
   return (
     <section id="deals" className="mb-16">
       <div className="flex items-center justify-between mb-6">

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import HeroBanner from "./components/HeroBanner";
-import TopDestinations from "./components/TopDestinations";
-import PopularFoods from "./components/PopularFoods";
-import TopHotels from "./components/TopHotels";
+import HeroBanner from "./HeroBanner";
+import TopDestinations from "./TopDestinations";
+import PopularFoods from "./PopularFoods";
+import TopHotels from "./TopHotels";
 import { StateData } from "./StateData";
-import LoadingSpinner from "./components/LoadingSpinner";
-import NotFound from "../../components/NotFound";
+import LoadingSpinner from "./Loading";
+// import NotFound from "../../components/NotFound";
 
 const StatePage = () => {
   const { slug } = useParams();
@@ -53,7 +53,7 @@ const StatePage = () => {
   }
 
   if (!stateData?.state) {
-    return <NotFound />;
+    // return <NotFound />;
   }
 
   const { state } = stateData;

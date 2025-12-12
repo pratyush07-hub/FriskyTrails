@@ -1,15 +1,34 @@
 import { MapPin, Search, Calendar, Users } from "lucide-react";
+import { useState } from "react";
+
+
+
 
 
 const HeroBanner = ({ state }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [checkInDate, setCheckInDate] = useState("");
+  const [guests, setGuests] = useState(1);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    console.log({ searchQuery, checkInDate, guests });
+  };
+
+  const bannerImage = state.bannerImage 
+
   return (
     <>
-      {state.bannerImage && (
-        <section className="relative h-[300px] sm:h-[400px] lg:h-[450px] overflow-hidden">
+      {bannerImage && (
+        <section 
+          className="relative h-[300px] sm:h-[400px] lg:h-[500px] overflow-visible" 
+          aria-label={`${state.name} banner`}
+        >
           <img
-            src={state.bannerImage}
-            alt={state.name}
+            src={bannerImage}
+            alt={`${state.name} landscape`}
             className="w-full h-full object-cover"
+            loading="lazy"
           />
           <div 
             className="absolute inset-0"
@@ -24,7 +43,6 @@ const HeroBanner = ({ state }) => {
                 From cozy country homes to funky city apartments
               </p>
               
-              {/* Location Badge */}
               <div 
                 className="absolute right-8 top-1/2 hidden lg:flex items-center gap-3 rounded-2xl px-6 py-4 shadow-lg"
                 style={{ transform: 'translateY(-50%)', backgroundColor: 'rgba(255,255,255,0.95)' }}
@@ -38,40 +56,93 @@ const HeroBanner = ({ state }) => {
             </div>
           </div>
 
-          {/* Search Bar */}
-          <div className="absolute -bottom-8 left-1/2 w-full max-w-4xl px-4" style={{ transform: 'translateX(-50%)' }}>
-            <div className="bg-white rounded-2xl shadow-xl p-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <div className="flex-1 flex items-center gap-3 px-4 py-2 rounded-xl bg-gray-100">
-                <Search className="w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Vacation Rentals"
-                  className="bg-transparent outline-none w-full text-gray-900 placeholder:text-gray-400"
-                />
+          <form 
+            onSubmit={handleSearch} 
+            className="absolute -bottom-16 sm:-bottom-10 left-1/2 w-[calc(100%-2rem)] sm:w-full max-w-4xl px-2 sm:px-4" 
+            style={{ transform: 'translateX(-50%)' }}
+          >
+            <div 
+              className="rounded-2xl shadow-xl p-3 sm:p-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4"
+              style={{ backgroundColor: '#ffffff' }}
+            >
+              <div className="flex-1">
+                <label htmlFor="search" className="sr-only">Search vacation rentals</label>
+                <div 
+                  className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-xl"
+                  style={{ backgroundColor: '#f3f4f6' }}
+                >
+                  <Search className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#9ca3af' }} />
+                  <input
+                    id="search"
+                    type="text"
+                    placeholder="Vacation Rentals"
+                    className="bg-transparent outline-none w-full text-sm sm:text-base"
+                    style={{ color: '#111827' }}
+                    aria-label="Search vacation rentals"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="hidden sm:block w-px h-10 bg-gray-200" />
-              <div className="flex-1 flex items-center gap-3 px-4 py-2 rounded-xl bg-gray-100">
-                <Calendar className="w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="dd/mm/yyyy"
-                  className="bg-transparent outline-none w-full text-gray-900 placeholder:text-gray-400"
-                />
+              
+              <div className="hidden sm:block w-px h-10" style={{ backgroundColor: '#e5e7eb' }} />
+              
+              <div className="flex gap-2 sm:flex-1 sm:gap-4">
+                <div className="flex-1">
+                  <label htmlFor="checkin" className="sr-only">Check-in date</label>
+                  <div 
+                    className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-xl"
+                    style={{ backgroundColor: '#f3f4f6' }}
+                  >
+                    <Calendar className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#9ca3af' }} />
+                    <input
+                      id="checkin"
+                      type="date"
+                      className="bg-transparent outline-none w-full text-sm sm:text-base"
+                      style={{ color: '#111827' }}
+                      value={checkInDate}
+                      onChange={(e) => setCheckInDate(e.target.value)}
+                      min={new Date().toISOString().split('T')[0]}
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex-1">
+                  <label htmlFor="guests" className="sr-only">Number of guests</label>
+                  <div 
+                    className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 rounded-xl"
+                    style={{ backgroundColor: '#f3f4f6' }}
+                  >
+                    <Users className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#9ca3af' }} />
+                    <select
+                      id="guests"
+                      className="bg-transparent outline-none w-full text-sm sm:text-base"
+                      style={{ color: '#111827' }}
+                      value={guests}
+                      onChange={(e) => setGuests(Number(e.target.value))}
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                        <option key={num} value={num}>
+                          {num} 
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
               </div>
-              <div className="hidden sm:block w-px h-10 bg-gray-200" />
-              <div className="flex-1 flex items-center gap-3 px-4 py-2 rounded-xl bg-gray-100">
-                <Users className="w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Bedrooms"
-                  className="bg-transparent outline-none w-full text-gray-900 placeholder:text-gray-400"
-                />
-              </div>
-              <button className="px-8 py-3 bg-teal-500 text-white rounded-xl font-semibold hover:bg-teal-600 transition-colors">
+              
+              <button 
+                type="submit" 
+                className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-semibold transition-colors text-sm sm:text-base"
+                style={{ backgroundColor: '#14b8a6', color: '#ffffff' }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d9488'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#14b8a6'}
+                aria-label="Search"
+              >
                 Search
               </button>
             </div>
-          </div>
+          </form>
         </section>
       )}
     </>
