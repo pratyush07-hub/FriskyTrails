@@ -5,20 +5,37 @@ const Blogs = () => {
     {
       image: "/images/car.jpg",
       des: "Budget-Friendly Family Vacation Destinations Around the World",
+      link:'https://frisky-trails.vercel.app/blog/places-to-visit-in-india-in-winter',
+
     },
     {
       image: "/blogimages/goa.jpg",
       des: "Hidden Beaches in Goa",
+      link:'https://frisky-trails.vercel.app/blog/places-to-visit-near-calangute',
+
     },
     {
       image: "/blogimages/wildlife.avif",
       des: "Best Wildlife Sanctuaries and National Parks to Explore in Chhattisgarh",
+      link:'https://frisky-trails.vercel.app/blog/offbeat-places-to-visit-in-india',
+
     },
     {
       image: "/blogimages/delhi.avif",
       des: "10 Offbeat Weekend Getaways From Delhi for Nature Lovers",
+      link:'https://frisky-trails.vercel.app/blog/places-to-visit-near-delhi-within-300-km',
+
     },
   ];
+ //fast reloading ke liye
+  const preloadPage = (url) => {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "document";
+    link.href = url;
+    document.head.appendChild(link);
+  };
+  
 
   return (
     <div className="w-full mt-10 max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto py-2 ">
@@ -36,7 +53,8 @@ const Blogs = () => {
         {data.map((item, index) => (
           <Link
             key={item.des}
-            to="/blog"
+            to={item.link}
+            onMouseEnter={() => preloadPage(item.link)}
             className="group relative w-full h-64 sm:h-72 md:h-80 lg:h-96 aspect-video rounded-3xl shadow-xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:-translate-y-2 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${item.image})` }}
           >

@@ -2,23 +2,34 @@ import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import User from "../models/user.model.js";
 
-/**
- * Google OAuth Strategy Configuration
- * 
- * Required environment variables:
- * - GOOGLE_CLIENT_ID
- * - GOOGLE_CLIENT_SECRET
- * - API_URL (e.g., http://localhost:5000)
- */
-
 const configurePassport = () => {
+ 
+  let apiUrl = (process.env.API_URL || 'http://localhost:8000').trim();
+  apiUrl = apiUrl.replace(/\/+$/, '');
+  // Allow explicit override but default to backend callback
+  const callbackURL =
+    (process.env.GOOGLE_REDIRECT_URI || '').trim() ||
+    `${apiUrl}/api/v1/user/google/callback`;
+
+  // Log the callback URL for debugging 
+  console.log('=== Google OAuth Configuration ===');
+  console.log('API_URL from env:', process.env.API_URL || 'NOT SET (using default)');
+  console.log('Final Callback URL:', callbackURL);
+  console.log('Client ID:', process.env.GOOGLE_CLIENT_ID ? 'SET' : 'NOT SET');
+  console.log('Client Secret:', process.env.GOOGLE_CLIENT_SECRET ? 'SET' : 'NOT SET');
+  console.log('===================================');
+
   passport.use(
     new GoogleStrategy(
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: `${process.env.API_URL}/api/v1/user/google/callback`,
+        callbackURL: callbackURL
+
       },
+
+
+     
       async (accessToken, refreshToken, profile, done) => {
         try {
           const googleId = profile.id;
