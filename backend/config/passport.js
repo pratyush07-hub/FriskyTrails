@@ -36,6 +36,7 @@ const configurePassport = () => {
           const email = profile.emails?.[0]?.value;
           const avatar = profile.photos?.[0]?.value;
           const name = profile.displayName;
+          const generatedUserName = email ? email.split("@")[0] : `user_${googleId}`;
 
           // 1. Check existing Google user
           let user = await User.findOne({ googleId });
@@ -65,6 +66,7 @@ const configurePassport = () => {
             name,
             avatar,
             isVerified: true, // Google = Verified by default
+            userName: generatedUserName,
           });
 
           return done(null, user);

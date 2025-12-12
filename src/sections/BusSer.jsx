@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import HillImage from "/services/bus.png";
+import HillImage from "/services/bus.jpeg";
 import Deals from "./Deals";
 import BusForm from "../components/BusForm";
 

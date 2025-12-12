@@ -1,18 +1,25 @@
 import axiosInstance from "../utils/axiosInstance";
 
-const registerUser = async ({ firstName, lastName, email, password }) => {
+const registerUser = async ({ firstName, lastName, userName, email, password }) => {
   try {
-    // Backend expects: email, password, name (not firstName, lastName, userName)
-    const response = await axiosInstance.post("/api/v1/user/signup", { 
+    const payload = { 
       email, 
       password, 
-      name: firstName || email.split('@')[0] 
-    });
+      name: firstName || email.split('@')[0],
+      lastName,
+    };
+
+    // Only send userName if provided
+    if (userName) {
+      payload.userName = userName;
+    }
+
+    const response = await axiosInstance.post("/api/v1/user/signup", payload);
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : error.message;
   }
-}  
+};
 
 const loginUser = async ({ email, password }) => {
   try {

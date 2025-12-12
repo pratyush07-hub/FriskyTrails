@@ -49,7 +49,7 @@ const sendTokenResponse = (user, statusCode, res) => {
  */
 export const signup = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name, userName } = req.body;
 
     // Validate input
     if (!email || !password) {
@@ -71,6 +71,7 @@ export const signup = async (req, res) => {
     // Create user
     const user = await User.create({
       email: email.toLowerCase(),
+      userName: userName || email.split("@")[0],
       password,
       name,
     });
