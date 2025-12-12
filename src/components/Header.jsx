@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <>
       {/* Desktop / Tablet Header */}
-      <div className="fixed hidden top-0 md:flex h-[6vh] bg-gradient-to-b from-[#fffaf0] via-[#fff6f0] to-[#ffe9d6]
+      <div className="fixed hidden top-0 md:flex h-[6vh] bg-gradient-to-b from-[#fffaf0] via-[#fff6f0] to-[#ffecdc]
 
   z-[60] w-full justify-between items-center px-12">
         <div className="flex items-center gap-6">

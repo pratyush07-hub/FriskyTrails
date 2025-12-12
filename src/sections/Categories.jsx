@@ -6,18 +6,22 @@ export default function HoverRevealButton() {
     {
       image: "/images/1.png",
       name: "Japan",
+      link:''
     },
     {
       image: "/images/2.png",
       name: "Maldives",
+      link:''
     },
     {
       image: "/images/4.png",
       name: "Dubai",
+      link:''
     },
     {
       image: "/images/6.png",
       name: "Manali",
+      link:''
     },
     
   ];
