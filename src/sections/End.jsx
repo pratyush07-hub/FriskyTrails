@@ -82,7 +82,7 @@ const End = () => {
 
                   <div>
                     <h1 className="text-white text-3xl font-semibold">Quick Links</h1>
-                    <div className="mt-6 space-y-4">
+                    <div className="mt-6  space-y-4">
                       {[
                         { text: "Contact Us", path: "/contact" },
                         { text: "Blogs", path: "/blog" },
@@ -167,7 +167,7 @@ const End = () => {
         <div className="mb-6 md:mb-8">
           <h1 className="text-white text-lg sm:text-xl md:text-2xl font-semibold">Quick Links</h1>
           <div className="flex justify-center items-start mt-3 md:mt-4 gap-8 sm:gap-10 md:gap-16">
-            <div className="flex flex-col gap-3 sm:gap-4">
+            <div className="flex  ml-10 flex-col gap-3 sm:gap-4">
               <Link to="/contact">
                 <h3 className="text-gray-400 font-semibold text-sm sm:text-base hover:text-white transition-colors">
                   Contact Us

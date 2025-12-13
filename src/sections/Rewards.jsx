@@ -28,7 +28,7 @@ const Rewards = () => {
   }, []);
 
   return (
-    <div className="h-auto w-full md:px-8 mb-8 lg:px-16 mt-8 md:mt-12">
+    <div className="h-auto w-full md:px-8 mb-8 lg:px-16  md:mt-4">
       {/* Heading */}
       <h1
         className="text-center text-3xl sm:text-4xl md:text-5xl pt-6 md:pt-2 font-bold"
@@ -38,7 +38,7 @@ const Rewards = () => {
       </h1>
 
       {/* Cards Container */}
-      <div className="mt-8 md:mt-12">
+      <div className="mt-6 md:mt-6">
         <div
           ref={scrollRef}
           className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 overflow-x-auto md:overflow-visible scroll-smooth no-scrollbar pb-4"
