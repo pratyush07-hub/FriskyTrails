@@ -55,7 +55,7 @@ const Box = () => {
         />
         <div className="pl-4 sm:pl-5 md:pl-6 pt-4 text-xl sm:text-[1.35rem] md:text-[1rem] lg:text-xl xl:text-2xl font-semibold tracking-tight">
           <h3>{item.des}</h3>
-          <Link to="/blog/newblog">
+          <Link to={item.link}>
             <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white mt-6 md:mt-2 xl:mt-2 text-base sm:text-lg font-semibold rounded-full px-5 sm:px-6 py-2 cursor-pointer">
               Read More
             </button>
