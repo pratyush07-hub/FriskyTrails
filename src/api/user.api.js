@@ -53,7 +53,7 @@ const getCurrentUser = async ( ) => {
 // Google OAuth - backend uses GET /google (redirects to Google)
 // This redirects the user to the backend Google OAuth endpoint
 const googleAuth = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const apiUrl = import.meta.env.VITE_API_URL_PROD || 'http://localhost:8000';
   window.location.href = `${apiUrl}/api/v1/user/google`;
 };
 
