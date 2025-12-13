@@ -46,7 +46,7 @@ import { TestimonialMarquee } from './TestimonialMarquee';
 
 const Testimonial = () => {
   return (
-    <section className="  w-full py-16 px-4 md:px-8 lg:px-12 text-center ">
+    <section className="w-full py-12 md:py-16 px-4 md:px-8 lg:px-12 text-center mt-8 md:mt-12">
       
       {/* Small Top Orange Heading */}
       <h3 className="text-orange-500 font-semibold text-lg md:text-xl mb-2">

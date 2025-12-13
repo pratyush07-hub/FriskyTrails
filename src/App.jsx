@@ -28,7 +28,7 @@ import RailTickets from "./ServicesPages/RailTickets";
 import Offers from "./ServicesPages/Offers";
 import Hotels from "./ServicesPages/Hotels";
 import CountryPage from "./admin/CountryPage";
-import StatePage from "./admin/StatePage";
+// import StatePage from "./admin/StatePage";
 import CityPage from "./admin/CityPage";
 import ProductDetails from "./admin/ProductDetails";
 import ProductsPage from "./admin/ProductsPage";
@@ -38,6 +38,7 @@ import ProductType from "./admin/ProductType";
 import NotFound from "./components/NotFound";
 import AllBlogs from "./admin/AllBlogs";
 import Unauthorized from "./components/Unauthorized";
+import StatePage from "./pages/statePage/StatePage";
 
 
 import ProtectedRoute from './components/ProtectedRoute';

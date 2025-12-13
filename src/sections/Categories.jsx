@@ -31,13 +31,13 @@ export default function HoverRevealButton() {
 
   return (
     <>
-      <div className="hidden xl:block min-h-[60vh] w-full">
+      <div className="hidden xl:block min-h-[60vh] w-full mt-8 md:mt-12">
         <h1 className="text-3xl md:text-5xl text-center font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
           Curated Categories
         </h1>
 
         {/* Grid layout for responsiveness */}
-        <div className="grid w-[90vw] mx-auto grid-cols-1 xl:grid-cols-4 mt-10 gap-8 md:gap-16 place-items-center">
+        <div className="grid w-[90vw] mx-auto grid-cols-1 xl:grid-cols-4 mt-8 md:mt-10 gap-8 md:gap-16 place-items-center">
           {data.map((item, index) => (
             <div
               key={index}
@@ -68,7 +68,7 @@ export default function HoverRevealButton() {
         </div>
       </div>
       {/* mobile view */}
-      <div className="xl:hidden h-auto mb-4 w-full px-4">
+      <div className="xl:hidden h-auto mb-4 w-full px-4 mt-8 md:mt-12">
         <h1 className="text-3xl md:text-5xl text-center font-bold" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
           Curated Categories
         </h1>

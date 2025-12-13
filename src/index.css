@@ -14,22 +14,29 @@ html,body{
   width: 100%;
   background: rgb(247, 241, 231);
 }
-/* Custom Thin Scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px; /* Thin scrollbar */
+
+/* Global thin scrollbar for all scrollable areas */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #c0c0c0 transparent;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent; /* No color */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #c0c0c0; /* Light gray for visibility */
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
   border-radius: 10px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #a0a0a0; /* Slightly darker on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
 }
 /* Ensure Quill lists */
 .ql-editor ul {
