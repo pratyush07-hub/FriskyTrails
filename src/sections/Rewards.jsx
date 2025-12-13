@@ -46,7 +46,7 @@ const Rewards = () => {
           {data.map((item, index) => (
             <div
               key={index}
-              className="scroll-card w-[80vw] md:w-full flex-shrink-0 h-auto flex justify-center transition-transform duration-300 hover:scale-105 rounded-xl bg-white shadow-xl border-2 border-orange-300"
+              className="scroll-card w-[80vw] md:w-full flex-shrink-0 h-auto flex justify-center transition-transform duration-300 hover:scale-105 rounded-xl bg-white shadow-xl border-2 border-[#FF6321]"
             >
               <div className="w-full max-w-xs flex flex-col items-center p-4 md:p-6">
                 {/* Image */}
