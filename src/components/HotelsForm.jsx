@@ -4,10 +4,11 @@ import { hotelBooking } from "../api/hotel.api"; // Correct API import
 const HotelForm = () => {
   const [formData, setFormData] = useState({
     city: "",
-    budget: "",
+    property: "",
     checkInDate: "",
     checkOutDate: "",
     guests: "",
+    price: "",
   });
 
   const [showMobileForm, setShowMobileForm] = useState(false);
@@ -19,7 +20,7 @@ const HotelForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await hotelBooking(formData); // Call correct API
+      const response = await hotelBooking(formData);
       if (response.success) {
         alert("Hotel booked successfully!");
       } else {
@@ -33,10 +34,11 @@ const HotelForm = () => {
     }
     setFormData({
       city: "",
-      budget: "",
+      property: "",
       checkInDate: "",
       checkOutDate: "",
       guests: "",
+      price: "",
     });
     setShowMobileForm(false);
   };
@@ -45,11 +47,9 @@ const HotelForm = () => {
     const handleScroll = () => {
       setShowMobileForm(false);
     };
-
     if (showMobileForm) {
       window.addEventListener("scroll", handleScroll);
     }
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -57,18 +57,20 @@ const HotelForm = () => {
 
   const labels = {
     city: "City",
-    budget: "Budget (in ₹)",
+    property: "Property",
     checkInDate: "Check-In",
     checkOutDate: "Check-Out",
     guests: "Guests",
+    price: "Budget (in ₹)",
   };
 
   const placeholders = {
     city: "Enter city",
-    budget: "Enter budget",
+    property: "Enter property name",
     checkInDate: "Select date",
     checkOutDate: "Select date",
     guests: "No. of guests",
+    price: "Enter budget",
   };
 
   return (
@@ -87,7 +89,7 @@ const HotelForm = () => {
               <label className="block font-semibold mb-1 pl-1">
                 {labels[field]}
               </label>
-              {field === "budget" ? (
+              {field === "price" ? (
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
                     ₹
@@ -169,7 +171,7 @@ const HotelForm = () => {
                 <label className="block font-semibold mb-1 pl-1">
                   {labels[field]}
                 </label>
-                {field === "budget" ? (
+                {field === "price" ? (
                   <div className="relative">
                     <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">
                       ₹

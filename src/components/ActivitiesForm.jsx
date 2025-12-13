@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { adventure } from "../api/adventure.api";
+import { createActivity } from "../api/activities.api";
 
 const ActivitiesForm = () => {
   const [formData, setFormData] = useState({
@@ -17,15 +17,26 @@ const ActivitiesForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await adventure(formData);
-      if (response.success) {
-        alert("Activity submitted successfully!");
+      // Map form fields to API expected payload
+      const payload = {
+        activityType: formData.activityType,
+        location: formData.activityLocation,
+        date: formData.activityWhen,
+        description: "",
+      };
+
+      const response = await createActivity(payload);
+      console.log("form resp", response);
+      if (response?.success) {
+        alert(response.message || "Activity submitted successfully!");
       } else {
-        alert("Failed to submit activity.");
+        alert(response?.message || "Failed to submit activity.");
       }
     } catch (error) {
+      console.error("Activity submit error:", error);
       alert(
-        error.response?.data?.message ||
+        error?.message || error?.data?.message ||
+          error?.response?.data?.message ||
           "An error occurred while submitting the activity."
       );
     }

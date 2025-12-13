@@ -81,7 +81,7 @@ const FlightsForm = () => {
     airline: "Enter airline name"
   };
 
-  const classOptions = ["Economy", "Business", "First Class"];
+  const classOptions = ["Economy", "Premium Economy", "Business", "First Class"];
 
   return (
     <>

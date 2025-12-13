@@ -18,11 +18,14 @@ export const AuthProvider = ({ children }) => {
         // Token is in HTTP-only cookie, sent automatically with withCredentials: true
         const response = await axiosInstance.get('/api/v1/user/me');
         const userData = response?.data?.user;
+        console.log("admin:", response);
+        console.log("userdata", userData)
+        console.log("userdata admin", userData.admin)
 
         if (isMounted) {
           if (userData) {
             setUser(userData);
-            setIsAdmin(userData?.isAdmin === true);
+            setIsAdmin(userData?.admin === true);
           } else {
             setUser(null);
             setIsAdmin(false);

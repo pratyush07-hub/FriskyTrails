@@ -18,7 +18,9 @@ const createBlog = async (formData) => {
 };
 const getAllBlogs = async () => {
   try {
+    console.log("hehe")
     const response = await axiosInstance.get("/api/v1/admin/blogs");
+    console.log(response)
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : error.message;

@@ -6,22 +6,31 @@ const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedBlog, setSelectedBlog] = useState(null); // ✅ Track blog being edited
+  const [selectedBlog, setSelectedBlog] = useState(null);
 
   const fetchBlogs = async () => {
-    try {
-      setLoading(true);
-      const data = await getAllBlogs();
+  try {
+    setLoading(true);
+    console.log("wait")
 
-      if (!data.status) throw new Error(data.message || "Failed to fetch blogs");
-      setBlogs(data.data || []);
-    } catch (err) {
-      console.error("Error fetching blogs:", err);
-      setError(err.message);
-    } finally {
-      setLoading(false);
+    const response = await getAllBlogs(); 
+    console.log("response:", response);
+
+    const result = response;
+    console.log("result status", result.status)
+
+    if (!result.status) {
+      throw new Error(result.message || "Failed to fetch blogs");
     }
-  };
+
+    setBlogs(result.data || []);
+  } catch (err) {
+    console.error("Error fetching blogs:", err);
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchBlogs();

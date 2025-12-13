@@ -17,6 +17,7 @@ const Contactform = () => {
     e.preventDefault();
     try{
       const response = await contactUs({ name: formData.name, email: formData.email, mobile: formData.mobile, message: formData.message });
+      // console.log("contact res:", response)
       if (response.success) {
         alert("Message sent successfully!");
       } else {

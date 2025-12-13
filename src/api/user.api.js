@@ -43,7 +43,8 @@ const getCurrentUser = async ( ) => {
   try {
     // Backend uses GET /me, not POST /get-user
     const response = await axiosInstance.get("/api/v1/user/me");
-    return response.data;
+    return response;
+    
   } catch (error) {
     throw error.response ? error.response.data : error.message;
   }
