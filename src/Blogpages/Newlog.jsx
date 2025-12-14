@@ -15,7 +15,7 @@ const Newlog = () => {
     const fetchBlog = async () => {
       try {
         const res = await getSingleBlog(slug);
-        setBlog(res.data);
+        setBlog(res);
       } catch (err) {
         setError("Blog not found");
       } finally {
