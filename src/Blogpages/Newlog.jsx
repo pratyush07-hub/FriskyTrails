@@ -4,6 +4,7 @@ import Blogleft from "../components/Blogleft";
 import Blogright from "../components/Blogright";
 import { getSingleBlog } from "../api/blog.api";
 import { useParams } from "react-router-dom";
+import FriskyLoader from "../components/Loader";
 
 const Newlog = () => {
   const { slug } = useParams();
@@ -25,7 +26,16 @@ const Newlog = () => {
     fetchBlog();
   }, [slug]);
 
-  if (loading) return <p className="text-center mt-10">Loading blog...</p>;
+  if (loading) {
+    return (
+      <div 
+        className="flex items-center justify-center min-h-[70vh] py-20 px-4"
+       
+      >
+        <FriskyLoader size="sm" text="Loading product details..." />
+      </div>
+    );
+  }
   if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
   if (!blog) return null;
 

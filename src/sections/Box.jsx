@@ -3,38 +3,38 @@ import { Link } from "react-router-dom";
 const Box = () => {
   const data = [
     {
-      image: "/images/rock.jpg",
+      image: "/TrendingBlog/Kodaikanal.png",
       des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
       link:'https://frisky-trails.vercel.app/blog/places-to-visit-in-kodaikanal-in-1-day'
 
 
     },
     {
-      image: "/images/rock.jpg",
+      image: "/TrendingBlog/Calangute.png",
       des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
       link:'https://frisky-trails.vercel.app/blog/places-to-visit-near-calangute'
 
     },
     {
-      image: "/images/rock.jpg",
+      image: "TrendingBlog/Ahemdabad.png",
       des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
       link:'https://frisky-trails.vercel.app/blog/places-to-visit-near-ahmedabad-within-100-km'
 
     },
     {
-      image: "/images/rock.jpg",
+      image: "TrendingBlog/Pelling.png",
       des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
       link:'https://frisky-trails.vercel.app/blog/places-to-visit-in-pelling'
 
     },
     {
-      image: "/images/rock.jpg",
+      image: "TrendingBlog/Pelling.png",
       des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
       link:'https://frisky-trails.vercel.app/blog/places-to-visit-in-havelock'
 
     },
     {
-      image: "/images/rock.jpg",
+      image: "TrendingBlog/SouthGoa.png",
       des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
       link:'https://frisky-trails.vercel.app/blog/best-places-to-visit-in-south-goa'
     },
