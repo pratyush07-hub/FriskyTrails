@@ -26,7 +26,7 @@ const Newlog = () => {
     fetchBlog();
   }, [slug]);
 
-  if (loading) {
+  if (loading || !blog) {
     return (
       <div 
         className="flex items-center justify-center min-h-[70vh] py-20 px-4"

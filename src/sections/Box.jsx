@@ -18,7 +18,7 @@ const Box = () => {
     {
       image: "TrendingBlog/Ahemdabad.png",
       des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
-      link:'https://frisky-trails.vercel.app/blog/places-to-visit-near-ahmedabad-within-100-km'
+      link:'/blog/places-to-visit-near-ahmedabad-within-100-km'
 
     },
     {
