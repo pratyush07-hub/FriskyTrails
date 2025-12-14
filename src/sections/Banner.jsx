@@ -10,12 +10,12 @@ export default function BannerSwiper({
   autoPlayInterval = 5000,
 
   width,
-  mobileWidth = "100%",
-  desktopWidth = "90%",
+  mobileWidth = "90%",
+  desktopWidth = "80%",
 
   height,
-  mobileHeight = "300px",
-  desktopHeight = "300px",
+  mobileHeight = "150px",
+  desktopHeight = "260px",
 
   showDots = false,
   showArrows = false,
@@ -65,11 +65,18 @@ export default function BannerSwiper({
     setTouchEnd(0);
   };
 
+  // responsive width without extra vertical gap
+  const containerWidth = width || undefined;
+
   return (
     <div
-      className={`relative overflow-hidden mx-auto ${className}`}
+      className={`relative overflow-hidden m-0 mx-auto ${className}`}
       style={{
-        width: width || "80%",
+        width:
+          containerWidth ||
+          (typeof window !== "undefined" && window.innerWidth >= 768
+            ? desktopWidth
+            : mobileWidth),
         height: height || undefined,
       }}
       onTouchStart={handleTouchStart}
@@ -82,8 +89,7 @@ export default function BannerSwiper({
       >
         {slides.map((slide, i) => (
           <div key={i} className="min-w-full h-full relative">
-
-            {/* MOBILE VIEW */}
+            {/* MOBILE & MD VIEW */}
             <div
               className="block md:hidden h-full"
               style={{
@@ -123,31 +129,33 @@ export default function BannerSwiper({
         <>
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black rounded-full p-2 md:p-3 shadow-lg transition-all hover:scale-110 z-10"
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black rounded-full p-1.5 md:p-2 shadow-lg transition-all hover:scale-110 z-10"
             aria-label="Previous Slide"
           >
-            <span className="text-xl">{`<`}</span>
+            <span className="text-lg md:text-xl">{`<`}</span>
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black rounded-full p-2 md:p-3 shadow-lg transition-all hover:scale-110 z-10"
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-black rounded-full p-1.5 md:p-2 shadow-lg transition-all hover:scale-110 z-10"
             aria-label="Next Slide"
           >
-            <span className="text-xl">{`>`}</span>
+            <span className="text-lg md:text-xl">{`>`}</span>
           </button>
         </>
       )}
 
       {/* DOTS */}
       {showDots && slides.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        <div className="absolute bottom-2 md:bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2 z-10">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => goToSlide(i)}
               className={`rounded-full transition-all ${
-                currentIndex === i ? "bg-white w-8 h-2" : "bg-white/50 hover:bg-white/80 w-2 h-2"
+                currentIndex === i
+                  ? "bg-white w-6 md:w-8 h-1.5 md:h-2"
+                  : "bg-white/50 hover:bg-white/80 w-1.5 md:w-2 h-1.5 md:h-2"
               }`}
             />
           ))}

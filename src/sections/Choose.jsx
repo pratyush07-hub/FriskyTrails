@@ -5,34 +5,44 @@ import Booking from '../assets/booking.png';
 
 const Choose = () => {
   return (
-    <div className='w-full mt-8 md:mt-12'>
-      <h1 className='text-3xl mb-2 sm:text-4xl md:text-5xl font-bold text-center '  style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>Why Choose Us</h1>
+    // 👉 MAIN DIV: md & lg pe mt-2, mobile pe 0
+    <div className="w-full  md:mt-6 py-2 ">
+      <h1
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center"
+        style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+      >
+        Why Choose Us
+      </h1>
 
-      {/* Mobile: Horizontal scroll | Tablet & above: Grid */}
-      <div className="mt-6 md:mt-8 max-w-[90vw] mx-auto">
-        <div className="flex sm:hidden gap-6 overflow-x-auto pb-4 w-full">
+      <div className="max-w-[90vw] mx-auto">
+        {/* Mobile: Horizontal scroll */}
+        <div className="flex sm:hidden gap-6 overflow-x-auto pb-4 w-full mt-6">
           {data.map((item, index) => (
             <div
               key={index}
-              className="min-w-[70vw] rounded-lg bg-white border border-[#FF6321] shadow-lg px-4 pt-6 pb-6 text-center flex flex-col items-center"
+              className="min-w-[70vw] rounded-lg bg-white border border-[#FF6321] shadow-lg px-4 pt-6 pb-6 text-center flex flex-col items-center "
             >
-              <img className='h-16 w-16 mb-6' src={item.image} alt="img" />
-              <h2 className='text-lg font-semibold mb-3'>{item.title}</h2>
-              <p className='text-sm text-gray-600 tracking-tight'>{item.des}</p>
+              <img className="h-16 w-16 mb-6" src={item.image} alt="img" />
+              <h2 className="text-lg font-semibold mb-3">{item.title}</h2>
+              <p className="text-sm text-gray-600 tracking-tight">
+                {item.des}
+              </p>
             </div>
           ))}
         </div>
 
-        {/* Tablet and above: Grid layout */}
-        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Tablet & above: Grid */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-2 md:mt-3">
           {data.map((item, index) => (
             <div
               key={index}
-              className="rounded-lg bg-white border border-[#FF6321] shadow-lg px-4 pt-6 pb-6 text-center flex flex-col items-center"
+              className="rounded-lg bg-white border border-[#FF6321] shadow-lg px-4 pt-6 pb-6 text-center flex flex-col items-center mt-3"
             >
-              <img className='h-16 w-16 mb-6' src={item.image} alt="img" />
-              <h2 className='text-lg font-semibold mb-3'>{item.title}</h2>
-              <p className='text-sm text-gray-600 tracking-tight'>{item.des}</p>
+              <img className="h-16 w-16 mb-6" src={item.image} alt="img" />
+              <h2 className="text-lg font-semibold mb-3">{item.title}</h2>
+              <p className="text-sm text-gray-600 tracking-tight">
+                {item.des}
+              </p>
             </div>
           ))}
         </div>
@@ -40,6 +50,7 @@ const Choose = () => {
     </div>
   );
 };
+
 
 const data = [
   {

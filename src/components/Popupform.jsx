@@ -5,10 +5,9 @@ const Popupform = ({ onClose }) => {
 
   // Prevent body scroll when modal is open
   useEffect(() => {
-    document.body.style.overflow = "hidden"; 
-
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "auto"; 
+      document.body.style.overflow = "auto";
     };
   }, []);
 
@@ -49,10 +48,14 @@ const Popupform = ({ onClose }) => {
     <div
       ref={modalRef}
       onClick={closeModal}
-      className="fixed inset-0 flex bg-black bg-opacity-30 backdrop-blur-sm justify-center items-center z-70"
+      className="fixed inset-0 z-70 flex items-center justify-center bg-black/40 backdrop-blur-sm p-3"
     >
-      <div className="bg-white w-[36vw] h-[70vh] m-auto flex justify-center items-center rounded-lg shadow-lg p-6">
-        <form onSubmit={handleSubmit} className="flex flex-col w-[26vw] gap-4">
+      {/* ❌ NO fixed vw/vh; ✅ responsive width + max-height */}
+      <div className="w-full max-w-[92vw] sm:max-w-sm md:max-w-md bg-white rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 px-4 py-5 sm:px-6 sm:py-6"
+        >
           {/* Name */}
           <input
             type="text"
@@ -60,7 +63,7 @@ const Popupform = ({ onClose }) => {
             placeholder="Your Name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-amber-400"
             required
           />
 
@@ -73,7 +76,7 @@ const Popupform = ({ onClose }) => {
             maxLength="10"
             value={formData.mobile}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-amber-400"
             required
           />
 
@@ -84,19 +87,18 @@ const Popupform = ({ onClose }) => {
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-amber-400"
           />
 
           {/* Date & Guests */}
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="date"
               name="date"
               value={formData.date}
-              placeholder="Travel Date"
               min={new Date().toISOString().split("T")[0]}
               onChange={handleChange}
-              className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full sm:w-1/2 px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-amber-400"
             />
             <input
               type="number"
@@ -104,7 +106,7 @@ const Popupform = ({ onClose }) => {
               placeholder="Traveller Count"
               value={formData.guest}
               onChange={handleChange}
-              className="w-1/2 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full sm:w-1/2 px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-amber-400"
             />
           </div>
 
@@ -114,13 +116,13 @@ const Popupform = ({ onClose }) => {
             placeholder="Write a Message"
             value={formData.message}
             onChange={handleChange}
-            className="w-full h-24 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400 leading-relaxed text-lg resize-none"
+            className="w-full min-h-[96px] px-4 py-3 border border-gray-300 rounded-lg text-sm sm:text-base leading-relaxed focus:outline-none focus:ring-2 focus:ring-amber-400 resize-none"
           ></textarea>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-[rgb(255,99,33)] text-xl to-amber-400 hover:scale-95 active:scale-90 transition-transform duration-150 py-4 text-white rounded-full font-semibold"
+            className="w-full bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:brightness-110 active:scale-95 transition-transform duration-150 py-3.5 sm:py-4 text-white rounded-full font-semibold text-base sm:text-lg"
           >
             Submit
           </button>
