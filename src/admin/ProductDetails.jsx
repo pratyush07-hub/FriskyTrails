@@ -4,6 +4,7 @@ import Right from "../assets/right.svg";
 import Share from "../assets/share.svg";
 import Payment from "../assets/payment.svg";
 import Call from "../assets/calling.svg";
+
 import {
   getProductBySlug,
   getProductTypeById,
@@ -12,6 +13,7 @@ import {
 import Content from "../Productpage/Content";
 import BookingModal from "../components/BookingModal";
 import Choose from "../sections/Choose";
+import FriskyLoader from "../components/Loader";
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -20,6 +22,7 @@ const ProductDetails = () => {
   const [howToReach, setHowToReach] = useState("");
   const [showBooking, setShowBooking] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true); // Added loading state
 
   // Auto image slider for mobile
   useEffect(() => {
@@ -34,6 +37,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
+        setLoading(true); // Set loading true at start
         const productRes = await getProductBySlug(slug);
         const productData = productRes.data;
         setProduct(productData);
@@ -61,6 +65,8 @@ const ProductDetails = () => {
         }
       } catch (error) {
         console.error("Error fetching product/type/city:", error);
+      } finally {
+        setLoading(false); // Always set loading false
       }
     };
 
@@ -70,8 +76,18 @@ const ProductDetails = () => {
   const openBookingModal = () => setShowBooking(true);
   const closeBookingModal = () => setShowBooking(false);
 
-  if (!product) return <p className="text-center py-10">Loading...</p>;
 
+  if (loading || !product) {
+    return (
+      <div 
+        className="flex items-center justify-center min-h-[70vh] py-20 px-4"
+       
+      >
+        <FriskyLoader size="sm" text="Loading product details..." />
+      </div>
+    );
+  }
+  
   return (
     <div className="min-h-screen w-full">
       {/* Breadcrumb */}
@@ -293,8 +309,8 @@ const ProductDetails = () => {
                   <h3 className="text-xs sm:text-sm">Mon-Sun: 9AM-8PM</h3>
                   <h3 className="text-xs sm:text-sm break-all font-semibold">
                     <a href="mailto:contact@friskytrails.in" className="text-black md:hidden lg:block">
-              contact@friskytrails.in
-            </a>
+                      [contact@friskytrails.in](mailto:contact@friskytrails.in)
+                    </a>
                   </h3>
                 </div>
               </div>

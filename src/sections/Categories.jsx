@@ -1,27 +1,28 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function HoverRevealButton() {
   const data = [
     {
       image: "/images/1.png",
       name: "Japan",
-      link: "",
+      link: "/services/activities",
     },
     {
       image: "/images/2.png",
       name: "Maldives",
-      link: "",
+      link: "services/holidays",
     },
     {
       image: "/images/4.png",
       name: "Dubai",
-      link: "",
+      link: "/services/transport",
     },
     {
       image: "/images/6.png",
       name: "Manali",
-      link: "",
+      link: "/services/hotels",
     },
   ];
 
@@ -54,14 +55,18 @@ export default function HoverRevealButton() {
                 transition={{ duration: 0.4, ease: "easeOut" }}
               />
 
-              <motion.button
+           <motion.button
                 className="absolute mt-80 px-8 py-2 bg-white font-semibold rounded-lg shadow-md hover:bg-amber-400 hover:text-white transition"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
                 transition={{ duration: 0.3 }}
+               
               >
+                 <Link to={item.link}> 
                 View All
+                </Link> 
               </motion.button>
+             
             </div>
           ))}
         </div>

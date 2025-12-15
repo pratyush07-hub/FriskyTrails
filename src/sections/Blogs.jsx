@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 const Blogs = () => {
   const data = [
     {
-      image: "/images/car.jpg",
+      image: '/TravelBlog/Vacation.png',
       des: "Budget-Friendly Family Vacation Destinations Around the World",
       link: "https://frisky-trails.vercel.app/blog/places-to-visit-in-india-in-winter",
     },
     {
-      image: "/blogimages/goa.jpg",
+      image: "/TravelBlog/Goa.png",
       des: "Hidden Beaches in Goa",
       link: "https://frisky-trails.vercel.app/blog/places-to-visit-near-calangute",
     },
     {
-      image: "/blogimages/wildlife.avif",
+      image: "/TravelBlog/Chattisgarh.png",
       des: "Best Wildlife Sanctuaries and National Parks to Explore in Chhattisgarh",
       link: "https://frisky-trails.vercel.app/blog/offbeat-places-to-visit-in-india",
     },
     {
-      image: "/blogimages/delhi.avif",
+      image: "/TravelBlog/Delhi.png",
       des: "10 Offbeat Weekend Getaways From Delhi for Nature Lovers",
       link: "https://frisky-trails.vercel.app/blog/places-to-visit-near-delhi-within-300-km",
     },
