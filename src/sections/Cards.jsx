@@ -23,9 +23,8 @@ const Cards = () => {
     ],
   };
 
-  // Function to calculate cut price (1000 more than current price)
   const getCutPrice = (price) => {
-    const priceNum = parseInt(price.replace(/[^\d]/g, ''));
+    const priceNum = parseInt(price.replace(/[^\d]/g, ""));
     return `₹${(priceNum + 1000).toLocaleString()}`;
   };
 
@@ -44,7 +43,8 @@ const Cards = () => {
             const cutPrice = getCutPrice(item.price);
             return (
               <div key={index} className="px-3">
-                <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden h-full flex flex-col min-h-[430px] sm:min-h-0">
+                <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden h-full flex flex-col min-h-[460px]">
+                  
                   <img
                     src={item.image}
                     alt={item.title}
@@ -56,17 +56,16 @@ const Cards = () => {
                       ⭐ {item.rating} Overall Reviews
                     </p>
 
-                    <h2 className="font-semibold text-lg sm:text-xl md:text-2xl line-clamp-2 leading-tight">
+                    <h2 className="font-semibold text-lg sm:text-xl md:text-2xl line-clamp-2 min-h-[56px] leading-tight">
                       {item.title}
                     </h2>
 
-                    <div className="mt-4 flex items-center justify-between">
+                    {/* PRICE + CTA — ALWAYS AT BOTTOM */}
+                    <div className="mt-auto pt-4 flex items-center justify-between">
                       <div className="flex flex-col items-start">
-                        {/* Cut Price - Strikethrough */}
                         <span className="text-gray-400 text-sm line-through mb-1">
                           {cutPrice}
                         </span>
-                        {/* Current Price */}
                         <div className="flex items-baseline">
                           <span className="text-[rgb(255,99,33)] font-bold text-xl sm:text-2xl">
                             {item.price}
@@ -78,7 +77,7 @@ const Cards = () => {
                       </div>
 
                       <Link to={item.link}>
-                        <button className="rounded-full p-3 border border-gray-300 text-sm sm:text-base font-semibold bg-white hover:bg-[rgb(255,99,33)] hover:text-white transition-all">
+                        <button className="rounded-full px-4 py-2 border border-gray-300 text-sm sm:text-base font-semibold bg-white hover:bg-[rgb(255,99,33)] hover:text-white transition-all">
                           Book Now
                         </button>
                       </Link>
@@ -95,7 +94,6 @@ const Cards = () => {
         {`
           .slick-track {
             display: flex !important;
-            align-items: stretch !important;
           }
           .slick-slide {
             height: auto !important;

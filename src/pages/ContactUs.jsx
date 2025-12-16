@@ -135,8 +135,8 @@ const ContactUs = () => {
                       Jaipur Office
                     </h3>
                     <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-snug max-w-[90vw] sm:max-w-[80vw] lg:max-w-[32vw] mx-auto sm:mx-0">
-                      Example Address, Near Central Park, Sector 5, Jaipur,
-                      Rajasthan 700091
+                    Utsav Apartment, In Front of MIG Block, Pratap Nagar, Jaipur, Rajasthan, 302033
+
                     </p>
                   </div>
                 </div>
