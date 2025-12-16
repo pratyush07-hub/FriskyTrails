@@ -4,41 +4,36 @@ const Box = () => {
   const data = [
     {
       image: "/TrendingBlog/Kodaikanal.png",
-      des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
-      link:'/blog/places-to-visit-in-kodaikanal-in-1-day'
-
-
+      des: "Places to Visit in Kodaikanal in 1 Day",
+      link: "/blog/places-to-visit-in-kodaikanal-in-1-day",
     },
     {
       image: "/TrendingBlog/Calangute.png",
-      des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
-      link:'/blog/places-to-visit-near-calangute'
-
+      des: "Places to Visit Near Calangute",
+      link: "/blog/places-to-visit-near-calangute",
     },
     {
-      image: "TrendingBlog/Ahemdabad.png",
-      des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
-      link:'/blog/places-to-visit-near-ahmedabad-within-100-km'
-
+      image: "/TrendingBlog/Ahemdabad.png",
+      des: "Places to Visit Near Ahmedabad Within 100 Km",
+      link: "/blog/places-to-visit-near-ahmedabad-within-100-km",
     },
     {
-      image: "TrendingBlog/Pelling.png",
-      des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
-      link:'/blog/places-to-visit-in-pelling'
-
+      image: "/TrendingBlog/Pelling.png",
+      des: "Places to Visit in Pelling",
+      link: "/blog/places-to-visit-in-pelling",
     },
     {
-      image: "TrendingBlog/Pelling.png",
-      des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
-      link:'/blog/places-to-visit-in-havelock'
-
+      image: "/TrendingBlog/Havelock.png",
+      des: "Places to Visit in Havelock Island",
+      link: "/blog/places-to-visit-in-havelock",
     },
     {
-      image: "TrendingBlog/SouthGoa.png",
-      des: "Indonesian Hot Spots | 5 Unique Destinations Worth Considering",
-      link:'/blog/best-places-to-visit-in-south-goa'
+      image: "/TrendingBlog/SouthGoa.png",
+      des: "Best Places to Visit in South Goa",
+      link: "/blog/best-places-to-visit-in-south-goa",
     },
   ];
+  
   return (
     <>
       <div className="hidden md:block">
@@ -77,7 +72,7 @@ const Box = () => {
             <h3 className="w-[70vw] mx-auto mt-2 text-xl">{item.des}</h3>
             <div className="w-full h-auto flex justify-center">
 
-            <Link to="/blog/newblog">
+            <Link to={item.link}>
                   <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border-1 active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white mt-4 text-lg font-semibold rounded-full px-6 py-2 cursor-pointer">
                     Read More
                   </button>

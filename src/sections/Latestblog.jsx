@@ -30,7 +30,7 @@ const Latestblog = () => {
   ];
 
   return (
-    <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto py-12 sm:py-16">
+    <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto py- ">
       {/* Perfect Responsive Header */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-6 mb-8 sm:mb-12 lg:mb-16">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight" 

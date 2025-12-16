@@ -41,11 +41,14 @@ const Blog = () => {
 
           <Box />
 
-        <div className="LatestBlog p-4 md:p-10">
+        <div className="LatestBlog  md:p-10">
           <Latestblog />
         </div>
       </div>
-      <Cards />
+      <div className="mt-[-30px]">
+  <Cards />
+</div>
+
     </div>
   );
 };

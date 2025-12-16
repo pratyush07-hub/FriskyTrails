@@ -87,11 +87,12 @@ export default function HoverRevealButton() {
               key={index}
               className="min-w-[70vw] md:min-w-[30vw] max-w-[260px] h-72 md:h-[40vh] xl:h-72 flex-shrink-0 relative"
             >
-              <img
+            <Link to={item.link}> <img
                 src={item.image}
                 alt={item.name}
                 className="w-full h-full rounded-lg shadow-lg object-cover"
               />
+              </Link>
             </div>
           ))}
         </div>
