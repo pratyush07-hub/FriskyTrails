@@ -32,7 +32,7 @@ const About = () => {
         className="hidden lg:block"
         style={{
           height: "620px",
-          backgroundImage: `url(${FortImage})`,
+          backgroundImage: `url('/about.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

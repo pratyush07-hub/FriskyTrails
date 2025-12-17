@@ -8,7 +8,7 @@ export const data = [
       // link: 'http://localhost:5173/tours/meghalaya-group-tour-package'
     },
     {
-      title: "Kedarkantha Trek with Fun and Enjoyment",
+      title: "Kedarkantha Trek ",
       image: "/upcoming/kedarkantha.png",
       price: "₹4499",
       rating: 4.7,
@@ -29,21 +29,21 @@ export const data = [
        link:'/tours/paragliding-in-bir-billing'
     },
     {
-      title: "Paragliding in Manali with fun",
+      title: "Paragliding in Manali",
       image: "/upcoming/Manali.png",
       price: "₹1749",
       rating: 4.8,
        link:'/tours/paragliding-in-manali'
     },
     {
-      title: 'Solang Valley Paragliding with fun ',
+      title: 'Solang Valley Paragliding ',
       image:  "/upcoming/sonam-valley.png",
       price: "₹3999",
       rating: 4.8,
        link:'/tours/solang-valley-paragliding'
     },
     {
-      title: 'Brahmatal Trek experience with fun',
+      title: 'Brahmatal Trek experience',
       image:  "/upcoming/Brhamtal.png",
       price: "₹4499",
       rating: 4.8,
