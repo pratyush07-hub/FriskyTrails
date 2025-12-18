@@ -61,7 +61,7 @@ const StatePage = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16">
         {/* Header Section */}
         <section className="w-full border-b">
-          <div className="max-w-7xl mx-auto px-4 sm:py-4">
+          <div className="max-w-7xl mx-auto px-4 sm:py-">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">{stateName}</h1>
 
             <p className="mt-3 mb-2 text-base sm:text-lg text-gray-600 max-w-2xl">
