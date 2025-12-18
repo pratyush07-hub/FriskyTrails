@@ -76,7 +76,7 @@ const App = () => {
           <Route
             path="/services/*"
             element={
-              <ProtectedRoute>
+             
                 <Routes>
                   <Route path="holidays" element={<Holidays />} />
                   <Route path="flights" element={<Flights />} />
@@ -87,7 +87,7 @@ const App = () => {
                   <Route path="activities" element={<Activities />} />
                   <Route path="bus-tickets" element={<BusTickets />} />
                 </Routes>
-              </ProtectedRoute>
+       
             }
           />
 

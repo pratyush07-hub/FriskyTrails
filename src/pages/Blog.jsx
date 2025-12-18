@@ -39,7 +39,9 @@ const Blog = () => {
           Trending Blogs
         </h1>
 
-          <Box />
+         <div className="mt-6">
+         <Box />
+          </div>
 
         <div className="LatestBlog  md:p-10">
           <Latestblog />

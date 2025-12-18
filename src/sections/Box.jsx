@@ -36,54 +36,55 @@ const Box = () => {
   
   return (
     <>
+      {/* Desktop View */}
       <div className="hidden md:block">
-  <div className="grid grid-cols-1 md:grid-cols-2">
-    {data.map((item, index) => (
-      <div
-        key={index}
-        className="box m-auto w-[80vw] sm:w-[60vw] md:w-[48vw] lg:w-[42vw] xl:w-[40vw] pb-8 pt-8 flex"
-      >
-        <img
-          className="w-[35vw] sm:w-[30vw] md:w-[24vw] h-[24vh] md:h-[28vh] object-cover rounded-l-4xl bg-green-300"
-          src={item.image}
-          alt=""
-        />
-        <div className="pl-4 sm:pl-5 md:pl-6 pt-4 text-xl sm:text-[1.35rem] md:text-[1rem] lg:text-xl xl:text-2xl font-semibold tracking-tight">
-          <h3>{item.des}</h3>
-          <Link to={item.link}>
-            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white mt-6 md:mt-2 xl:mt-2 text-base sm:text-lg font-semibold rounded-full px-5 sm:px-6 py-2 cursor-pointer">
-              Read More
-            </button>
-          </Link>
+        <div className="grid mt-3 grid-cols-1 md:grid-cols-2 gap-8">
+          {data.map((item, index) => (
+            <div
+              key={index}
+              className="box flex h-[28vh] m-auto w-[80vw] sm:w-[60vw] md:w-[48vw] lg:w-[42vw] xl:w-[40vw]"
+            >
+              <img
+                className="w-[35vw] sm:w-[30vw] md:w-[24vw] h-full object-cover rounded-l-4xl bg-green-300 flex-shrink-0"
+                src={item.image}
+                alt=""
+              />
+              <div className="flex-1 pl-4 sm:pl-5 md:pl-6 pt-4 flex flex-col justify-between text-xl sm:text-[1.35rem] md:text-[1rem] lg:text-xl xl:text-2xl font-semibold tracking-tight">
+                <h3 className="flex-1">{item.des}</h3>
+                <Link to={item.link}>
+                  <button className="bg-gradient-to-r md:mb-20 from-[rgb(255,99,33)] to-amber-400 border active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white mt-2 text-base sm:text-lg font-semibold rounded-full px-5 sm:px-6 py-2 cursor-pointer self-start">
+                    Read More
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))}
-  </div>
-</div>
 
-<div className="md:hidden flex gap-4 overflow-x-auto px-4 pb-4">
-  {data.map((item, index) => (
-    <div
-      key={index}
-      className="box mt-4 h-auto pb-4 rounded-xl w-[80vw] flex-shrink-0 bg-white shadow-md"
-    >
-      <img
-        className="w-full h-[28vh] object-cover rounded-t-xl"
-        src={item.image}
-        alt=""
-      />
-      <div className="px-4 py-3 text-center">
-        <h3 className="text-xl font-semibold">{item.des}</h3>
-        <Link to={item.link}>
-          <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white mt-4 text-lg font-semibold rounded-full px-6 py-2 mx-auto block">
-            Read More
-          </button>
-        </Link>
+      {/* Mobile View - Fixed Consistent Layout */}
+      <div className="md:hidden flex gap-4 overflow-x-auto px-4 pb-4">
+        {data.map((item, index) => (
+          <div
+            key={index}
+            className="box min-w-[80vw] max-w-[80vw] flex-shrink-0 bg-white shadow-md rounded-xl overflow-hidden"
+          >
+            <img
+              className="w-full h-[28vh] object-cover"
+              src={item.image}
+              alt=""
+            />
+            <div className="px-4 py-4 space-y-3">
+              <h3 className="text-sm font-bold md:text-xl md:font-semibold leading-tight line-clamp-2">{item.des}</h3>
+              <Link to={item.link}>
+                <button className="w-full bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white text-lg font-semibold rounded-full py-2 cursor-pointer">
+                  Read More
+                </button>
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
-
     </>
   );
 };
