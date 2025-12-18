@@ -61,7 +61,7 @@ const ContactUs = () => {
             </div>
 
             {/* Info Section */}
-            <div className="w-full sm:w-[80%] md:w-[70%] lg:w-[50%] flex flex-col items-center gap-6 py-10 md:py-16">
+            <div className="w-full sm:w-[80%] md:w-[70%] lg:w-[50%] flex flex-col items-center gap-6">
               {/* Contact Info */}
               <div className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-start gap-6 sm:gap-4 px-4 sm:px-6">
                 {/* Phone */}
@@ -87,7 +87,7 @@ const ContactUs = () => {
                       alt="Email"
                     />
                   </div>
-                  <h2 className="text-base sm:text-lg md:text-2xl font-semibold text-gray-700 text-center sm:text-left break-words">
+                  <h2 className="text-base sm:text-lg md:text-2xl  font-semibold text-gray-700 text-center sm:text-left break-words">
                     <a href="mailto:contact@friskytrails.in">
                       contact@friskytrails.in
                     </a>

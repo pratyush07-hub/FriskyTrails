@@ -17,37 +17,29 @@ const Smallbox = () => {
     <>
       {data.map((item, index) => (
         <Link
-          to={`/state/${item.slug}/blogs`}
           key={index}
+          to={`/state/${item.slug}/blogs`}
           className="
-            group
-            block relative overflow-hidden
-            aspect-[4/3] sm:aspect-[5/3] md:aspect-[3/2]
+            group relative overflow-hidden
+            aspect-square
             w-full
-            rounded-md md:rounded-lg lg:rounded-xl
+            rounded-md md:rounded-lg
+            transition-transform duration-300
+            hover:scale-[1.03]
           "
+          style={{
+            backgroundImage: `url(${item.image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
         >
-          {/* IMAGE */}
-          <img
-            src={item.image}
-            alt={item.name}
-            loading="lazy"
-            className="
-              absolute inset-0
-              h-full w-full
-              object-contain
-              transition-transform duration-300
-              group-hover:scale-105
-              will-change-transform
-            "
-          />
+          {/* overlay */}
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
 
-          {/* OVERLAY */}
-          <div className="absolute inset-0 bg-black/40 sm:bg-black/30 md:bg-black/20" />
-
-          {/* TEXT */}
-          <div className="relative flex justify-center items-center h-full w-full">
-            <h3 className="text-gray-200 tracking-tight text-[0.6rem] sm:text-xs md:text-sm lg:text-base font-bold">
+          {/* text */}
+          <div className="relative flex items-center justify-center h-full w-full">
+            <h3 className="text-gray-200 font-semibold tracking-tight text-[0.6rem] sm:text-xs md:text-sm lg:text-base">
               {item.name}
             </h3>
           </div>

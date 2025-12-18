@@ -61,26 +61,29 @@ const Box = () => {
   </div>
 </div>
 
-      <div className="md:hidden flex gap-4 overflow-x-auto px-4 pb-4">
-        {data.map((item, index) => (
-          <div key={index} className="box mt-4 h-auto pb-2 rounded-xl w-full shrinnk-0">
-            <img
-              className="w-[80vw] mx-auto bg-green-300 h-[28vh] rounded-xl"
-              src={item.image}
-              alt=""
-            />
-            <h3 className="w-[70vw] mx-auto mt-2 text-xl">{item.des}</h3>
-            <div className="w-full h-auto flex justify-center">
-
-            <Link to={item.link}>
-                  <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border-1 active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white mt-4 text-lg font-semibold rounded-full px-6 py-2 cursor-pointer">
-                    Read More
-                  </button>
-                </Link>
-            </div>
-          </div>
-        ))}
+<div className="md:hidden flex gap-4 overflow-x-auto px-4 pb-4">
+  {data.map((item, index) => (
+    <div
+      key={index}
+      className="box mt-4 h-auto pb-4 rounded-xl w-[80vw] flex-shrink-0 bg-white shadow-md"
+    >
+      <img
+        className="w-full h-[28vh] object-cover rounded-t-xl"
+        src={item.image}
+        alt=""
+      />
+      <div className="px-4 py-3 text-center">
+        <h3 className="text-xl font-semibold">{item.des}</h3>
+        <Link to={item.link}>
+          <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border active:scale-90 transition-all duration-300 hover:bg-amber-400 text-white mt-4 text-lg font-semibold rounded-full px-6 py-2 mx-auto block">
+            Read More
+          </button>
+        </Link>
       </div>
+    </div>
+  ))}
+</div>
+
     </>
   );
 };
