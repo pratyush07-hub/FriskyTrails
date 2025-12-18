@@ -5,7 +5,7 @@ export const data = [
       price: "₹14999",
       rating: 4.8,
       link:'/tours/meghalaya-group-tour-package'
-      // link: 'http://localhost:5173/tours/meghalaya-group-tour-package'
+
     },
     {
       title: "Kedarkantha Trek ",

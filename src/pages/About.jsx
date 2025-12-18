@@ -177,7 +177,7 @@ const About = () => {
             now! 🚀
           </p>
         </div>
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pb-6 md:pb-10">
+        <div className="flex  mt-6 flex-col sm:flex-row justify-center items-center gap-4 pb-6 md:pb-10">
           <button
             onClick={() => navigate("/hiring")}
             className="w-full sm:w-auto bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border-2 border-transparent font-semibold rounded-full active:scale-95 transition-all duration-300 hover:brightness-110 text-white px-8 md:px-12 py-3 md:py-4 shadow-xl text-lg md:text-xl"

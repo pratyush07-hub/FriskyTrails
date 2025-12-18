@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+
 
 import Cards from "../sections/Cards";
 import Categories from "../sections/Categories";

@@ -6,22 +6,22 @@ const Blogs = () => {
   const data = [
     {
       image: '/TravelBlog/Vacation.png',
-      des: "Budget-Friendly Family Vacation Destinations Around the World",
+      des: "Places to Visit in India in Winter",
       link: "https://frisky-trails.vercel.app/blog/places-to-visit-in-india-in-winter",
     },
     {
       image: "/TravelBlog/Goa.png",
-      des: "Hidden Beaches in Goa",
+      des: "Places to Visit Near Calangute",
       link: "https://frisky-trails.vercel.app/blog/places-to-visit-near-calangute",
     },
     {
       image: "/TravelBlog/Chattisgarh.png",
-      des: "Best Wildlife Sanctuaries and National Parks to Explore in Chhattisgarh",
+      des: "Offbeat Places to Visit in India",
       link: "https://frisky-trails.vercel.app/blog/offbeat-places-to-visit-in-india",
     },
     {
       image: "/TravelBlog/Delhi.png",
-      des: "10 Offbeat Weekend Getaways From Delhi for Nature Lovers",
+      des: 'Places to Visit Near Delhi within 300 km',
       link: "https://frisky-trails.vercel.app/blog/places-to-visit-near-delhi-within-300-km",
     },
   ];
