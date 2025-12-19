@@ -1,12 +1,12 @@
 export const data = [
-    {
-      title: "Meghalaya Group Tour Package",
-      image: "/upcoming/meghalaya.png",
-      price: "₹14999",
-      rating: 4.8,
-      link:'/tours/meghalaya-group-tour-package'
-
-    },
+  {
+    title: "Chopta Tungnath Trek with Chandrashila",
+    image: "/upcoming/Tungnath.png",
+    price: "₹4999",
+    rating: 4.6,
+     link:'/tours/chopta-tungnath-trek-with-chandrashila'
+  },
+ 
     {
       title: "Kedarkantha Trek ",
       image: "/upcoming/kedarkantha.png",
@@ -14,13 +14,7 @@ export const data = [
       rating: 4.7,
       link:'/tours/kedarkantha-trek'
     },
-    {
-      title: "Chopta Tungnath Trek with Chandrashila",
-      image: "/upcoming/Tungnath.png",
-      price: "₹4999",
-      rating: 4.6,
-       link:'/tours/chopta-tungnath-trek-with-chandrashila'
-    },
+ 
     {
       title: "Paragliding in Bir Billing",
       image: "/upcoming/bir-billing.png",
@@ -48,5 +42,13 @@ export const data = [
       price: "₹4499",
       rating: 4.8,
       link:'/tours/brahmatal-trek'
+    },
+    {
+      title: "Meghalaya Group Tour Package",
+      image: "/upcoming/meghalaya.png",
+      price: "₹14999",
+      rating: 4.8,
+      link:'/tours/meghalaya-group-tour-package'
+
     },
   ];

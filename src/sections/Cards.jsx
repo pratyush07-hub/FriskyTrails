@@ -43,7 +43,7 @@ const Cards = () => {
             const cutPrice = getCutPrice(item.price);
             return (
               <div key={index} className="px-3">
-                <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden h-full flex flex-col min-h-[460px]">
+                <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden h-full flex flex-col min-h-[350px]">
                   
                   <img
                     src={item.image}
@@ -56,13 +56,14 @@ const Cards = () => {
                       ⭐ {item.rating} Overall Reviews
                     </p>
 
-                    <h2 className="font-semibold text-lg sm:text-xl md:text-2xl line-clamp-2 min-h-[56px] leading-tight">
+                    <h2 className="font-semibold text-lg sm:text-xl md:text-2xl line-clamp-2 md:min-h-[56px] leading-tight">
                       {item.title}
                     </h2>
 
                     {/* PRICE + CTA — ALWAYS AT BOTTOM */}
-                    <div className="mt-auto pt-4 flex items-center justify-between">
-                      <div className="flex flex-col items-start">
+                    <div className="flex items-center justify-between  sm:mb-0">
+
+                      <div className="flex flex-col  items-start">
                         <span className="text-gray-400 text-sm line-through mb-1">
                           {cutPrice}
                         </span>

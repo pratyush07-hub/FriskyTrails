@@ -27,7 +27,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen mt-23 md:mt-28 lg:mt-30 xl:mt-28 w-full">
-      {/* HERO */}
+      {/* HERO IMAGE DESKTOP */}
       <div
         className="hidden lg:block"
         style={{
@@ -37,32 +37,31 @@ const About = () => {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
-      >
-        <h1 className="text-white text-8xl text-center pt-110 font-bold">
-          Explore India With Us
-        </h1>
-      </div>
-
+      />
+      
+      {/* HERO IMAGE MOBILE */}
       <div
         className="block lg:hidden"
         style={{
           height: "320px",
-          backgroundImage: `url(${FortImage})`,
+          backgroundImage: `url('/about.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
-      >
-        <h1 className="text-white text-3xl text-center pt-60 font-bold">
-          Explore India With Us
-        </h1>
-      </div>
+      />
+
+      {/* MAIN HEADING BELOW IMAGE */}
+      <h1 className="text-center mt-6 md:mt-12 text-3xl  md:text-5xl lg:text-6xl font-bold text-gray-900">
+        Explore India With Us
+      </h1>
 
       {/* WHY SECTION */}
       <div>
-        <h1 className="text-3xl md:text-4xl font-semibold mt-4 md:mt-24 text-[rgb(255,99,33)] text-center">
+        <h1 className="text-2xl md:text-4xl font-semibold mt-4 md:mt-16 text-[rgb(255,99,33)] text-center">
           Why FriskyTrails?
         </h1>
+
         <div className="w-full md:w-[70vw] mx-auto flex justify-center px-4">
           <p className="text-center mt-2 md:mt-8 text-base md:text-xl text-gray-600">
             <b>
@@ -95,13 +94,12 @@ const About = () => {
           {showForm && (
             <div
               className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-3"
-              onClick={() => setShowForm(false)} // backdrop click close
+              onClick={() => setShowForm(false)}
             >
               <div
                 className="w-full max-w-[92vw] sm:max-w-sm md:max-w-md bg-white rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto border border-gray-100"
-                onClick={(e) => e.stopPropagation()} // stop bubbling
+                onClick={(e) => e.stopPropagation()}
               >
-                {/* HEADER */}
                 <div className="sticky top-0 z-10 flex items-center justify-between px-4 py-3 bg-white rounded-t-2xl border-b border-gray-100">
                   <h2 className="text-lg md:text-xl font-semibold text-gray-900">
                     Plan Your Adventure
@@ -109,27 +107,12 @@ const About = () => {
                   <button
                     onClick={() => setShowForm(false)}
                     className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-150 text-gray-500 hover:text-gray-900"
-                    aria-label="Close"
                   >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
+                    ✕
                   </button>
                 </div>
 
-                {/* FORM CONTENT */}
                 <div className="px-4 py-4 md:px-6 md:py-5">
-                  {/* Form component ke andar fields ko full width + good spacing do */}
                   <Form onClose={() => setShowForm(false)} />
                 </div>
               </div>
@@ -143,13 +126,6 @@ const About = () => {
               className="flex items-center justify-center gap-2"
             >
               +91-75015 16714
-              <svg
-                className="w-4 h-4 md:w-5 md:h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M2.003 5.884C2.36 3.59 4.27 2 6.586 2h.908c.845 0 1.598.52 1.874 1.312l.722 2.108a1.75 1.75 0 01-.45 1.79L8.27 8.58c.545 1.04 1.414 1.909 2.454 2.454l1.37-1.37a1.75 1.75 0 011.79-.45l2.108.722A2 2 0 0118 11.914v.908C18 15.73 16.41 17.64 14.116 17.997c-2.742.457-5.52-.288-7.59-2.358-2.07-2.07-2.815-4.848-2.358-7.59z" />
-              </svg>
             </a>
           </button>
         </div>
@@ -158,7 +134,7 @@ const About = () => {
       <Promise />
       <Choose />
 
-      {/* CAREER SECTION (single responsive block) */}
+      {/* CAREER SECTION */}
       <div className="px-4 pb-12 md:px-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mt-12 md:mt-24 text-center">
           Let's Redefine Adventure,{" "}
@@ -166,21 +142,11 @@ const About = () => {
             TOGETHER!
           </span>
         </h1>
-        <div className="w-full md:w-[80vw] xl:w-[60vw] mx-auto flex justify-center">
-          <p className="text-center mt-4 md:mt-8 text-base md:text-xl text-gray-600 leading-relaxed">
-            FriskyTrails isn't just a career opportunity—it's a launchpad
-            for bold ideas, passionate individuals, and limitless growth.
-            We thrive in a fast-paced, dynamic culture where creativity
-            meets adventure. If you're ready to unlock your potential,
-            make an impact, and embark on an exciting professional journey,
-            this is your calling! Your adventure with FriskyTrails starts
-            now! 🚀
-          </p>
-        </div>
-        <div className="flex  mt-6 flex-col sm:flex-row justify-center items-center gap-4 pb-6 md:pb-10">
+
+        <div className="flex mt-6 justify-center">
           <button
             onClick={() => navigate("/hiring")}
-            className="w-full sm:w-auto bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 border-2 border-transparent font-semibold rounded-full active:scale-95 transition-all duration-300 hover:brightness-110 text-white px-8 md:px-12 py-3 md:py-4 shadow-xl text-lg md:text-xl"
+            className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 font-semibold rounded-full text-white px-8 md:px-12 py-3 md:py-4 shadow-xl text-lg md:text-xl"
           >
             Join Our Team!
           </button>

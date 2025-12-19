@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+"use client"
 
-
+import { Link } from "react-router-dom"
 
 const Blogs = () => {
   const data = [
     {
-      image: '/TravelBlog/Vacation.png',
+      image: "/TravelBlog/Vacation.png",
       des: "Places to Visit in India in Winter",
       link: "https://frisky-trails.vercel.app/blog/places-to-visit-in-india-in-winter",
     },
@@ -21,18 +21,18 @@ const Blogs = () => {
     },
     {
       image: "/TravelBlog/Delhi.png",
-      des: 'Places to Visit Near Delhi within 300 km',
+      des: "Places to Visit Near Delhi within 300 km",
       link: "https://frisky-trails.vercel.app/blog/places-to-visit-near-delhi-within-300-km",
     },
-  ];
+  ]
 
   const preloadPage = (url) => {
-    const link = document.createElement("link");
-    link.rel = "preload";
-    link.as = "document";
-    link.href = url;
-    document.head.appendChild(link);
-  };
+    const link = document.createElement("link")
+    link.rel = "preload"
+    link.as = "document"
+    link.href = url
+    document.head.appendChild(link)
+  }
 
   return (
     <div className="w-full md:mt-8 max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto py-2">
@@ -54,15 +54,17 @@ const Blogs = () => {
                 key={item.des}
                 to={item.link}
                 onMouseEnter={() => preloadPage(item.link)}
-                className="group relative min-w-[80vw] max-w-sm h-64 sm:h-72 sm:min-w-[70vw] flex-shrink-0 snap-center rounded-3xl shadow-xl overflow-hidden bg-cover bg-center"
-                style={{ backgroundImage: `url(${item.image})` }}
+                className="group relative min-w-[85vw] sm:min-w-[75vw] md:min-w-[65vw] max-w-xl h-52 sm:h-56 md:h-60 flex-shrink-0 snap-center rounded-3xl shadow-xl overflow-hidden"
               >
+                <img
+                  src={item.image || "/placeholder.svg"}
+                  alt={item.des}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-                <div className="absolute inset-0 flex flex-col justify-end p-4 pb-8">
-                  <h2 className="text-white font-bold text-sm sm:text-base line-clamp-2 mb-3">
-                    {item.des}
-                  </h2>
+                <div className="absolute inset-0 flex flex-col justify-end p-4 pb-6">
+                  <h2 className="text-white font-bold text-sm sm:text-base line-clamp-2 mb-3">{item.des}</h2>
                   <button className="w-full bg-gradient-to-r from-orange-500 to-amber-400 text-white font-semibold py-2 rounded-xl">
                     Read More →
                   </button>
@@ -73,21 +75,23 @@ const Blogs = () => {
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden lg:grid grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+        <div className="hidden lg:grid grid-cols-2 xl:grid-cols-4 gap-6 w-full">
           {data.map((item) => (
             <Link
               key={item.des}
               to={item.link}
               onMouseEnter={() => preloadPage(item.link)}
-              className="group relative w-full h-80 lg:h-96 rounded-3xl shadow-xl overflow-hidden bg-cover bg-center"
-              style={{ backgroundImage: `url(${item.image})` }}
+              className="group relative w-full h-64 xl:h-72 rounded-3xl shadow-xl overflow-hidden"
             >
+              <img
+                src={item.image || "/placeholder.svg"}
+                alt={item.des}
+                className="absolute inset-0 w-full h-full object-cover object-center"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
-              <div className="absolute inset-0 flex flex-col justify-end p-6 pb-10">
-                <h2 className="text-white font-bold text-lg line-clamp-2 mb-4">
-                  {item.des}
-                </h2>
+              <div className="absolute inset-0 flex flex-col justify-end p-5 pb-8">
+                <h2 className="text-white font-bold text-base xl:text-lg line-clamp-2 mb-3">{item.des}</h2>
                 <button className="w-full bg-gradient-to-r from-orange-500 to-amber-400 text-white font-semibold py-2.5 rounded-xl">
                   Read More →
                 </button>
@@ -107,7 +111,7 @@ const Blogs = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Blogs;
+export default Blogs
