@@ -50,7 +50,7 @@ const StatePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Banner Image */}
-      <div className="w-full mt-30">
+      <div className="w-full mt-20">
         <img
           src={stateImage || "/placeholder.svg"}
           alt={stateName}

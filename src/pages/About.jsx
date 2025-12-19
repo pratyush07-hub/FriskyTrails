@@ -31,7 +31,7 @@ const About = () => {
       <div
         className="hidden lg:block"
         style={{
-          height: "620px",
+          height: "370px",
           backgroundImage: `url('/about.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
