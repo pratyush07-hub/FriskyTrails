@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 const Smallbox = () => {
   const data = [
-    { name: "Goa", image: "/destinations/Goa.png", slug: "goa" },
-    { name: "Himachal", image: "/destinations/Himachal.png", slug: "himachal" },
-    { name: "Kashmir", image: "/destinations/Kashmir.png", slug: "kashmir" },
-    { name: "Kerala", image: "/destinations/Kerala.png", slug: "kerala" },
+    { name: "Goa", image: "/nextimages/4.png", slug: "goa" },
+    { name: "Himachal", image: "/nextimages/5.png", slug: "himachal" },
+    { name: "Kashmir", image: "/nextimages/2.png", slug: "kashmir" },
+    { name: "Kerala", image: "/nextimages/6.png", slug: "kerala" },
     { name: "Tawang", image: "/destinations/Tawang.png", slug: "tawang" },
     { name: "Andaman", image: "/destinations/Andaman.png", slug: "andaman" },
-    { name: "Meghalaya", image: "/destinations/Meghalaya.png", slug: "meghalaya" },
+    { name: "Meghalaya", image: "/nextimages/1.png", slug: "meghalaya" },
     { name: "Rajasthan", image: "/destinations/Rajasthan.png", slug: "rajasthan" },
     { name: "Uttarakhand", image: "/destinations/Uttarakhand.png", slug: "uttarakhand" },
   ];

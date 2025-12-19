@@ -12,11 +12,7 @@ const Box = () => {
       des: "Places to Visit Near Calangute",
       link: "/blog/places-to-visit-near-calangute",
     },
-    {
-      image: "/TrendingBlog/Ahemdabad.png",
-      des: "Places to Visit Near Ahmedabad Within 100 Km",
-      link: "/blog/places-to-visit-near-ahmedabad-within-100-km",
-    },
+  
     {
       image: "/TrendingBlog/Pelling.png",
       des: "Places to Visit in Pelling",
@@ -31,6 +27,11 @@ const Box = () => {
       image: "/TrendingBlog/SouthGoa.png",
       des: "Best Places to Visit in South Goa",
       link: "/blog/best-places-to-visit-in-south-goa",
+    },
+    {
+      image: "/TrendingBlog/Ahemdabad.png",
+      des: "Places to Visit Near Ahmedabad Within 100 Km",
+      link: "/blog/places-to-visit-near-ahmedabad-within-100-km",
     },
   ];
   
