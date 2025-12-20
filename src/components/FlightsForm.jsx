@@ -10,7 +10,7 @@ const FlightsForm = () => {
     travelClass: "",
     passengers: "",
     price: "",
-    airline: ""
+    airline: "",
   });
 
   const [showMobileForm, setShowMobileForm] = useState(false);
@@ -29,11 +29,9 @@ const FlightsForm = () => {
         alert("Failed to book flight.");
       }
     } catch (error) {
-      alert(
-        error.response?.data?.message ||
-          "Please login first"
-      );
+      alert(error.response?.data?.message || "Please login first");
     }
+
     setFormData({
       fromCity: "",
       toCity: "",
@@ -42,12 +40,10 @@ const FlightsForm = () => {
       travelClass: "",
       passengers: "",
       price: "",
-      airline: ""
+      airline: "",
     });
     setShowMobileForm(false);
   };
-
-  // Scroll listener hata chuka hai
 
   const labels = {
     fromCity: "From",
@@ -57,7 +53,7 @@ const FlightsForm = () => {
     travelClass: "Class",
     passengers: "Passengers",
     price: "Price",
-    airline: "Airline"
+    airline: "Airline",
   };
 
   const placeholders = {
@@ -68,10 +64,15 @@ const FlightsForm = () => {
     travelClass: "Select class",
     passengers: "Number of passengers",
     price: "Enter price",
-    airline: "Enter airline name"
+    airline: "Enter airline name",
   };
 
-  const classOptions = ["Economy", "Premium Economy", "Business", "First Class"];
+  const classOptions = [
+    "Economy",
+    "Premium Economy",
+    "Business",
+    "First Class",
+  ];
 
   return (
     <>
@@ -80,6 +81,7 @@ const FlightsForm = () => {
         <h2 className="text-2xl mt-6 text-orange-400 font-bold pb-4 text-center">
           Flights
         </h2>
+
         <form
           onSubmit={handleSubmit}
           className="flex flex-col md:flex-row md:flex-wrap gap-4 md:gap-6 justify-center items-center w-full xl:flex-nowrap xl:gap-10"
@@ -89,25 +91,24 @@ const FlightsForm = () => {
               <label className="block font-semibold mb-1 pl-1">
                 {labels[field]}
               </label>
+
               {field === "travelClass" ? (
-                <div className="relative w-full">
-                  <select
-                    name={field}
-                    value={formData[field]}
-                    onChange={handleChange}
-                    className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                    required
-                  >
-                    <option value="" disabled>
-                      {placeholders[field]}
+                <select
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  required
+                >
+                  <option value="" disabled>
+                    {placeholders[field]}
+                  </option>
+                  {classOptions.map((option, idx) => (
+                    <option key={idx} value={option}>
+                      {option}
                     </option>
-                    {classOptions.map((option, idx) => (
-                      <option key={idx} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                  ))}
+                </select>
               ) : (
                 <input
                   type={
@@ -118,8 +119,8 @@ const FlightsForm = () => {
                       : "text"
                   }
                   name={field}
-                  placeholder={placeholders[field]}
                   value={formData[field]}
+                  placeholder={placeholders[field]}
                   onChange={handleChange}
                   min={
                     ["departureDate", "returnDate"].includes(field)
@@ -136,14 +137,13 @@ const FlightsForm = () => {
               )}
             </div>
           ))}
-          <div className="w-full md:w-auto">
-            <button
-              type="submit"
-              className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6 mt-2 xl:mt-6 text-white rounded-xl font-semibold w-full"
-            >
-              Submit
-            </button>
-          </div>
+
+          <button
+            type="submit"
+            className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6 mt-2 xl:mt-6 text-white rounded-xl font-semibold"
+          >
+            Submit
+          </button>
         </form>
       </div>
 
@@ -151,7 +151,7 @@ const FlightsForm = () => {
       <div className="md:hidden relative text-center bottom-10 z-10">
         <button
           onClick={() => setShowMobileForm(true)}
-          className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:bg-amber-400 text-white px-6 py-3 rounded-xl shadow-md font-semibold"
+          className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 text-white px-6 py-3 rounded-xl shadow-md font-semibold"
         >
           Book My Flight
         </button>
@@ -161,42 +161,47 @@ const FlightsForm = () => {
       {showMobileForm && (
         <div className="md:hidden fixed inset-0 z-30 bg-black/40 flex items-center justify-center">
           <div className="relative w-[95vw] max-w-sm max-h-[85vh] bg-white rounded-xl shadow-xl px-4 py-6 overflow-y-auto border border-gray-200">
+            
+            {/* ❌ FIXED CLOSE BUTTON */}
             <button
-              className="absolute top-5 mt-5 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
+              className="absolute top-3 py-4 mt-2 right-3 text-2xl font-bold text-gray-500 hover:text-red-500 z-10"
               onClick={() => setShowMobileForm(false)}
             >
               &times;
             </button>
 
-            <h2 className="text-xl mt-5 text-orange-400 font-bold pb-4 text-center">
+            {/* HEADING */}
+            <h2 className="text-xl pt-10 text-orange-400 font-bold text-center">
               Flights
             </h2>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full">
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-3 w-full mt-4"
+            >
               {Object.keys(formData).map((field, index) => (
                 <div className="w-full" key={index}>
                   <label className="block font-semibold mb-1 pl-1 text-sm">
                     {labels[field]}
                   </label>
+
                   {field === "travelClass" ? (
-                    <div className="relative w-full">
-                      <select
-                        name={field}
-                        value={formData[field]}
-                        onChange={handleChange}
-                        className="w-full p-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm"
-                        required
-                      >
-                        <option value="" disabled>
-                          {placeholders[field]}
+                    <select
+                      name={field}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      className="w-full p-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm"
+                      required
+                    >
+                      <option value="" disabled>
+                        {placeholders[field]}
+                      </option>
+                      {classOptions.map((option, idx) => (
+                        <option key={idx} value={option}>
+                          {option}
                         </option>
-                        {classOptions.map((option, idx) => (
-                          <option key={idx} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                      ))}
+                    </select>
                   ) : (
                     <input
                       type={
@@ -207,8 +212,8 @@ const FlightsForm = () => {
                           : "text"
                       }
                       name={field}
-                      placeholder={placeholders[field]}
                       value={formData[field]}
+                      placeholder={placeholders[field]}
                       onChange={handleChange}
                       min={
                         ["departureDate", "returnDate"].includes(field)
@@ -225,14 +230,13 @@ const FlightsForm = () => {
                   )}
                 </div>
               ))}
-              <div className="w-full pt-2">
-                <button
-                  type="submit"
-                  className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6 mt-2 text-white rounded-xl font-semibold w-full text-sm"
-                >
-                  Submit
-                </button>
-              </div>
+
+              <button
+                type="submit"
+                className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6 mt-3 text-white rounded-xl font-semibold text-sm"
+              >
+                Submit
+              </button>
             </form>
           </div>
         </div>
