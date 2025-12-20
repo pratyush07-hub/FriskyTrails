@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState, useRef } from "react"
 import { useParams, Link } from "react-router-dom"
 import LoadingSpinner from "./Loading"
@@ -136,20 +134,24 @@ const StatePage = () => {
                 onClick={() => scrollLeft(ukCarouselRef)}
                 className="absolute -left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow hover:bg-orange-500 hover:text-white transition"
               >
-               <span className="mt-4 py-4"> <ChevronLeft /></span>
+                <span className="mt-4 py-4">
+                  <ChevronLeft />
+                </span>
               </button>
 
               <button
                 onClick={() => scrollRight(ukCarouselRef)}
                 className="absolute -right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white rounded-full shadow hover:bg-orange-500 hover:text-white transition"
               >
-              <span className="mt-4 py-4"> <ChevronRight /></span>
+                <span className="mt-4 py-4">
+                  <ChevronRight />
+                </span>
               </button>
 
               <div
                 ref={ukCarouselRef}
-                className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth"
-                style={{ scrollbarWidth: "none" }}
+                className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
                 {uttarakhandBlogs.map((item, i) => (
                   <Link
@@ -192,21 +194,26 @@ const StatePage = () => {
             <div className="relative mt-6">
               <button
                 onClick={() => scrollLeft(carouselRef)}
-                className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow"
+                className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow hover:bg-orange-500 hover:text-white transition"
               >
-                      <span className="p-2"> <ChevronLeft /></span>
+                <span className="p-2">
+                  <ChevronLeft />
+                </span>
               </button>
 
               <button
                 onClick={() => scrollRight(carouselRef)}
-                className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow"
+                className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow hover:bg-orange-500 hover:text-white transition"
               >
-               <span className="p-2"> <ChevronRight /></span>
+                <span className="p-2">
+                  <ChevronRight />
+                </span>
               </button>
 
               <div
                 ref={carouselRef}
-                className="flex gap-6 overflow-x-auto snap-x snap-mandatory"
+                className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide"
+                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
                 {blogs.map((blog, i) => (
                   <Link

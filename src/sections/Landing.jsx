@@ -53,8 +53,8 @@ const Landing = () => {
           <motion.h1
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
-            transition={{ ease: "linear", repeat: Infinity, duration: 6 }}
-            md:transition={{ ease: "linear", repeat: Infinity, duration: 16 }}
+            transition={{ ease: "linear", repeat: Infinity, duration: 12 }}
+            md:transition={{ ease: "linear", repeat: Infinity, duration: 22 }}
             className="text-7xl font-bold"
           >
             <span className="flex justify-center items-center ml-20 md:ml-40 text-white md:[text-shadow:_-1.5px_-1.5px_0_#0a0322,1.5px_1.5px_0_#0a0322,-1.5px_1.5px_0_#0a0322,1.5px_-1.5px_0_#0a0322]
@@ -73,8 +73,8 @@ const Landing = () => {
           <motion.h1
             initial={{ x: 0 }}
             animate={{ x: "-100%" }}
-            transition={{ ease: "linear", repeat: Infinity, duration: 6 }}
-            md:transition={{ ease: "linear", repeat: Infinity, duration: 16 }}
+            transition={{ ease: "linear", repeat: Infinity, duration: 12 }}
+            md:transition={{ ease: "linear", repeat: Infinity, duration: 22 }}
             className="text-7xl font-bold"
           >
             <span className="flex justify-center items-center ml-20 md:ml-40 text-white md:[text-shadow:_-1.5px_-1.5px_0_#0a0322,1.5px_1.5px_0_#0a0322,-1.5px_1.5px_0_#0a0322,1.5px_-1.5px_0_#0a0322]
