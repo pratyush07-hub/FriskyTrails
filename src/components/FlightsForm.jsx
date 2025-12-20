@@ -77,7 +77,7 @@ const FlightsForm = () => {
     <>
       {/* Tablet/Desktop Form */}
       <div className="hidden md:block bg-white h-auto w-[90vw] rounded-lg z-20 absolute bottom-40 lg:bottom-60 xl:bottom-20 left-1/2 transform -translate-x-1/2 shadow-lg px-10 py-4 overflow-visible">
-        <h2 className="text-2xl text-orange-400 font-bold pb-4 text-center">
+        <h2 className="text-2xl mt-4 text-orange-400 font-bold pb-4 text-center">
           Flights
         </h2>
         <form
