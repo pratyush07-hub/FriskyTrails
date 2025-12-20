@@ -6,9 +6,12 @@ import Choose from "../sections/Choose";
 import Promise from "../sections/Promise";
 import { useNavigate } from "react-router-dom";
 import FortImage from "/images/fort.webp";
+import FriskyLoader from "../components/Loader";
 
 const About = () => {
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [showJointeam, setShowJointeam] = useState(false);
 
@@ -21,9 +24,26 @@ const About = () => {
   };
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800); // same as Home
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  // 🔥 LOADER
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[70vh] py-20 px-4">
+        <FriskyLoader size="md" text="" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen mt-23 md:mt-28 lg:mt-30 xl:mt-28 w-full">
@@ -38,7 +58,7 @@ const About = () => {
           backgroundRepeat: "no-repeat",
         }}
       />
-      
+
       {/* HERO IMAGE MOBILE */}
       <div
         className="block lg:hidden"
@@ -51,8 +71,8 @@ const About = () => {
         }}
       />
 
-      {/* MAIN HEADING BELOW IMAGE */}
-      <h1 className="text-center mt-6 md:mt-12 text-3xl  md:text-5xl lg:text-6xl font-bold text-gray-900">
+      {/* MAIN HEADING */}
+      <h1 className="text-center mt-6 md:mt-12 text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900">
         Explore India With Us
       </h1>
 
@@ -65,14 +85,14 @@ const About = () => {
         <div className="w-full md:w-[70vw] mx-auto flex justify-center px-4">
           <p className="text-center mt-2 md:mt-8 text-base md:text-xl text-gray-600">
             <b>
-              At FriskyTrails, we believe that travel isn't just about
-              reaching a destination—
+              At FriskyTrails, we believe that travel isn't just about reaching a
+              destination—
             </b>
-            it's about the thrill of the journey, the experiences that shape
-            us, and the stories we create along the way. Whether you're an
-            adrenaline junkie, a nature lover, or someone looking to escape
-            the ordinary, we bring you 100+ adventure activities and 500+ tour
-            packages across 200+ breathtaking locations in India.
+            it's about the thrill of the journey, the experiences that shape us,
+            and the stories we create along the way. Whether you're an adrenaline
+            junkie, a nature lover, or someone looking to escape the ordinary, we
+            bring you 100+ adventure activities and 500+ tour packages across
+            200+ breathtaking locations in India.
           </p>
         </div>
 
@@ -90,7 +110,7 @@ const About = () => {
             />
           </button>
 
-          {/* RESPONSIVE FORM MODAL */}
+          {/* FORM MODAL */}
           {showForm && (
             <div
               className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-3"
@@ -121,12 +141,7 @@ const About = () => {
 
           {/* CALL BUTTON */}
           <button className="w-full sm:w-auto bg-white mt-2 md:mt-8 border-2 border-[rgb(255,99,33)] font-semibold rounded-full active:scale-95 transition-all duration-300 hover:bg-[rgb(255,99,33)] hover:text-white px-6 md:px-8 py-3 md:py-4 shadow-lg">
-            <a
-              href="tel:+917501516714"
-              className="flex items-center justify-center gap-2"
-            >
-              +91-75015 16714
-            </a>
+            <a href="tel:+917501516714">+91-75015 16714</a>
           </button>
         </div>
       </div>
@@ -138,9 +153,7 @@ const About = () => {
       <div className="px-4 pb-12 md:px-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold mt-12 md:mt-24 text-center">
           Let's Redefine Adventure,{" "}
-          <span className="text-[rgb(255,99,33)] font-bold">
-            TOGETHER!
-          </span>
+          <span className="text-[rgb(255,99,33)] font-bold">TOGETHER!</span>
         </h1>
 
         <div className="flex mt-6 justify-center">
