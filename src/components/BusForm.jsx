@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { busTicket } from "../api/busTicket.api";
 
-
 const BusForm = () => {
   const [formData, setFormData] = useState({
     fromCity: "",
@@ -29,7 +28,7 @@ const BusForm = () => {
     } catch (error) {
       alert(
         error.response?.data?.message ||
-          "An error occurred while booking the bus ticket."
+          "Please login first."
       );
     }
     setFormData({
@@ -42,13 +41,14 @@ const BusForm = () => {
     setShowMobileForm(false);
   };
 
-  useEffect(() => {
-    const handleScroll = () => setShowMobileForm(false);
-    if (showMobileForm) {
-      window.addEventListener("scroll", handleScroll);
-    }
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [showMobileForm]);
+  // 🔴 Scroll pe close nahi karna, effect hata diya
+  // useEffect(() => {
+  //   const handleScroll = () => setShowMobileForm(false);
+  //   if (showMobileForm) {
+  //     window.addEventListener("scroll", handleScroll);
+  //   }
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [showMobileForm]);
 
   const labels = {
     fromCity: "From",
@@ -100,7 +100,7 @@ const BusForm = () => {
                     : "0"
                 }
                 className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                required={field !== "returnDate"} // Return is optional
+                required={field !== "returnDate"}
               />
             </div>
           ))}
@@ -127,55 +127,58 @@ const BusForm = () => {
 
       {/* Mobile Popup Form */}
       {showMobileForm && (
-        <div className="md:hidden fixed top-[20%] left-1/2 transform -translate-x-1/2 w-[90vw] h-auto py-8 bg-white rounded-xl shadow-xl z-30 px-4 border border-gray-200 overflow-y-auto">
-          <button
-            className="absolute top-3 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
-            onClick={() => setShowMobileForm(false)}
-          >
-            &times;
-          </button>
+        <div className="md:hidden fixed inset-0 z-30 bg-black/40 flex items-center justify-center">
+          {/* Compact, scrollable card */}
+          <div className="relative w-[90vw] max-w-sm max-h-[80vh] bg-white rounded-xl shadow-xl px-4 py-6 overflow-y-auto border border-gray-200">
+            <button
+              className="absolute top-3 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
+              onClick={() => setShowMobileForm(false)}
+            >
+              &times;
+            </button>
 
-          <h2 className="text-xl text-orange-400 font-bold pb-4 text-center">
-            Bus Tickets
-          </h2>
+            <h2 className="text-xl text-orange-400 font-bold pb-4 text-center">
+              Bus Tickets
+            </h2>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
-            {Object.keys(formData).map((field, index) => (
-              <div className="w-full" key={index}>
-                <label className="block font-semibold mb-1 pl-1">
-                  {labels[field]}
-                </label>
-                <input
-                  type={
-                    ["departureDate", "returnDate"].includes(field)
-                      ? "date"
-                      : field === "passengers"
-                      ? "number"
-                      : "text"
-                  }
-                  name={field}
-                  placeholder={placeholders[field]}
-                  value={formData[field]}
-                  onChange={handleChange}
-                  min={
-                    ["departureDate", "returnDate"].includes(field)
-                      ? new Date().toISOString().split("T")[0]
-                      : "0"
-                  }
-                  className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  required={field !== "returnDate"}
-                />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full">
+              {Object.keys(formData).map((field, index) => (
+                <div className="w-full" key={index}>
+                  <label className="block font-semibold mb-1 pl-1 text-sm">
+                    {labels[field]}
+                  </label>
+                  <input
+                    type={
+                      ["departureDate", "returnDate"].includes(field)
+                        ? "date"
+                        : field === "passengers"
+                        ? "number"
+                        : "text"
+                    }
+                    name={field}
+                    placeholder={placeholders[field]}
+                    value={formData[field]}
+                    onChange={handleChange}
+                    min={
+                      ["departureDate", "returnDate"].includes(field)
+                        ? new Date().toISOString().split("T")[0]
+                        : "0"
+                    }
+                    className="w-full p-2.5 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm"
+                    required={field !== "returnDate"}
+                  />
+                </div>
+              ))}
+              <div className="w-full pt-2">
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6 text-white rounded-xl font-semibold w-full text-sm"
+                >
+                  Submit
+                </button>
               </div>
-            ))}
-            <div className="w-full">
-              <button
-                type="submit"
-                className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6 mt-2 text-white rounded-xl font-semibold w-full"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       )}
     </>

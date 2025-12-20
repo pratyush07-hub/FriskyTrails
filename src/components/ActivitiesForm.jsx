@@ -37,7 +37,7 @@ const ActivitiesForm = () => {
       alert(
         error?.message || error?.data?.message ||
           error?.response?.data?.message ||
-          "An error occurred while submitting the activity."
+          "Please login first"
       );
     }
     setFormData({
