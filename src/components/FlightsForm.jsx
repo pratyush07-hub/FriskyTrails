@@ -164,7 +164,7 @@ const FlightsForm = () => {
             
             {/* ❌ FIXED CLOSE BUTTON */}
             <button
-              className="absolute top-3 py-4 mt-2 right-3 text-2xl font-bold text-gray-500 hover:text-red-500 z-10"
+              className="absolute top-3 py-8 mt-4 right-3 text-2xl font-bold text-gray-500 hover:text-red-500 z-10"
               onClick={() => setShowMobileForm(false)}
             >
               &times;
