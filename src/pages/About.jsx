@@ -78,7 +78,7 @@ const About = () => {
 
       {/* WHY SECTION */}
       <div>
-        <h1 className="text-2xl md:text-4xl font-semibold mt-4 md:mt-16 text-[rgb(255,99,33)] text-center">
+        <h1 className="text-2xl md:text-4xl font-semibold mt-2 md:mt-16 text-[rgb(255,99,33)] text-center">
           Why FriskyTrails?
         </h1>
 

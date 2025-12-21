@@ -47,7 +47,7 @@ const Latestblog = () => {
         {data.map((item) => (
           <Link
             key={item.season}
-            to={`/seasons/${item.season.toLowerCase()}`}
+            // to={`/seasons/${item.season.toLowerCase()}`}
             className="group relative w-full aspect-square sm:aspect-[5/4] lg:aspect-square h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 rounded-2xl shadow-lg overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.05] hover:shadow-2xl hover:-translate-y-1 bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: `url(${item.image})`,
