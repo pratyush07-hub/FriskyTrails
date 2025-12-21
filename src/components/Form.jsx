@@ -27,7 +27,7 @@ const Form = () => {
         alert("Failed to book adventure.");
       }
     }catch (error) {
-      alert(error.response?.data?.message || "An error occurred while booking the adventure.");
+      alert(error.response?.data?.message || "Please login first");
     }
     setFormData({
       from: "",
