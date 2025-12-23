@@ -309,7 +309,7 @@ const ProductDetails = () => {
                   <h3 className="text-xs sm:text-sm">Mon-Sun: 9AM-8PM</h3>
                   <h3 className="text-xs sm:text-sm break-all font-semibold">
                     <a href="mailto:contact@friskytrails.in" className="text-black md:hidden lg:block">
-                      [contact@friskytrails.in](mailto:contact@friskytrails.in)
+                      contact@friskytrails.in
                     </a>
                   </h3>
                 </div>
