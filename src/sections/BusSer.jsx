@@ -44,7 +44,7 @@ const BusSer = () => {
               Read stories from travellers who trusted us to craft their perfect
               journeys!
             </p>
-            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 ml-4 text-white font-bold rounded-full py-2 px-6 text-sm sm:text-base">
+            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-4 ml-4  text-white font-bold rounded-full py-2 px-6 text-sm sm:text-base">
               View Testimonials
             </button>
           </div>
@@ -57,21 +57,22 @@ const BusSer = () => {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold">
+            <h1 className="text-white text-center text-2xl sm:text-3xl md:text-4xl font-semibold">
               Loved For Experiences!
             </h1>
             <p className="text-white text-base sm:text-lg pl-4 max-w-[100%] mt-1">
               Read stories from travellers who trusted us to craft their
               journeys!
             </p>
-            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-41 ml-16 text-white font-bold rounded-full py-1 px-2 text-xs">
+            <button className=" hidden bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-62 ml-25 p-4  text-white font-bold rounded-full py-1 px-2 text-xs">
               View Testimonials
             </button>
           </div>
+         
         </div>
         
         {/* Holiday Packages */}
-        <div className="w-full max-w-[1280px] px-4 sm:px-8 md:px-12 mx-auto py-10">
+        <div className="w-full max-w-[1280px] px-4 sm:px-8 md:px-12 mx-auto py-2">
           <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl">
             Find Your Perfect “Holiday” Package
           </h1>

@@ -132,9 +132,9 @@ const ContactUs = () => {
                     <h3 className="text-lg sm:text-xl md:text-2xl font-semibold pb-2">
                       Siliguri Office
                     </h3>
-                    <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-[32vw] sm:max-w-none">
-                      Uttarapan Market Complex, G15, Hill Cart Rd, opposite of
-                      Biswadeep Cinema Hall, Ward 1, Patiram Jote, Siliguri,
+                    <p className="text-sm sm:text-base md:text-lg text-gray-600 m:max-w-none">
+                      Uttarapan Market Complex, G15, Hill Cart Rd, opposite of Biswadeep Cinema Hall, Ward 1, Patiram Jote, Siliguri,
+                      
                       West Bengal 734001
                     </p>
                   </div>

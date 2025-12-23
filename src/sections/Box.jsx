@@ -46,7 +46,7 @@ const Box = () => {
               className="box flex h-[28vh] m-auto w-[80vw] sm:w-[60vw] md:w-[48vw] lg:w-[42vw] xl:w-[40vw]"
             >
               <img
-                className="w-[35vw] sm:w-[30vw] md:w-[24vw] h-full object-cover rounded-l-4xl bg-green-300 flex-shrink-0"
+                className="w-[35vw] sm:w-[30vw] md:w-[24vw] h-full object-cover rounded-l-4xl flex-shrink-0"
                 src={item.image}
                 alt=""
               />

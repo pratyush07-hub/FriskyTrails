@@ -57,14 +57,14 @@ const RailSer = () => {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold">
+            <h1 className="text-white text-center text-2xl sm:text-3xl md:text-4xl font-semibold">
               Loved For Experiences!
             </h1>
             <p className="text-white text-base sm:text-lg pl-4 max-w-[100%] mt-1">
               Read stories from travellers who trusted us to craft their
               journeys!
             </p>
-            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 mt-41 ml-16 text-white font-bold rounded-full py-1 px-2 text-xs">
+            <button className="bg-gradient-to-r hidden from-[rgb(255,99,33)] to-amber-400 mt-41 ml-16 text-white font-bold rounded-full py-1 px-2 text-xs">
               View Testimonials
             </button>
           </div>

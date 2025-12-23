@@ -12,7 +12,7 @@ const Promise = () => {
           {data.map((item, index) => (
             <div
               key={index}
-              className="w-[96%] md:min-w-0 flex-shrink-0 md:flex-shrink h-auto flex justify-center hover:scale-105 transition-transform duration-300 rounded-lg bg-white shadow-lg pb-8"
+              className="w-[75%] md:w-[90%] md:min-w-0 flex-shrink-0 md:flex-shrink h-auto flex justify-center hover:scale-105 transition-transform duration-300 rounded-lg bg-white shadow-lg pb-8"
             >
               <div className="w-full max-w-sm">
                 <div className="flex justify-center pt-8 md:pt-12">
