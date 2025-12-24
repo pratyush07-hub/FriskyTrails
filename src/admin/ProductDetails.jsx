@@ -102,7 +102,7 @@ const ProductDetails = () => {
       <Toaster position="top-center" />
 
       {/* Breadcrumb */}
-      <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mt-22 lg:mt-30 m-auto px-4">
+      <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mt-25 lg:mt-30  m-auto px-4">
         <div className="flex items-center pt-4 sm:pt-6 flex-wrap gap-2">
           <h3 className="font-semibold text-sm sm:text-base">Home</h3>
           <img className="h-3 w-3 sm:h-4 sm:w-4 mt-1" src={Right} alt="rightarrow" />
