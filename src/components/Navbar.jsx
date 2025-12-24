@@ -91,7 +91,7 @@ const Navbar = () => {
 
   return (
     <div className="flex top-10 fixed justify-center z-50 w-full">
-<div className="h-auto min-h-[70px] sm:min-h-[70px] lg:h-[10vh] w-full bg-white flex flex-col lg:flex-row justify-between items-center py-3 sm:py-4 md:p-2 lg:p-4 px-4">
+<div className="h-auto min-h-[70px] sm:min-h-[65px] lg:h-[10vh] w-full bg-white flex flex-col lg:flex-row justify-between items-center py-3 sm:py-4 md:p-2 lg:p-4 px-4">
 
         {/* Logo and Hamburger */}
         <div className="flex justify-between mt-2 items-center w-full lg:w-auto">
