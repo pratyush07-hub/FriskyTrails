@@ -60,7 +60,7 @@ const TransportSer = () => {
             <h1 className="text-white text-center text-2xl sm:text-3xl md:text-4xl font-semibold">
               Loved For Experiences!
             </h1>
-            <p className="text-white text-base sm:text-lg pl-4 max-w-[100%] mt-1">
+            <p className="text-white ml-4 text-center text-base sm:text-lg pl-4 max-w-[100%] mt-1">
               Read stories from travellers who trusted us to craft their
               journeys!
             </p>
