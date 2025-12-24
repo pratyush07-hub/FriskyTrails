@@ -159,12 +159,12 @@ const FlightsForm = () => {
 
       {/* Mobile Popup Form - ✅ FIXED WITH TOP MARGIN */}
       {showMobileForm && (
-        <div className="md:hidden fixed inset-0 z-30 bg-black/40 flex items-center justify-center pt-16 md:pt-0">
+        <div className="md:hidden fixed inset-0 z-30 bg-black/40 flex items-center justify-center pt-16  md:pt-0">
           <div className="relative w-[95vw] max-w-sm max-h-[85vh] bg-white rounded-xl shadow-xl px-4 py-6 overflow-y-auto border border-gray-200">
             
             {/* Close Button */}
             <button
-              className="absolute top-3 right-3 text-2xl font-bold text-gray-500 hover:text-red-500 z-10 p-2"
+              className="absolute  mt-8 top-3 right-3 text-2xl font-bold text-gray-500 hover:text-red-500 z-10 p-2"
               onClick={() => setShowMobileForm(false)}
             >
               &times;
