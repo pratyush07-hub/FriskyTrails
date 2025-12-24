@@ -5,6 +5,8 @@ import Share from "../assets/share.svg";
 import Payment from "../assets/payment.svg";
 import Call from "../assets/calling.svg";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import {
   getProductBySlug,
   getProductTypeById,
@@ -22,7 +24,20 @@ const ProductDetails = () => {
   const [howToReach, setHowToReach] = useState("");
   const [showBooking, setShowBooking] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true); // Added loading state
+  const [loading, setLoading] = useState(true);
+
+  /* =====================
+     SHARE HANDLER (ADDED)
+  ===================== */
+  const handleShare = async () => {
+    try {
+      const url = `https://frisky-trails.vercel.app/tours/${slug}`;
+      await navigator.clipboard.writeText(url);
+      toast.success("Link copied to clipboard!");
+    } catch (error) {
+      toast.error("Failed to copy link");
+    }
+  };
 
   // Auto image slider for mobile
   useEffect(() => {
@@ -37,12 +52,11 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProductData = async () => {
       try {
-        setLoading(true); // Set loading true at start
+        setLoading(true);
         const productRes = await getProductBySlug(slug);
         const productData = productRes.data;
         setProduct(productData);
 
-        // Things to Carry (ensure it's an array)
         if (productData.productType) {
           const typeRes = await getProductTypeById(productData.productType);
           let carryData = typeRes.data.thingsToCarry || "";
@@ -52,21 +66,19 @@ const ProductDetails = () => {
               const parsed = JSON.parse(carryData);
               setThingsToCarry(Array.isArray(parsed) ? parsed : [carryData]);
             } catch {
-              setThingsToCarry(carryData); // fallback: treat as HTML string
+              setThingsToCarry(carryData);
             }
           }
         }
 
-        // How to Reach
         if (productData.city?._id) {
           const cityRes = await getCityById(productData.city._id);
-          console.log(cityRes);
           setHowToReach(cityRes.data?.howToReach || "");
         }
       } catch (error) {
         console.error("Error fetching product/type/city:", error);
       } finally {
-        setLoading(false); // Always set loading false
+        setLoading(false);
       }
     };
 
@@ -76,35 +88,26 @@ const ProductDetails = () => {
   const openBookingModal = () => setShowBooking(true);
   const closeBookingModal = () => setShowBooking(false);
 
-
   if (loading || !product) {
     return (
-      <div 
-        className="flex items-center justify-center min-h-[70vh] py-20 px-4"
-       
-      >
+      <div className="flex items-center justify-center min-h-[70vh] py-20 px-4">
         <FriskyLoader size="sm" text="Loading product details..." />
       </div>
     );
   }
-  
+
   return (
     <div className="min-h-screen w-full">
+      {/* TOASTER (ADDED) */}
+      <Toaster position="top-center" />
+
       {/* Breadcrumb */}
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mt-22 lg:mt-30 m-auto px-4">
         <div className="flex items-center pt-4 sm:pt-6 flex-wrap gap-2">
           <h3 className="font-semibold text-sm sm:text-base">Home</h3>
-          <img
-            className="h-3 w-3 sm:h-4 sm:w-4 mt-1"
-            src={Right}
-            alt="rightarrow"
-          />
+          <img className="h-3 w-3 sm:h-4 sm:w-4 mt-1" src={Right} alt="rightarrow" />
           <h3 className="font-semibold text-sm sm:text-base">Products</h3>
-          <img
-            className="h-3 w-3 sm:h-4 sm:w-4 mt-1"
-            src={Right}
-            alt="rightarrow"
-          />
+          <img className="h-3 w-3 sm:h-4 sm:w-4 mt-1" src={Right} alt="rightarrow" />
           <h3 className="font-semibold text-gray-600 text-sm sm:text-base truncate">
             {product.name}
           </h3>
@@ -116,26 +119,20 @@ const ProductDetails = () => {
 
         <div className="flex flex-col sm:flex-row sm:justify-between gap-4 pt-2">
           <div className="flex items-center gap-2 sm:gap-4 flex-wrap">
-            <div className="flex items-center gap-1">
-              <h3 className="text-gray-500 text-sm sm:text-base">
-                {"⭐".repeat(product.rating || 5)} ({product.reviews || 0}{" "}
-                Reviews)
-              </h3>
-            </div>
-            <div className="border h-full border-gray-300 hidden sm:block"></div>
-            <div>
-              <h3 className="text-gray-500 text-sm sm:text-base">
-                {product.city?.name}, {product.state?.name}
-              </h3>
-            </div>
+            <h3 className="text-gray-500 text-sm sm:text-base">
+              {"⭐".repeat(product.rating || 5)} ({product.reviews || 0} Reviews)
+            </h3>
+            <h3 className="text-gray-500 text-sm sm:text-base">
+              {product.city?.name}, {product.state?.name}
+            </h3>
           </div>
 
-          <button className="py-2 flex items-center justify-center gap-2 px-4 sm:px-6 font-semibold text-white active:scale-95 transition-all duration-300 bg-[rgb(233,99,33)] rounded-3xl text-sm sm:text-base w-fit">
-            <img
-              className="invert h-4 w-4 sm:h-5 sm:w-5"
-              src={Share}
-              alt="share"
-            />
+          {/* SHARE BUTTON (onClick ADDED) */}
+          <button
+            onClick={handleShare}
+            className="py-2 flex items-center justify-center gap-2 px-4 sm:px-6 font-semibold text-white active:scale-95 transition-all duration-300 bg-[rgb(233,99,33)] rounded-3xl text-sm sm:text-base w-fit"
+          >
+            <img className="invert h-4 w-4 sm:h-5 sm:w-5" src={Share} alt="share" />
             Share
           </button>
         </div>
