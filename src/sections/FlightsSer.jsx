@@ -60,7 +60,7 @@ const FlightsSer = () => {
             }}
           >
             <div className="flex flex-col px-4">
-            <h1 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold">
+            <h1 className="text-white text-center text-2xl sm:text-3xl md:text-4xl font-semibold">
               Loved For Experiences!
             </h1>
             <p className="text-white text-base sm:text-lg max-w-[100%] mt-1">
@@ -69,7 +69,7 @@ const FlightsSer = () => {
             </p>
             </div>
             <div className="absolute bottom-13 left-34">
-            <button className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 text-white font-bold rounded-full py-2 px-3 text-xs">
+            <button className="bg-gradient-to-r hidden from-[rgb(255,99,33)] to-amber-400 text-white font-bold rounded-full py-2 px-3 text-xs">
               View Testimonials
             </button>
           </div>
