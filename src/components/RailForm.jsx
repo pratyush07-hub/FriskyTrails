@@ -45,19 +45,6 @@ const RailForm = () => {
     setShowMobileForm(false);
   };
 
-  // 🔴 Scroll pe close nahi chahiye, effect hata diya
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setShowMobileForm(false);
-  //   };
-  //   if (showMobileForm) {
-  //     window.addEventListener("scroll", handleScroll);
-  //   }
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [showMobileForm]);
-
   const labels = {
     fromStation: "From",
     toStation: "To",
@@ -134,7 +121,7 @@ const RailForm = () => {
           <div className="w-full md:w-auto">
             <button
               type="submit"
-              className="bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6 mt-2 xl:mt-6 text-white rounded-xl font-semibold w-full"
+              className=" mt-10 bg-gradient-to-r from-[rgb(255,99,33)] to-amber-400 hover:scale-95 py-3 px-6  xl:mt-6 text-white rounded-xl font-semibold w-full"
             >
               Submit
             </button>
@@ -152,23 +139,23 @@ const RailForm = () => {
         </button>
       </div>
 
-      {/* ============ Mobile Popup Form ============ */}
+      {/* ============ Mobile Popup Form - ✅ SAME TOP MARGIN ✅ */}
       {showMobileForm && (
-        <div className="md:hidden fixed inset-0 z-30 bg-black/40 flex items-center justify-center">
+        <div className="md:hidden fixed inset-0 z-30 bg-black/40 flex items-center justify-center pt-16 md:pt-0">
           {/* Compact, scrollable modal for small screens */}
-          <div className="relative w-[90vw] max-w-sm max-h-[80vh] mt-4  bg-white rounded-xl shadow-xl px-4 py-6 overflow-y-auto border border-gray-200">
+          <div className="relative w-[90vw] max-w-sm max-h-[80vh] bg-white rounded-xl shadow-xl px-4 py-6 overflow-y-auto border border-gray-200">
             <button
-              className="absolute top-3 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
+              className="absolute top-3 right-4 text-2xl font-bold text-gray-500 hover:text-red-500 p-2"
               onClick={() => setShowMobileForm(false)}
             >
               &times;
             </button>
 
-            <h2 className="text-xl text-orange-400 font-bold pb-4 text-center">
+            <h2 className="text-xl text-orange-400 font-bold pb-4 text-center pt-10">
               Rail Tickets
             </h2>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full mt-4">
               {Object.keys(formData).map((field, index) => (
                 <div className="w-full" key={index}>
                   <label className="block font-semibold mb-1 pl-1 text-sm">
