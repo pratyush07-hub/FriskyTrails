@@ -120,25 +120,24 @@ const ContactUs = () => {
               {/* Locations */}
               <div className="w-full px-4 sm:px-6 flex flex-col gap-8">
                 {/* Siliguri */}
-                <div className="flex flex-col sm:flex-row items-center gap-4">
-                  <div className="flex items-center justify-center bg-gradient-to-r from-[rgb(248,159,124)] to-amber-300 h-[40px] w-[40px] rounded-full">
-                    <img
-                      className="h-[20px] w-[20px]"
-                      src={Location}
-                      alt="Location"
-                    />
-                  </div>
-                  <div className="text-center sm:text-left">
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold pb-2">
-                      Siliguri Office
-                    </h3>
-                    <p className="text-sm sm:text-base md:text-lg text-gray-600 m:max-w-none">
-                      Uttarapan Market Complex, G15, Hill Cart Rd, opposite of Biswadeep Cinema Hall, Ward 1, Patiram Jote, Siliguri,
-                      
-                      West Bengal 734001
-                    </p>
-                  </div>
-                </div>
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 w-full">
+  <div className="flex items-center justify-center bg-gradient-to-r from-[rgb(248,159,124)] to-amber-300 h-[40px] w-[40px] rounded-full flex-shrink-0">
+    <img
+      className="h-[20px] w-[20px]"
+      src={Location}
+      alt="Location"
+    />
+  </div>
+  <div className="text-center sm:text-left flex-1">
+    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold pb-2">
+      Siliguri Office
+    </h3>
+    <p className="text-sm md:text-md text-gray-600">
+      Uttarapan Market Complex, G15, Hill Cart Rd, opposite of Biswadeep Cinema Hall, Ward 1, Patiram Jote, Siliguri, West Bengal 734001
+    </p>
+  </div>
+</div>
+
 
                 {/* Jaipur */}
                 <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -153,7 +152,7 @@ const ContactUs = () => {
                     <h3 className="text-lg sm:text-xl md:text-2xl font-semibold pb-2">
                       Jaipur Office
                     </h3>
-                    <p className="text-sm sm:text-base md:text-lg text-gray-600">
+                    <p className="text-sm  md:text-md text-gray-600">
                       Utsav Apartment, In Front of MIG Block, Pratap Nagar,
                       Jaipur, Rajasthan, 302033
                     </p>
