@@ -79,11 +79,13 @@ import configurePassport from "./config/passport.js";
 configurePassport();
 app.use(passport.initialize());
 
-
+//getAllStates
 app.use("/api/v1/contact", contactRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/admin",adminRoutes);
 app.use("/api/v1/blog", blogRoutes);
+
+//harsh
 
 app.use("/api/v1", adventureRoutes);
 
