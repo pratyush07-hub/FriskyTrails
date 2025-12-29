@@ -11,6 +11,9 @@ import CreateProductType from "./CreateProductType";
 import CreateStateForm from "./CreateStateForm";
 import AllBlogs from "./AllBlogs"; // ✅ Added AllBlogs component
 import AllProducts from "./AllProducts";
+import AllStates from "./AllStates";
+import AllCountries from "./AllCountries";
+import AllCities from "./AllCities";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState(""); // No active tab by default
@@ -18,36 +21,39 @@ const Dashboard = () => {
   const [isAllowed, setIsAllowed] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const checkAdmin = async () => {
-      try {
-        const res = await getCurrentUser();
-        const user = res.data.user;
-        if (!user || user.admin !== true) {
-          setIsAllowed(false);
-        } else {
-          setIsAdmin(true);
-        }
-      } catch (err) {
-        console.error(err);
-        alert("Failed to verify user");
-        window.location.href = "/";
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const checkAdmin = async () => {
+  //     try {
+  //       const res = await getCurrentUser();
+  //       const user = res.data.user;
+  //       if (!user || user.admin !== true) {
+  //         setIsAllowed(false);
+  //       } else {
+  //         setIsAdmin(true);
+  //       }
+  //     } catch (err) {
+  //       console.error(err);
+  //       alert("Failed to verify user");
+  //       window.location.href = "/";
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    checkAdmin();
-  }, []);
+  //   checkAdmin();
+  // }, []);
 
-  if (loading) return null;
-  if (!isAllowed) return <NotFound />;
-  if (!isAdmin) return null;
+  // if (loading) return null;
+  // if (!isAllowed) return <NotFound />;
+  // if (!isAdmin) return null;
 
   // ✅ Added All Blogs section
   const sections = [
     { key: "all-blogs", title: "All Blogs", component: <AllBlogs /> },
     { key: "all-products", title: "All Products", component: <AllProducts /> },
+    { key: "all-countries", title: "All Countries", component: <AllCountries /> },
+    { key: "all-states", title: "All States", component: <AllStates /> },
+    { key: "all-cities", title: "All Cities", component: <AllCities /> },
     { key: "create-blog", title: "Create Blog", component: <CreateBlogForm /> },
     { key: "create-city", title: "Create City", component: <CreateCityForm /> },
     { key: "create-country", title: "Create Country", component: <CreateCountryForm /> },

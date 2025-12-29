@@ -106,7 +106,7 @@ const App = () => {
                   <Route path="create-product" element={<CreateProductPage />} />
                   <Route path="create-productType" element={<CreateProductType />} />
                 </Routes>
-              </ProtectedRoute>
+             </ProtectedRoute>
             }
           />
 

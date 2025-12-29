@@ -318,4 +318,117 @@ const getAllProductTypes = async () => {
   }
 }
 
-export { createProduct, updateBlog,getBlogById,getProducts, getProductBySlug, updateProduct, deleteProduct, createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs, createProductType, getProductTypeBySlug, getProductTypeBySlugWithProduct, getAllProductTypes, uploadEditorImage, getAllBlogs, getProductTypeById };
+///harsh
+
+const getAllStates = async () => {
+  try {
+    console.log("hiiii")
+    const response = await axiosInstance.get("/api/v1/admin/states");
+    console.log(response)
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+const getStateById= async (id) => {
+  try {
+    console.log("hiiii2")
+    const response = await axiosInstance.get(`/api/v1/admin/state/${id}`);
+    console.log(response)
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+const updateState = async (id, data) => {
+  try {
+    const res = await axiosInstance.put(
+      `/api/v1/admin/state/${id}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return res.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error;
+  }
+};
+
+
+ const getAllCountries = async () => {
+  const res = await axiosInstance.get("/api/v1/admin/allcountries");
+  return res.data;
+};
+
+const getCountryById = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/api/v1/admin/country/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+
+const updateCountry = async (id, data) => {
+  try {
+    const res = await axiosInstance.put(
+      `/api/v1/admin/country/${id}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return res.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error;
+  }
+};
+
+// ==================== CITIES API ====================
+
+const getAllCities = async () => {
+  try {
+    console.log("Fetching all cities");
+    const response = await axiosInstance.get("/api/v1/admin/cities");
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error.message;
+  }
+};
+
+// const getCityById = async (id) => {
+//   try {
+//     console.log("Fetching city by ID:", id);
+//     const response = await axiosInstance.get(`/api/v1/admin/city/${id}`);
+//     console.log(response);
+//     return response.data;
+//   } catch (error) {
+//     throw error.response ? error.response.data : error.message;
+//   }
+// };
+
+const updateCity = async (id, data) => {
+  try {
+    const res = await axiosInstance.put(
+      `/api/v1/admin/city/${id}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    return res.data;
+  } catch (error) {
+    throw error.response ? error.response.data : error;
+  }
+};
+
+
+export {updateState, getAllCountries, getCountryById, updateCountry, getStateById,getAllStates, createProduct, updateBlog,getBlogById,getProducts, getProductBySlug, updateProduct, deleteProduct, createBlog, createCountry, getCountries, createState, createCity, getStates, getCities, getCountryBySlug, getCountryWithBlogs, createProductType, getProductTypeBySlug, getProductTypeBySlugWithProduct, getAllProductTypes, uploadEditorImage, getAllBlogs, getProductTypeById, getAllCities, updateCity };
