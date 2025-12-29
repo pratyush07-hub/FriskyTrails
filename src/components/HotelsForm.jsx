@@ -43,19 +43,6 @@ const HotelForm = () => {
     setShowMobileForm(false);
   };
 
-  // 🔴 Scroll pe close nahi chahiye, isliye effect hata diya
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setShowMobileForm(false);
-  //   };
-  //   if (showMobileForm) {
-  //     window.addEventListener("scroll", handleScroll);
-  //   }
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [showMobileForm]);
-
   const labels = {
     city: "City",
     property: "Property",
@@ -152,22 +139,22 @@ const HotelForm = () => {
         </button>
       </div>
 
-      {/* Mobile Popup Form */}
+      {/* Mobile Popup Form - ✅ SAME TOP MARGIN ✅ */}
       {showMobileForm && (
-        <div className="md:hidden fixed inset-0 z-30 bg-black/40 flex items-center justify-center">
+        <div className="md:hidden fixed inset-0 z-30 bg-black/40 flex items-center justify-center pt-16 md:pt-0">
           <div className="relative w-[90vw] max-w-sm max-h-[80vh] bg-white rounded-xl shadow-xl px-4 py-6 overflow-y-auto border border-gray-200">
             <button
-              className="absolute top-5 right-4 text-2xl font-bold text-gray-500 hover:text-red-500"
+              className="absolute  mt-7 top-3 right-4 text-2xl font-bold text-gray-500 hover:text-red-500 p-2"
               onClick={() => setShowMobileForm(false)}
             >
               &times;
             </button>
 
-            <h2 className="text-xl mt-4 text-orange-400 font-bold pb-4 text-center">
+            <h2 className="text-xl pt-10 text-orange-400 font-bold pb-4 text-center">
               Hotels
             </h2>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full mt-4">
               {Object.keys(formData).map((field, index) => (
                 <div className="w-full" key={index}>
                   <label className="block font-semibold mb-1 pl-1 text-sm">
