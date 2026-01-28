@@ -2,9 +2,10 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
 import { sheetConfig } from '../config/sheetConfig.js';
 import { pushToSheet } from '../utils/pushToSheet.js';
+import { setCorsHeaders } from '../utils/corsHelper.js';
 
 // Environment variables (set these in your .env file)
-const JWT_SECRET = process.env.JWT_SECRET || process.env.ACCESS_TOKEN_SECRET || 'your-super-secret-jwt-key';
+const JWT_SECRET = process.env.JWT_SECRET || process.env.ACCESS_TOKEN_SECRET 
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '7d';
 const COOKIE_EXPIRES_DAYS = 7;
 
@@ -43,13 +44,10 @@ const sendTokenResponse = (user, statusCode, res) => {
       name: user.name,
       avatar: user.avatar,
     },
+    // Always send token in body so the client can use Authorization header and avoid
+    // "invalid signature" when a stale cookie was signed with a different JWT_SECRET.
+    token,
   };
-
-  // For local development, expose token in the response so dev clients can
-  // use Authorization header when Secure cookies are not available (HTTP).
-  if (process.env.NODE_ENV !== 'production') {
-    payload.token = token;
-  }
 
   res.status(statusCode).cookie('token', token, cookieOptions).json(payload);
 };
@@ -166,6 +164,14 @@ export const login = async (req, res) => {
       });
     }
 
+    // Check if user has a password set
+    if (!user.password) {
+      return res.status(401).json({
+        success: false,
+        message: 'Please complete your registration first',
+      });
+    }
+
     // Check password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
@@ -178,9 +184,17 @@ export const login = async (req, res) => {
     sendTokenResponse(user, 200, res);
   } catch (error) {
     console.error('Login error:', error);
+    console.error('Login error stack:', error.stack);
+    
+    // Set CORS headers even on error
+    setCorsHeaders(req, res);
+    
     res.status(500).json({
       success: false,
       message: 'Server error during login',
+      ...(process.env.NODE_ENV === 'development' && { 
+        error: error.message 
+      }),
     });
   }
 };
@@ -192,6 +206,9 @@ export const login = async (req, res) => {
  */
 export const getMe = async (req, res) => {
   try {
+    // Set CORS headers
+    setCorsHeaders(req, res);
+
     const user = await User.findById(req.user.id);
 
     if (!user) {
@@ -213,6 +230,11 @@ export const getMe = async (req, res) => {
     });
   } catch (error) {
     console.error('GetMe error:', error);
+    console.error('Error stack:', error.stack);
+    
+    // Set CORS headers even on error
+    setCorsHeaders(req, res);
+    
     res.status(500).json({
       success: false,
       message: 'Server error',
