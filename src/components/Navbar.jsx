@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
 import Admodal from "../components/Admodal";
 import LoginModal from "./LoginModal";
@@ -9,6 +9,7 @@ import { FaChevronDown, FaUser } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate(); // Added for stable redirection
   const [showModal, setShowModal] = useState(false);
   const [showAdmodal, setShowAdmodal] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,14 +27,14 @@ const Navbar = () => {
 
   const toggleServices = () => {
     setShowServices((prev) => {
-      if (!prev) setShowAdventures(false);
+      if (!prev) setShowAdventures(false); // Close adventures if opening services
       return !prev;
     });
   };
 
   const toggleAdventures = () => {
     setShowAdventures((prev) => {
-      if (!prev) setShowServices(false);
+      if (!prev) setShowServices(false); // Close services if opening adventures
       return !prev;
     });
   };
@@ -69,12 +70,14 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await logout();
-    } catch (error) {
-      // Handle error silently
-    } finally {
+      // Reset all UI states
       setShowDropdown(false);
       setShowLogin(false);
-      window.location.href = "/";
+      setIsMenuOpen(false);
+      // Use navigate instead of window.location.href to prevent race conditions
+      navigate("/"); 
+    } catch (error) {
+      console.error("Logout error:", error);
     }
   };
 
@@ -89,48 +92,47 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Header Spacer - Accounts for both mobile (6vh) and desktop headers */}
-      <div className="h-[6vh] md:h-[6vh] lg:h-0" />
+      {/* Header Spacer - Reduced for small devices */}
+      <div className="h-[5vh] sm:h-[5.5vh] md:h-[6vh] lg:h-0" />
       
-      <div className="fixed top-[6vh] left-0 right-0 z-[999] w-full">
+      <div className="fixed top-[5vh] sm:top-[5.5vh] md:top-[6vh] left-0 right-0 z-[999] w-full">
         <div className="
           h-auto 
-          min-h-[40px]           
-          sm:min-h-[60px] 
-          md:min-h-[70px]
+          min-h-[28px] xs:min-h-[30px]           
+          sm:min-h-[40px] 
+          md:min-h-[50px]
           lg:h-[8vh]            
           w-full bg-white/95 backdrop-blur-md border-b border-gray-200
           flex flex-col lg:flex-row 
           justify-between items-center
-          px-4 sm:px-6 lg:px-8 xl:px-12
-          py-3 sm:py-4 lg:py-0
+          px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12
+          py-2 sm:py-2.5 md:py-3 lg:py-0
           shadow-sm
         ">
           {/* Logo and Hamburger */}
-          <div className="flex justify-between items-center w-full lg:w-auto py-2 lg:py-0">
-            <div className="flex items-center gap-2 sm:gap-2 lg:gap-3 flex-shrink-0">
+          <div className="flex justify-between items-center w-full lg:w-auto py-1.5 lg:py-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-3 flex-shrink-0">
               <Link to="/">
                 <img
-                  className="h-10 w-12 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 xl:h-20 xl:w-20 object-contain flex-shrink-0"
+                  className="h-8 w-10 sm:h-10 sm:w-11 md:h-12 md:w-12 lg:h-16 lg:w-16 xl:h-20 xl:w-20 object-contain flex-shrink-0"
                   src="/logo.PNG"
                   alt="FriskyTrails Logo"
                 />
               </Link>
-              {/* Show name on ALL devices, smaller on mobile */}
-              <h1 className="text-xl sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold whitespace-nowrap text-gray-800 flex-shrink-0">
+              <h1 className="text-lg sm:text-base md:text-xl lg:text-2xl xl:text-3xl font-bold whitespace-nowrap text-gray-800 flex-shrink-0">
                 FriskyTrails
               </h1>
             </div>
             
             <button 
               onClick={toggleMenu} 
-              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors z-[1001] ml-4 flex-shrink-0"
+              className="lg:hidden p-1.5 sm:p-2 rounded-lg hover:bg-gray-100 transition-colors z-[1001] ml-2 sm:ml-4 flex-shrink-0"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
-                <span className="text-2xl font-bold">✕</span>
+                <span className="text-xl sm:text-2xl font-bold">✕</span>
               ) : (
-                <div className="space-y-1.5 w-6">
+                <div className="space-y-1 w-5 sm:w-6">
                   <div className="w-full h-0.5 bg-black rounded"></div>
                   <div className="w-full h-0.5 bg-black rounded"></div>
                   <div className="w-full h-0.5 bg-black rounded"></div>
@@ -153,7 +155,7 @@ const Navbar = () => {
             >
               Adventures 
               <img 
-                className="w-4 h-4 transition-transform group-hover:-rotate-180" 
+                className={`w-4 h-4 transition-transform ${showAdmodal ? "-rotate-180" : ""}`} 
                 src={Arrow} 
                 alt="arrow" 
               />
@@ -166,7 +168,7 @@ const Navbar = () => {
             >
               Services 
               <img 
-                className="w-4 h-4 transition-transform group-hover:-rotate-180" 
+                className={`w-4 h-4 transition-transform ${showModal ? "-rotate-180" : ""}`} 
                 src={Arrow} 
                 alt="arrow" 
               />
@@ -224,15 +226,15 @@ const Navbar = () => {
         />
       )}
 
-      {/* Mobile Drawer - Full height, opens from RIGHT side with higher z-index */}
+      {/* Mobile Drawer */}
       <div
         className={`fixed top-0 right-0 h-screen w-[85vw] max-w-sm bg-white shadow-2xl z-[1002] transform transition-transform duration-300 ease-in-out overflow-y-auto lg:hidden mobile-menu ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="p-6 flex flex-col h-full">
+        <div className="p-4 flex flex-col h-full">
           {/* Header */}
-          <div className="flex justify-between items-center mb-8 pt-20">
+          <div className="flex justify-between items-center mb-8 pt-2">
             <h2 className="text-2xl font-bold text-gray-800">Menu</h2>
             <button
               onClick={toggleMenu}
@@ -242,19 +244,8 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* User Greeting */}
-          {isLoggedIn && (
-            <div className="flex items-center gap-3 mb-8 p-4 bg-gray-50 rounded-xl">
-              <FaUser className="text-2xl text-amber-500" />
-              <div>
-                <p className="font-semibold text-lg text-gray-800">Hi, {storedFirstName}</p>
-                <p className="text-sm text-gray-500">Welcome back!</p>
-              </div>
-            </div>
-          )}
-
           {/* Navigation Links */}
-          <div className="flex-1 space-y-4 text-lg font-medium">
+          <div className="flex-1 space-y-2 text-lg font-medium">
             <Link
               to="/"
               onClick={handleNavigation}
@@ -379,21 +370,22 @@ const Navbar = () => {
             >
               Contact Us
             </Link>
-          </div>
 
-          {/* Bottom CTA */}
-          <div className="mt-8 pt-8 border-t border-gray-200">
+            {/* Login/Logout Section */}
             {isLoggedIn ? (
               <button
                 onClick={handleLogout}
-                className="w-full bg-black text-white px-6 py-4 mb-2 rounded-2xl font-semibold text-lg hover:bg-gray-800 active:scale-95 transition-all shadow-lg"
+                className="block w-full p-4 rounded-xl text-center hover:bg-red-50 hover:text-red-600 transition-all text-lg font-semibold border-t border-gray-200 mt-2 pt-6"
               >
                 Logout
               </button>
             ) : (
               <button
-                onClick={() => setShowLogin(true)}
-                className="w-full bg-gradient-to-r from-amber-500 mb-2 to-orange-500 text-white px-6 py-4 rounded-2xl font-semibold text-lg hover:from-amber-600 hover:to-orange-600 active:scale-95 transition-all shadow-lg"
+                onClick={() => {
+                  handleNavigation();
+                  setShowLogin(true);
+                }}
+                className="block w-full p-4 text-center rounded-xl   hover:bg-amber-50 hover:text-amber-600 transition-all text-lg font-semibold bg-gradient-to-r from-amber-500 to-orange-500 text-white border-t border-gray-200 mt-4 pt-6 shadow-lg"
               >
                 Login
               </button>
@@ -403,7 +395,7 @@ const Navbar = () => {
       </div>
 
       {/* Login Modal */}
-      {(showLogin || (isMenuOpen && !isLoggedIn)) && <LoginModal onClose={handleLoginClose} />}
+      {showLogin && <LoginModal onClose={handleLoginClose} />}
     </>
   );
 };

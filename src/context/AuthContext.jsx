@@ -6,16 +6,24 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);   // NEW
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let isMounted = true; // Flag to prevent state updates if component unmounts
+    let isMounted = true;
 
     const checkAuth = async () => {
+      const token = localStorage.getItem('token');
+      if (!token || token === 'none') {
+        if (isMounted) {
+          setUser(null);
+          setIsAdmin(false);
+          setLoading(false);
+        }
+        return;
+      }
+
       try {
-        // Backend uses GET /me, not POST /get-user
-        // Token is in HTTP-only cookie, sent automatically with withCredentials: true
         const response = await axiosInstance.get('/api/v1/user/me');
         const userData = response?.data?.user;
 
@@ -29,11 +37,11 @@ export const AuthProvider = ({ children }) => {
           }
         }
       } catch (error) {
-        // Silently handle 401 errors (user not authenticated)
-        // Only log other errors
         if (isMounted) {
           setUser(null);
           setIsAdmin(false);
+          // Token invalid hai toh hata do
+          localStorage.removeItem('token');
         }
       } finally {
         if (isMounted) {
@@ -44,7 +52,6 @@ export const AuthProvider = ({ children }) => {
 
     checkAuth();
 
-    // Cleanup function to prevent state updates after unmount
     return () => {
       isMounted = false;
     };
@@ -57,10 +64,15 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
+      // API call to logout from backend
       await axiosInstance.post('/api/v1/user/logout');
     } catch (error) {
-      // Logout error handled silently
+      console.error("Logout API failed:", error);
     } finally {
+      // FIX: Token ko localStorage se remove karna zaroori hai
+      localStorage.removeItem('token'); 
+      
+      // Reset State
       setUser(null);
       setIsAdmin(false);
     }
